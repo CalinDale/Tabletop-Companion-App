@@ -1,4 +1,9 @@
 # Tabletop-Companion-App
-For Weltec Project
+Making tabeltop companion app for Weltec Project.
 
 Calin's Branch
+
+Team:
+Jonty Johnson
+Scott Tyson
+Calin Dale
