@@ -1,2 +1,7 @@
 # Tabletop-Companion-App
-For Weltec Project
+Making tabeltop companion app for Weltec Project.
+
+Team:
+Jonty Johnson
+Scott Tyson
+Calin Dale
