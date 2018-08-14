@@ -8,10 +8,12 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { CharactersComponent } from './characters/characters.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CharactersComponent
   ],
   imports: [
     BrowserModule,

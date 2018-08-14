@@ -21,18 +21,4 @@
 <!-- the piece below is needed for routing I believe - Calin -->
 <router-outlet></router-outlet>
 
-
-<!-- remove when done testing characters -->
-<h1>Testing Characters</h1>
-
-<ul class="characters">
-  <li *ngFor="let character of characters">
-    {{character.name}}
-    <ul class="attributes">
-      <li *ngFor="let attribute of character.attributes">
-        {{attribute.name}}: {{attribute.type}} = {{attribute.value}}
-      </li>
-    </ul>
-  </li>
-</ul>
-<!-- end of remove when done testing characters -->
+<app-characters></app-characters>
