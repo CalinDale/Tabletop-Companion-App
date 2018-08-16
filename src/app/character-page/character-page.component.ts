@@ -9,11 +9,18 @@ import { Character } from './../character';
   styleUrls: ['./character-page.component.css']
 })
 export class CharacterPageComponent implements OnInit {
-
   @Input() character: Character;
-  constructor() { }
+
+  constructor(
+    // TODO: Delete this section when implementing proper routing.
+    private characterService: CharacterService
+    // TODO: End of delete.
+  ) { }
 
   ngOnInit() {
+    // TODO: Delete this section when implementing proper routing.
+    this.getCharacterTEMP();
+    // TODO: End of delete.
   }
 
   // gets the character by the ID in the route.
@@ -28,4 +35,10 @@ export class CharacterPageComponent implements OnInit {
   addAttribute(): void {}
 
   removeAttribute(): void {}
+
+  // TODO: Delete this section when implementing proper routing.
+  getCharacterTEMP(): void {
+    this.characterService.getCharacters().subscribe(characters => this.character = characters[2]);
+  }
+  // TODO: End of delete.
 }
