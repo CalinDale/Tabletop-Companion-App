@@ -21,4 +21,10 @@ export class CharactersComponent implements OnInit {
     this.characterService.getCharacters()
     .subscribe(characters => this.characters = characters);
   }
+
+  addCharacter(): void {}
+
+  reorderCharacters(): void {}
+
+  removeCharacter(): void {}
 }

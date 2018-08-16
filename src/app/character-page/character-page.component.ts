@@ -24,4 +24,8 @@ export class CharacterPageComponent implements OnInit {
 
   // save changes to character
   save(): void {}
+
+  addAttribute(): void {}
+
+  removeAttribute(): void {}
 }

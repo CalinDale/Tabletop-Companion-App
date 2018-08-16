@@ -19,4 +19,10 @@ export class CharacterService {
   }
 
   getCharacterById(id: number ): Observable<Character> { return null; }
+
+  saveCharacter(): void {}
+
+  removeCharacter(): void {}
+
+  addCharacter(): void {}
 }
