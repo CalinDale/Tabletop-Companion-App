@@ -1,0 +1,7 @@
+<h1>{{character.name}}</h1>
+
+<ul class="attributes">
+  <li *ngFor="let attribute of character.attributes">
+    {{attribute.name}}: {{attribute.type}} = {{attribute.value}}
+  </li>
+</ul>
