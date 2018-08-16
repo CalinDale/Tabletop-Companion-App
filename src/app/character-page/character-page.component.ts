@@ -16,4 +16,12 @@ export class CharacterPageComponent implements OnInit {
   ngOnInit() {
   }
 
+  // gets the character by the ID in the route.
+  getCharacter(): void {}
+
+  // go to previous page
+  goBack(): void {}
+
+  // save changes to character
+  save(): void {}
 }
