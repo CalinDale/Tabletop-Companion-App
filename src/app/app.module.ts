@@ -9,11 +9,13 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { CharactersComponent } from './characters/characters.component';
+import { CharacterPageComponent } from './character-page/character-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CharactersComponent
+    CharactersComponent,
+    CharacterPageComponent
   ],
   imports: [
     BrowserModule,

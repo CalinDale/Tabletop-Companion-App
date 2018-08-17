@@ -14,7 +14,15 @@ export class CharacterService {
     private http: HttpClient
   ) { }
 
-  getCharacters (): Observable<Character[]> {
+  getCharacters(): Observable<Character[]> {
     return this.http.get<Character[]>(this.charactersUrl);
   }
+
+  getCharacterById(id: number ): Observable<Character> { return null; }
+
+  saveCharacter(): void {}
+
+  removeCharacter(): void {}
+
+  addCharacter(): void {}
 }
