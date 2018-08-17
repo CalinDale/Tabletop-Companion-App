@@ -19,7 +19,7 @@ export class CharactersComponent implements OnInit {
 
   getCharacters(): void {
     this.characterService.getCharacters()
-    .subscribe(characters => this.characters = characters);
+      .subscribe(characters => this.characters = characters);
   }
 
   addCharacter(): void {}
