@@ -10,12 +10,14 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { CharactersComponent } from './characters/characters.component';
 import { CharacterPageComponent } from './character-page/character-page.component';
+import { TrackerComponent } from './tracker/tracker.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharactersComponent,
-    CharacterPageComponent
+    CharacterPageComponent,
+    TrackerComponent
   ],
   imports: [
     BrowserModule,
