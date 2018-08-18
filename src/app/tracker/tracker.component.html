@@ -1,0 +1,27 @@
+<h1>Tracker</h1>
+
+Current acting position: {{actingPosition}}
+
+<ul class="turnOrder">
+  <li *ngFor="let character of characters">
+    <!-- TODO: Delete this part when implementing proper routing for character page.-->
+    <a routerLink="/character/2">
+    <!-- END OF DELETE-->
+      {{character.name}}
+      <ul class="attributes">
+      </ul>
+    <!-- TODO: Delete this part when implementing proper routing for character page.-->
+    </a>
+    <!-- END OF DELETE-->
+  </li>
+</ul>
+
+<br>
+Next Turn
+<br>
+Previous Turn
+<br>
+<br>
+Remove Character
+<br>
+Move Character
