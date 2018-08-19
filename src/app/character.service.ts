@@ -1,3 +1,4 @@
+import { MessageService } from './message.service';
 import { Character } from './character';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -11,7 +12,8 @@ export class CharacterService {
   private charactersUrl = 'api/characters';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private messageService: MessageService
   ) { }
 
   getCharacters(): Observable<Character[]> {
