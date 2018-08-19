@@ -11,13 +11,15 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { CharactersComponent } from './characters/characters.component';
 import { CharacterPageComponent } from './character-page/character-page.component';
 import { TrackerComponent } from './tracker/tracker.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharactersComponent,
     CharacterPageComponent,
-    TrackerComponent
+    TrackerComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
