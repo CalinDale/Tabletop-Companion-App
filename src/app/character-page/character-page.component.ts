@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { CharacterService } from './../character.service';
 import { Character } from './../character';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-character-page',
@@ -13,8 +14,9 @@ export class CharacterPageComponent implements OnInit {
 
   constructor(
     // TODO: Delete this section when implementing proper routing.
-    private characterService: CharacterService
+    private characterService: CharacterService,
     // TODO: End of delete.
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -24,17 +26,39 @@ export class CharacterPageComponent implements OnInit {
   }
 
   // gets the character by the ID in the route.
-  getCharacter(): void {}
+  getCharacter(): void {
+    this.messageService.add('Get Character by ID');
+  }
 
   // go to previous page
-  goBack(): void {}
+  goBack(): void {
+    this.messageService.add('Back to last Page');
+  }
 
   // save changes to character
-  save(): void {}
+  save(): void {
+    this.messageService.add('Save changes');
+  }
 
-  addAttribute(): void {}
+  addAttribute(): void {
+    this.messageService.add('Add new attribute');
+  }
 
-  removeAttribute(): void {}
+  editAttribute(): void {
+    this.messageService.add('Edit attribute');
+  }
+
+  removeAttribute(): void {
+    this.messageService.add('Remove Attribute');
+  }
+
+  reorderAttribute(): void {
+    this.messageService.add('Reorder Attribute');
+  }
+
+  rename(): void {
+    this.messageService.add('rename');
+  }
 
   // TODO: Delete this section when implementing proper routing.
   getCharacterTEMP(): void {
