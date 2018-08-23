@@ -21,9 +21,7 @@ export class CharacterPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // TODO: Delete this section when implementing proper routing.
-    this.getCharacterTEMP();
-    // TODO: End of delete.
+    this.getCharacter();
   }
 
   // gets the character by the ID in the route.
@@ -32,8 +30,6 @@ export class CharacterPageComponent implements OnInit {
 
     this.characterService.getCharacterById(id)
     .subscribe(character => this.character = character);
-
-    this.messageService.add('Get Character by ID');
   }
 
   // go to previous page

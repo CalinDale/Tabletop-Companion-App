@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule }    from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -13,6 +15,11 @@ import { CharacterPageComponent } from './character-page/character-page.componen
 import { TrackerComponent } from './tracker/tracker.component';
 import { MessagesComponent } from './messages/messages.component';
 
+import {Location} from '@angular/common';
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,8 +30,10 @@ import { MessagesComponent } from './messages/messages.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    HttpModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
@@ -33,7 +42,7 @@ import { MessagesComponent } from './messages/messages.component';
       InMemoryDataService, { dataEncapsulation: false }
     )
   ],
-  providers: [],
+  providers: [Location],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

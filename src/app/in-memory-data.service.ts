@@ -6,6 +6,8 @@ export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     // fill in with { columnName: value, columnName: value, etc... } when adding rows.
     // also rename dbName
+
+
     const characters = [
       { charId: 0, name: 'Monopoly: Bill', attributes: [
         { name: 'money', type: 'number', value: '1,000'}

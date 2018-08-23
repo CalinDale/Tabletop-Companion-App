@@ -8,7 +8,7 @@ import { TrackerComponent } from '../tracker/tracker.component';
 const routes: Routes = [
   { path: 'tracker', component: TrackerComponent },
   { path: 'characters', component: CharactersComponent },
-  { path: 'character/:charId', component: CharacterPageComponent }
+  { path: 'character/:id', component: CharacterPageComponent }
 ];
 
 @NgModule({

@@ -33,7 +33,13 @@ export class CharacterService {
       );
   }
 
-  getCharacterById(id: number ): Observable<Character> { return null; }
+  getCharacterById(id: number ): Observable<Character> { 
+    const url = `${this.charactersUrl}/${id}`;
+
+    return this.http.get<Character>(url).pipe(
+      tap(_ => this.log(`fetched character id=${id}`)),
+      catchError(this.handleError<Character>(`getCharacter id=${id}`))
+    ); }
 
   saveCharacter(): void {
     this.log('save character');
