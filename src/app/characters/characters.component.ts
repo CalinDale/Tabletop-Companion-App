@@ -26,7 +26,18 @@ export class CharactersComponent implements OnInit {
       .subscribe(characters => this.characters = characters);
   }
 
-  addCharacter(): void {
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.characterService.addCharacter({ name } as Character)
+    .subscribe(character => {
+      this.characters.push(character);
+
+    });
+    
+    //debugging
+    console.log(this.characters);
+
     this.messageService.add('Add New Character');
   }
 

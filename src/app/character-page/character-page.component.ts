@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CharacterService } from './../character.service';
 import { Character } from './../character';
 import { MessageService } from '../message.service';
+import { ActivatedRoute } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-character-page',
@@ -13,9 +14,9 @@ export class CharacterPageComponent implements OnInit {
   @Input() character: Character;
 
   constructor(
-    // TODO: Delete this section when implementing proper routing.
+    private route: ActivatedRoute,
     private characterService: CharacterService,
-    // TODO: End of delete.
+    private location: Location,
     private messageService: MessageService
   ) { }
 
@@ -27,6 +28,11 @@ export class CharacterPageComponent implements OnInit {
 
   // gets the character by the ID in the route.
   getCharacter(): void {
+    const id = +this.route.snapshot.paramMap.get('charId');
+
+    this.characterService.getCharacterById(id)
+    .subscribe(character => this.character = character);
+
     this.messageService.add('Get Character by ID');
   }
 

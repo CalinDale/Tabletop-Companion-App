@@ -5,6 +5,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from '../../node_modules/rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -39,8 +43,11 @@ export class CharacterService {
     this.log('remove character');
   }
 
-  addCharacter(): void {
-    this.log('add new character');
+  addCharacter (character: Character): Observable<Character> {
+    return this.http.post<Character>(this.charactersUrl, character, httpOptions).pipe(
+      tap((character: Character) => this.log(`added character w/ id=${character.charId}`)),
+      catchError(this.handleError<Character>('addCharacter'))
+    );
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
