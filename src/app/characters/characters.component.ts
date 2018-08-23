@@ -1,3 +1,4 @@
+import { MessageService } from './../message.service';
 import { Component, OnInit } from '@angular/core';
 
 import { CharacterService } from '../character.service';
@@ -11,7 +12,10 @@ import { Character } from '../character';
 export class CharactersComponent implements OnInit {
   characters: Character[];
 
-  constructor(private characterService: CharacterService) { }
+  constructor(
+    private characterService: CharacterService,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit() {
     this.getCharacters();
@@ -22,9 +26,15 @@ export class CharactersComponent implements OnInit {
       .subscribe(characters => this.characters = characters);
   }
 
-  addCharacter(): void {}
+  addCharacter(): void {
+    this.messageService.add('Add New Character');
+  }
 
-  reorderCharacters(): void {}
+  reorderCharacters(): void {
+    this.messageService.add('Reorder Character');
+  }
 
-  removeCharacter(): void {}
+  removeCharacter(): void {
+    this.messageService.add('Remove Character');
+  }
 }
