@@ -1,18 +1,15 @@
 <h1>Testing Characters</h1>
 
-<ul class="characters">
-  <li *ngFor="let character of characters">
-    <!-- TODO: Delete this part when implementing proper routing for character page.-->
-    <a routerLink="/character/2">
-    <!-- END OF DELETE-->
-      {{character.name}}
-      <ul class="attributes">
-      </ul>
-    <!-- TODO: Delete this part when implementing proper routing for character page.-->
-    </a>
-    <!-- END OF DELETE-->
-  </li>
-</ul>
+<div *ngIf="character">
+  <div>
+    <label>First Name: </label> {{character.name}}
+  </div>
+</div>
+
+  <span class="button is-small btn-danger" (click)='deleteCharacter()'>Delete</span>
+
+  
+
 
 These buttons are just to give us an idea of the functionality that should be built.
 <br>

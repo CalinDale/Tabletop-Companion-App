@@ -1,7 +1,7 @@
 import { Attribute } from './attribute';
 
 export class Character {
-  charId: number;
+  charId: string;
   name: string;
   attributes: Attribute[];
 }

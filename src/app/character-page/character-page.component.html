@@ -1,12 +1,10 @@
-<h1>{{character.name}}</h1>
-Proper routing is not implemented yet, so this is the only character that shows.
-
-<ul class="attributes">
-  <li *ngFor="let attribute of character.attributes">
-    {{attribute.name}}: {{attribute.type}} = {{attribute.value}}
-  </li>
-</ul>
-
+<h1>Characters</h1>
+<div *ngFor="let character of characters" style="width: 300px;">
+  <app-character-details [character]='character'></app-character-details>
+</div>
+<div style="margin-top:20px;">
+  <button type="button" class="button btn-danger" (click)='deleteCharacters()'>Delete All</button>
+</div>
 These buttons are just to give us an idea of the functionality that should be built.
 <br>
 The functionality does not need to be in buttons, nor does it even need specific functions.
