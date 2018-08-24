@@ -31,11 +31,11 @@ export class CharactersComponent implements OnInit {
 
   add(name: string): void {
     name = name.trim();
+
     if (!name) { return; }
     this.characterService.addCharacter({ name } as Character)
     .subscribe(character => {
       this.characters.push(character);
-
     });
     
     //debugging

@@ -3,7 +3,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CharacterService } from './../character.service';
 import { Character } from './../character';
 import { MessageService } from '../message.service';
+
 import { ActivatedRoute } from '../../../node_modules/@angular/router';
+import {Location} from '@angular/common';
+
+
 
 @Component({
   selector: 'app-character-page',
@@ -11,6 +15,7 @@ import { ActivatedRoute } from '../../../node_modules/@angular/router';
   styleUrls: ['./character-page.component.css']
 })
 export class CharacterPageComponent implements OnInit {
+  
   @Input() character: Character;
 
   constructor(
@@ -26,7 +31,8 @@ export class CharacterPageComponent implements OnInit {
 
   // gets the character by the ID in the route.
   getCharacter(): void {
-    const id = +this.route.snapshot.paramMap.get('charId');
+
+    const id = +this.route.snapshot.paramMap.get('id');
 
     this.characterService.getCharacterById(id)
     .subscribe(character => this.character = character);
@@ -34,6 +40,7 @@ export class CharacterPageComponent implements OnInit {
 
   // go to previous page
   goBack(): void {
+    this.location.back();
     this.messageService.add('Back to last Page');
   }
 

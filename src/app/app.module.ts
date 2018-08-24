@@ -20,6 +20,7 @@ import {Location} from '@angular/common';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,7 @@ import {Location} from '@angular/common';
       InMemoryDataService, { dataEncapsulation: false }
     )
   ],
-  providers: [Location],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

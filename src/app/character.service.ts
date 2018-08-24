@@ -50,6 +50,7 @@ export class CharacterService {
   }
 
   addCharacter (character: Character): Observable<Character> {
+
     return this.http.post<Character>(this.charactersUrl, character, httpOptions).pipe(
       tap((character: Character) => this.log(`added character w/ id=${character.charId}`)),
       catchError(this.handleError<Character>('addCharacter'))
