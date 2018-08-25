@@ -21,11 +21,11 @@ export class CharacterDetailsComponent implements OnInit {
   }
 
   deleteCharacter() {
-    this.characterService.deleteCharacter(this.character.charId);
+    this.characterService.deleteCharacter(this.character.key);
   }
 
   updateActive(isActive: boolean) {
-    this.characterService.updateCharacter(this.character.charId, { active: isActive });
+    this.characterService.updateCharacter(this.character.key, { active: isActive });
   }
 
   addCharacter(): void {
@@ -36,9 +36,7 @@ export class CharacterDetailsComponent implements OnInit {
     this.messageService.add('Reorder Character');
   }
 
-  removeCharacter(): void {
-    this.messageService.add('Remove Character');
-  }
+
 }
 
 

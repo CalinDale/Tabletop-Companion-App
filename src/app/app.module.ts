@@ -19,6 +19,7 @@ import { TrackerComponent } from './tracker/tracker.component';
 import { MessagesComponent } from './messages/messages.component';
 import { CreateCharacterComponent } from './create-character/create-character.component';
 import { CharacterDetailsComponent } from './character-details/character-details.component';
+import { AddAttributeComponent } from './add-attribute/add-attribute.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CharacterDetailsComponent } from './character-details/character-details
     TrackerComponent,
     MessagesComponent,
     CreateCharacterComponent,
-    CharacterDetailsComponent
+    CharacterDetailsComponent,
+    AddAttributeComponent
   ],
   imports: [
     BrowserModule,

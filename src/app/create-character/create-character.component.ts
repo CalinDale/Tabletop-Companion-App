@@ -18,6 +18,7 @@ export class CreateCharacterComponent implements OnInit {
 
   ngOnInit() {
   }
+
   newCharacter(): void {
     this.submitted = false;
     this.character = new Character();

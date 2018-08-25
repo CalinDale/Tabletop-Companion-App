@@ -24,12 +24,12 @@ export class CharacterService {
   }
 
 
-  updateCharacter(charId: string, value: any): void {
-    this.charactersRef.update(charId, value).catch(error => this.handleError(error));
+  updateCharacter(key: string, value: any): void {
+    this.charactersRef.update(key, value).catch(error => this.handleError(error));
   }
 
-  deleteCharacter(charId: string): void {
-    this.charactersRef.remove(charId).catch(error => this.handleError(error));
+  deleteCharacter(key: string): void {
+    this.charactersRef.remove(key).catch(error => this.handleError(error));
   }
 
   getCharactersList(): AngularFireList<Character> {

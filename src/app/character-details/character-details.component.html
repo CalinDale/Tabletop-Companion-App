@@ -1,23 +1,12 @@
-<h1>Testing Characters</h1>
-
 <div *ngIf="character">
   <div>
-    <label>First Name: </label> {{character.name}}
+    <label>First Name: </label> {{character.name}}<br><br>
   </div>
 </div>
 
-  <span class="button is-small btn-danger" (click)='deleteCharacter()'>Delete</span>
-
-  
-
-
-These buttons are just to give us an idea of the functionality that should be built.
+<button  (click)="addAttribute()" >Add Attribute</button>
 <br>
-The functionality does not need to be in buttons, nor does it even need specific functions.
-<br>
-<button  (click)="addCharacter()" >Add character</button>
-<br>
-<button  (click)="removeCharacter()" >Remove character</button>
+<button  (click)="deleteCharacter()" >Remove character</button>
 <br>
 <button  (click)="reorderCharacters()" >Reorder characters</button>
-<br>
+<br><br><br>
