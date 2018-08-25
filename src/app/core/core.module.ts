@@ -14,6 +14,6 @@ import { AuthGuard } from './auth.guard';
     AngularFirestoreModule
   ],
   declarations: [],
-  providers: [AuthService,AuthGuard]
+  providers: [AuthService]
 })
 export class CoreModule { }

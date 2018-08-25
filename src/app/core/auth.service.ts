@@ -35,16 +35,7 @@ export class AuthService {
       })
     )
     }
-  }
-
-  
-
-   
-
-      //// Get auth data, then get firestore user document || null
-     
-  
-
+  }     
 
   googleLogin() {
     const provider = new auth.GoogleAuthProvider()
