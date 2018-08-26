@@ -11,10 +11,9 @@ import { AuthGuard } from './auth.guard';
   imports: [
     CommonModule,
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
   ],
   declarations: [],
-  providers: [AuthService,
-              AuthGuard]
+  providers: [AuthService, AuthGuard]
 })
 export class CoreModule { }
