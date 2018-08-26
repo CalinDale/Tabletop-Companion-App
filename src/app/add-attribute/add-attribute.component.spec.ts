@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddAttributeComponent } from './add-attribute.component';
+import { FormsModule } from '../../../node_modules/@angular/forms';
 
 describe('AddAttributeComponent', () => {
   let component: AddAttributeComponent;
@@ -8,7 +9,10 @@ describe('AddAttributeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddAttributeComponent ]
+      declarations: [ AddAttributeComponent ],
+      imports: [
+        FormsModule
+      ]
     })
     .compileComponents();
   }));
