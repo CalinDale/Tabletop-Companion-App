@@ -1,4 +1,4 @@
-//Authentication Setup
+// Authentication Setup
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -14,6 +14,7 @@ import { AuthGuard } from './auth.guard';
     AngularFirestoreModule
   ],
   declarations: [],
-  providers: [AuthService]
+  providers: [AuthService,
+              AuthGuard]
 })
 export class CoreModule { }

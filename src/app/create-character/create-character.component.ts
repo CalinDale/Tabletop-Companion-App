@@ -14,10 +14,10 @@ export class CreateCharacterComponent implements OnInit {
   character: Character = new Character();
   submitted = false;
 
-  constructor(private characterService: CharacterService,){ }
+  constructor(private characterService: CharacterService, ) { }
 
   ngOnInit() {
-    
+
   }
 
   newCharacter(): void {
@@ -26,7 +26,7 @@ export class CreateCharacterComponent implements OnInit {
   }
 
   save() {
-    this.character.userID = firebase.auth().currentUser.uid 
+    this.character.userID = firebase.auth().currentUser.uid;
     this.characterService.createCharacter(this.character);
     this.character = new Character();
   }
