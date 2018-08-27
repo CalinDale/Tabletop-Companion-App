@@ -1,21 +1,8 @@
-<h1>{{character.name}}</h1>
-Proper routing is not implemented yet, so this is the only character that shows.
-
-<ul class="attributes">
-  <li *ngFor="let attribute of character.attributes">
-    {{attribute.name}}: {{attribute.type}} = {{attribute.value}}
-  </li>
-</ul>
-<br>
-Add attribute
-<br>
-Edit attribute
-<br>
-Remove attribute
-<br>
-Set attribute value
-<br>
-reoorder attribute
-<br>
-Rename
+<h1>Characters</h1>
+<div *ngFor="let character of characters" style="width: 300px;">
+  <app-character-details [character]='character'></app-character-details>
+</div>
+<div style="margin-top:20px;">
+  <button type="button" class="button btn-danger" (click)='deleteCharacters()'>Delete All</button>
+</div>
 
