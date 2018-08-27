@@ -1,20 +1,17 @@
+import { MessagesComponent } from './messages/messages.component';
+import { RouterTestingModule } from '@angular/router/testing';
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-
-import { environment } from '../environments/environment';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        MessagesComponent
       ],
       imports: [
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFireDatabaseModule, // for database
+        RouterTestingModule
       ]
     }).compileComponents();
   }));
@@ -32,6 +29,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to Tabletop-Companion-App!');
+    expect(compiled.querySelector('h1').textContent).toContain('Tabletop-Companion-App');
   }));
 });

@@ -8,7 +8,7 @@ describe('CharacterPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CharacterPageComponent ]
+      declarations: [ CharacterPageComponent ],
     })
     .compileComponents();
   }));
