@@ -6,7 +6,5 @@ export class User {
     displayName?: string;
     favoriteColor?: string;
 
-    
 
 }
-  

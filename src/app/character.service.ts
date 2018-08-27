@@ -1,3 +1,4 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { MessageService } from './message.service';
 import { Character } from './character';
 import { Injectable } from '@angular/core';
@@ -14,10 +15,13 @@ export class CharacterService {
   private dbPath = '/characters';
 
   charactersRef: AngularFireList<Character> = null;
+  userID: string;
 
-  constructor(
-    private db: AngularFireDatabase
-  ) { this.charactersRef = db.list(this.dbPath); }
+  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
+    this.afAuth.authState.subscribe(user => {
+      if (user) { this.userID = user.uid; }
+    });
+  }
 
   createCharacter(character: Character): void {
     this.charactersRef.push(character);
@@ -33,6 +37,9 @@ export class CharacterService {
   }
 
   getCharactersList(): AngularFireList<Character> {
+    // tslint:disable-next-line:curly
+    if (!this.userID) return;
+    this.charactersRef = this.db.list(`characters/${this.userID}`);
     return this.charactersRef;
   }
 
