@@ -43,14 +43,7 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
-<<<<<<< HEAD
-
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-=======
     CoreModule,
->>>>>>> Jonty
   ],
   providers: [AddAttributeComponent],
   bootstrap: [AppComponent]
