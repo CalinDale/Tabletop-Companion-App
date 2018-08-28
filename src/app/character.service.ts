@@ -4,55 +4,43 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from '../../node_modules/rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharacterService {
 
-  private charactersUrl = 'api/characters';
+  private dbPath = '/characters';
+
+  charactersRef: AngularFireList<Character> = null;
 
   constructor(
-    private http: HttpClient,
-    private messageService: MessageService
-  ) { }
+    private db: AngularFireDatabase
+  ) { this.charactersRef = db.list(this.dbPath); }
 
-  private log(message: string) {
-    this.messageService.add(`CharacterService: ${message}`);
+  createCharacter(character: Character): void {
+    this.charactersRef.push(character);
   }
 
-  getCharacters(): Observable<Character[]> {
-    return this.http.get<Character[]>(this.charactersUrl)
-      .pipe(
-        tap(characters => this.log('fetched characters')),
-        catchError(this.handleError('getCharacters', []))
-      );
+
+  updateCharacter(key: string, value: any): void {
+    this.charactersRef.update(key, value).catch(error => this.handleError(error));
   }
 
-  getCharacterById(id: number ): Observable<Character> { return null; }
-
-  saveCharacter(): void {
-    this.log('save character');
+  deleteCharacter(key: string): void {
+    this.charactersRef.remove(key).catch(error => this.handleError(error));
   }
 
-  removeCharacter(): void {
-    this.log('remove character');
+  getCharactersList(): AngularFireList<Character> {
+    return this.charactersRef;
   }
 
-  addCharacter(): void {
-    this.log('add new character');
+  deleteAll(): void {
+    this.charactersRef.remove().catch(error => this.handleError(error));
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+  private handleError(error) {
+    console.log(error);
   }
 }

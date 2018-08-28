@@ -1,23 +1,19 @@
-import { CharacterDetailsComponent } from './../character-details/character-details.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CharacterPageComponent } from './character-page.component';
+import { CharacterDetailsComponent } from './character-details.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { environment } from '../../environments/environment';
 
-describe('CharacterPageComponent', () => {
-  let component: CharacterPageComponent;
-  let fixture: ComponentFixture<CharacterPageComponent>;
+describe('CharacterDetailsComponent', () => {
+  let component: CharacterDetailsComponent;
+  let fixture: ComponentFixture<CharacterDetailsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        CharacterPageComponent,
-        CharacterDetailsComponent
-      ],
+      declarations: [ CharacterDetailsComponent ],
       imports: [
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule // for database
@@ -27,7 +23,7 @@ describe('CharacterPageComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CharacterPageComponent);
+    fixture = TestBed.createComponent(CharacterDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

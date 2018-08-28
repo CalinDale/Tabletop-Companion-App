@@ -1,16 +1,16 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { CharacterService } from './character.service';
+import { AttributeService } from './attribute.service';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { environment } from '../environments/environment';
 
-describe('CharacterService', () => {
+describe('AttributeService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [CharacterService],
+      providers: [AttributeService],
       imports: [
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule, // for database
@@ -18,7 +18,7 @@ describe('CharacterService', () => {
     });
   });
 
-  it('should be created', inject([CharacterService], (service: CharacterService) => {
+  it('should be created', inject([AttributeService], (service: AttributeService) => {
     expect(service).toBeTruthy();
   }));
 });
