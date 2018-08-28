@@ -25,13 +25,16 @@ export class CharacterPageComponent implements OnInit {
 
 
   getCharactersList() {
-    this.characterService.getCharactersList().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-      )
-    ).subscribe(characters => {
-      this.characters = characters;
-    });
+    // TODO: using this if statement prevents TypeError: Cannot read property 'snapshotChanges' of undefined.
+    //  if (this.characterService.getCharactersList === undefined) {
+      this.characterService.getCharactersList().snapshotChanges().pipe(
+        map(changes =>
+          changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+        )
+      ).subscribe(characters => {
+        this.characters = characters;
+      });
+  //  }
   }
 
   deleteCharacters() {

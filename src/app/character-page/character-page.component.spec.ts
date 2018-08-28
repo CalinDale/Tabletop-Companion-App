@@ -1,3 +1,4 @@
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CharacterDetailsComponent } from './../character-details/character-details.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -19,6 +20,7 @@ describe('CharacterPageComponent', () => {
         CharacterDetailsComponent
       ],
       imports: [
+        AngularFireAuthModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule // for database
       ]

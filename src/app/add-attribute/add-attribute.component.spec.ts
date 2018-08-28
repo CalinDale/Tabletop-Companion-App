@@ -1,3 +1,4 @@
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddAttributeComponent } from './add-attribute.component';
@@ -17,8 +18,9 @@ describe('AddAttributeComponent', () => {
       declarations: [ AddAttributeComponent ],
       imports: [
         FormsModule,
+        AngularFireAuthModule,
         AngularFireModule.initializeApp(environment.firebase),
-        AngularFireDatabaseModule, // for database
+        AngularFireDatabaseModule // for database
       ]
     })
     .compileComponents();

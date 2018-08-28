@@ -1,3 +1,4 @@
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { TestBed, inject } from '@angular/core/testing';
 
 import { AttributeService } from './attribute.service';
@@ -12,6 +13,7 @@ describe('AttributeService', () => {
     TestBed.configureTestingModule({
       providers: [AttributeService],
       imports: [
+        AngularFireAuthModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule, // for database
       ]
