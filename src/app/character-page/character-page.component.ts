@@ -11,7 +11,6 @@ import { MessageService } from '../message.service';
 })
 export class CharacterPageComponent implements OnInit {
   characters: any;
-  attributes: any;
 
   constructor(
     // TODO: Delete this section when implementing proper routing.

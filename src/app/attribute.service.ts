@@ -1,4 +1,5 @@
 import { Attribute } from './attribute';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Injectable } from '@angular/core';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 
@@ -9,16 +10,31 @@ export class AttributeService {
 
   private dbPath = '/attributes';
 
+  userID: string;
+  characterID: string;
+
   attributesRef: AngularFireList<Attribute> = null;
 
-  constructor(
-    private db: AngularFireDatabase
-  ) { this.attributesRef = db.list(this.dbPath); }
-
-  createAttribute(attribute: Attribute): void {
-    this.attributesRef.push(attribute);
+  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
+    this.afAuth.authState.subscribe(user => {
+      if (user) { this.userID = user.uid; }
+    });
   }
 
+  setCharacterID(key: string) {
+    if (key != null) {
+      this.characterID = key;
+    }
+  }
+
+  getCharacterID() {
+    return this.characterID;
+  }
+
+  createAttribute(attribute: Attribute): void {
+    this.attributesRef = this.db.list(`attributes/${this.userID}`);
+    this.attributesRef.push(attribute);
+  }
 
   updateAttribute(name: string, value: any): void {
     this.attributesRef.update(name, value).catch(error => this.handleError(error));

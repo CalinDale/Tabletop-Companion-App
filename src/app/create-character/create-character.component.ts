@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from '../character';
 import { CharacterService } from '../character.service';
+import * as firebase from 'firebase/app';
 
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-create-character',
@@ -14,9 +14,10 @@ export class CreateCharacterComponent implements OnInit {
   character: Character = new Character();
   submitted = false;
 
-  constructor(private characterService: CharacterService) { }
+  constructor(private characterService: CharacterService, ) { }
 
   ngOnInit() {
+
   }
 
   newCharacter(): void {
@@ -25,6 +26,7 @@ export class CreateCharacterComponent implements OnInit {
   }
 
   save() {
+    this.character.userID = firebase.auth().currentUser.uid;
     this.characterService.createCharacter(this.character);
     this.character = new Character();
   }

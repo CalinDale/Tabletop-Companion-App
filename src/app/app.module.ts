@@ -20,6 +20,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { CreateCharacterComponent } from './create-character/create-character.component';
 import { CharacterDetailsComponent } from './character-details/character-details.component';
 import { AddAttributeComponent } from './add-attribute/add-attribute.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,10 @@ import { AddAttributeComponent } from './add-attribute/add-attribute.component';
     MessagesComponent,
     CreateCharacterComponent,
     CharacterDetailsComponent,
-    AddAttributeComponent
+    AddAttributeComponent,
+    UserProfileComponent
+
+
   ],
   imports: [
     BrowserModule,
@@ -38,12 +43,16 @@ import { AddAttributeComponent } from './add-attribute/add-attribute.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
+<<<<<<< HEAD
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
+=======
+    CoreModule,
+>>>>>>> Jonty
   ],
-  providers: [],
+  providers: [AddAttributeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
