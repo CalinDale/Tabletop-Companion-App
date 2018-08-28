@@ -1,33 +1,31 @@
-import { CharacterDetailsComponent } from './../character-details/character-details.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CharacterPageComponent } from './character-page.component';
+import { AddAttributeComponent } from './add-attribute.component';
+import { FormsModule } from '../../../node_modules/@angular/forms';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { environment } from '../../environments/environment';
 
-describe('CharacterPageComponent', () => {
-  let component: CharacterPageComponent;
-  let fixture: ComponentFixture<CharacterPageComponent>;
+describe('AddAttributeComponent', () => {
+  let component: AddAttributeComponent;
+  let fixture: ComponentFixture<AddAttributeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        CharacterPageComponent,
-        CharacterDetailsComponent
-      ],
+      declarations: [ AddAttributeComponent ],
       imports: [
+        FormsModule,
         AngularFireModule.initializeApp(environment.firebase),
-        AngularFireDatabaseModule // for database
+        AngularFireDatabaseModule, // for database
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CharacterPageComponent);
+    fixture = TestBed.createComponent(AddAttributeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
