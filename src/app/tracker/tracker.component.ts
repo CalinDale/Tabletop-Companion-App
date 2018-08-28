@@ -10,7 +10,7 @@ import { MessageService } from '../message.service';
 })
 export class TrackerComponent implements OnInit {
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  // TODO: throw new Error('Method not implemented.');
   }
 
 

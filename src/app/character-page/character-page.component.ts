@@ -26,15 +26,16 @@ export class CharacterPageComponent implements OnInit {
 
   getCharactersList() {
     // TODO: using this if statement prevents TypeError: Cannot read property 'snapshotChanges' of undefined.
-    //  if (this.characterService.getCharactersList === undefined) {
-      this.characterService.getCharactersList().snapshotChanges().pipe(
-        map(changes =>
-          changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-        )
-      ).subscribe(characters => {
-        this.characters = characters;
-      });
-  //  }
+    // TODO: However, it does currently break the code, so we need to find another way.
+    // if (this.characterService.getCharactersList === undefined) {
+    this.characterService.getCharactersList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(characters => {
+      this.characters = characters;
+    });
+    // }
   }
 
   deleteCharacters() {

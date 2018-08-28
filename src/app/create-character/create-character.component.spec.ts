@@ -1,3 +1,4 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { FormsModule } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -19,7 +20,8 @@ describe('CreateCharacterComponent', () => {
         FormsModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule // for database
-      ]
+      ],
+      providers: [AngularFireAuth]
     })
     .compileComponents();
   }));
