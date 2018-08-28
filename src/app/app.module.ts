@@ -44,14 +44,8 @@ import { CoreModule } from './core/core.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
     CoreModule,
-
-
-
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
   ],
-  providers: [],
+  providers: [AddAttributeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

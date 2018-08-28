@@ -27,7 +27,6 @@ export class CharacterService {
     this.charactersRef.push(character);
   }
 
-
   updateCharacter(key: string, value: any): void {
     this.charactersRef.update(key, value).catch(error => this.handleError(error));
   }

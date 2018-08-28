@@ -1,6 +1,8 @@
+import { CharacterDetailsComponent } from './../character-details/character-details.component';
 import { AttributeService } from './../attribute.service';
 import { Component, OnInit } from '@angular/core';
 import { Attribute } from '../attribute';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-add-attribute',
@@ -23,6 +25,8 @@ export class AddAttributeComponent implements OnInit {
   }
 
   save() {
+    this.attribute.characterID = this.attributeService.getCharacterID();
+    this.attribute.userID = firebase.auth().currentUser.uid;
     this.attributeService.createAttribute(this.attribute);
     this.attribute = new Attribute();
   }
