@@ -1,3 +1,4 @@
+import { ViewSingleCharacterComponent } from './../view-single-character/view-single-character.component';
 import { AddAttributeComponent } from './../add-attribute/add-attribute.component';
 import { CreateCharacterComponent } from './../create-character/create-character.component';
 import { CharacterPageComponent } from './../character-page/character-page.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'addattribute', component: AddAttributeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: UserProfileComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: 'getCharacter', component: ViewSingleCharacterComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

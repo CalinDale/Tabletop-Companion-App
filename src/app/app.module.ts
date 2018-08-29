@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -22,6 +21,8 @@ import { CharacterDetailsComponent } from './character-details/character-details
 import { AddAttributeComponent } from './add-attribute/add-attribute.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CoreModule } from './core/core.module';
+import { ViewSingleCharacterComponent } from './view-single-character/view-single-character.component';
+import { SingleCharacterDetailsComponent } from './single-character-details/single-character-details.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { CoreModule } from './core/core.module';
     CreateCharacterComponent,
     CharacterDetailsComponent,
     AddAttributeComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ViewSingleCharacterComponent,
+    SingleCharacterDetailsComponent
 
 
   ],

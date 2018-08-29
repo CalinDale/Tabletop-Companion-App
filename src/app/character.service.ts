@@ -1,3 +1,4 @@
+import { AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { MessageService } from './message.service';
 import { Character } from './character';
@@ -16,6 +17,8 @@ export class CharacterService {
 
   charactersRef: AngularFireList<Character> = null;
   userID: string;
+  characterRef: AngularFirestoreDocument<Character> = null;
+  character: Character;
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
@@ -40,6 +43,20 @@ export class CharacterService {
     if (!this.userID) return;
     this.charactersRef = this.db.list(`characters/${this.userID}`);
     return this.charactersRef;
+  }
+
+  getCharacter(key: string) {
+    this.charactersRef = this.db.list(`characters/${key}`);
+    this.charactersRef.snapshotChanges().map(snap => {
+      if (snap.payload.exists) {
+        const obj = snap.payload.data() as Character;
+        obj.key = snap.payload.key;
+        return obj;
+      }
+    })
+    .subscribe(response => {
+      return this.character = response;
+    });
   }
 
   deleteAll(): void {

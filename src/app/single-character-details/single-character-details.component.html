@@ -1,11 +1,9 @@
 <div *ngIf="character">
   <div>
-    <label>Name: </label> {{character.name}}<br><br>
+    <label>Name: </label> {{character.name | async }}<br><br>
   </div>
 </div>
 
-<button  (click)="setCharacterID()" >View character</button>
-<br>
 <button  (click)="createAttribute()" >Add Attribute</button>
 <br>
 <button  (click)="deleteCharacter()" >Remove character</button>

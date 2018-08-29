@@ -1,19 +1,16 @@
-import { AddAttributeComponent } from './../add-attribute/add-attribute.component';
-import { AttributeService } from './../attribute.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Character } from '../character';
 import { CharacterService } from '../character.service';
 import { MessageService } from '../message.service';
+import { AttributeService } from '../attribute.service';
 import { Router } from '@angular/router';
-import { Attribute } from '../attribute';
-
 
 @Component({
-  selector: 'app-character-details',
-  templateUrl: './character-details.component.html',
-  styleUrls: ['./character-details.component.css']
+  selector: 'app-single-character-details',
+  templateUrl: './single-character-details.component.html',
+  styleUrls: ['./single-character-details.component.css']
 })
-export class CharacterDetailsComponent implements OnInit {
+export class SingleCharacterDetailsComponent implements OnInit {
 
   @Input() character: Character;
 
@@ -48,13 +45,6 @@ export class CharacterDetailsComponent implements OnInit {
     this.messageService.add('Reorder Character');
   }
 
-  setCharacterID( ) {
-    this.attributeService.setCharacterID(this.character.key);
-    this.router.navigateByUrl('getCharacter');
-  }
-
 
 }
-
-
 
