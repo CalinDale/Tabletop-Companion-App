@@ -1,3 +1,4 @@
+import { AttributeService } from './../attribute.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -11,6 +12,7 @@ import { environment } from '../../environments/environment';
 import { BehaviorSubject } from '../../../node_modules/rxjs';
 
 import { AngularFireDatabase} from 'angularfire2/database';
+import { Attribute } from '../../../node_modules/@angular/core';
 
 describe('AddAttributeComponent', () => {
   let component: AddAttributeComponent;
@@ -32,10 +34,10 @@ describe('AddAttributeComponent', () => {
         FormsModule,
         AngularFireAuthModule,
         AngularFireModule.initializeApp(environment.firebase),
-        AngularFireDatabaseModule // for database
+        // AngularFireDatabaseModule // for database
       ],
       providers: [
-        // { provide: AngularFireDatabase, useValue: FireDatabaseStub}
+        { provide: AngularFireDatabase, useValue: FireDatabaseStub}
       ]
     })
     .compileComponents();
@@ -49,5 +51,11 @@ describe('AddAttributeComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should prepare new Attribute', () => {
+    component.newAttribute();
+    expect(component.attribute.name).toBeUndefined();
+    expect(component.submitted).toBe(false);
   });
 });
