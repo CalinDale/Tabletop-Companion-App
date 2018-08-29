@@ -8,10 +8,22 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { environment } from '../../environments/environment';
+import { BehaviorSubject } from '../../../node_modules/rxjs';
+
+import { AngularFireDatabase} from 'angularfire2/database';
 
 describe('AddAttributeComponent', () => {
   let component: AddAttributeComponent;
   let fixture: ComponentFixture<AddAttributeComponent>;
+
+  const FireDatabaseStub = {
+    collection: (name: string) => ({
+      doc: (_id: string) => ({
+        valueChanges: () => new BehaviorSubject({ foo: 'bar' }),
+        set: (_d: any) => new Promise((resolve, _reject) => resolve()),
+      })
+    })
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,6 +33,9 @@ describe('AddAttributeComponent', () => {
         AngularFireAuthModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule // for database
+      ],
+      providers: [
+        // { provide: AngularFireDatabase, useValue: FireDatabaseStub}
       ]
     })
     .compileComponents();
