@@ -6,39 +6,9 @@ import { Attribute } from './attribute';
 import { AngularFireList, AngularFireDatabase} from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 
-// describe('AttributeService', () => {
-//   let testCharacterID: string;
-//   let testUserId: string;
-//   let testAttribute: Attribute;
-//
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({
-//       providers: [AttributeService],
-//       imports: [
-//         AngularFireAuthModule,
-//         AngularFireModule.initializeApp(environment.firebase),
-//         AngularFireDatabaseModule, // for database
-//       ]
-//     });
-//
-//     testCharacterID = 'Dragon223';
-//     testUserId = 'Dave55';
-//     testAttribute = {name: 'Armor', type: 'number', value: '20', characterID: testCharacterID, userID: testUserId};
-//   });
-//
-//   afterEach(() => {
-//     testCharacterID = null;
-//   });
-//
-//   it('should be created', inject([AttributeService], (service: AttributeService) => {
-//     expect(service).toBeTruthy();
-//   }));
-//
-// });
-
 describe('AttributeService', () => {
   let testAngularFireList: AngularFireList<Attribute>;
-  let db: AngularFireDatabase;
+  let testDb: AngularFireDatabase;
   let testCharacterID: string;
   let testUserId: string;
   let testAttribute: Attribute;
@@ -54,8 +24,8 @@ describe('AttributeService', () => {
     (<jasmine.Spy>(testAngularFireList.update)).and.returnValue({catch(): void {}});
     (<jasmine.Spy>(testAngularFireList.remove)).and.returnValue({catch(): void {}});
 
-    db = jasmine.createSpyObj('db', ['list']);
-    (<jasmine.Spy>(db.list)).and.returnValue(testAngularFireList);
+    testDb = jasmine.createSpyObj('db', ['list']);
+    (<jasmine.Spy>(testDb.list)).and.returnValue(testAngularFireList);
 
     testCharacterID = 'Dragon223';
     testUserId = 'Dave55';
@@ -64,12 +34,12 @@ describe('AttributeService', () => {
     testAuthState = new Observable((observer) => {
       return {unsubscribe() { const user = {uid: testUserId }; }};
     });
-    service = new AttributeService(db, <AngularFireAuth>{ authState: testAuthState });
+    service = new AttributeService(testDb, <AngularFireAuth>{ authState: testAuthState });
   });
 
   afterEach(() => {
     testAngularFireList = null;
-    db = null;
+    testDb = null;
     testCharacterID = null;
     testUserId = null;
     testAttribute = null;
@@ -97,13 +67,15 @@ describe('AttributeService', () => {
 
   it('createAttribute should get list from db', () => {
     service.createAttribute(testAttribute);
-    expect(db.list).toHaveBeenCalled();
+    expect(testDb.list).toHaveBeenCalled();
   });
 
   it('createAttribute should push attribute to db list', () => {
     service.createAttribute(testAttribute);
     expect(testAngularFireList.push).toHaveBeenCalledWith(testAttribute);
   });
+
+  // TODO: test handleError somehow?
 
   describe('With db list as AttributesRef', () => {
     beforeEach(() => {
