@@ -103,7 +103,6 @@ export class AuthService {
 
     return this.afAuth.auth.signInAnonymously()
     .then((credential ) => {
-      this.authState = credential.user
       this.updateUserData(credential.user)
     })
     .catch(error => console.log(error));
@@ -113,7 +112,6 @@ export class AuthService {
   emailSignUp(email:string, password:string ) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((credential) => {
-        this.authState = credential.user
         this.updateUserData(credential.user)
       })
       .catch(error => console.log(error));

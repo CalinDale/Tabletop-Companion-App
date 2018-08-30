@@ -41,11 +41,8 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
-<<<<<<< HEAD
     CoreModule
-=======
-    CoreModule,
->>>>>>> 761b6d56755eb62c449b34eb213f08ec416e9241
+
   ],
   providers: [AddAttributeComponent],
   bootstrap: [AppComponent]
