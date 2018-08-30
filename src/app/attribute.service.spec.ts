@@ -74,24 +74,23 @@ describe('AttributeService', () => {
 });
 
 describe('AttributeService2', () => {
-  let db: AngularFireDatabase;
   let testAngularFireList: AngularFireList<Attribute>;
-
+  let db: AngularFireDatabase;
   let testCharacterID: string;
   let testUserId: string;
   let testAttribute: Attribute;
-
+  let testAuthState: Observable<firebase.User>;
   let service: AttributeService;
 
   beforeEach(() => {
-    db = jasmine.createSpyObj('db', ['list']);
-
     testAngularFireList = jasmine.createSpyObj('testAngularFireList', [
-      'push'// ,
-    //  'update',
-    //  'remove'
+      'push',
+      'update',
+      'remove'
     ]);
+    (<jasmine.Spy>(testAngularFireList.update)).and.returnValue({catch(): void {}});
 
+    db = jasmine.createSpyObj('db', ['list']);
     (<jasmine.Spy>(db.list)).and.returnValue(testAngularFireList);
 
     // (<jasmine.Spy>(testAngularFireList.update)).and.returnValue({catch() {} });
@@ -100,10 +99,20 @@ describe('AttributeService2', () => {
     testUserId = 'Dave55';
     testAttribute = {name: 'Armor', type: 'number', value: '20', characterID: testCharacterID, userID: testUserId};
 
-    const testAuthState: Observable<firebase.User> = new Observable((observer) => {
+    testAuthState = new Observable((observer) => {
       return {unsubscribe() { const user = {uid: testUserId }; }};
     });
     service = new AttributeService(db, <AngularFireAuth>{ authState: testAuthState });
+  });
+
+  afterEach(() => {
+    testAngularFireList = null;
+    db = null;
+    testCharacterID = null;
+    testUserId = null;
+    testAttribute = null;
+    testAuthState = null;
+    service = null;
   });
 
   it('should be created', () => {
@@ -124,9 +133,9 @@ describe('AttributeService2', () => {
     expect(testAngularFireList.push).toHaveBeenCalledWith(testAttribute);
   });
 
-  // it('updateAttribute should update db list', () => {
-  //   service.createAttribute(testAttribute);
-  //   service.updateAttribute(testAttribute.name, testAttribute.value);
-  //   expect(testAngularFireList.update).toHaveBeenCalledWith(testAttribute.name, testAttribute.value);
-  // });
+  it('updateAttribute should update db list', () => {
+    service.createAttribute(testAttribute);
+    service.updateAttribute(testAttribute.name, testAttribute.value);
+    expect(testAngularFireList.update).toHaveBeenCalledWith(testAttribute.name, testAttribute.value);
+  });
 });
