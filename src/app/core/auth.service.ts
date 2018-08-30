@@ -112,9 +112,9 @@ export class AuthService {
   // Email/Password Auth 
   emailSignUp(email:string, password:string ) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        this.authState = user
-        this.updateUserData(user)
+      .then((credential) => {
+        this.authState = credential.user
+        this.updateUserData(credential.user)
       })
       .catch(error => console.log(error));
   }
