@@ -52,6 +52,7 @@ describe('AttributeService', () => {
       'remove'
     ]);
     (<jasmine.Spy>(testAngularFireList.update)).and.returnValue({catch(): void {}});
+    (<jasmine.Spy>(testAngularFireList.remove)).and.returnValue({catch(): void {}});
 
     db = jasmine.createSpyObj('db', ['list']);
     (<jasmine.Spy>(db.list)).and.returnValue(testAngularFireList);
@@ -110,5 +111,9 @@ describe('AttributeService', () => {
     expect(testAngularFireList.update).toHaveBeenCalledWith(testAttribute.name, testAttribute.value);
   });
 
-
+  it('deleteAttribute should remove it from db list', () => {
+    service.createAttribute(testAttribute);
+    service.deleteAttribute(testAttribute.name);
+    expect(testAngularFireList.remove).toHaveBeenCalledWith(testAttribute.name);
+  });
 });
