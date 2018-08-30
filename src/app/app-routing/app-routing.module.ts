@@ -1,6 +1,6 @@
-import { AddAttributeComponent } from './../add-attribute/add-attribute.component';
-import { CreateCharacterComponent } from './../create-character/create-character.component';
-import { CharacterPageComponent } from './../character-page/character-page.component';
+import { AddAttributeComponent } from '../add-attribute/add-attribute.component';
+import { CreateCharacterComponent } from '../create-character/create-character.component';
+import { CharacterPageComponent } from '../character-page/character-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { TrackerComponent } from '../tracker/tracker.component';
@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'add', component: CreateCharacterComponent, canActivate: [AuthGuard] },
   { path: 'addattribute', component: AddAttributeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: UserProfileComponent},
-  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '', redirectTo: 'login', pathMatch: 'full'}
 ];
 
 @NgModule({
