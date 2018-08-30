@@ -116,4 +116,9 @@ describe('AttributeService', () => {
     service.deleteAttribute(testAttribute.name);
     expect(testAngularFireList.remove).toHaveBeenCalledWith(testAttribute.name);
   });
+
+  it('getAttributesList should return the list from db', () => {
+    service.createAttribute(testAttribute);
+    expect(service.getAttributesList()).toBe(testAngularFireList);
+  });
 });
