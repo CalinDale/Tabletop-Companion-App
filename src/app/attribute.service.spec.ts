@@ -105,7 +105,7 @@ describe('AttributeService', () => {
     expect(testAngularFireList.push).toHaveBeenCalledWith(testAttribute);
   });
 
-  describe('With AttributesRef', () => {
+  describe('With db list as AttributesRef', () => {
     beforeEach(() => {
       service.attributesRef = testAngularFireList;
     });
@@ -123,8 +123,13 @@ describe('AttributeService', () => {
       expect(testAngularFireList.remove).toHaveBeenCalledWith(testAttribute.name);
     });
 
-    it('getAttributesList should return the list from db', () => {
+    it('getAttributesList should return the list from db list', () => {
       expect(service.getAttributesList()).toBe(testAngularFireList);
+    });
+
+    it('deleteAll should call remove on db list', () => {
+      service.deleteAll();
+      expect(testAngularFireList.remove).toHaveBeenCalledWith();
     });
   });
 });
