@@ -105,20 +105,26 @@ describe('AttributeService', () => {
     expect(testAngularFireList.push).toHaveBeenCalledWith(testAttribute);
   });
 
-  it('updateAttribute should update db list', () => {
-    service.createAttribute(testAttribute);
-    service.updateAttribute(testAttribute.name, testAttribute.value);
-    expect(testAngularFireList.update).toHaveBeenCalledWith(testAttribute.name, testAttribute.value);
-  });
+  describe('With AttributesRef', () => {
+    beforeEach(() => {
+      service.attributesRef = testAngularFireList;
+    });
+    afterEach(() => {
+      service.attributesRef = null;
+    });
 
-  it('deleteAttribute should remove it from db list', () => {
-    service.createAttribute(testAttribute);
-    service.deleteAttribute(testAttribute.name);
-    expect(testAngularFireList.remove).toHaveBeenCalledWith(testAttribute.name);
-  });
+    it('updateAttribute should update db list', () => {
+      service.updateAttribute(testAttribute.name, testAttribute.value);
+      expect(testAngularFireList.update).toHaveBeenCalledWith(testAttribute.name, testAttribute.value);
+    });
 
-  it('getAttributesList should return the list from db', () => {
-    service.createAttribute(testAttribute);
-    expect(service.getAttributesList()).toBe(testAngularFireList);
+    it('deleteAttribute should remove it from db list', () => {
+      service.deleteAttribute(testAttribute.name);
+      expect(testAngularFireList.remove).toHaveBeenCalledWith(testAttribute.name);
+    });
+
+    it('getAttributesList should return the list from db', () => {
+      expect(service.getAttributesList()).toBe(testAngularFireList);
+    });
   });
 });
