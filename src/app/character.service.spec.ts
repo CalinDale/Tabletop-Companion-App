@@ -41,4 +41,8 @@ describe('CharacterService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  // TODO: it('should get userID from AngularFireAuth', () => {
+  //   expect(service.userID).toBe( testUserId );
+  // });
 });
