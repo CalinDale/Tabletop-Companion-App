@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   firebase: {
+<<<<<<< HEAD
     apiKey: "AIzaSyCL2ex9A1ry3ZFu7MG3wP-mJvsE5ri8g88",
     authDomain: "teabletop-companion-app-login.firebaseapp.com",
     databaseURL: "https://teabletop-companion-app-login.firebaseio.com",
@@ -12,6 +13,15 @@ export const environment = {
     storageBucket: "teabletop-companion-app-login.appspot.com",
     messagingSenderId: "493510935624"
 }
+=======
+    apiKey: 'AIzaSyCthIRTvNpv0nKnFbP6OGpVEB0t-mGRWYQ',
+    authDomain: 'tabletopcompaionapp.firebaseapp.com',
+    databaseURL: 'https://tabletopcompaionapp.firebaseio.com',
+    projectId: 'tabletopcompaionapp',
+    storageBucket: 'tabletopcompaionapp.appspot.com',
+    messagingSenderId: '184726034576'
+  }
+>>>>>>> 573ceabd1e0b4be63dfdeb509c8d25f5ad967e77
 };
 
 /*

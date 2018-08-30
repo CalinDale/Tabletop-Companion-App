@@ -33,8 +33,6 @@ import { CoreModule } from './core/core.module';
     CharacterDetailsComponent,
     AddAttributeComponent,
     UserProfileComponent
-
-
   ],
   imports: [
     BrowserModule,
@@ -43,7 +41,7 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
-    CoreModule,
+    CoreModule
   ],
   providers: [AddAttributeComponent],
   bootstrap: [AppComponent]
