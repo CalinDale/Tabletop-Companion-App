@@ -43,6 +43,12 @@ describe('CharacterService', () => {
     service = new CharacterService(testDb, <AngularFireAuth>{ authState: testAuthState});
   });
   afterEach(() => {
+    testAngularFireList = null;
+    testDb = null;
+    testUserId = null;
+    testCharacter = null;
+    testAuthState = null;
+    service = null;
   });
 
   it('should be created', () => {
@@ -59,13 +65,16 @@ describe('CharacterService', () => {
     beforeEach(() => {
       service.userID = testUserId;
     });
+    afterEach(() => {
+      service.userID = null;
+    });
 
-    it('getCharacterList should set charactersRef to list from db', () => {
+    it('getCharacterList() should set charactersRef to list from db', () => {
       service.getCharactersList();
       expect(service.charactersRef).toBe(testAngularFireList);
     });
 
-    it('getCharacterList should return the list from db list', () => {
+    it('getCharacterList() should return the list from db list', () => {
       service.getCharactersList();
       expect(service.charactersRef).toBe(testAngularFireList);
     });
@@ -75,22 +84,22 @@ describe('CharacterService', () => {
         service.charactersRef = testAngularFireList;
       });
 
-      it('createCharacter should push character to db list', () => {
+      it('createCharacter() should push character to db list', () => {
         service.createCharacter(testCharacter);
         expect(testAngularFireList.push).toHaveBeenCalledWith(testCharacter);
       });
 
-      it('updateCharacter should update db list', () => {
+      it('updateCharacter() should update db list', () => {
         service.updateCharacter(testCharacter.key, testCharacter);
         expect(testAngularFireList.update).toHaveBeenCalledWith(testCharacter.key, testCharacter);
       });
 
-      it('deleteAttribute should remove it from db list', () => {
+      it('deleteAttribute() should remove it from db list', () => {
         service.deleteCharacter(testCharacter.key);
         expect(testAngularFireList.remove).toHaveBeenCalledWith(testCharacter.key);
       });
 
-      it('deleteAll should call remove on db list', () => {
+      it('deleteAll() should call remove on db list', () => {
         service.deleteAll();
         expect(testAngularFireList.remove).toHaveBeenCalledWith();
       });
