@@ -19,7 +19,7 @@ describe('MessageService', () => {
 
   it('add() should add message to messages', () => {
     service.add(testMessage);
-    expect(service.messages.includes(testMessage)).toBe(true);
+    expect(service.messages.includes(testMessage)).toBeTruthy();
   });
 
   it('clear() should clear messages', () => {
