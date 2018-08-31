@@ -20,8 +20,9 @@ export class CharacterService {
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
        { this.userID = firebase.auth().currentUser.uid; }
-       console.log(this.userID)
+       console.log(this.userID);
     });
+    this.charactersRef = this.db.list(`characters/${this.userID}`);
   }
 
   createCharacter(character: Character): void {
@@ -42,6 +43,7 @@ export class CharacterService {
     this.charactersRef = this.db.list(`characters/${this.userID}`);
     return this.charactersRef;
   }
+
 
   deleteAll(): void {
     this.charactersRef.remove().catch(error => this.handleError(error));

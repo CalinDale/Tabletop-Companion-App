@@ -16,7 +16,7 @@ import * as firebase from 'firebase';
 @Injectable()
 export class AuthService {
 
-  authState: any =null;
+  authState: any = null;
 
   user: Observable<firebase.User>;
 
@@ -27,7 +27,7 @@ export class AuthService {
   ) {
 
     this.afAuth.authState.subscribe((auth) => {
-      this.authState = auth
+      this.authState = auth;
     });
 
     {
@@ -54,35 +54,35 @@ export class AuthService {
     return this.authenticated ? this.authState : null;
   }
 
-  get currentUserObservable(): any{
+  get currentUserObservable(): any {
     return this.afAuth.authState;
   }
 
-  get currentUserId(): string{
+  get currentUserId(): string {
     return this.authenticated ? this.authState.uid : '';
   }
 
   // Is Anonymous
-  get currentUserAnonymous(): boolean{
+  get currentUserAnonymous(): boolean {
     return this.authenticated ? this.authState.isAnonymous : false;
   }
 
-  //Returns display name
+  // Returns display name
   get currentUserDisplayName(): string {
-    if (!this.authState){return 'Guest'}
-    else if (this.currentUserAnonymous) { return 'Anonymous' }
-    else { return this.authState['displayName'] || 'User without a Name'}
-  } 
+    if (!this.authState) { return 'Guest'; }
+    if (this.currentUserAnonymous) { return 'Anonymous'; }
+    { return this.authState['displayName'] || 'User without a Name'; }
+  }
 
-  //Social Sigins 
+  // Social Sigins
 
-  facebookLogin(){
-    const provider= new auth.FacebookAuthProvider();
+  facebookLogin() {
+    const provider = new auth.FacebookAuthProvider();
     return this.socialSignIn(provider);
   }
 
-  twitterLogin(){
-    const provider= new auth.TwitterAuthProvider();
+  twitterLogin() {
+    const provider = new auth.TwitterAuthProvider();
     return this.socialSignIn(provider);
   }
 
@@ -98,7 +98,7 @@ export class AuthService {
       });
   }
 
-  // Anonymous Auth 
+  // Anonymous Auth
   anonymousLogin() {
 
     return this.afAuth.auth.signInAnonymously()
@@ -108,48 +108,50 @@ export class AuthService {
     .catch(error => console.log(error));
   }
 
-  // Email/Password Auth 
-  emailSignUp(email:string, password:string ) {
+  // Email/Password Auth
+  emailSignUp(email: string, password: string ) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((credential) => {
-        this.updateUserData(credential.user)
+        this.updateUserData(credential.user);
+        // this.router.navigate(['/login']);
       })
       .catch(error => console.log(error));
   }
 
-  emailLogin(email:string, password:string) {
-     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-       .then((user) => {
-         this.authState = user
-         this.updateUserData(user)
-       })
-       .catch(error => console.log(error));
+  emailLogin(email: string, password: string) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+      .then((user) => {
+        this.authState = user;
+        this.updateUserData(user);
+      })
+      .catch(error => console.log(error));
+
+
+
+
   }
 
   // Sends email allowing user to reset password
   resetPassword(email: string) {
-    
-    var auth = firebase.auth();
+    const auth = firebase.auth();
 
     return auth.sendPasswordResetEmail(email)
-      .then(() => console.log("email sent"))
-      .catch((error) => console.log(error))
+      .then(() => console.log( 'email sent' ))
+      .catch((error) => console.log(error));
   }
 
   private handleError(error){
     console.error(error);
-    //To donotify the user
-    
+    // To donotify the user
   }
 
-  updateUser(user: User, data:any){
-    return this.afs.doc(`users/${user.uid}`).update(data)
+  updateUser(user: User, data: any) {
+    return this.afs.doc(`users/${user.uid}`).update(data);
   }
 
   // Change to setUserDoc?
-  private updateUserData(user) {
+  updateUserData(user) {
     // Sets user data to firestore on login
-
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
 
     const data: User = {

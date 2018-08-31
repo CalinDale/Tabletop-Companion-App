@@ -8,32 +8,9 @@
 <h3>Welecome, GUEST</h3>
 <p>Login to get started...</p>
 
-<form [formGroup] = "signupForm">
-
-  <h3> New User Signup </h3>
-  
-  <label>Email</label>
-  <input type="email" formControlName="email">
-
-  <div *ngIf="email.invalid && email.dirty">
-    Your email doesn't look quite right...
-  </div>
-
-  <label for="password">Password</label>
-  <input type="password" formControlName="password" required>
-
-  <div *ngIf="password.invalid && password.touched" >
-    Password must be between 6 and 24 c0haracters and have at least one number
-  </div> 
-
-  <div *ngIf="signupForm.valid"> Form is valid </div>
-
-  <button type="submit" [disabled]="!signupForm.valid" (click)="signup()">Submit</button>
-
-</form>
-
-  
-
+<button>
+    <a routerLink="/register" tag="button" routerLinkActive="active">Register</a>
+</button>
 <br>
 <button (click)="auth.googleLogin()">
    <i class="fa fa-google"></i> Connect Google

@@ -6,6 +6,7 @@ import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { TrackerComponent } from '../tracker/tracker.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { AuthGuard } from '../core/auth.guard';
+import { RegisterComponent } from '../register/register.component';
 
 // fill in with { path: 'pathname', component: ComponentName } when adding routes.
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'add', component: CreateCharacterComponent, canActivate: [AuthGuard] },
   { path: 'addattribute', component: AddAttributeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: UserProfileComponent},
+  { path: 'register', component: RegisterComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full'}
 ];
 
