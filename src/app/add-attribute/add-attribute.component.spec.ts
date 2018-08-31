@@ -12,7 +12,8 @@ import { environment } from '../../environments/environment';
 import { BehaviorSubject } from '../../../node_modules/rxjs';
 
 import { AngularFireDatabase} from 'angularfire2/database';
-import { Attribute } from '../../../node_modules/@angular/core';
+import { Attribute } from '../attribute';
+import * as firebase from 'firebase';
 
 describe('AddAttributeComponent', () => {
 //  let component: AddAttributeComponent;
@@ -55,11 +56,15 @@ describe('AddAttributeComponent', () => {
 });
 
 describe('AddAttributeComponent2', () => {
+  let testUserID: string;
   let testCharacterID: string;
   let testAttributeService: AttributeService;
   let component: AddAttributeComponent;
 
+  let testAuthFunction: Function;
+
   beforeEach(async(() => {
+    testUserID = 'Dave32';
     testCharacterID = 'Grog34';
     testAttributeService = jasmine.createSpyObj('testAttributeService', [
       'getCharacterID',
@@ -68,6 +73,9 @@ describe('AddAttributeComponent2', () => {
     (<jasmine.Spy>(testAttributeService.getCharacterID)).and.returnValue(testCharacterID);
 
     component = new AddAttributeComponent(testAttributeService);
+
+    testAuthFunction = firebase.auth;
+    spyOn(firebase, 'auth').and.returnValue( { currentUser: { uid: testUserID } } );
 
     TestBed.configureTestingModule({
       declarations: [ AddAttributeComponent ],
@@ -78,15 +86,17 @@ describe('AddAttributeComponent2', () => {
         // AngularFireDatabaseModule // for database
       ],
       providers: [
-        { provide: AngularFireDatabase },
+        // { provide: firebase.auth, useValue: testAuthFunction },
       ]
     })
     .compileComponents();
   }));
   afterEach(() => {
+    testUserID = null;
     testCharacterID = null;
     testAttributeService = null;
     component = null;
+    testAuthFunction = null;
   });
 
   it('should create', () => {
@@ -109,10 +119,41 @@ describe('AddAttributeComponent2', () => {
     expect(component.attribute.value).toBeUndefined();
   });
 
-  // TODO: Work out how to mock the firebase import.
+  it('save() should get attribute.characterID from attributeService.characterID', () => {
+    component.save();
+    expect(testAttributeService.getCharacterID).toHaveBeenCalled();
+  });
+
+  // TODO: Can't do this test properly while attribute hasn't got getters or setters
   // it('save() should set attribute.characterID to attributeService.characterID', () => {
+  //   component.attribute.characterID = '';
+  //   const testAttribute = component.attribute;
+  //   const spyAttributeCharacterID = spyOnProperty(testAttribute, 'characterID');
   //   component.save();
-  //   firebase.initializeApp();
-  //   expect(component.attribute.characterID).toBe(testCharacterID);
+  //   expect(spyAttributeCharacterID).toHaveBeenCalledWith(testCharacterID);
   // });
+
+  it('save() should get attribute.userID from firebase.auth().currentUser.uid', () => {
+    component.save();
+    expect(firebase.auth).toHaveBeenCalled();
+  });
+
+  // TODO: Can't do this test properly while attribute hasn't got getters or setters
+  // it('save() should set attribute.userID to firebase.auth().currentUser.uid', () => {});
+
+  describe('with characterID and userID inserted into attribute', () => {
+    let testAttribute: Attribute;
+    beforeEach(() => {
+      testAttribute = new Attribute();
+      testAttribute.characterID = testCharacterID;
+      testAttribute.userID = testUserID;
+    });
+    afterEach(() => {
+      testAttribute = null;
+    });
+    it('save() should call attributeService.createAttribute()', () => {
+      component.save();
+      expect(testAttributeService.createAttribute).toHaveBeenCalledWith(testAttribute);
+    });
+  });
 });
