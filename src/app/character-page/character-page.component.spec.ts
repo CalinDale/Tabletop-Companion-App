@@ -34,6 +34,7 @@ describe('CharacterPageComponent', () => {
     fixture.detectChanges();
   });
 
+  // TODO: See character.service.spec for info on cannot read property of null
   it('should create', () => {
     expect(component).toBeTruthy();
   });

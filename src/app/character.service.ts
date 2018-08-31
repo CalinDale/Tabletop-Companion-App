@@ -36,10 +36,12 @@ export class CharacterService {
   }
 
   getCharactersList(): AngularFireList<Character> {
-    // tslint:disable-next-line:curly
-    if (!this.userID) return;
-    this.charactersRef = this.db.list(`characters/${this.userID}`);
-    return this.charactersRef;
+    if (!this.userID) {
+      return;
+    } else {
+      this.charactersRef = this.db.list(`characters/${this.userID}`);
+      return this.charactersRef;
+    }
   }
 
   deleteAll(): void {

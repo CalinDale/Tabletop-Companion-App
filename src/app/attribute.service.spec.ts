@@ -24,12 +24,18 @@ describe('AttributeService', () => {
     (<jasmine.Spy>(testAngularFireList.update)).and.returnValue({catch(): void {}});
     (<jasmine.Spy>(testAngularFireList.remove)).and.returnValue({catch(): void {}});
 
-    testDb = jasmine.createSpyObj('db', ['list']);
+    testDb = jasmine.createSpyObj('testDb', ['list']);
     (<jasmine.Spy>(testDb.list)).and.returnValue(testAngularFireList);
 
     testCharacterID = 'Dragon223';
     testUserId = 'Dave55';
-    testAttribute = {name: 'Armor', type: 'number', value: '20', characterID: testCharacterID, userID: testUserId};
+    testAttribute = {
+      name: 'Armor',
+      type: 'number',
+      value: '20',
+      characterID: testCharacterID,
+      userID: testUserId
+    };
 
     testAuthState = new Observable((observer) => {
       return {unsubscribe() { const user = {uid: testUserId }; }};
@@ -65,9 +71,9 @@ describe('AttributeService', () => {
     expect(service.getCharacterID()).toBe(testCharacterID);
   });
 
-  it('createAttribute should get list from db', () => {
+  it('createAttribute should set attributeRef to the list from db', () => {
     service.createAttribute(testAttribute);
-    expect(testDb.list).toHaveBeenCalled();
+    expect(service.attributesRef).toBe(testAngularFireList);
   });
 
   it('createAttribute should push attribute to db list', () => {
@@ -86,8 +92,8 @@ describe('AttributeService', () => {
     });
 
     it('updateAttribute should update db list', () => {
-      service.updateAttribute(testAttribute.name, testAttribute.value);
-      expect(testAngularFireList.update).toHaveBeenCalledWith(testAttribute.name, testAttribute.value);
+      service.updateAttribute(testAttribute.name, testAttribute);
+      expect(testAngularFireList.update).toHaveBeenCalledWith(testAttribute.name, testAttribute);
     });
 
     it('deleteAttribute should remove it from db list', () => {
