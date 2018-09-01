@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'addattribute', component: AddAttributeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: UserProfileComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full'},
-  { path: 'getCharacter', component: ViewSingleCharacterComponent, canActivate: [AuthGuard] },
+  { path: 'getCharacter', component: ViewSingleCharacterComponent},
 ];
 
 @NgModule({

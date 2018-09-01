@@ -1,7 +1,13 @@
-<div *ngIf="character">
+<div *ngIf="attribute">
   <div>
-    <label>Name: </label> {{character.name | async }}<br><br>
+    <label>Attribute Name: </label> {{attribute.name}}<br><br>
   </div>
+  <div>
+      <label>Attribute Type: </label> {{attribute.type}}<br><br>
+    </div>
+    <div>
+        <label>Attribute Value: </label> {{attribute.value}}<br><br>
+      </div>
 </div>
 
 <button  (click)="createAttribute()" >Add Attribute</button>

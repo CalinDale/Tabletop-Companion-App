@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from '../../node_modules/rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireList, AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,8 @@ export class CharacterService {
   private dbPath = '/characters';
 
   charactersRef: AngularFireList<Character> = null;
+  characterRef: AngularFireObject<any> = null;
   userID: string;
-  characterRef: AngularFirestoreDocument<Character> = null;
   character: Character;
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
@@ -46,17 +46,9 @@ export class CharacterService {
   }
 
   getCharacter(key: string) {
-    this.charactersRef = this.db.list(`characters/${key}`);
-    this.charactersRef.snapshotChanges().map(snap => {
-      if (snap.payload.exists) {
-        const obj = snap.payload.data() as Character;
-        obj.key = snap.payload.key;
-        return obj;
-      }
-    })
-    .subscribe(response => {
-      return this.character = response;
-    });
+    this.characterRef = this.db.object(`characters/${this.userID}/${key}/`);
+    return this.characterRef;
+
   }
 
   deleteAll(): void {

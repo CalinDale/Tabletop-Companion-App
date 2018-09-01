@@ -4,6 +4,7 @@ import { CharacterService } from '../character.service';
 import { MessageService } from '../message.service';
 import { AttributeService } from '../attribute.service';
 import { Router } from '@angular/router';
+import { Attribute } from '../attribute';
 
 @Component({
   selector: 'app-single-character-details',
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 export class SingleCharacterDetailsComponent implements OnInit {
 
   @Input() character: Character;
+  @Input() attribute: Attribute;
 
   constructor(
     private characterService: CharacterService,

@@ -1,8 +1,9 @@
-<h1>Characters</h1>
-<div *ngFor="let character of characters" style="width: 300px;">
-  <app-single-character-details [character]='character'></app-single-character-details>
-</div>
-<div style="margin-top:20px;">
-  <button type="button" class="button btn-danger" (click)='deleteCharacters()'>Delete All</button>
-</div>
-
+<div>
+  <h3>Name: {{characters.name}}</h3>
+  <div *ngFor="let attribute of attributes" style="width: 300px;">
+      <app-single-character-details [attribute]='attribute'></app-single-character-details>
+    </div>
+    <div style="margin-top:20px;">
+      <button type="button" class="button btn-danger" (click)='deleteCharacters()'>Delete All</button>
+    </div>
+</div>>

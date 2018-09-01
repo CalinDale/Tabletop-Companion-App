@@ -12,8 +12,9 @@ import { map } from 'rxjs/operators';
 })
 export class ViewSingleCharacterComponent implements OnInit {
 
-  characters: any;
+  characters: any = [];
   character: any;
+  attributes: any;
   characterID: string;
   constructor(
     // TODO: Delete this section when implementing proper routing.
@@ -25,17 +26,30 @@ export class ViewSingleCharacterComponent implements OnInit {
 
   ngOnInit() {
     this.getCharacter();
+    this.getAttributes();
   }
 
   getCharacter() {
     this.characterID = this.attributeService.getCharacterID();
-    console.log(this.characterID);
-    this.characters.subscribe( characters => {
-      this.character = characters[this.characterID];
-      console.log(this.character);
+    this.characterService.getCharacter(this.characterID).valueChanges()
+    .subscribe(characters => {
+      this.characters = characters;
+      console.log(this.characters);
     });
-
   }
+
+  getAttributes() {
+    this.characterID = this.attributeService.getCharacterID();
+    this.attributeService.getAttributes(this.characterID).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(attributes => {
+      this.attributes = attributes;
+      console.log(this.attributes);
+    });
+  }
+
 
   deleteCharacters() {
     this.characterService.deleteAll();

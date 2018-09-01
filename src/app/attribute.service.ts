@@ -31,8 +31,15 @@ export class AttributeService {
     return this.characterID;
   }
 
+  getAttributes(key: string): AngularFireList<Attribute> {
+    // tslint:disable-next-line:curly
+    if (!this.userID) return;
+    this.attributesRef = this.db.list(`attributes/${this.userID}/${key}/`);
+    return this.attributesRef;
+  }
+
   createAttribute(attribute: Attribute): void {
-    this.attributesRef = this.db.list(`attributes/${this.userID}`);
+    this.attributesRef = this.db.list(`attributes/${this.userID}/${this.characterID}`);
     this.attributesRef.push(attribute);
   }
 
@@ -42,10 +49,6 @@ export class AttributeService {
 
   deleteAttribute(name: string): void {
     this.attributesRef.remove(name).catch(error => this.handleError(error));
-  }
-
-  getAttributesList(): AngularFireList<Attribute> {
-    return this.attributesRef;
   }
 
   deleteAll(): void {
