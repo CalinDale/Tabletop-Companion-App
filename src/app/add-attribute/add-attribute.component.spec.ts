@@ -151,9 +151,27 @@ describe('AddAttributeComponent2', () => {
     afterEach(() => {
       testAttribute = null;
     });
-    it('save() should call attributeService.createAttribute()', () => {
+    it('save() should send attribute to attributeService.createAttribute()', () => {
       component.save();
       expect(testAttributeService.createAttribute).toHaveBeenCalledWith(testAttribute);
     });
+  });
+
+  it('save() should reinitialize attribute', () => {
+    component.save();
+    expect(component.attribute).toBeDefined();
+    expect(component.attribute.characterID).toBeUndefined();
+    expect(component.attribute.userID).toBeUndefined();
+  });
+
+  it('onSubmit() should set submitted as true;', () => {
+    component.onSubmit();
+    expect(component.submitted).toBeTruthy();
+  });
+
+  it('onSubmit() should call save()', () => {
+    spyOn(component, 'save');
+    component.onSubmit();
+    expect(component.save).toHaveBeenCalled();
   });
 });
