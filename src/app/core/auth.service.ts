@@ -4,11 +4,13 @@ import { Router } from '@angular/router';
 import { auth } from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { User } from './user';
+
 import { EmailPasswordCredentials } from '../core/emailPasswordCredentials';
 
 import * as firebase from 'firebase';
@@ -19,6 +21,8 @@ export class AuthService {
   authState: any = null;
 
   user: Observable<firebase.User>;
+
+
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -42,10 +46,11 @@ export class AuthService {
       })
     );
     }
+
   }
 
   // Returns true if user is logged in
-  get authenticated(): boolean{
+  get authenticated(): boolean {
     return this.authState !== null;
   }
 
@@ -103,7 +108,7 @@ export class AuthService {
 
     return this.afAuth.auth.signInAnonymously()
     .then((credential ) => {
-      this.updateUserData(credential.user)
+      this.updateUserData(credential.user);
     })
     .catch(error => console.log(error));
   }
@@ -118,6 +123,7 @@ export class AuthService {
       .catch(error => console.log(error));
   }
 
+
   emailLogin(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((user) => {
@@ -125,10 +131,6 @@ export class AuthService {
         this.updateUserData(user);
       })
       .catch(error => console.log(error));
-
-
-
-
   }
 
   // Sends email allowing user to reset password
@@ -152,6 +154,7 @@ export class AuthService {
   // Change to setUserDoc?
   updateUserData(user) {
     // Sets user data to firestore on login
+    console.log('Update called');
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
 
     const data: User = {
@@ -160,9 +163,7 @@ export class AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL
     };
-
     return userRef.set(data, { merge: true });
-
   }
 
   signOut() {

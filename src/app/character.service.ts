@@ -17,7 +17,9 @@ export class CharacterService {
   charactersRef: AngularFireList<Character> = null;
   userID: string = firebase.auth().currentUser.uid;
 
-  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
+  constructor(
+    private db: AngularFireDatabase,
+    private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
        { this.userID = firebase.auth().currentUser.uid; }
        console.log(this.userID);
