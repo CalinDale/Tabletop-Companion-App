@@ -112,5 +112,24 @@ describe('CharacterDetailsComponent', () => {
       component.createAttribute();
       expect(testRouter.navigateByUrl).toHaveBeenCalledWith('addattribute');
     });
+    it('deleteCharacter() should call characterService.deleteCharacter with the character Key', () => {
+      component.deleteCharacter();
+      expect(testCharacterService.deleteCharacter).toHaveBeenCalledWith(testCharacter.key);
+    });
+    it('updateActive() should send the character key and { active: true/false } to characterService.updateCharacter()', () => {
+      const isActive = true;
+      component.updateActive(isActive);
+      expect(testCharacterService.updateCharacter).toHaveBeenCalledWith(testCharacter.key, { active: isActive });
+    });
+  });
+  it('addCharacter() should send "Add New Character" to messageService.add()', () => {
+    const testMessage = 'Add New Character';
+    component.addCharacter();
+    expect(testMessageService.add).toHaveBeenCalledWith(testMessage);
+  });
+  it('reorderCharacters() should send "Reorder Character" to messageService.add()', () => {
+    const testMessage = 'Reorder Character';
+    component.reorderCharacters();
+    expect(testMessageService.add).toHaveBeenCalledWith(testMessage);
   });
 });
