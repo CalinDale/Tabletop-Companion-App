@@ -22,6 +22,7 @@ import { CharacterDetailsComponent } from './character-details/character-details
 import { AddAttributeComponent } from './add-attribute/add-attribute.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CoreModule } from './core/core.module';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CoreModule } from './core/core.module';
     CreateCharacterComponent,
     CharacterDetailsComponent,
     AddAttributeComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +44,7 @@ import { CoreModule } from './core/core.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
     CoreModule
+
   ],
   providers: [AddAttributeComponent],
   bootstrap: [AppComponent]

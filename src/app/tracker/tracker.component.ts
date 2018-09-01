@@ -1,5 +1,5 @@
-import { Character } from './../character';
-import { TurnOrderService } from './../turn-order.service';
+import { Character } from '../character';
+import { TurnOrderService } from '../turn-order.service';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../message.service';
 
