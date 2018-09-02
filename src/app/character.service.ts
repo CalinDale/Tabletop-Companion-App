@@ -1,3 +1,4 @@
+import { AttributeService } from './attribute.service';
 import { AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { MessageService } from './message.service';
@@ -19,8 +20,9 @@ export class CharacterService {
   characterRef: AngularFireObject<any> = null;
   userID: string;
   character: Character;
+  characterID: string;
 
-  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
+  constructor(private db: AngularFireDatabase, private attributeService: AttributeService, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
       if (user) { this.userID = user.uid; }
     });
@@ -30,8 +32,10 @@ export class CharacterService {
     this.charactersRef.push(character);
   }
 
-  updateCharacter(key: string, value: any): void {
-    this.charactersRef.update(key, value).catch(error => this.handleError(error));
+  updateCharacter(character: Character): void {
+    this.characterID = this.attributeService.getCharacterID();
+    this.characterRef = this.db.object(`characters/${this.userID}/${this.characterID}`);
+    this.characterRef.update(character).catch(error => this.handleError(error));
   }
 
   deleteCharacter(key: string): void {

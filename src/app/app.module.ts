@@ -24,6 +24,7 @@ import { CoreModule } from './core/core.module';
 import { ViewSingleCharacterComponent } from './view-single-character/view-single-character.component';
 import { SingleCharacterDetailsComponent } from './single-character-details/single-character-details.component';
 import { EditAttributeComponent } from './edit-attribute/edit-attribute.component';
+import { EditCharacterComponent } from './edit-character/edit-character.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { EditAttributeComponent } from './edit-attribute/edit-attribute.componen
     UserProfileComponent,
     ViewSingleCharacterComponent,
     SingleCharacterDetailsComponent,
-    EditAttributeComponent
+    EditAttributeComponent,
+    EditCharacterComponent
 
 
   ],

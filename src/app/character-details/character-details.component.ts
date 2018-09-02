@@ -36,8 +36,9 @@ export class CharacterDetailsComponent implements OnInit {
     this.characterService.deleteCharacter(this.character.key);
   }
 
-  updateActive(isActive: boolean) {
-    this.characterService.updateCharacter(this.character.key, { active: isActive });
+  editCharacter() {
+    this.attributeService.setCharacterID(this.character.key);
+    this.router.navigateByUrl('editcharacter');
   }
 
   addCharacter(): void {

@@ -8,6 +8,7 @@ import { TrackerComponent } from '../tracker/tracker.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { AuthGuard } from '../core/auth.guard';
 import { EditAttributeComponent } from '../edit-attribute/edit-attribute.component';
+import { EditCharacterComponent } from '../edit-character/edit-character.component';
 
 // fill in with { path: 'pathname', component: ComponentName } when adding routes.
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'getCharacter', component: ViewSingleCharacterComponent},
   { path: 'editattribute', component: EditAttributeComponent},
+  { path: 'editcharacter', component: EditCharacterComponent},
 ];
 
 @NgModule({

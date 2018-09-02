@@ -34,13 +34,13 @@ export class SingleCharacterDetailsComponent implements OnInit {
     this.attributeService.deleteAttribute(this.attribute.key);
   }
 
-  updateActive(isActive: boolean) {
-    this.characterService.updateCharacter(this.character.key, { active: isActive });
-  }
-
   editAttribute() {
     this.attributeService.setAttributeID(this.attribute.key);
     this.router.navigateByUrl('editattribute');
+  }
+
+  editCharacter() {
+    this.router.navigateByUrl('editcharacter');
   }
 
 
