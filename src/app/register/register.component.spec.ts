@@ -1,4 +1,3 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormGroup } from '@angular/forms';
 
 import { RegisterComponent } from './register.component';
