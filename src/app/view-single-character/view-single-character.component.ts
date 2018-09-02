@@ -34,7 +34,6 @@ export class ViewSingleCharacterComponent implements OnInit {
     this.characterService.getCharacter(this.characterID).valueChanges()
     .subscribe(characters => {
       this.characters = characters;
-      console.log(this.characters);
     });
   }
 
@@ -46,12 +45,6 @@ export class ViewSingleCharacterComponent implements OnInit {
       )
     ).subscribe(attributes => {
       this.attributes = attributes;
-      console.log(this.attributes);
     });
-  }
-
-
-  deleteCharacters() {
-    this.characterService.deleteAll();
   }
 }

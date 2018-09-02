@@ -27,24 +27,20 @@ export class SingleCharacterDetailsComponent implements OnInit {
   }
 
   createAttribute( ) {
-    this.attributeService.setCharacterID(this.character.key);
     this.router.navigateByUrl('addattribute');
   }
 
-  deleteCharacter() {
-    this.characterService.deleteCharacter(this.character.key);
+  removeAttribute() {
+    this.attributeService.deleteAttribute(this.attribute.key);
   }
 
   updateActive(isActive: boolean) {
     this.characterService.updateCharacter(this.character.key, { active: isActive });
   }
 
-  addCharacter(): void {
-    this.messageService.add('Add New Character');
-  }
-
-  reorderCharacters(): void {
-    this.messageService.add('Reorder Character');
+  editAttribute() {
+    this.attributeService.setAttributeID(this.attribute.key);
+    this.router.navigateByUrl('editattribute');
   }
 
 
