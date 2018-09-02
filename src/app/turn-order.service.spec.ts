@@ -1,15 +1,14 @@
-import { TestBed, inject } from '@angular/core/testing';
-
 import { TurnOrderService } from './turn-order.service';
 
 describe('TurnOrderService', () => {
+  let service: TurnOrderService;
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [TurnOrderService]
-    });
+    service = new TurnOrderService();
   });
-
-  it('should be created', inject([TurnOrderService], (service: TurnOrderService) => {
+  afterEach(() => {
+    service = null;
+  });
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
+  });
 });

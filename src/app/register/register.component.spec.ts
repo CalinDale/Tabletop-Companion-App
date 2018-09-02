@@ -1,19 +1,23 @@
-import { AuthService } from './../core/auth.service';
-import { UserProfileComponent } from './user-profile.component';
-import { FormBuilder } from '../../../node_modules/@angular/forms';
+import { FormGroup } from '@angular/forms';
 
-describe('UserProfileComponent', () => {
+import { RegisterComponent } from './register.component';
+import { FormBuilder } from '../../../node_modules/@angular/forms';
+import { AuthService } from '../core/auth.service';
+
+describe('RegisterComponent', () => {
   let testAuth: AuthService;
   let testFB: FormBuilder;
-  let component: UserProfileComponent;
+  let component: RegisterComponent;
   beforeEach(() => {
     testAuth = jasmine.createSpyObj('testAuth', [
-      'needsomethinghere'
+      'emailSignUp',
+      'updateUserData'
     ]);
     testFB = jasmine.createSpyObj('testFB', [
-      'needsomethinghere'
+      'group'
     ]);
-    component = new UserProfileComponent(testAuth, testFB);
+    (<jasmine.Spy>testFB.group).and.returnValue( <FormGroup>{} );
+    component = new RegisterComponent(testAuth, testFB);
   });
   afterEach(() => {
     testAuth = null;

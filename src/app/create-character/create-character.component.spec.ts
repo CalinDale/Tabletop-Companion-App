@@ -1,37 +1,19 @@
-import { AngularFireAuth } from 'angularfire2/auth';
-import { FormsModule } from '@angular/forms';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CharacterService } from './../character.service';
 import { CreateCharacterComponent } from './create-character.component';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-
-import { environment } from '../../environments/environment';
-
 describe('CreateCharacterComponent', () => {
+  let testCharacterService: CharacterService;
   let component: CreateCharacterComponent;
-  let fixture: ComponentFixture<CreateCharacterComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CreateCharacterComponent ],
-      imports: [
-        FormsModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFireDatabaseModule // for database
-      ],
-      providers: [AngularFireAuth]
-    })
-    .compileComponents();
-  }));
-
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateCharacterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    testCharacterService = jasmine.createSpyObj('testCharacterService', [
+      'createCharacter'
+    ]);
+    component = new CreateCharacterComponent(testCharacterService);
   });
-
+  afterEach(() => {
+    testCharacterService = null;
+    component = null;
+  });
   it('should create', () => {
     expect(component).toBeTruthy();
   });

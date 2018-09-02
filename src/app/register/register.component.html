@@ -1,0 +1,31 @@
+<form [formGroup] = "signupForm">
+
+  <h3> New User Signup </h3>
+
+  <label>Username</label>
+  <input type="text" formControlName="displayName">
+  <br>
+  
+  <label>Email</label>
+  <input type="email" formControlName="email">
+
+  <div *ngIf="email.invalid && email.dirty">
+    Your email doesn't look quite right...
+  </div>
+
+  <br>
+  <label for="password">Password</label>
+  <input type="password" formControlName="password" required>
+
+  <div *ngIf="password.invalid && password.touched" >
+    Password must be between 6 and 24 c0haracters and have at least one number
+  </div>
+  
+  <label for="repeatPassword">Repeat Password</label>
+  <input type="password" formControlName="repeatPassword" required>
+
+  <div *ngIf="signupForm.valid"> Form is valid </div>
+
+  <button type="submit" [disabled]="!signupForm.valid" (click)="signup()">Submit</button>
+
+</form>
