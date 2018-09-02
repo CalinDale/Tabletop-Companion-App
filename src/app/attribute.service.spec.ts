@@ -57,7 +57,8 @@ describe('AttributeService', () => {
     expect(service).toBeTruthy();
   });
 
-  // TODO: it('should get userID from AngularFireAuth', () => {
+  // TODO: Research CharacterPageComponent tests for this one.
+  // it('should get userID from AngularFireAuth', () => {
   //   expect(service.userID).toBe( testUserId );
   // });
 

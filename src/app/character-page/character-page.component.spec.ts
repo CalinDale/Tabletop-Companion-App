@@ -41,8 +41,7 @@ describe('CharacterPageComponent', () => {
     component = null;
   });
 
-  // TODO: See character.service.spec for info on cannot read property of null
-  it('should create', () => {
+    it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

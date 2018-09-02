@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 
 import { Character } from './character';
 
+import * as firebase from 'firebase/app';
 
 describe('CharacterService', () => {
   let testAngularFireList: AngularFireList<Character>;
@@ -35,6 +36,8 @@ describe('CharacterService', () => {
       userID: testUserId,
     };
 
+    spyOn(firebase, 'auth').and.returnValue( { currentUser: { uid: testUserId } } );
+
     testAuthState = new Observable((observer) => {
       return {unsubscribe() { const user = {uid: testUserId }; }};
     });
@@ -51,13 +54,13 @@ describe('CharacterService', () => {
     service = null;
   });
 
-  it('should be created', () => {
+  it('should create', () => {
     expect(service).toBeTruthy();
   });
 
-  // TODO: it('should get userID from AngularFireAuth', () => {
-  //   expect(service.userID).toBe( testUserId );
-  // });
+  it('should get userID from AngularFireAuth', () => {
+    expect(service.userID).toBe( testUserId );
+  });
 
   // TODO: test handleError somehow?
 
@@ -107,6 +110,9 @@ describe('CharacterService', () => {
   });
 
   describe('without valid userID', () => {
+    beforeEach(() => {
+      service.userID = null;
+    });
     it('getCharacterList should do nothing', () => {
       expect(service.getCharactersList()).toBeUndefined();
     });

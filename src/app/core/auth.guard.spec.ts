@@ -1,53 +1,37 @@
-import { CharacterDetailsComponent } from './../character-details/character-details.component';
-import { UserProfileComponent } from './../user-profile/user-profile.component';
-import { CharacterPageComponent } from './../character-page/character-page.component';
-import { TrackerComponent } from './../tracker/tracker.component';
-import { AppRoutingModule } from './../app-routing/app-routing.module';
-import { AngularFirestore } from 'angularfire2/firestore';
-import { AddAttributeComponent } from './../add-attribute/add-attribute.component';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { TestBed, async, inject } from '@angular/core/testing';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-
-
-import { environment } from '../../environments/environment';
-import { CreateCharacterComponent } from '../create-character/create-character.component';
-import { FormsModule } from '../../../node_modules/@angular/forms';
-import { APP_BASE_HREF } from '../../../node_modules/@angular/common';
-
 describe('AuthGuard', () => {
+  let testUser: Observable<firebase.User>;
+  let testAuthService: AuthService;
+  let testRouter: Router;
+  let authGaurd: AuthGuard;
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        TrackerComponent,
-        CharacterPageComponent,
-        CreateCharacterComponent,
-        AddAttributeComponent,
-        UserProfileComponent,
-        CharacterDetailsComponent
-      ],
-      providers: [
-        AuthGuard,
-        AuthService,
-        AngularFireAuth,
-        AngularFirestore,
-        {provide: APP_BASE_HREF, useValue : '/' }
-      ],
-      imports: [
-        FormsModule,
-        AppRoutingModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFireDatabaseModule, // for database
-      ]
+
+    testUser = new Observable((observer) => {
+      return {unsubscribe() {} };
     });
+
+    testAuthService = jasmine.createSpyObj('testAuthService', [
+      'needSomethingToBeHere'
+    ]);
+    testAuthService.user = testUser;
+
+    testRouter = jasmine.createSpyObj('testRouter', [
+      'navigate'
+    ]);
+    authGaurd = new AuthGuard(testAuthService, testRouter);
+  });
+  afterEach(() => {
+    testAuthService = null;
+    testRouter = null;
+    authGaurd = null;
   });
 
-  it('should ...', inject([AuthGuard], (guard: AuthGuard) => {
-    expect(guard).toBeTruthy();
-  }));
+  it('should ...', () => {
+    expect(authGaurd).toBeTruthy();
+  });
 });
