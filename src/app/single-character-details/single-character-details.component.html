@@ -1,0 +1,18 @@
+<div *ngIf="attribute">
+  <div>
+    <label>Attribute Name: </label> {{attribute.name}}<br><br>
+  </div>
+  <div>
+      <label>Attribute Type: </label> {{attribute.type}}<br><br>
+    </div>
+    <div>
+        <label>Attribute Value: </label> {{attribute.value}}<br><br>
+      </div>
+</div>
+
+<button  (click)="createAttribute()" >Add Attribute</button>
+<br>
+<button  (click)="removeAttribute()" >Remove Attribute</button>
+<br>
+<button  (click)="editAttribute()" >Edit Attribute</button>
+<br>
