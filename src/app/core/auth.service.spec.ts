@@ -12,7 +12,7 @@ import { auth } from 'firebase';
 describe('AuthService', () => {
   let testAuthState: Observable<firebase.User>;
   let testUserCredential: Promise<auth.UserCredential>;
-  let testAuth: any;
+  let testAuth: auth.Auth;
   let testAfAuth: AngularFireAuth;
   let testAfs: AngularFirestore;
   let testRouter: Router;
@@ -24,17 +24,16 @@ describe('AuthService', () => {
 
     testUserCredential = new Promise( null );
 
-    testAuth = {
-      signInWithPopup() {},
-      signInAnonymously() {},
-      createUserWithEmailAndPassword() {},
-      signInWithEmailAndPassword() {}
-    };
-
-    spyOn(testAuth, 'signInWithPopup').and.returnValue(testUserCredential);
-    spyOn(testAuth, 'signInAnonymously').and.returnValue(testUserCredential);
-    spyOn(testAuth, 'createUserWithEmailAndPassword').and.returnValue(testUserCredential);
-    spyOn(testAuth, 'signInWithEmailAndPassword').and.returnValue(testUserCredential);
+    testAuth = jasmine.createSpyObj('testAuth', [
+      'signInWithPopup',
+      'signInAnonymously',
+      'createUserWithEmailAndPassword',
+      'signInWithEmailAndPassword'
+    ]);
+    (<jasmine.Spy>(testAuth.signInWithPopup)).and.returnValue(testUserCredential);
+    (<jasmine.Spy>(testAuth.signInAnonymously)).and.returnValue(testUserCredential);
+    (<jasmine.Spy>(testAuth.createUserWithEmailAndPassword)).and.returnValue(testUserCredential);
+    (<jasmine.Spy>(testAuth.signInWithEmailAndPassword)).and.returnValue(testUserCredential);
 
     testAfAuth = <AngularFireAuth>{ authState: testAuthState, auth: testAuth };
 
