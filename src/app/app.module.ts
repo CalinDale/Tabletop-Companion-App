@@ -23,6 +23,8 @@ import { AddAttributeComponent } from './add-attribute/add-attribute.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CoreModule } from './core/core.module';
 import { RegisterComponent } from './register/register.component';
+import { AccountRecoveryComponent } from './account-recovery/account-recovery.component';
+import { EditUserAccountComponent } from './edit-user-account/edit-user-account.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { RegisterComponent } from './register/register.component';
     CharacterDetailsComponent,
     AddAttributeComponent,
     UserProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    AccountRecoveryComponent,
+    EditUserAccountComponent
   ],
   imports: [
     BrowserModule,

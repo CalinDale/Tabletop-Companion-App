@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../core/auth.service';
 import { matchOtherValidator} from './matchOtherValidtator';
-import { User} from '../core/user';
-import { Character } from '../character';
 import * as firebase from 'firebase/app';
 
 
@@ -15,7 +13,6 @@ import * as firebase from 'firebase/app';
 export class RegisterComponent implements OnInit {
 
   signupForm: FormGroup;
-  tempUser: User = new User();
 
   constructor( public auth: AuthService, private fb: FormBuilder) { }
 
