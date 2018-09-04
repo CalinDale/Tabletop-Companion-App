@@ -63,11 +63,6 @@ describe('CharacterDetailsComponent', () => {
       component.deleteCharacter();
       expect(testCharacterService.deleteCharacter).toHaveBeenCalledWith(testCharacter.key);
     });
-    it('updateActive() should send the character key and { active: true/false } to characterService.updateCharacter()', () => {
-      const isActive = true;
-      component.updateActive(isActive);
-      expect(testCharacterService.updateCharacter).toHaveBeenCalledWith(testCharacter.key, { active: isActive });
-    });
   });
   it('addCharacter() should send "Add New Character" to messageService.add()', () => {
     const testMessage = 'Add New Character';
