@@ -1,7 +1,12 @@
+import { AddAttributeComponent } from './../add-attribute/add-attribute.component';
+import { AttributeService } from './../attribute.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Character } from '../character';
 import { CharacterService } from '../character.service';
 import { MessageService } from '../message.service';
+import { Router } from '@angular/router';
+import { Attribute } from '../attribute';
+
 
 @Component({
   selector: 'app-character-details',
@@ -14,10 +19,17 @@ export class CharacterDetailsComponent implements OnInit {
 
   constructor(
     private characterService: CharacterService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private attributeService: AttributeService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+  }
+
+  createAttribute( ) {
+    this.attributeService.setCharacterID(this.character.key);
+    this.router.navigateByUrl('addattribute');
   }
 
   deleteCharacter() {

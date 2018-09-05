@@ -11,7 +11,8 @@ export const environment = {
     projectId: 'tabletopcompaionapp',
     storageBucket: 'tabletopcompaionapp.appspot.com',
     messagingSenderId: '184726034576'
-  }
+}
+
 };
 
 /*
