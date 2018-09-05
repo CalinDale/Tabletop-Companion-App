@@ -9,6 +9,7 @@ import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { AuthGuard } from '../core/auth.guard';
 import { EditAttributeComponent } from '../edit-attribute/edit-attribute.component';
 import { EditCharacterComponent } from '../edit-character/edit-character.component';
+import { ViewTrackerComponent } from '../view-tracker/view-tracker.component';
 
 // fill in with { path: 'pathname', component: ComponentName } when adding routes.
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'getCharacter', component: ViewSingleCharacterComponent},
   { path: 'editattribute', component: EditAttributeComponent},
   { path: 'editcharacter', component: EditCharacterComponent},
+  { path: 'viewtracker', component: ViewTrackerComponent},
 ];
 
 @NgModule({

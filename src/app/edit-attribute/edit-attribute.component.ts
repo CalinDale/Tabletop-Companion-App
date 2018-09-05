@@ -1,3 +1,4 @@
+import { CharacterService } from './../character.service';
 import { Component, OnInit } from '@angular/core';
 import { Attribute } from '../attribute';
 import { AttributeService } from '../attribute.service';
@@ -13,13 +14,14 @@ export class EditAttributeComponent implements OnInit {
   attribute: Attribute = new Attribute();
   submitted = false;
 
-  constructor(private attributeService: AttributeService) { }
+  constructor(private attributeService: AttributeService,
+  private characterService: CharacterService) { }
 
   ngOnInit() {
   }
 
   save() {
-    this.attribute.characterID = this.attributeService.getCharacterID();
+    this.attribute.characterID = this.characterService.getCharacterID();
     this.attribute.userID = firebase.auth().currentUser.uid;
     this.attributeService.updateAttribute(this.attribute);
   }

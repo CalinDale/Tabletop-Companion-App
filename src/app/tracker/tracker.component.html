@@ -1,26 +1,10 @@
-<h1>Tracker</h1>
-
-Current acting position: {{actingPosition}}
-
-<ul class="turnOrder">
-  <li *ngFor="let character of characters">
-    <!-- TODO: Delete this part when implementing proper routing for character page.-->
-    <a routerLink="/character/2">
-    <!-- END OF DELETE-->
-      {{character.name}}
-      <ul class="attributes">
-      </ul>
-    <!-- TODO: Delete this part when implementing proper routing for character page.-->
-    </a>
-    <!-- END OF DELETE-->
-  </li>
-</ul>
+<div *ngIf="character">
+  <div>
+    <br><label>Name: </label> {{character.name}}<br><br>
+  </div>
+</div>
 
 
-These buttons are just to give us an idea of the functionality that should be built.
-<br>
-The functionality does not need to be in buttons, nor does it even need specific functions.
-<br>
   <button (click)="nextTurn()">Next Turn</button>
 <br>
   <button (click)="previousTurn()">Previous Turn</button>

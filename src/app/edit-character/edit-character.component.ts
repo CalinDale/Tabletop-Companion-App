@@ -14,14 +14,13 @@ export class EditCharacterComponent implements OnInit {
   character: Character = new Character();
   submitted = false;
 
-  constructor(private characterService: CharacterService,
-  private attributeService: AttributeService) { }
+  constructor(private characterService: CharacterService) { }
 
   ngOnInit() {
   }
 
   save() {
-    this.character.key = this.attributeService.getCharacterID();
+    this.character.key = this.characterService.getCharacterID();
     this.character.userID = firebase.auth().currentUser.uid;
     this.characterService.updateCharacter(this.character);
   }

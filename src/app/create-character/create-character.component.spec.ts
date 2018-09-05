@@ -1,24 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CharacterService } from './../character.service';
 import { CreateCharacterComponent } from './create-character.component';
 
 describe('CreateCharacterComponent', () => {
+  let testCharacterService: CharacterService;
   let component: CreateCharacterComponent;
-  let fixture: ComponentFixture<CreateCharacterComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CreateCharacterComponent ]
-    })
-    .compileComponents();
-  }));
-
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateCharacterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    testCharacterService = jasmine.createSpyObj('testCharacterService', [
+      'createCharacter'
+    ]);
+    component = new CreateCharacterComponent(testCharacterService);
   });
-
+  afterEach(() => {
+    testCharacterService = null;
+    component = null;
+  });
   it('should create', () => {
     expect(component).toBeTruthy();
   });

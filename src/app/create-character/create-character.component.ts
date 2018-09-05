@@ -27,6 +27,7 @@ export class CreateCharacterComponent implements OnInit {
 
   save() {
     this.character.userID = firebase.auth().currentUser.uid;
+    this.character.tracked = true;
     this.characterService.createCharacter(this.character);
     this.character = new Character();
   }

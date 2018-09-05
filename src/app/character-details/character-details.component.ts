@@ -5,7 +5,7 @@ import { Character } from '../character';
 import { CharacterService } from '../character.service';
 import { MessageService } from '../message.service';
 import { Router } from '@angular/router';
-import { Attribute } from '../attribute';
+import * as firebase from 'firebase';
 
 
 @Component({
@@ -20,16 +20,23 @@ export class CharacterDetailsComponent implements OnInit {
   constructor(
     private characterService: CharacterService,
     private messageService: MessageService,
-    private attributeService: AttributeService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {
   }
 
   createAttribute( ) {
-    this.attributeService.setCharacterID(this.character.key);
+    this.characterService.setCharacterID(this.character.key);
     this.router.navigateByUrl('addattribute');
+  }
+
+  addToTracker() {
+    this.characterService.setCharacterID(this.character.key);
+    this.character.userID = firebase.auth().currentUser.uid;
+    this.character.tracked = true;
+    this.characterService.updateCharacter(this.character);
+    this.router.navigateByUrl('viewtracker');
   }
 
   deleteCharacter() {
@@ -37,7 +44,7 @@ export class CharacterDetailsComponent implements OnInit {
   }
 
   editCharacter() {
-    this.attributeService.setCharacterID(this.character.key);
+    this.characterService.setCharacterID(this.character.key);
     this.router.navigateByUrl('editcharacter');
   }
 
@@ -50,7 +57,7 @@ export class CharacterDetailsComponent implements OnInit {
   }
 
   setCharacterID( ) {
-    this.attributeService.setCharacterID(this.character.key);
+    this.characterService.setCharacterID(this.character.key);
     this.router.navigateByUrl('getCharacter');
   }
 

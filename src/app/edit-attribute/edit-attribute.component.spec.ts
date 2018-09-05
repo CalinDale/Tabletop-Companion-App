@@ -1,22 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditAttributeComponent } from './edit-attribute.component';
+import { AttributeService } from '../attribute.service';
 
 describe('EditAttributeComponent', () => {
   let component: EditAttributeComponent;
-  let fixture: ComponentFixture<EditAttributeComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ EditAttributeComponent ]
-    })
-    .compileComponents();
-  }));
+  let testAttributeService: AttributeService;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditAttributeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = new EditAttributeComponent(testAttributeService);
+  });
+
+  afterEach(() => {
+    component = null;
   });
 
   it('should create', () => {

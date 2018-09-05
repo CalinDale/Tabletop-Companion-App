@@ -30,7 +30,7 @@ export class ViewSingleCharacterComponent implements OnInit {
   }
 
   getCharacter() {
-    this.characterID = this.attributeService.getCharacterID();
+    this.characterID = this.characterService.getCharacterID();
     this.characterService.getCharacter(this.characterID).valueChanges()
     .subscribe(characters => {
       this.characters = characters;
@@ -38,7 +38,7 @@ export class ViewSingleCharacterComponent implements OnInit {
   }
 
   getAttributes() {
-    this.characterID = this.attributeService.getCharacterID();
+    this.characterID = this.characterService.getCharacterID();
     this.attributeService.getAttributes(this.characterID).snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))

@@ -1,3 +1,4 @@
+import { CharacterService } from './../character.service';
 import { CharacterDetailsComponent } from './../character-details/character-details.component';
 import { AttributeService } from './../attribute.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,8 @@ export class AddAttributeComponent implements OnInit {
   attribute: Attribute = new Attribute();
   submitted = false;
 
-  constructor(private attributeService: AttributeService) { }
+  constructor(private attributeService: AttributeService,
+  private characterService: CharacterService) { }
 
   ngOnInit() {
   }
@@ -25,7 +27,7 @@ export class AddAttributeComponent implements OnInit {
   }
 
   save() {
-    this.attribute.characterID = this.attributeService.getCharacterID();
+    this.attribute.characterID = this.characterService.getCharacterID();
     this.attribute.userID = firebase.auth().currentUser.uid;
     this.attributeService.createAttribute(this.attribute);
     this.attribute = new Attribute();

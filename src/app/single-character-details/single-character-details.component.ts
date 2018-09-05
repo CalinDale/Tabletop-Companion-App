@@ -17,7 +17,6 @@ export class SingleCharacterDetailsComponent implements OnInit {
   @Input() attribute: Attribute;
 
   constructor(
-    private characterService: CharacterService,
     private messageService: MessageService,
     private attributeService: AttributeService,
     private router: Router

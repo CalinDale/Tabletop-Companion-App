@@ -12,6 +12,7 @@ export const environment = {
     storageBucket: "tabletop-companion-app.appspot.com",
     messagingSenderId: "569601625763"
 }
+
 };
 
 /*

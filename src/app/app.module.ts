@@ -21,10 +21,12 @@ import { CharacterDetailsComponent } from './character-details/character-details
 import { AddAttributeComponent } from './add-attribute/add-attribute.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CoreModule } from './core/core.module';
+import { RegisterComponent } from './register/register.component';
 import { ViewSingleCharacterComponent } from './view-single-character/view-single-character.component';
 import { SingleCharacterDetailsComponent } from './single-character-details/single-character-details.component';
 import { EditAttributeComponent } from './edit-attribute/edit-attribute.component';
 import { EditCharacterComponent } from './edit-character/edit-character.component';
+import { ViewTrackerComponent } from './view-tracker/view-tracker.component';
 
 @NgModule({
   declarations: [
@@ -36,10 +38,12 @@ import { EditCharacterComponent } from './edit-character/edit-character.componen
     CharacterDetailsComponent,
     AddAttributeComponent,
     UserProfileComponent,
+    RegisterComponent,
     ViewSingleCharacterComponent,
     SingleCharacterDetailsComponent,
     EditAttributeComponent,
-    EditCharacterComponent
+    EditCharacterComponent,
+    ViewTrackerComponent
 
 
   ],
@@ -51,6 +55,7 @@ import { EditCharacterComponent } from './edit-character/edit-character.componen
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
     CoreModule,
+
   ],
   providers: [AddAttributeComponent],
   bootstrap: [AppComponent]
