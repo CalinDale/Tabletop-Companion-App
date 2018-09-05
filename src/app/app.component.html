@@ -1,13 +1,18 @@
-<h1>{{ title }}</h1>
 
-Components:
-<ul>
-  <li><a routerLink="/characters">Characters</a></li>
-  <li><a routerLink="/character/2">Example Character Page</a></li>
-  <li><a routerLink="/tracker">Tracker</a></li>
-</ul>
-
+<div class="container-fluid">
+  <div style="color: blue;">
+    <h1>{{title}}</h1>
+    <h3>{{description}}</h3>
+  </div>
+ 
+  <nav>
+    <a routerLink="characters" class="btn btn-primary active" role="button" routerLinkActive="active">Display characters</a><br>
+    <a routerLink="add" class="btn btn-primary active" role="button" routerLinkActive="active">Add a character</a><br>
+    <a routerLink="login" class="btn btn-primary active" role="button" routerLinkActive="active">Account page</a><br>
+  </nav>
+  <router-outlet></router-outlet>
+  <app-messages></app-messages>
+</div>
 <!-- the piece below is where routing result is placed. -->
-<router-outlet></router-outlet>
-<br>
-<app-messages></app-messages>
+
+
