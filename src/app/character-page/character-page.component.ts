@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { map } from 'rxjs/operators';
 import { CharacterService } from './../character.service';
-import { Character } from './../character';
 import { MessageService } from '../message.service';
+import { AttributeService } from '../attribute.service';
+import { Character } from '../character';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-character-page',
@@ -10,59 +13,44 @@ import { MessageService } from '../message.service';
   styleUrls: ['./character-page.component.css']
 })
 export class CharacterPageComponent implements OnInit {
+
   @Input() character: Character;
 
+  characters: any;
+
   constructor(
-    // TODO: Delete this section when implementing proper routing.
     private characterService: CharacterService,
-    // TODO: End of delete.
-    private messageService: MessageService
+    private attributeService: AttributeService,
+    private messageService: MessageService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    // TODO: Delete this section when implementing proper routing.
-    this.getCharacterTEMP();
-    // TODO: End of delete.
+    this.getCharactersList();
   }
 
-  // gets the character by the ID in the route.
-  getCharacter(): void {
-    this.messageService.add('Get Character by ID');
+
+  getCharactersList() {
+    // TODO: using this if statement prevents TypeError: Cannot read property 'snapshotChanges' of undefined.
+    // TODO: However, it does currently break the code, so we need to find another way.
+    // if (this.characterService.getCharactersList === undefined) {
+    this.characterService.getCharactersList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(characters => {
+      this.characters = characters;
+    });
+    // }
   }
 
-  // go to previous page
-  goBack(): void {
-    this.messageService.add('Back to last Page');
+  deleteCharacters() {
+    this.characterService.deleteAll();
   }
 
-  // save changes to character
-  save(): void {
-    this.messageService.add('Save changes');
+  viewTracker() {
+    this.router.navigateByUrl('viewtracker');
   }
 
-  addAttribute(): void {
-    this.messageService.add('Add new attribute');
-  }
 
-  editAttribute(): void {
-    this.messageService.add('Edit attribute');
-  }
-
-  removeAttribute(): void {
-    this.messageService.add('Remove Attribute');
-  }
-
-  reorderAttribute(): void {
-    this.messageService.add('Reorder Attribute');
-  }
-
-  rename(): void {
-    this.messageService.add('rename');
-  }
-
-  // TODO: Delete this section when implementing proper routing.
-  getCharacterTEMP(): void {
-    this.characterService.getCharacters().subscribe(characters => this.character = characters[2]);
-  }
-  // TODO: End of delete.
 }

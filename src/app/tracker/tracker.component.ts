@@ -1,7 +1,11 @@
-import { Character } from './../character';
-import { TurnOrderService } from './../turn-order.service';
-import { Component, OnInit } from '@angular/core';
+import { CharacterService } from './../character.service';
+import { AttributeService } from './../attribute.service';
+import { Character } from '../character';
+import { TurnOrderService } from '../turn-order.service';
+import { Component, OnInit, Input } from '@angular/core';
 import { MessageService } from '../message.service';
+import { Attribute } from '../attribute';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-tracker',
@@ -9,37 +13,31 @@ import { MessageService } from '../message.service';
   styleUrls: ['./tracker.component.css']
 })
 export class TrackerComponent implements OnInit {
-  characters: Character[];
-  actingPosition: number;
 
-  constructor(
-    private turnOrderService: TurnOrderService,
-    private messageService: MessageService
-  ) {}
+  @Input() attribute: Attribute;
+  @Input() character: Character;
+
+  characterID: any;
 
   ngOnInit() {
-    this.getTurnOrder();
+    this.getCharacter();
   }
 
-  getTurnOrder(): void {
-    this.turnOrderService.getCharacters().subscribe(characters => this.characters = characters);
-    this.turnOrderService.getActingPosition().subscribe(actingPosition => this.actingPosition = actingPosition);
+  constructor(private attributeService: AttributeService,
+  private characterService: CharacterService) {
   }
 
-  nextTurn(): void {
-    this.messageService.add('Go to Next turn');
+  getCharacter() {
+    this.characterID = this.characterService.getCharacterID();
+    this.characterService.getCharacter(this.characterID);
   }
 
-  previousTurn(): void {
-    this.messageService.add('Go to Previous turn');
+  removeCharacter() {
+    this.characterService.setCharacterID(this.character.key);
+    this.character.userID = firebase.auth().currentUser.uid;
+    this.character.tracked = false;
+    this.characterService.updateCharacter(this.character);
   }
 
-  removeCharacter(): void {
-    this.messageService.add('Remove Character from turn order');
-  }
-
-  moveCharacter(): void {
-    this.messageService.add('Move character in turn order.');
-  }
 
 }

@@ -1,0 +1,18 @@
+<div *ngIf="character">
+  <div>
+    <label>Name: </label> {{character.name}}<br><br>
+  </div>
+</div>
+
+<button  (click)="setCharacterID()" >View character</button>
+<br>
+<button  (click)="addToTracker()" >Add to tracker</button>
+<br>
+<button  (click)="createAttribute()" >Add Attribute</button>
+<br>
+<button  (click)="deleteCharacter()" >Remove character</button>
+<br>
+<button  (click)="editCharacter()" >Edit character</button>
+<br>
+<button  (click)="reorderCharacters()" >Reorder characters</button>
+<br><br><br>

@@ -1,58 +1,86 @@
+import { AttributeService } from './attribute.service';
+import { AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { MessageService } from './message.service';
 import { Character } from './character';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from '../../node_modules/rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import * as firebase from 'firebase/app';
+import { AngularFireList, AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharacterService {
 
-  private charactersUrl = 'api/characters';
+  charactersRef: AngularFireList<Character> = null;
+  userID: string = firebase.auth().currentUser.uid;
+  characterRef: AngularFireObject<any> = null;
+  // userID: string;
+  character: Character;
+  characterID: string;
 
-  constructor(
-    private http: HttpClient,
-    private messageService: MessageService
-  ) { }
-
-  private log(message: string) {
-    this.messageService.add(`CharacterService: ${message}`);
+  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
+    this.afAuth.authState.subscribe(user => {
+       { this.userID = firebase.auth().currentUser.uid; }
+    });
+    this.charactersRef = this.db.list(`characters/${this.userID}`);
   }
 
-  getCharacters(): Observable<Character[]> {
-    return this.http.get<Character[]>(this.charactersUrl)
-      .pipe(
-        tap(characters => this.log('fetched characters')),
-        catchError(this.handleError('getCharacters', []))
-      );
+  setCharacterID(key: string) {
+    if (key != null) {
+      this.characterID = key;
+    }
   }
 
-  getCharacterById(id: number ): Observable<Character> { return null; }
-
-  saveCharacter(): void {
-    this.log('save character');
+  getCharacterID() {
+    return this.characterID;
   }
 
-  removeCharacter(): void {
-    this.log('remove character');
+  createCharacter(character: Character): void {
+    this.charactersRef.push(character);
   }
 
-  addCharacter(): void {
-    this.log('add new character');
+  updateCharacter(character: Character): void {
+    this.characterID = this.getCharacterID();
+    this.characterRef = this.db.object(`characters/${this.userID}/${this.characterID}`);
+    this.characterRef.update(character).catch(error => this.handleError(error));
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+  getCharactersTracker() {
+    if (!this.userID) {
+      return;
+    } else {
+      this.charactersRef = this.db.list(`characters/${this.userID}`, ref => ref.orderByChild('tracked').equalTo(true));
+      return this.charactersRef;
+    }
+  }
 
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
+  deleteCharacter(key: string): void {
+    this.charactersRef.remove(key).catch(error => this.handleError(error));
+  }
 
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+  getCharactersList(): AngularFireList<Character> {
+    if (!this.userID) {
+      return;
+    } else {
+      this.charactersRef = this.db.list(`characters/${this.userID}`);
+      return this.charactersRef;
+    }
+  }
+
+  getCharacter(key: string) {
+    this.characterRef = this.db.object(`characters/${this.userID}/${key}/`);
+    return this.characterRef;
+  }
+
+  deleteAll(): void {
+    this.charactersRef.remove().catch(error => this.handleError(error));
+  }
+
+  private handleError(error) {
+    console.log(error);
   }
 }

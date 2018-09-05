@@ -1,0 +1,7 @@
+<h1>Tracker</h1>
+<div *ngFor="let character of characters" style="width: 300px;">
+  <app-tracker [character]='character'></app-tracker>
+</div>
+<div style="margin-top:20px;">
+  <button type="button" class="button btn-danger" (click)='deleteCharacters()'>Delete All</button>
+</div>
