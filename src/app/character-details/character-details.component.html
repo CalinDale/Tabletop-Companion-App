@@ -1,0 +1,15 @@
+<div *ngIf="character">
+  <div>
+    <label>First Name: </label> {{character.name}}<br><br>
+  </div>
+  <div>
+    <label>UserID: </label> {{character.userID}}<br><br>
+  </div>
+</div>
+
+<button  (click)="createAttribute()" >Add Attribute</button>
+<br>
+<button  (click)="deleteCharacter()" >Remove character</button>
+<br>
+<button  (click)="reorderCharacters()" >Reorder characters</button>
+<br><br><br>
