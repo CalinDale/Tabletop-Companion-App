@@ -1,3 +1,5 @@
+import { AttributeService } from './attribute.service';
+import { AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { MessageService } from './message.service';
 import { Character } from './character';
@@ -5,7 +7,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from '../../node_modules/rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireList, AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +17,12 @@ export class CharacterService {
   private dbPath = '/characters';
 
   charactersRef: AngularFireList<Character> = null;
+  characterRef: AngularFireObject<any> = null;
   userID: string;
+  character: Character;
+  characterID: string;
 
-  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
+  constructor(private db: AngularFireDatabase, private attributeService: AttributeService, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
       if (user) { this.userID = user.uid; }
     });
@@ -27,8 +32,10 @@ export class CharacterService {
     this.charactersRef.push(character);
   }
 
-  updateCharacter(key: string, value: any): void {
-    this.charactersRef.update(key, value).catch(error => this.handleError(error));
+  updateCharacter(character: Character): void {
+    this.characterID = this.attributeService.getCharacterID();
+    this.characterRef = this.db.object(`characters/${this.userID}/${this.characterID}`);
+    this.characterRef.update(character).catch(error => this.handleError(error));
   }
 
   deleteCharacter(key: string): void {
@@ -40,6 +47,12 @@ export class CharacterService {
     if (!this.userID) return;
     this.charactersRef = this.db.list(`characters/${this.userID}`);
     return this.charactersRef;
+  }
+
+  getCharacter(key: string) {
+    this.characterRef = this.db.object(`characters/${this.userID}/${key}/`);
+    return this.characterRef;
+
   }
 
   deleteAll(): void {
