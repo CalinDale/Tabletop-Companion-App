@@ -42,5 +42,9 @@ export class CharacterPageComponent implements OnInit {
     this.characterService.deleteAll();
   }
 
+  newCharacter() {
+    this.messageService.add('Add new character');
+  }
+
 
 }

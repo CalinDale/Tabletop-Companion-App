@@ -54,7 +54,9 @@ export class CharacterDetailsComponent implements OnInit {
     this.router.navigateByUrl('getCharacter');
   }
 
-
+  cloneCharacter() {
+    this.messageService.add('clone Character ' + this.character.name);
+  }
 }
 
 

@@ -1,8 +1,14 @@
-<h1>Characters</h1>
-<div *ngFor="let character of characters" style="width: 300px;">
-  <app-character-details [character]='character'></app-character-details>
+<div id='container'>
+  <h1>Characters</h1>
+  <div id='list' *ngFor="let character of characters">
+    <app-character-details [character]='character'></app-character-details>
+  </div>
+  <div id='newCharacterButtonDiv'>
+    <button id='newCharacterButton' routerLink="/add" type="button" class="button btn-primary active" (click)='newCharacter()' routerLinkActive="active">New Character</button>
+  </div>
+  <!--
+  <div style="margin-top:20px;">
+    <button type="button" class="button btn-danger" (click)='deleteCharacters()'>Delete All</button>
+  </div>
+  -->
 </div>
-<div style="margin-top:20px;">
-  <button type="button" class="button btn-danger" (click)='deleteCharacters()'>Delete All</button>
-</div>
-

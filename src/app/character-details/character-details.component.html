@@ -1,9 +1,13 @@
-<div *ngIf="character">
-  <div>
-    <label>Name: </label> {{character.name}}<br><br>
-  </div>
-</div>
+<table *ngIf="character">
+  <tr>
+    <td id='drag'>=</td>
+    <td id='name'>{{character.name}}</td>
+    <td id='cloneButtonDiv'><button id='cloneButton' (click)='cloneCharacter()'>clone</button></td>
+    <td id='editButtonDiv'><button id='editButton' (click)="editCharacter()" >edit</button></td>
+  </tr>
+</table>
 
+<!--
 <button  (click)="setCharacterID()" >View character</button>
 <br>
 <button  (click)="createAttribute()" >Add Attribute</button>
@@ -14,3 +18,4 @@
 <br>
 <button  (click)="reorderCharacters()" >Reorder characters</button>
 <br><br><br>
+-->
