@@ -142,7 +142,7 @@ export class AuthService {
       .catch((error) => console.log(error));
   }
 
-  private handleError(error){
+  private handleError(error) {
     console.error(error);
     // To donotify the user
   }
