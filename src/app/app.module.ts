@@ -1,3 +1,4 @@
+import { CharacterDetailsComponent } from './character-details/character-details.component';
 import { AppMasterPageComponent } from './app-master-page/app-master-page.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -43,7 +44,8 @@ import { EditCharacterComponent } from './edit-character/edit-character.componen
     SingleCharacterDetailsComponent,
     EditAttributeComponent,
     EditCharacterComponent,
-    AppMasterPageComponent
+    AppMasterPageComponent,
+    CharacterDetailsComponent
   ],
   imports: [
     BrowserModule,
