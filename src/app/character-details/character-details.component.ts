@@ -15,27 +15,26 @@ export class CharacterDetailsComponent implements OnInit {
 
   character: Character;
 
-  characters: Character[] = [];
   attributes: Attribute[];
   characterID: string;
 
   constructor(
     private characterService: CharacterService,
-    private messageService: MessageService,
-    private attributeService: AttributeService
+    private attributeService: AttributeService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
-    this.getAttributes();
+    this.retrieveAttributes();
   }
 
   setCharacter(character: Character) {
     this.character = character;
-    this.getAttributes();
+    this.characterID = character.key;
+    this.retrieveAttributes();
   }
 
-  getAttributes() {
-    this.characterID = this.attributeService.getCharacterID();
+  retrieveAttributes() {
     this.attributeService.getAttributes(this.characterID).snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))

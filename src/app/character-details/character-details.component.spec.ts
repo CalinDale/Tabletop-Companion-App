@@ -1,4 +1,7 @@
-/* tslint:disable:no-unused-variable */
+import { MessageService } from './../message.service';
+import { AttributeService } from './../attribute.service';
+import { CharacterService } from './../character.service';
+import { Character } from '../character';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -6,13 +9,51 @@ import { DebugElement } from '@angular/core';
 import { CharacterDetailsComponent } from './character-details.component';
 
 describe('CharacterDetailsComponent', () => {
+  let testCharacterService: CharacterService;
+  let testAttributeService: AttributeService;
+  let testMessageService: MessageService;
   let component: CharacterDetailsComponent;
 
   beforeEach(() => {
-    component = new CharacterDetailsComponent();
+    testCharacterService = jasmine.createSpyObj('testCharacterService', [
+      'something needs to be here'
+    ]);
+    testAttributeService = jasmine.createSpyObj('testAttributeService', [
+      'retriveAttributes'
+    ]);
+    testMessageService = jasmine.createSpyObj('testMessageService', [
+      'add'
+    ]);
+    component = new CharacterDetailsComponent(testCharacterService, testAttributeService, testMessageService);
+  });
+
+  afterEach(() => {
+    testCharacterService = null;
+    testAttributeService = null;
+    testMessageService = null;
+    component = null;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('with Character', () => {
+    let testCharacterID: string;
+    let testCharacter: Character;
+
+    beforeEach(() => {
+      testCharacterID = 'Grog24';
+      testCharacter = <Character>{ key: testCharacterID };
+      component.character = testCharacter;
+      component.characterID = testCharacterID;
+    });
+
+    afterEach(() => {
+      testCharacterID = null;
+      testCharacter = null;
+    });
+
+    // TODO: retrieveAttributes should do stuff.
   });
 });
