@@ -1,4 +1,4 @@
-import { AttributeService } from './../attribute.service';
+import { AttributeService } from '../attribute.service';
 import { Component, OnInit } from '@angular/core';
 import { CharacterService } from '../character.service';
 import { MessageService } from '../message.service';

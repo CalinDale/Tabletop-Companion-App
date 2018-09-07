@@ -1,5 +1,5 @@
-import { AttributeService } from './../attribute.service';
-import { CharacterService } from './../character.service';
+import { AttributeService } from '../attribute.service';
+import { CharacterService } from '../character.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditCharacterComponent } from './edit-character.component';

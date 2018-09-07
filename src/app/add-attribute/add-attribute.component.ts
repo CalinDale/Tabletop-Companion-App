@@ -1,5 +1,5 @@
-import { CharacterDetailsComponent } from './../character-details/character-details.component';
-import { AttributeService } from './../attribute.service';
+import { CharacterListEntryComponent } from './../character-list-entry/character-list-entry.component';
+import { AttributeService } from '../attribute.service';
 import { Component, OnInit } from '@angular/core';
 import { Attribute } from '../attribute';
 import * as firebase from 'firebase';

@@ -1,4 +1,4 @@
-import { AttributeService } from './../attribute.service';
+import { AttributeService } from '../attribute.service';
 import { async } from '@angular/core/testing';
 
 import { AddAttributeComponent } from './add-attribute.component';

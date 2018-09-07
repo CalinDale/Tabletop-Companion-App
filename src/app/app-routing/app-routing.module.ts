@@ -1,8 +1,8 @@
-import { AppMasterPageComponent } from './../app-master-page/app-master-page.component';
+import { AppMasterPageComponent } from '../app-master-page/app-master-page.component';
 import { AddAttributeComponent } from '../add-attribute/add-attribute.component';
 import { CreateCharacterComponent } from '../create-character/create-character.component';
 import { CharacterPageComponent } from '../character-page/character-page.component';
-import { ViewSingleCharacterComponent } from './../view-single-character/view-single-character.component';
+import { ViewSingleCharacterComponent } from '../view-single-character/view-single-character.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { TrackerComponent } from '../tracker/tracker.component';

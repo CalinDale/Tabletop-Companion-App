@@ -4,7 +4,7 @@ import { AuthService } from '../core/auth.service';
 import { matchOtherValidator} from './matchOtherValidtator';
 import { User} from '../core/user';
 import { Character } from '../character';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 
 
 @Component({

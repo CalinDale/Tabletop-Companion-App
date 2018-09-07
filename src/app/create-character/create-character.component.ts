@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from '../character';
 import { CharacterService } from '../character.service';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 
 
 @Component({

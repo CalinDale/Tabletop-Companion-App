@@ -1,4 +1,4 @@
-import { CharacterService } from './../character.service';
+import { CharacterService } from '../character.service';
 import { CreateCharacterComponent } from './create-character.component';
 
 describe('CreateCharacterComponent', () => {

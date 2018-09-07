@@ -1,5 +1,5 @@
-import { AddAttributeComponent } from './../add-attribute/add-attribute.component';
-import { AttributeService } from './../attribute.service';
+import { AddAttributeComponent } from '../add-attribute/add-attribute.component';
+import { AttributeService } from '../attribute.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Character } from '../character';
 import { CharacterService } from '../character.service';
@@ -7,13 +7,12 @@ import { MessageService } from '../message.service';
 import { Router } from '@angular/router';
 import { Attribute } from '../attribute';
 
-
 @Component({
-  selector: 'app-character-details',
-  templateUrl: './character-details.component.html',
-  styleUrls: ['./character-details.component.css']
+  selector: 'app-character-list-entry',
+  templateUrl: './character-list-entry.component.html',
+  styleUrls: ['./character-list-entry.component.css']
 })
-export class CharacterDetailsComponent implements OnInit {
+export class CharacterListEntryComponent implements OnInit {
 
   @Input() character: Character;
 

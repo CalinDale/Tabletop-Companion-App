@@ -1,5 +1,5 @@
-import { MessageService } from './../message.service';
-import { CharacterService } from './../character.service';
+import { MessageService } from '../message.service';
+import { CharacterService } from '../character.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewSingleCharacterComponent } from './view-single-character.component';

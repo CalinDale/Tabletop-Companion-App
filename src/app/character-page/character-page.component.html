@@ -1,7 +1,7 @@
 <div id='container'>
   <h1>Characters</h1>
   <div id='list' *ngFor="let character of characters">
-    <app-character-details [character]='character'></app-character-details>
+    <app-character-list-entry [character]='character'></app-character-list-entry>
   </div>
   <div id='newCharacterButtonDiv'>
     <button id='newCharacterButton' routerLink="/add" type="button" class="button btn-primary active" (click)='newCharacter()' routerLinkActive="active">New Character</button>

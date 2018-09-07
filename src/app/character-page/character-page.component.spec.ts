@@ -1,6 +1,6 @@
-import { MessageService } from './../message.service';
+import { MessageService } from '../message.service';
 import { Character} from '../character';
-import { CharacterService } from './../character.service';
+import { CharacterService } from '../character.service';
 
 import { CharacterPageComponent } from './character-page.component';
 

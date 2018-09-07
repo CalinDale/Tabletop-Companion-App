@@ -5,9 +5,9 @@ import { MessageService } from './message.service';
 import { Character } from './character';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from '../../node_modules/rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 import { AngularFireList, AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 
 @Injectable({

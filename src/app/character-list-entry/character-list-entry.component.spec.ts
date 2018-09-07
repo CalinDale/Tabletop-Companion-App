@@ -1,19 +1,19 @@
-import { MessageService } from './../message.service';
-import { CharacterService } from './../character.service';
+import { MessageService } from '../message.service';
+import { CharacterService } from '../character.service';
 
-import { CharacterDetailsComponent } from './character-details.component';
+import { CharacterListEntryComponent } from './character-list-entry.component';
 
 import { AttributeService } from '../attribute.service';
 
 import { Router } from '@angular/router';
 import { Character } from '../character';
 
-describe('CharacterDetailsComponent', () => {
+describe('CharacterListEntryComponent', () => {
   let testCharacterService: CharacterService;
   let testMessageService: MessageService;
   let testAttributeSerice: AttributeService;
   let testRouter: Router;
-  let component: CharacterDetailsComponent;
+  let component: CharacterListEntryComponent;
   beforeEach(() => {
     testCharacterService = jasmine.createSpyObj('testCharacterService', [
       'deleteCharacter',
@@ -28,7 +28,7 @@ describe('CharacterDetailsComponent', () => {
     testRouter = jasmine.createSpyObj('testRouter', [
       'navigateByUrl'
     ]);
-    component = new CharacterDetailsComponent(
+    component = new CharacterListEntryComponent(
       testCharacterService,
       testMessageService,
       testAttributeSerice,

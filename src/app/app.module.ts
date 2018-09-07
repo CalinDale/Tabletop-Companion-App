@@ -11,14 +11,14 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 
-import { environment } from '../environments/environment';
+import { environment } from 'environments/environment';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { CharacterPageComponent } from './character-page/character-page.component';
 import { TrackerComponent } from './tracker/tracker.component';
 import { MessagesComponent } from './messages/messages.component';
 import { CreateCharacterComponent } from './create-character/create-character.component';
-import { CharacterDetailsComponent } from './character-details/character-details.component';
+import { CharacterListEntryComponent } from './character-list-entry/character-list-entry.component';
 import { AddAttributeComponent } from './add-attribute/add-attribute.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CoreModule } from './core/core.module';
@@ -35,7 +35,7 @@ import { EditCharacterComponent } from './edit-character/edit-character.componen
     TrackerComponent,
     MessagesComponent,
     CreateCharacterComponent,
-    CharacterDetailsComponent,
+    CharacterListEntryComponent,
     AddAttributeComponent,
     UserProfileComponent,
     RegisterComponent,

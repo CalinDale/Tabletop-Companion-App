@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 
 import { Character } from './character';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 
 describe('CharacterService', () => {
   let testAngularFireList: AngularFireList<Character>;

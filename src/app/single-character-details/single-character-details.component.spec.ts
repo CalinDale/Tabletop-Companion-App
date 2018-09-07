@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
-import { MessageService } from './../message.service';
-import { CharacterService } from './../character.service';
+import { MessageService } from '../message.service';
+import { CharacterService } from '../character.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SingleCharacterDetailsComponent } from './single-character-details.component';
