@@ -1,3 +1,4 @@
+import { CharacterDetailsComponent } from './../character-details/character-details.component';
 import { MessageService } from '../message.service';
 import { CharacterService } from '../character.service';
 
@@ -51,27 +52,25 @@ describe('CharacterListEntryComponent', () => {
     afterEach(() => {
       testCharacter = null;
     });
-    it('createAttribute() should send character.key to attributeService.setCharacterID', () => {
-      component.createAttribute();
-      expect(testAttributeSerice.setCharacterID).toHaveBeenCalledWith(testCharacter.key);
+    describe('with characterDetailsComponent', () => {
+      let testCharacterDetails: CharacterDetailsComponent;
+      beforeEach(() => {
+        testCharacterDetails = jasmine.createSpyObj('testCharacterDetails', [
+          'setCharacter'
+        ]);
+        component.characterDetails = testCharacterDetails;
+      });
+      afterEach(() => {
+        testCharacter = null;
+      });
+      it('editCharacter() should setCharacterID in attributeService with CharacterID', () => {
+        component.editCharacter();
+        expect(testAttributeSerice.setCharacterID).toHaveBeenCalledWith(testCharacter.key);
+      });
+      it('editCharacter() should setCharacter in characterDetails with Character', () => {
+        component.editCharacter();
+        expect(testCharacterDetails.setCharacter).toHaveBeenCalledWith(testCharacter);
+      });
     });
-    it('createAttribute() should call router to navigate to addattribute', () => {
-      component.createAttribute();
-      expect(testRouter.navigateByUrl).toHaveBeenCalledWith('addattribute');
-    });
-    it('deleteCharacter() should call characterService.deleteCharacter with the character Key', () => {
-      component.deleteCharacter();
-      expect(testCharacterService.deleteCharacter).toHaveBeenCalledWith(testCharacter.key);
-    });
-  });
-  it('addCharacter() should send "Add New Character" to messageService.add()', () => {
-    const testMessage = 'Add New Character';
-    component.addCharacter();
-    expect(testMessageService.add).toHaveBeenCalledWith(testMessage);
-  });
-  it('reorderCharacters() should send "Reorder Character" to messageService.add()', () => {
-    const testMessage = 'Reorder Character';
-    component.reorderCharacters();
-    expect(testMessageService.add).toHaveBeenCalledWith(testMessage);
   });
 });
