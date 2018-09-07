@@ -1,7 +1,9 @@
+import { CharacterDetailsComponent } from './../character-details/character-details.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { CharacterService } from '../character.service';
 import { MessageService } from '../message.service';
+import { Character } from '../character';
 
 @Component({
   selector: 'app-character-list',
@@ -9,7 +11,9 @@ import { MessageService } from '../message.service';
   styleUrls: ['./character-list.component.css']
 })
 export class CharacterListComponent implements OnInit {
-  characters: any;
+  characters: Character[];
+
+  @Input() characterDetails: CharacterDetailsComponent;
 
   constructor(
     private characterService: CharacterService,

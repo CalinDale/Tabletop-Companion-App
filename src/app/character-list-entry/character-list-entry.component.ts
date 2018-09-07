@@ -1,3 +1,4 @@
+import { CharacterDetailsComponent } from './../character-details/character-details.component';
 import { AddAttributeComponent } from '../add-attribute/add-attribute.component';
 import { AttributeService } from '../attribute.service';
 import { Component, OnInit, Input } from '@angular/core';
@@ -15,6 +16,7 @@ import { Attribute } from '../attribute';
 export class CharacterListEntryComponent implements OnInit {
 
   @Input() character: Character;
+  @Input() characterDetails: CharacterDetailsComponent;
 
   constructor(
     private characterService: CharacterService,
@@ -26,6 +28,17 @@ export class CharacterListEntryComponent implements OnInit {
   ngOnInit() {
   }
 
+  cloneCharacter() {
+    this.messageService.add('clone Character ' + this.character.name);
+  }
+
+  editCharacter() {
+    this.messageService.add('Edit Character ' + this.character.name);
+    this.attributeService.setCharacterID(this.character.key);
+    this.characterDetails.setCharacter(this.character);
+  }
+
+  /*
   createAttribute( ) {
     this.attributeService.setCharacterID(this.character.key);
     this.router.navigateByUrl('addattribute');
@@ -37,7 +50,7 @@ export class CharacterListEntryComponent implements OnInit {
 
   editCharacter() {
     this.attributeService.setCharacterID(this.character.key);
-    this.router.navigateByUrl('editcharacter');
+    // this.router.navigateByUrl('getCharacter');
   }
 
   addCharacter(): void {
@@ -53,9 +66,7 @@ export class CharacterListEntryComponent implements OnInit {
     this.router.navigateByUrl('getCharacter');
   }
 
-  cloneCharacter() {
-    this.messageService.add('clone Character ' + this.character.name);
-  }
+  */
 }
 
 

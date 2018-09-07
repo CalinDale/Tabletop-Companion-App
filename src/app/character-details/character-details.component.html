@@ -1,3 +1,10 @@
+Character details works!
 <div id='container' *ngIf='character'>
-  {{character.name}}
+  {{character.name}} is selected
+  <div *ngFor="let attribute of attributes" style="width: 300px;">
+      <app-single-character-details [attribute]='attribute'></app-single-character-details>
+    </div>
+    <div style="margin-top:20px;">
+      <button type="button" class="button btn-danger">Delete All</button>
+    </div>
 </div>
