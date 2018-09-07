@@ -1,0 +1,42 @@
+#container {
+  background-color: lightyellow;
+  width: 50%;
+  height: 300px;
+}
+
+h1 {
+  text-align: center;
+  padding-top: 10px;
+}
+
+#list {
+  text-align: center;
+}
+
+#list:nth-child(even) {
+  background-color: #ffe6cc;
+}
+
+#newCharacterButtonDiv {
+  text-align: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#newCharacterButton {
+  border: dashed;
+  border-width: 2px;
+  border-color: #46d246;
+  border-radius: 20px;
+  padding: 3px;
+  width: 85%;
+  background-color: #adebad;
+}
+
+#newCharacterButton:hover {
+  -webkit-transition-duration: 0.15s;
+  border-color: #6fdc6f;
+  background-color: #d6f5d6;
+}

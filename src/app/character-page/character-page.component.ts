@@ -13,9 +13,7 @@ export class CharacterPageComponent implements OnInit {
   characters: any;
 
   constructor(
-    // TODO: Delete this section when implementing proper routing.
     private characterService: CharacterService,
-    // TODO: End of delete.
     private messageService: MessageService
   ) { }
 
@@ -25,9 +23,6 @@ export class CharacterPageComponent implements OnInit {
 
 
   getCharactersList() {
-    // TODO: using this if statement prevents TypeError: Cannot read property 'snapshotChanges' of undefined.
-    // TODO: However, it does currently break the code, so we need to find another way.
-    // if (this.characterService.getCharactersList === undefined) {
     this.characterService.getCharactersList().snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
@@ -40,6 +35,10 @@ export class CharacterPageComponent implements OnInit {
 
   deleteCharacters() {
     this.characterService.deleteAll();
+  }
+
+  newCharacter() {
+    this.messageService.add('Add new character');
   }
 
 
