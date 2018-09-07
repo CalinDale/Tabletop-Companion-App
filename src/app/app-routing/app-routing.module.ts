@@ -1,3 +1,4 @@
+import { AppMasterPageComponent } from './../app-master-page/app-master-page.component';
 import { AddAttributeComponent } from '../add-attribute/add-attribute.component';
 import { CreateCharacterComponent } from '../create-character/create-character.component';
 import { CharacterPageComponent } from '../character-page/character-page.component';
@@ -13,6 +14,7 @@ import { EditCharacterComponent } from '../edit-character/edit-character.compone
 
 // fill in with { path: 'pathname', component: ComponentName } when adding routes.
 const routes: Routes = [
+  { path: 'app', component: AppMasterPageComponent, canActivate: [AuthGuard] },
   { path: 'tracker', component: TrackerComponent, canActivate: [AuthGuard] },
   { path: 'characters', component: CharacterPageComponent, canActivate: [AuthGuard] },
   { path: 'add', component: CreateCharacterComponent, canActivate: [AuthGuard] },

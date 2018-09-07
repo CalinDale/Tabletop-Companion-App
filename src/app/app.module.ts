@@ -1,3 +1,4 @@
+import { AppMasterPageComponent } from './app-master-page/app-master-page.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -41,9 +42,8 @@ import { EditCharacterComponent } from './edit-character/edit-character.componen
     ViewSingleCharacterComponent,
     SingleCharacterDetailsComponent,
     EditAttributeComponent,
-    EditCharacterComponent
-
-
+    EditCharacterComponent,
+    AppMasterPageComponent
   ],
   imports: [
     BrowserModule,
