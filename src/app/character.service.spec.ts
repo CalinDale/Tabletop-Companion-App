@@ -68,6 +68,7 @@ describe('CharacterService', () => {
     expect(service).toBeTruthy();
   });
 
+  // TODO: failed test here, expect it to be due to not properly passing test userid in constructor observable
   it('should get userID from AngularFireAuth', () => {
     expect(service.userID).toBe( testUserId );
   });
