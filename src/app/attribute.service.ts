@@ -53,6 +53,17 @@ export class AttributeService {
     }
   }
 
+  getAttributesNotTracked() {
+    this.characterID = this.characterService.getCharacterID();
+    if (!this.userID) {
+      return;
+    } else {
+      this.attributesRef = this.db.list(`attributes/${this.userID}/${this.characterID}`
+      , ref => ref.orderByChild('tracked').equalTo(false));
+      return this.attributesRef;
+    }
+  }
+
   createAttribute(attribute: Attribute): void {
     this.characterID = this.characterService.getCharacterID();
     this.attributesRef = this.db.list(`attributes/${this.userID}/${this.characterID}`);
@@ -61,7 +72,7 @@ export class AttributeService {
 
   // TODO: this.db.object is not a function?
   updateAttribute(attribute: Attribute): void {
-    //this.attributeID = this.getAttributeID();
+    // this.attributeID = this.getAttributeID();
     this.attributeRef = this.db.object(`attributes/${this.userID}/${attribute.characterID}/${attribute.key}`);
     this.attributeRef.update(attribute).catch(error => this.handleError(error));
   }

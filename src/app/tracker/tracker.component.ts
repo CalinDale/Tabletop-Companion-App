@@ -20,10 +20,12 @@ export class TrackerComponent implements OnInit {
 
   characterID: any;
   attribute: any = [];
+  attributess: any = [];
+  show = false;
 
   ngOnInit() {
     this.getCharacterID();
-    this.getAttributes();
+    this.getAttributesTracked();
   }
 
   constructor(private attributeService: AttributeService,
@@ -34,8 +36,7 @@ export class TrackerComponent implements OnInit {
     this.characterService.setCharacterID(this.character.key);
   }
 
-  getAttributes() {
-    this.characterID = this.characterService.getCharacterID();
+  getAttributesTracked() {
     this.attributeService.getAttributesTracker().snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
@@ -43,6 +44,26 @@ export class TrackerComponent implements OnInit {
     ).subscribe(attributes => {
       this.attribute = attributes;
     });
+  }
+
+  getAttributes() {
+    this.show = true;
+    this.characterService.setCharacterID(this.character.key);
+    this.attributeService.getAttributesNotTracked().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(attributes => {
+      this.attributess = attributes;
+    });
+  }
+
+  addAttribute(attributes: Attribute) {
+    this.attributeService.setAttributeID(attributes.key);
+    attributes.tracked = true;
+    attributes.characterID = this.characterService.getCharacterID();
+    attributes.userID = firebase.auth().currentUser.uid;
+    this.attributeService.updateAttribute(attributes);
   }
 
   removeCharacter() {
@@ -57,8 +78,10 @@ export class TrackerComponent implements OnInit {
     attribute.tracked = false;
     attribute.userID = firebase.auth().currentUser.uid;
     this.attributeService.updateAttribute(attribute);
-    console.log(attribute);
   }
 
+  hideButton() {
+    this.show = false;
+  }
 
 }
