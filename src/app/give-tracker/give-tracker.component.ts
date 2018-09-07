@@ -6,11 +6,11 @@ import { map } from 'rxjs/operators';
 import { Character } from '../character';
 
 @Component({
-  selector: 'app-view-tracker',
-  templateUrl: './view-tracker.component.html',
-  styleUrls: ['./view-tracker.component.css']
+  selector: 'app-give-tracker',
+  templateUrl: './give-tracker.component.html',
+  styleUrls: ['./give-tracker.component.css']
 })
-export class ViewTrackerComponent implements OnInit {
+export class GiveTrackerComponent implements OnInit {
 
   characterID: any;
   characters: any;

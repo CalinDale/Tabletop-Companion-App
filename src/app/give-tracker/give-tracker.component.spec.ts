@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewTrackerComponent } from './view-tracker.component';
+import { ViewTrackerComponent } from './give-tracker.component';
 
 describe('ViewTrackerComponent', () => {
   let component: ViewTrackerComponent;
