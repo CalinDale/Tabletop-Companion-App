@@ -1,4 +1,4 @@
-import { CharacterListEntryComponent } from './../character-list-entry/character-list-entry.component';
+import { CharacterListEntryComponent } from '../character-list-entry/character-list-entry.component';
 import { AttributeService } from '../attribute.service';
 import { Component, OnInit } from '@angular/core';
 import { Attribute } from '../attribute';

@@ -3,13 +3,12 @@ import { map } from 'rxjs/operators';
 import { CharacterService } from '../character.service';
 import { MessageService } from '../message.service';
 
-
 @Component({
-  selector: 'app-character-page',
-  templateUrl: './character-page.component.html',
-  styleUrls: ['./character-page.component.css']
+  selector: 'app-character-list',
+  templateUrl: './character-list.component.html',
+  styleUrls: ['./character-list.component.css']
 })
-export class CharacterPageComponent implements OnInit {
+export class CharacterListComponent implements OnInit {
   characters: any;
 
   constructor(

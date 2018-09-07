@@ -2,16 +2,16 @@ import { MessageService } from '../message.service';
 import { Character} from '../character';
 import { CharacterService } from '../character.service';
 
-import { CharacterPageComponent } from './character-page.component';
+import { CharacterListComponent } from './character-list.component';
 
 import {  AngularFireList } from 'angularfire2/database';
 
 
-describe('CharacterPageComponent', () => {
+describe('CharacterListComponent', () => {
   let testCharactersList: AngularFireList<Character>;
   let testCharacterService: CharacterService;
   let testMesageService: MessageService;
-  let component: CharacterPageComponent;
+  let component: CharacterListComponent;
   beforeEach(() => {
     testCharactersList = jasmine.createSpyObj('testCharactersList', [
       'snapshotChanges'
@@ -27,7 +27,7 @@ describe('CharacterPageComponent', () => {
       'add'
     ]);
 
-    component = new CharacterPageComponent(testCharacterService, testMesageService);
+    component = new CharacterListComponent(testCharacterService, testMesageService);
   });
   afterEach(() => {
     testCharactersList = null;

@@ -14,7 +14,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from 'environments/environment';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
-import { CharacterPageComponent } from './character-page/character-page.component';
+import { CharacterListComponent } from './character-list/character-list.component';
 import { TrackerComponent } from './tracker/tracker.component';
 import { MessagesComponent } from './messages/messages.component';
 import { CreateCharacterComponent } from './create-character/create-character.component';
@@ -31,7 +31,7 @@ import { EditCharacterComponent } from './edit-character/edit-character.componen
 @NgModule({
   declarations: [
     AppComponent,
-    CharacterPageComponent,
+    CharacterListComponent,
     TrackerComponent,
     MessagesComponent,
     CreateCharacterComponent,
