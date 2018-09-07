@@ -14,10 +14,12 @@ export class ViewTrackerComponent implements OnInit {
 
   characterID: any;
   characters: any;
+  attributes: any;
   character: Character = new Character();
 
   constructor(
     private characterService: CharacterService,
+    private attributeService: AttributeService
   ) { }
 
   ngOnInit() {
@@ -33,5 +35,6 @@ export class ViewTrackerComponent implements OnInit {
       this.characters = characters;
     });
   }
+
 }
 

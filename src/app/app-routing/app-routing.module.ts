@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'getCharacter', component: ViewSingleCharacterComponent},
   { path: 'editattribute', component: EditAttributeComponent},
   { path: 'editcharacter', component: EditCharacterComponent},
-  { path: 'viewtracker', component: ViewTrackerComponent},
+  { path: 'viewtracker', component: ViewTrackerComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
