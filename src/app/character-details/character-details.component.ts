@@ -1,3 +1,4 @@
+import { CharacterListComponent } from './../character-list/character-list.component';
 import { Attribute } from './../attribute';
 import { MessageService } from './../message.service';
 import { CharacterService } from './../character.service';
@@ -12,6 +13,11 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./character-details.component.css']
 })
 export class CharacterDetailsComponent implements OnInit {
+
+  @HostBinding('class.is-open')
+  isOpen = false;
+
+  @Input() characterListComponent: CharacterListComponent;
 
   character: Character;
 
@@ -32,6 +38,7 @@ export class CharacterDetailsComponent implements OnInit {
     this.character = character;
     this.characterID = character.key;
     this.retrieveAttributes();
+    this.toggle();
   }
 
   retrieveAttributes() {
@@ -44,4 +51,9 @@ export class CharacterDetailsComponent implements OnInit {
     });
   }
 
+  toggle() {
+    this.isOpen = !this.isOpen;
+    this.messageService.add('close/open details');
+    this.characterListComponent.toggle();
+  }
 }

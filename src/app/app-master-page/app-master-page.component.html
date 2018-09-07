@@ -1,4 +1,4 @@
 <div id='characterTab'>
-  <app-character-list [characterDetails]='characterDetails'></app-character-list>
-  <app-character-details #characterDetails></app-character-details>
+  <app-character-list #characterList [characterDetails]='characterDetails'></app-character-list>
+  <app-character-details #characterDetails [characterListComponent]='characterList'></app-character-details>
 </div>

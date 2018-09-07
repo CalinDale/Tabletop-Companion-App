@@ -1,3 +1,4 @@
+import { CharacterListComponent } from './../character-list/character-list.component';
 import { MessageService } from './../message.service';
 import { AttributeService } from './../attribute.service';
 import { CharacterService } from './../character.service';
@@ -45,6 +46,7 @@ describe('CharacterDetailsComponent', () => {
     beforeEach(() => {
       testCharacterID = 'Grog24';
       testCharacter = <Character>{ key: testCharacterID };
+      component = new CharacterDetailsComponent(testCharacterService, testAttributeService, testMessageService);
       component.character = testCharacter;
       component.characterID = testCharacterID;
     });
@@ -55,5 +57,31 @@ describe('CharacterDetailsComponent', () => {
     });
 
     // TODO: retrieveAttributes should do stuff.
+
+    it('toggle() should set isOpen to the opposite of what it was', () => {
+      const open = component.isOpen;
+      component.toggle();
+      expect(component.isOpen).toBe(!open);
+    });
+
+    describe('with CharacterListComponent', () => {
+      let testCharacterListComponent: CharacterListComponent;
+
+      beforeEach(() => {
+        testCharacterListComponent = jasmine.createSpyObj('testCharacterListComponent', [
+          'toggle'
+        ]);
+        component.characterListComponent = testCharacterListComponent;
+      });
+
+      afterEach(() => {
+        testCharacterListComponent = null;
+      });
+
+      it('toggle() should call CharacterListComponent.toggle()', () => {
+        component.toggle();
+        expect(testCharacterListComponent.toggle).toHaveBeenCalled();
+      });
+    });
   });
 });

@@ -1,5 +1,9 @@
 Character details works!
+
 <div id='container' *ngIf='character'>
+    <div id='backButtonDiv'>
+      <button id='backButton' type="button" class="button btn-primary active" (click)='toggle()'>Close</button>
+    </div>
   {{character.name}} is selected
   <div *ngFor="let attribute of attributes" style="width: 300px;">
       <app-single-character-details [attribute]='attribute'></app-single-character-details>

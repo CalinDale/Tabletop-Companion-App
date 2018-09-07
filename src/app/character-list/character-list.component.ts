@@ -1,5 +1,5 @@
 import { CharacterDetailsComponent } from './../character-details/character-details.component';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { CharacterService } from '../character.service';
 import { MessageService } from '../message.service';
@@ -12,6 +12,9 @@ import { Character } from '../character';
 })
 export class CharacterListComponent implements OnInit {
   characters: Character[];
+
+  @HostBinding('class.is-open')
+  isOpen = true;
 
   @Input() characterDetails: CharacterDetailsComponent;
 
@@ -44,5 +47,8 @@ export class CharacterListComponent implements OnInit {
     this.messageService.add('Add new character');
   }
 
-
+  toggle() {
+    this.isOpen = !this.isOpen;
+    this.messageService.add('close/open character list');
+  }
 }

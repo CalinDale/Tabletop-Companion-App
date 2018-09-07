@@ -1,4 +1,9 @@
-#container {
+:host {
+  display: none;
+}
+
+:host.is-open {
+  display: block
 }
 
 h1 {

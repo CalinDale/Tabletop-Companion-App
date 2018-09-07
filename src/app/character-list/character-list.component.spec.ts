@@ -36,7 +36,13 @@ describe('CharacterListComponent', () => {
     component = null;
   });
 
-    it('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('toggle() should set isOpen to the opposite of what it was', () => {
+    const open = component.isOpen;
+    component.toggle();
+    expect(component.isOpen).toBe(!open);
   });
 });
