@@ -72,8 +72,8 @@ export class AttributeService {
 
   // TODO: this.db.object is not a function?
   updateAttribute(attribute: Attribute): void {
-    // this.attributeID = this.getAttributeID();
-    this.attributeRef = this.db.object(`attributes/${this.userID}/${attribute.characterID}/${attribute.key}`);
+    this.attributeID = this.getAttributeID();
+    this.attributeRef = this.db.object(`attributes/${this.userID}/${attribute.characterID}/${this.attributeID}`);
     this.attributeRef.update(attribute).catch(error => this.handleError(error));
   }
 
