@@ -59,19 +59,6 @@ export class CharacterDetailsComponent implements OnInit {
     this.attributeService.createAttribute(attribute);
   }
 
-  saveChanges() {
-     for (const attribute of this.attributes) {
-        this.updateAttribute(attribute);
-     }
-     this.messageService.add('Changes to ' + this.character.name + ' saved');
-  }
-
-  updateAttribute(attribute) {
-    attribute.characterID = this.attributeService.getCharacterID();
-    attribute.userID = firebase.auth().currentUser.uid;
-    this.attributeService.updateAttribute(attribute);
-  }
-
   toggle() {
     this.isOpen = !this.isOpen;
     this.messageService.add('close/open details');

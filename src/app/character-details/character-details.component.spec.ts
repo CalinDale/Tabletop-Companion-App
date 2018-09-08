@@ -79,11 +79,6 @@ describe('CharacterDetailsComponent', () => {
       expect(component.isOpen).toBe(!open);
     });
 
-    it('saveChanges() should send message to messageService', () => {
-      component.saveChanges();
-      expect(testMessageService.add).toHaveBeenCalled();
-    });
-
     describe('with CharacterListComponent', () => {
       let testCharacterListComponent: CharacterListComponent;
 

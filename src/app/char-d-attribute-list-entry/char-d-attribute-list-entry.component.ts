@@ -40,11 +40,7 @@ export class CharDAttributeListEntryComponent implements OnInit {
   }
 
   delete() {
-    if (this.attribute.key === undefined) {
-      delete this.attributeList[this.attributeList.indexOf(this.attribute)];
-    } else {
-      this.attributeService.deleteAttribute(this.attribute.key);
-    }
+    this.attributeService.deleteAttribute(this.attribute.key);
   }
 
   editAttribute() {
