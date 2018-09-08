@@ -4,7 +4,7 @@ import { MessageService } from '../message.service';
 import { CharacterService } from '../character.service';
 import { AttributeService } from '../attribute.service';
 import { Character } from '../character';
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, HostListener } from '@angular/core';
 import { map } from 'rxjs/operators';
 import * as firebase from 'firebase';
 
@@ -24,6 +24,12 @@ export class CharacterDetailsComponent implements OnInit {
 
   attributes: Attribute[];
   characterID: string;
+
+  @HostListener('focusout', ['$event.target'])
+    onFocusout(target) {
+      console.log('Focus out called');
+      target.type = 'text';
+    }
 
   constructor(
     private characterService: CharacterService,
@@ -63,5 +69,11 @@ export class CharacterDetailsComponent implements OnInit {
     this.isOpen = !this.isOpen;
     this.messageService.add('close/open details');
     this.characterListComponent.toggle();
+  }
+
+  updateCharacter() {
+    this.character.key = this.attributeService.getCharacterID();
+    this.character.userID = firebase.auth().currentUser.uid;
+    this.characterService.updateCharacter(this.character);
   }
 }

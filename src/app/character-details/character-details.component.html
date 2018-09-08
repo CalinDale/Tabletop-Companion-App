@@ -1,12 +1,12 @@
 <div id='container' *ngIf='character'>
-    <div id='backButtonDiv'>
+    <span id='backButtonDiv'>
       <button id='backButton' type="button" class="button btn-primary active" (click)='toggle()'>Close</button>
-    </div>
-  {{character.name}} is selected
+    </span>
+  <input id='name' [(ngModel)]="character.name" (focusout)="updateCharacter()" placeholder="Character Name">
   <div id='attributeList' *ngFor="let attribute of attributes">
       <app-char-d-attribute-list-entry [attribute]='attribute' [attributeList]='attributes'></app-char-d-attribute-list-entry>
     </div>
-    <div style="margin-top:20px;">
-        <button type="button" class="button btn-danger" (click)='addAttribute()'>Add Attribute</button>
+    <div id='addAttributeButtonDiv'>
+        <button id='addAttributeButton' type="button" class="button btn-danger" (click)='addAttribute()'>Add Attribute</button>
       </div>
 </div>
