@@ -1,11 +1,12 @@
+import { Attribute } from './../attribute';
 import { CharacterListComponent } from '../character-list/character-list.component';
-import { Attribute } from '../attribute';
 import { MessageService } from '../message.service';
 import { CharacterService } from '../character.service';
 import { AttributeService } from '../attribute.service';
 import { Character } from '../character';
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { map } from 'rxjs/operators';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-character-details',
@@ -49,6 +50,33 @@ export class CharacterDetailsComponent implements OnInit {
     ).subscribe(attributes => {
       this.attributes = attributes;
     });
+  }
+
+  addAttribute() {
+    this.attributes.push(new Attribute());
+  }
+
+  saveChanges() {
+     for (const attribute of this.attributes) {
+        if (attribute.key !== undefined) {
+          this.saveUpdatedAttribute(attribute);
+        } else {
+          this.saveNewAttribute(attribute);
+        }
+     }
+     this.retrieveAttributes();
+     this.messageService.add('Changes to ' + this.character.name + ' saved');
+  }
+
+  saveUpdatedAttribute(attribute) {
+    attribute.characterID = this.attributeService.getCharacterID();
+    attribute.userID = firebase.auth().currentUser.uid;
+    this.attributeService.updateAttribute(attribute);
+  }
+  saveNewAttribute(attribute) {
+    attribute.characterID = this.attributeService.getCharacterID();
+    attribute.userID = firebase.auth().currentUser.uid;
+    this.attributeService.createAttribute(attribute);
   }
 
   toggle() {

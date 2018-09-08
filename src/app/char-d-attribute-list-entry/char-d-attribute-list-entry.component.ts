@@ -15,6 +15,7 @@ export class CharDAttributeListEntryComponent implements OnInit {
 
   @Input() character: Character;
   @Input() attribute: Attribute;
+  @Input() attributeList: Attribute[];
 
   constructor(
     private characterService: CharacterService,
@@ -31,7 +32,11 @@ export class CharDAttributeListEntryComponent implements OnInit {
   }
 
   delete() {
-    this.attributeService.deleteAttribute(this.attribute.key);
+    if (this.attribute.key === undefined) {
+      delete this.attributeList[this.attributeList.indexOf(this.attribute)];
+    } else {
+      this.attributeService.deleteAttribute(this.attribute.key);
+    }
   }
 
   editAttribute() {

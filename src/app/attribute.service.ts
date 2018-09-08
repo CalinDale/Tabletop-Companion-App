@@ -57,14 +57,16 @@ export class AttributeService {
   }
 
   // TODO: this.db.object is not a function?
+  // Changed a piece of code to have the attributeService pull the ID of the attribute being updated
   updateAttribute(attribute: Attribute): void {
-    this.attributeID = this.getAttributeID();
+    this.setAttributeID(attribute.key);
     this.attributeRef = this.db.object(`attributes/${this.userID}/${this.characterID}/${this.attributeID}`);
     this.attributeRef.update(attribute).catch(error => this.handleError(error));
   }
 
-  deleteAttribute(name: string): void {
-    this.attributesRef.remove(name).catch(error => this.handleError(error));
+  // switched name for key since that's what it actually uses.
+  deleteAttribute(key: string): void {
+    this.attributesRef.remove(key).catch(error => this.handleError(error));
   }
 
   deleteAll(): void {

@@ -6,16 +6,21 @@ import { Character } from '../character';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import * as firebase from 'firebase';
 
 import { CharacterDetailsComponent } from './character-details.component';
 
 describe('CharacterDetailsComponent', () => {
+  let testUserID: string;
   let testCharacterService: CharacterService;
   let testAttributeService: AttributeService;
   let testMessageService: MessageService;
   let component: CharacterDetailsComponent;
 
+  let testAuthFunction: Function;
+
   beforeEach(() => {
+    testUserID = 'Dave32';
     testCharacterService = jasmine.createSpyObj('testCharacterService', [
       'something needs to be here'
     ]);
@@ -26,13 +31,17 @@ describe('CharacterDetailsComponent', () => {
       'add'
     ]);
     component = new CharacterDetailsComponent(testCharacterService, testAttributeService, testMessageService);
+    spyOn(firebase, 'auth').and.returnValue( { currentUser: { uid: testUserID } } );
+
   });
 
   afterEach(() => {
+    testUserID = null;
     testCharacterService = null;
     testAttributeService = null;
     testMessageService = null;
     component = null;
+    testAuthFunction = null;
   });
 
   it('should create', () => {
@@ -41,18 +50,24 @@ describe('CharacterDetailsComponent', () => {
 
   describe('with Character', () => {
     let testCharacterID: string;
+    let testCharacterName: string;
     let testCharacter: Character;
 
     beforeEach(() => {
       testCharacterID = 'Grog24';
-      testCharacter = <Character>{ key: testCharacterID };
+      testCharacterName = 'Grog';
+      testCharacter = <Character>{ key: testCharacterID, name: testCharacterName };
       component = new CharacterDetailsComponent(testCharacterService, testAttributeService, testMessageService);
       component.character = testCharacter;
       component.characterID = testCharacterID;
+
+      testAuthFunction = firebase.auth;
+      spyOn(firebase, 'auth').and.returnValue( { currentUser: { uid: testUserID } } );
     });
 
     afterEach(() => {
       testCharacterID = null;
+      testCharacterName = null;
       testCharacter = null;
     });
 
@@ -62,6 +77,11 @@ describe('CharacterDetailsComponent', () => {
       const open = component.isOpen;
       component.toggle();
       expect(component.isOpen).toBe(!open);
+    });
+
+    it('saveChanges() should send message to messageService', () => {
+      component.saveChanges();
+      expect(testMessageService.add).toHaveBeenCalled();
     });
 
     describe('with CharacterListComponent', () => {
