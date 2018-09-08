@@ -1,9 +1,9 @@
-import { CharacterListComponent } from './../character-list/character-list.component';
-import { Attribute } from './../attribute';
-import { MessageService } from './../message.service';
-import { CharacterService } from './../character.service';
+import { CharacterListComponent } from '../character-list/character-list.component';
+import { Attribute } from '../attribute';
+import { MessageService } from '../message.service';
+import { CharacterService } from '../character.service';
 import { AttributeService } from '../attribute.service';
-import { Character } from './../character';
+import { Character } from '../character';
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { map } from 'rxjs/operators';
 

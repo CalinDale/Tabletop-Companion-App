@@ -7,11 +7,11 @@ import { Router } from '@angular/router';
 import { Attribute } from '../attribute';
 
 @Component({
-  selector: 'app-single-character-details',
-  templateUrl: './single-character-details.component.html',
-  styleUrls: ['./single-character-details.component.css']
+  selector: 'app-char-d-attribute-list-entry',
+  templateUrl: './char-d-attribute-list-entry.component.html',
+  styleUrls: ['./char-d-attribute-list-entry.component.css']
 })
-export class SingleCharacterDetailsComponent implements OnInit {
+export class CharDAttributeListEntryComponent implements OnInit {
 
   @Input() character: Character;
   @Input() attribute: Attribute;

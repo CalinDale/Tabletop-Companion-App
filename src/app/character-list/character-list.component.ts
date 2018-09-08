@@ -1,4 +1,4 @@
-import { CharacterDetailsComponent } from './../character-details/character-details.component';
+import { CharacterDetailsComponent } from '../character-details/character-details.component';
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { CharacterService } from '../character.service';

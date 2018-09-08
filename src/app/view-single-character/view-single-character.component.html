@@ -1,7 +1,7 @@
 <div>
   <h3>Name: {{characters.name}}</h3>
   <div *ngFor="let attribute of attributes" style="width: 300px;">
-      <app-single-character-details [attribute]='attribute'></app-single-character-details>
+      <app-char-d-attribute-list-entry [attribute]='attribute'></app-char-d-attribute-list-entry>
     </div>
     <div style="margin-top:20px;">
       <button type="button" class="button btn-danger">Delete All</button>

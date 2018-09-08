@@ -3,7 +3,7 @@ import { MessageService } from '../message.service';
 import { CharacterService } from '../character.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SingleCharacterDetailsComponent } from './single-character-details.component';
+import { CharDAttributeListEntryComponent } from './char-d-attribute-list-entry.component';
 import { AttributeService } from '../attribute.service';
 
 describe('SingleCharacterDetailsComponent', () => {
@@ -11,10 +11,10 @@ describe('SingleCharacterDetailsComponent', () => {
   let testMessageService: MessageService;
   let testAttributeService: AttributeService;
   let testRouter: Router;
-  let component: SingleCharacterDetailsComponent;
+  let component: CharDAttributeListEntryComponent;
 
   beforeEach(() => {
-    component = new SingleCharacterDetailsComponent(testCharacterService, testMessageService, testAttributeService, testRouter);
+    component = new CharDAttributeListEntryComponent(testCharacterService, testMessageService, testAttributeService, testRouter);
   });
   afterEach(() => {
     component = null;

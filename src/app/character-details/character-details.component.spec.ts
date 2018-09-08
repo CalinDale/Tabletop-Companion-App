@@ -1,7 +1,7 @@
-import { CharacterListComponent } from './../character-list/character-list.component';
-import { MessageService } from './../message.service';
-import { AttributeService } from './../attribute.service';
-import { CharacterService } from './../character.service';
+import { CharacterListComponent } from '../character-list/character-list.component';
+import { MessageService } from '../message.service';
+import { AttributeService } from '../attribute.service';
+import { CharacterService } from '../character.service';
 import { Character } from '../character';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';

@@ -25,7 +25,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CoreModule } from './core/core.module';
 import { RegisterComponent } from './register/register.component';
 import { ViewSingleCharacterComponent } from './view-single-character/view-single-character.component';
-import { SingleCharacterDetailsComponent } from './single-character-details/single-character-details.component';
+import { CharDAttributeListEntryComponent } from './char-d-attribute-list-entry/char-d-attribute-list-entry.component';
 import { EditAttributeComponent } from './edit-attribute/edit-attribute.component';
 import { EditCharacterComponent } from './edit-character/edit-character.component';
 
@@ -41,7 +41,7 @@ import { EditCharacterComponent } from './edit-character/edit-character.componen
     UserProfileComponent,
     RegisterComponent,
     ViewSingleCharacterComponent,
-    SingleCharacterDetailsComponent,
+    CharDAttributeListEntryComponent,
     EditAttributeComponent,
     EditCharacterComponent,
     AppMasterPageComponent,
