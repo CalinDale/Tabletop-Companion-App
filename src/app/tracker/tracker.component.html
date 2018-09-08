@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>Tracker</h1>
 
 Current acting position: {{actingPosition}}
@@ -48,6 +49,40 @@ Current acting position: {{actingPosition}}
 
 <br>
   <button (click)="nextTurn()">Next Turn</button>
+=======
+<h2>Character</h2>
+<div *ngIf="character">
+  <div>
+    <br><label>Name: </label> {{character.name}}
+    <button (click)="getAttributes()">Add attribute</button>
+    <div *ngIf="show" class="alert alert-success box-msg" role="alert">
+    <h3>Attributes not yet tracked</h3>
+    <button (click)="hideButton()">Hide</button>
+<div *ngFor="let attributes of attributess" style="width: 300px;">
+  <div>
+   <br><label>Name: </label> {{attributes.name}}<br><br>
+  </div>
+  <button (click)="addAttribute(attributes)">Add attribute to tracker</button>
+</div>
+</div>
+<br>
+  <br><br><br>
+  </div>
+</div>
+<h3>Attributes</h3>
+<div *ngFor="let attributes of attribute" style="width: 300px;">
+  <div>
+    <br><label>Name: </label> {{attributes.name}}<br><br>
+  </div>
+  <div>
+    <br><label>Type: </label> {{attributes.type}}<br><br>
+  </div>
+  <div>
+    <br><label>Value: </label> {{attributes.value}}<br><br>
+  </div>
+  <button (click)="removeAttribute(attributes)">Remove attribute from tracker</button>
+</div>
+>>>>>>> 6d8fed2aaef7cdea1037e45e82bca92699802f92
 <br>
   <button (click)="previousTurn()">Previous Turn</button>
 <br>

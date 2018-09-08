@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { CharacterService } from './../character.service';
 import { MessageService } from '../message.service';
+import { AttributeService } from '../attribute.service';
+import { Character } from '../character';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,13 +13,16 @@ import { MessageService } from '../message.service';
   styleUrls: ['./character-page.component.css']
 })
 export class CharacterPageComponent implements OnInit {
+
+  @Input() character: Character;
+
   characters: any;
 
   constructor(
-    // TODO: Delete this section when implementing proper routing.
     private characterService: CharacterService,
-    // TODO: End of delete.
-    private messageService: MessageService
+    private attributeService: AttributeService,
+    private messageService: MessageService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -42,34 +48,8 @@ export class CharacterPageComponent implements OnInit {
     this.characterService.deleteAll();
   }
 
-  // go to previous page
-  goBack(): void {
-    this.messageService.add('Back to last Page');
-  }
-
-  // save changes to character
-  save(): void {
-    this.messageService.add('Save changes');
-  }
-
-  addAttribute(): void {
-    this.messageService.add('Add new attribute');
-  }
-
-  editAttribute(): void {
-    this.messageService.add('Edit attribute');
-  }
-
-  removeAttribute(): void {
-    this.messageService.add('Remove Attribute');
-  }
-
-  reorderAttribute(): void {
-    this.messageService.add('Reorder Attribute');
-  }
-
-  rename(): void {
-    this.messageService.add('rename');
+  viewTracker() {
+    this.router.navigateByUrl('viewtracker');
   }
 
 

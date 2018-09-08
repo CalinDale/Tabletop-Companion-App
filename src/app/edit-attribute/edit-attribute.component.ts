@@ -1,16 +1,15 @@
 import { CharacterService } from './../character.service';
-import { CharacterDetailsComponent } from './../character-details/character-details.component';
-import { AttributeService } from './../attribute.service';
 import { Component, OnInit } from '@angular/core';
 import { Attribute } from '../attribute';
+import { AttributeService } from '../attribute.service';
 import * as firebase from 'firebase';
 
 @Component({
-  selector: 'app-add-attribute',
-  templateUrl: './add-attribute.component.html',
-  styleUrls: ['./add-attribute.component.css']
+  selector: 'app-edit-attribute',
+  templateUrl: './edit-attribute.component.html',
+  styleUrls: ['./edit-attribute.component.css']
 })
-export class AddAttributeComponent implements OnInit {
+export class EditAttributeComponent implements OnInit {
 
   attribute: Attribute = new Attribute();
   submitted = false;
@@ -21,17 +20,10 @@ export class AddAttributeComponent implements OnInit {
   ngOnInit() {
   }
 
-  newAttribute(): void {
-    this.submitted = false;
-    this.attribute = new Attribute();
-  }
-
   save() {
     this.attribute.characterID = this.characterService.getCharacterID();
     this.attribute.userID = firebase.auth().currentUser.uid;
-    this.attribute.tracked = true;
-    this.attributeService.createAttribute(this.attribute);
-    this.attribute = new Attribute();
+    this.attributeService.updateAttribute(this.attribute);
   }
 
   onSubmit() {
