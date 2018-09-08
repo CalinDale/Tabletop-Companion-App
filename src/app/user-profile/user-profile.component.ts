@@ -11,8 +11,6 @@ import { EmailPasswordCredentials } from '../core/emailPasswordCredentials';
 export class UserProfileComponent implements OnInit {
 
   signInForm: FormGroup;
-  newUser = true;
-  passReset = false;
 
   constructor( public auth: AuthService, private fb: FormBuilder) {}
   ngOnInit() {

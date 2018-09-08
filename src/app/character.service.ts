@@ -13,7 +13,6 @@ import * as firebase from 'firebase/app';
 })
 export class CharacterService {
 
-
   charactersRef: AngularFireList<Character> = null;
   userID: string = firebase.auth().currentUser.uid;
 
@@ -21,13 +20,13 @@ export class CharacterService {
     private db: AngularFireDatabase,
     private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
-       { this.userID = firebase.auth().currentUser.uid; }
-       console.log(this.userID);
+       if (user) { this.userID = user.uid; }
     });
     this.charactersRef = this.db.list(`characters/${this.userID}`);
   }
 
   createCharacter(character: Character): void {
+    this.charactersRef = this.db.list(`characters/${this.userID}`);
     this.charactersRef.push(character);
   }
 
@@ -46,7 +45,6 @@ export class CharacterService {
     return this.charactersRef;
   }
 
-
   deleteAll(): void {
     this.charactersRef.remove().catch(error => this.handleError(error));
   }
@@ -54,4 +52,9 @@ export class CharacterService {
   private handleError(error) {
     console.log(error);
   }
+
+  signOut() {
+    this.afAuth.auth.signOut();
+  }
+
 }

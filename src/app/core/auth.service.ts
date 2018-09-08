@@ -10,6 +10,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { User } from './user';
+import { CharacterService } from '../character.service';
 
 import { EmailPasswordCredentials } from '../core/emailPasswordCredentials';
 
@@ -22,12 +23,10 @@ export class AuthService {
 
   user: Observable<firebase.User>;
 
-
-
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router
+    private router: Router,
   ) {
 
     this.afAuth.authState.subscribe((auth) => {
@@ -47,6 +46,10 @@ export class AuthService {
     );
     }
 
+  }
+
+  resetAuth() {
+    this.authState.unsubscribe();
   }
 
   // Returns true if user is logged in
@@ -105,7 +108,6 @@ export class AuthService {
 
   // Anonymous Auth
   anonymousLogin() {
-
     return this.afAuth.auth.signInAnonymously()
     .then((credential ) => {
       this.updateUserData(credential.user);
@@ -167,7 +169,8 @@ export class AuthService {
   }
 
   signOut() {
-    this.afAuth.auth.signOut().then(() => {
+    this.afAuth.auth.signOut()
+    .then(() => {
         this.router.navigate(['/']);
     });
   }

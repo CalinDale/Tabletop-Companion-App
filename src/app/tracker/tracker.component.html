@@ -5,33 +5,38 @@ Current acting position: {{actingPosition}}
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>ID</th>
       <th>Name</th>
-      <th>Active</th>
       <th>Attribute</th>
       <th>Attribute</th>
       <th>Attribute</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let character of characters index as i">
-      <td>{{character.key}}</td>
-      <td>{{character.name}}</td>
-      <td>{{selectedCharacter(i + 1)}}</td>
+    <tr *ngFor="let character of characters index as i ">
       {{getAttributes(character.key)}}
       <td>
+        <button (click)="moveSelector(i+ 1)">X</button>{{selectedCharacter(i + 1)}}</td>
+      <td>{{character.key}}</td>
+      <td>{{character.name}}</td>
+      
+      <td>
         <select>
-            <option *ngFor="let attribute of currentAttributes">{{attribute.name}} {{attribute.value}}</option>
+            <option value="defualt">Add Attribute</option>
+            <option *ngFor="let attribute of currentAttributes ">{{attribute.name}} {{attribute.value}}</option>
         </select> 
       </td>
       <td>
           <select >
-              <option *ngFor="let attribute of currentAttributes">{{attribute.name}} {{attribute.value}}</option>
+            <option value="defualt">Add Attribute</option>
+            <option *ngFor="let attribute of currentAttributes ">{{attribute.name}} {{attribute.value}}</option>
           </select> 
       </td>
       <td>
-          <select >
-              <option *ngFor="let attribute of currentAttributes">{{attribute.name}} {{attribute.value}}</option>
+          <select>
+            <option value="defualt">Add Attribute</option>
+            <option *ngFor="let attribute of currentAttributes">{{attribute.name}} {{attribute.value}}</option>
           </select> 
       </td>
   </tr>

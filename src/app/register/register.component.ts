@@ -3,6 +3,7 @@ import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angula
 import { AuthService } from '../core/auth.service';
 import { matchOtherValidator} from './matchOtherValidtator';
 import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,10 @@ export class RegisterComponent implements OnInit {
 
   signupForm: FormGroup;
 
-  constructor( public auth: AuthService, private fb: FormBuilder) { }
+  constructor(
+    public auth: AuthService,
+    private fb: FormBuilder,
+    private router: Router ) { }
 
   ngOnInit() {
     this.signupForm = this.fb.group({
@@ -56,6 +60,8 @@ export class RegisterComponent implements OnInit {
         photoURL: 'photo'
       }).then( () => {
         this.auth.updateUserData(user);
+      }).then(() => {
+        this.router.navigate(['/']);
       });
     });
   }

@@ -4,10 +4,10 @@ import { Attribute } from './attribute';
 export const CHARACTERS: Character[] = [
     {key: '1', name: 'Monopoly: Bill', userID: '1'},
     {key: '2', name: 'Monopoly: Frank', userID: '1'},
-    {key: '3', name: 'Monopoly: Dave', userID: '1'}
+    {key: '3', name: 'Monopoly: Dave', userID: '1'},
     {key: '4', name: 'Monopoly: Steve', userID: '1'},
-    {key: '5', name: 'Monopoly: Leon', userID: '1'},
-    {key: '6', name: 'Monopoly: Baxter', userID: '1'}
+    // {key: '5', name: 'Monopoly: Leon', userID: '1'},
+    // {key: '6', name: 'Monopoly: Baxter', userID: '1'}
 ];
 
 export const ATTRIBUTES: Attribute[] = [

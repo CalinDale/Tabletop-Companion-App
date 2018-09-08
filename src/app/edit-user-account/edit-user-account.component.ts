@@ -53,7 +53,6 @@ this.editPasswordForm = this.fb.group({
 });
   }
 
-
   get displayName() { return this.editDisplayNameForm.get('displayName'); }
   get email() { return this.editEmailForm.get('email'); }
   get password() { return this.editPasswordForm.get('password'); }
