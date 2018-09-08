@@ -1,10 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Character } from '../character';
 import { CharacterService } from '../character.service';
 import { MessageService } from '../message.service';
 import { AttributeService } from '../attribute.service';
 import { Router } from '@angular/router';
 import { Attribute } from '../attribute';
+
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-char-d-attribute-list-entry',
@@ -16,6 +18,12 @@ export class CharDAttributeListEntryComponent implements OnInit {
   @Input() character: Character;
   @Input() attribute: Attribute;
   @Input() attributeList: Attribute[];
+
+  @HostListener('focusout', ['$event.target'])
+    onFocusout(target) {
+      console.log('Focus out called');
+      target.type = 'text';
+    }
 
   constructor(
     private characterService: CharacterService,
@@ -46,6 +54,13 @@ export class CharDAttributeListEntryComponent implements OnInit {
 
   editCharacter() {
     this.router.navigateByUrl('editcharacter');
+  }
+
+  updateAttribute() {
+    this.attribute.characterID = this.attributeService.getCharacterID();
+    this.attribute.userID = firebase.auth().currentUser.uid;
+    this.attributeService.updateAttribute(this.attribute);
+    this.messageService.add('Changes to ' + this.attribute.name + ' saved');
   }
 
 }

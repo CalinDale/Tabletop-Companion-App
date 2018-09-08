@@ -1,9 +1,9 @@
 <table *ngIf="attribute">
   <tr>
       <td id='dragDiv'>=</td>
-      <td id='nameDiv'><input id='name' [(ngModel)]="attribute.name"></td>
-      <td id='typeDiv'><input id='type' [(ngModel)]="attribute.type"></td>
-      <td id='valueDiv'><input id='value' [(ngModel)]="attribute.value"></td>
+      <td id='nameDiv'><input id='name' [(ngModel)]="attribute.name" (focusout)="updateAttribute()"></td>
+      <td id='typeDiv'><input id='type' [(ngModel)]="attribute.type" (focusout)="updateAttribute()"></td>
+      <td id='valueDiv'><input id='value' [(ngModel)]="attribute.value" (focusout)="updateAttribute()"></td>
       <td id='deleteButtonDiv'><button id='deleteButton' (click)="delete()">delete</button></td>
   </tr>
 </table>

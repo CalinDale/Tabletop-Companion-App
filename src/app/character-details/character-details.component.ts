@@ -57,7 +57,6 @@ export class CharacterDetailsComponent implements OnInit {
     attribute.characterID = this.attributeService.getCharacterID();
     attribute.userID = firebase.auth().currentUser.uid;
     this.attributeService.createAttribute(attribute);
-    this.attributes.push(attribute);
   }
 
   saveChanges() {
