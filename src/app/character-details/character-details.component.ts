@@ -53,30 +53,24 @@ export class CharacterDetailsComponent implements OnInit {
   }
 
   addAttribute() {
-    this.attributes.push(new Attribute());
+    const attribute = new Attribute();
+    attribute.characterID = this.attributeService.getCharacterID();
+    attribute.userID = firebase.auth().currentUser.uid;
+    this.attributeService.createAttribute(attribute);
+    this.attributes.push(attribute);
   }
 
   saveChanges() {
      for (const attribute of this.attributes) {
-        if (attribute.key !== undefined) {
-          this.saveUpdatedAttribute(attribute);
-        } else {
-          this.saveNewAttribute(attribute);
-        }
+        this.updateAttribute(attribute);
      }
-     this.retrieveAttributes();
      this.messageService.add('Changes to ' + this.character.name + ' saved');
   }
 
-  saveUpdatedAttribute(attribute) {
+  updateAttribute(attribute) {
     attribute.characterID = this.attributeService.getCharacterID();
     attribute.userID = firebase.auth().currentUser.uid;
     this.attributeService.updateAttribute(attribute);
-  }
-  saveNewAttribute(attribute) {
-    attribute.characterID = this.attributeService.getCharacterID();
-    attribute.userID = firebase.auth().currentUser.uid;
-    this.attributeService.createAttribute(attribute);
   }
 
   toggle() {
