@@ -30,7 +30,7 @@ export class CharDAttributeListEntryComponent implements OnInit {
     this.router.navigateByUrl('addattribute');
   }
 
-  removeAttribute() {
+  delete() {
     this.attributeService.deleteAttribute(this.attribute.key);
   }
 
@@ -42,7 +42,6 @@ export class CharDAttributeListEntryComponent implements OnInit {
   editCharacter() {
     this.router.navigateByUrl('editcharacter');
   }
-
 
 }
 

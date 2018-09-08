@@ -1,11 +1,9 @@
-Character details works!
-
 <div id='container' *ngIf='character'>
     <div id='backButtonDiv'>
       <button id='backButton' type="button" class="button btn-primary active" (click)='toggle()'>Close</button>
     </div>
   {{character.name}} is selected
-  <div *ngFor="let attribute of attributes" style="width: 300px;">
+  <div id='attributeList' *ngFor="let attribute of attributes">
       <app-char-d-attribute-list-entry [attribute]='attribute'></app-char-d-attribute-list-entry>
     </div>
     <div style="margin-top:20px;">

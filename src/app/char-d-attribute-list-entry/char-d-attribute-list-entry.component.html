@@ -1,4 +1,14 @@
-<div *ngIf="attribute">
+<table *ngIf="attribute">
+  <tr>
+      <td id='dragDiv'>=</td>
+      <td id='nameDiv'><input id='name' [(ngModel)]="attribute.name"></td>
+      <td id='typeDiv'><input id='type' [(ngModel)]="attribute.type"></td>
+      <td id='valueDiv'><input id='value' [(ngModel)]="attribute.value"></td>
+      <td id='deleteButtonDiv'><button id='deleteButton' (click)="delete()">delete</button></td>
+  </tr>
+</table>
+
+  <!--
   <div>
     <label>Attribute Name: </label> {{attribute.name}}<br><br>
   </div>
@@ -16,3 +26,4 @@
 <br>
 <button  (click)="editAttribute()" >Edit Attribute</button>
 <br>
+-->
