@@ -13,7 +13,7 @@
     </tr>
   </table>
   <div id='attributeList' *ngFor="let attribute of attributes">
-    <app-char-d-attribute-list-entry [attribute]='attribute' [attributeList]='attributes'></app-char-d-attribute-list-entry>
+    <app-char-d-attribute-list-entry [attribute]='attribute'></app-char-d-attribute-list-entry>
   </div>
   <div id='addAttributeButtonDiv'>
     <button id='addAttributeButton' type="button" class="button btn-add" (click)='addAttribute()'>Add Attribute</button>

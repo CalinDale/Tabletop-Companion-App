@@ -5,7 +5,6 @@ import { CharacterService } from '../character.service';
 import { MessageService } from '../message.service';
 import { Character } from '../character';
 import * as firebase from 'firebase';
-import { AttributeService } from '../attribute.service';
 
 @Component({
   selector: 'app-character-list',
@@ -22,7 +21,6 @@ export class CharacterListComponent implements OnInit {
 
   constructor(
     private characterService: CharacterService,
-    private attributeService: AttributeService,
     private messageService: MessageService
   ) { }
 
@@ -39,11 +37,6 @@ export class CharacterListComponent implements OnInit {
     ).subscribe(characters => {
       this.characters = characters;
     });
-    // }
-  }
-
-  deleteCharacters() {
-    this.characterService.deleteAll();
   }
 
   newCharacter() {

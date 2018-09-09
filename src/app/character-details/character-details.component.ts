@@ -38,7 +38,6 @@ export class CharacterDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.retrieveAttributes();
   }
 
   setCharacter(character: Character) {
@@ -61,7 +60,7 @@ export class CharacterDetailsComponent implements OnInit {
 
   addAttribute() {
     const attribute = new Attribute();
-    attribute.characterID = this.attributeService.getCharacterID();
+    attribute.characterID = this.characterID;
     attribute.userID = firebase.auth().currentUser.uid;
     this.attributeService.createAttribute(attribute);
   }
@@ -73,15 +72,13 @@ export class CharacterDetailsComponent implements OnInit {
   }
 
   updateCharacter() {
-    this.character.key = this.attributeService.getCharacterID();
-    this.character.userID = firebase.auth().currentUser.uid;
     this.characterService.updateCharacter(this.character);
   }
 
   deleteCharacter() {
     this.toggle();
     this.characterService.deleteCharacter(this.characterID);
-    for (const attribute of this.attributes){
+    for (const attribute of this.attributes) {
       this.attributeService.deleteAttribute(attribute.key);
     }
   }
