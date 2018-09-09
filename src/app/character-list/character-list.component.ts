@@ -28,7 +28,6 @@ export class CharacterListComponent implements OnInit {
     this.getCharactersList();
   }
 
-
   getCharactersList() {
     this.characterService.getCharactersList().snapshotChanges().pipe(
       map(changes =>
