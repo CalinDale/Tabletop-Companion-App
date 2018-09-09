@@ -1,12 +1,20 @@
 <div id='container' *ngIf='character'>
-    <span id='backButtonDiv'>
-      <button id='backButton' type="button" class="button btn-primary active" (click)='toggle()'>Close</button>
-    </span>
-  <input id='name' [(ngModel)]="character.name" (focusout)="updateCharacter()" placeholder="Character Name">
+  <table id='headerDiv'>
+    <tr>
+      <td id='backButtonDiv'>
+        <button id='backButton' type="button" class="button btn-close" (click)='toggle()'>Close</button>
+      </td>
+      <td id='nameDiv'>
+        <input id='name' [(ngModel)]="character.name" (focusout)="updateCharacter()" placeholder="Character Name">
+      </td>
+      <td id='backButtonDiv'>
+      </td>
+    </tr>
+  </table>
   <div id='attributeList' *ngFor="let attribute of attributes">
-      <app-char-d-attribute-list-entry [attribute]='attribute' [attributeList]='attributes'></app-char-d-attribute-list-entry>
-    </div>
-    <div id='addAttributeButtonDiv'>
-        <button id='addAttributeButton' type="button" class="button btn-danger" (click)='addAttribute()'>Add Attribute</button>
-      </div>
+    <app-char-d-attribute-list-entry [attribute]='attribute' [attributeList]='attributes'></app-char-d-attribute-list-entry>
+  </div>
+  <div id='addAttributeButtonDiv'>
+    <button id='addAttributeButton' type="button" class="button btn-add" (click)='addAttribute()'>Add Attribute</button>
+  </div>
 </div>

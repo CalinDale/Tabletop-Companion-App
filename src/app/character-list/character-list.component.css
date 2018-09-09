@@ -28,17 +28,10 @@ h1 {
 }
 
 #newCharacterButton {
-  border: dashed;
-  border-width: 2px;
-  border-color: #46d246;
-  border-radius: 20px;
   padding: 3px;
   width: 85%;
-  background-color: #adebad;
 }
 
 #newCharacterButton:hover {
-  -webkit-transition-duration: 0.15s;
-  border-color: #6fdc6f;
-  background-color: #d6f5d6;
+
 }

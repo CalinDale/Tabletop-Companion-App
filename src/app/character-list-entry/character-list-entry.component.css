@@ -23,18 +23,12 @@ td{
 }
 
 #cloneButton{
-  border: dashed;
-  border-width: 2px;
-  border-color: #46d246;
-  border-radius: 20px;
+  border-style: solid;
   width: auto;
-  background-color: #adebad;
 }
 
 #cloneButton:hover {
-  -webkit-transition-duration: 0.15s;
-  border-color: #6fdc6f;
-  background-color: #d6f5d6;
+
 }
 
 #editButtonDiv{

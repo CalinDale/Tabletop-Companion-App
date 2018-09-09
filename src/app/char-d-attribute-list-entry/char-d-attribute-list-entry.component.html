@@ -4,7 +4,7 @@
       <td id='nameDiv'><input id='name' [(ngModel)]="attribute.name" (focusout)="updateAttribute()" placeholder="Name"></td>
       <td id='typeDiv'><input id='type' [(ngModel)]="attribute.type" (focusout)="updateAttribute()" placeholder="Type"></td>
       <td id='valueDiv'><input id='value' [(ngModel)]="attribute.value" (focusout)="updateAttribute()" placeholder="Value"></td>
-      <td id='deleteButtonDiv'><button id='deleteButton' (click)="delete()">delete</button></td>
+      <td id='deleteButtonDiv'><button id='deleteButton' class="button btn-delete" (click)="delete()">delete</button></td>
   </tr>
 </table>
 
