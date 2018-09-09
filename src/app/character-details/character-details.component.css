@@ -14,12 +14,14 @@
   width: 100%;
 }
 
-#backButtonDiv {
-  text-align: left;
+#headerButtonDiv {
   width: 100px;
 }
 
 #backButton {
+}
+
+#deleteButton {
 
 }
 

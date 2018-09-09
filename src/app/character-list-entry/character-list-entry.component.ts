@@ -34,7 +34,6 @@ export class CharacterListEntryComponent implements OnInit {
 
   editCharacter() {
     this.messageService.add('Edit Character ' + this.character.name);
-    this.attributeService.setCharacterID(this.character.key);
     this.characterDetails.setCharacter(this.character);
   }
 

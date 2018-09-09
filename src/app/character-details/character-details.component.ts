@@ -44,6 +44,7 @@ export class CharacterDetailsComponent implements OnInit {
   setCharacter(character: Character) {
     this.character = character;
     this.characterID = character.key;
+    this.attributeService.setCharacterID(this.characterID);
     this.retrieveAttributes();
     this.toggle();
   }
@@ -75,5 +76,13 @@ export class CharacterDetailsComponent implements OnInit {
     this.character.key = this.attributeService.getCharacterID();
     this.character.userID = firebase.auth().currentUser.uid;
     this.characterService.updateCharacter(this.character);
+  }
+
+  deleteCharacter() {
+    this.toggle();
+    this.characterService.deleteCharacter(this.characterID);
+    for (const attribute of this.attributes){
+      this.attributeService.deleteAttribute(attribute.key);
+    }
   }
 }

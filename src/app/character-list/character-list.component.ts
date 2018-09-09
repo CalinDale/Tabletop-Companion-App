@@ -4,6 +4,8 @@ import { map } from 'rxjs/operators';
 import { CharacterService } from '../character.service';
 import { MessageService } from '../message.service';
 import { Character } from '../character';
+import * as firebase from 'firebase';
+import { AttributeService } from '../attribute.service';
 
 @Component({
   selector: 'app-character-list',
@@ -20,6 +22,7 @@ export class CharacterListComponent implements OnInit {
 
   constructor(
     private characterService: CharacterService,
+    private attributeService: AttributeService,
     private messageService: MessageService
   ) { }
 
@@ -44,6 +47,10 @@ export class CharacterListComponent implements OnInit {
   }
 
   newCharacter() {
+    const character = new Character();
+    character.name = 'New Character';
+    character.userID = firebase.auth().currentUser.uid;
+    this.characterService.createCharacter(character);
     this.messageService.add('Add new character');
   }
 
