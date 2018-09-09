@@ -13,7 +13,6 @@ export class CharDAttributeListEntryComponent implements OnInit {
 
   @Input() character: Character;
   @Input() attribute: Attribute;
-  // @Input() attributeList: Attribute[];
 
   @HostListener('focusout', ['$event.target'])
     onFocusout(target) {

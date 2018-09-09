@@ -38,7 +38,7 @@ describe('CharacterListComponent', () => {
       'add'
     ]);
 
-    spyOn(firebase, 'auth').and.returnValue( { currentUser: { uid: testUserID } } );
+    spyOn(firebase, 'auth').and.returnValue( { currentUser: { uid: testCharacter.userID } } );
 
     component = new CharacterListComponent(testCharacterService, testMesageService);
   });
