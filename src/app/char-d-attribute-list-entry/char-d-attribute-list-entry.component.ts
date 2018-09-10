@@ -17,6 +17,7 @@ export class CharDAttributeListEntryComponent implements OnInit {
   @HostListener('focusout', ['$event.target'])
     onFocusout(target) {
       console.log('Focus out called');
+      // TODO: Investigate the line below to fix the double-click on next field error.
       target.type = 'text';
     }
 

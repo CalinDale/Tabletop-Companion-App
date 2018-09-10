@@ -27,7 +27,7 @@ export class CharacterDetailsComponent implements OnInit {
   @HostListener('focusout', ['$event.target'])
     onFocusout(target) {
       console.log('Focus out called');
-      // TODO: Try removing the line below to fix the double-click on next field error.
+      // TODO: Investigate the line below to fix the double-click on next field error.
       target.type = 'text';
     }
 
