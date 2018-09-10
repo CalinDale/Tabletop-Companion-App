@@ -1,45 +1,79 @@
-import { Character } from './../character';
-import { TurnOrderService } from './../turn-order.service';
-import { Component, OnInit } from '@angular/core';
+import { Character } from '../character';
+import { TurnOrderService } from '../turn-order.service';
+import { Component, OnInit, Attribute, AfterViewInit } from '@angular/core';
 import { MessageService } from '../message.service';
+import { CharacterPageComponent } from '../character-page/character-page.component';
+import { CHARACTERS } from '../mock-characters';
+import { ATTRIBUTES } from '../mock-characters';
+import { TouchSequence } from '../../../node_modules/@types/selenium-webdriver';
+
 
 @Component({
   selector: 'app-tracker',
   templateUrl: './tracker.component.html',
   styleUrls: ['./tracker.component.css']
 })
-export class TrackerComponent implements OnInit {
-  characters: Character[];
-  actingPosition: number;
+export class TrackerComponent implements OnInit, AfterViewInit {
 
-  constructor(
-    private turnOrderService: TurnOrderService,
-    private messageService: MessageService
-  ) {}
+  attributes = ATTRIBUTES;
+  currentAttributes: any[];
+  charIDList: string[] = [];
+
+  characters = CHARACTERS;
+
+  maxN = this.characters.length;
+  actingPosition = 1;
+
+  constructor() {
+    this.getAttributes('1');
+  }
 
   ngOnInit() {
-    this.getTurnOrder();
+
   }
 
-  getTurnOrder(): void {
-    this.turnOrderService.getCharacters().subscribe(characters => this.characters = characters);
-    this.turnOrderService.getActingPosition().subscribe(actingPosition => this.actingPosition = actingPosition);
+  ngAfterViewInit() {
+
   }
 
-  nextTurn(): void {
-    this.messageService.add('Go to Next turn');
+  nextTurn() {
+    this.actingPosition += 1;
+    if (this.actingPosition === this.maxN + 1) {
+      this.actingPosition = 1;
+    }
   }
 
-  previousTurn(): void {
-    this.messageService.add('Go to Previous turn');
+  previousTurn() {
+    this.actingPosition -= 1;
+    if (this.actingPosition === 0) {
+      this.actingPosition = this.maxN;
+    }
   }
 
-  removeCharacter(): void {
-    this.messageService.add('Remove Character from turn order');
+  moveSelector(postition: number) {
+    this.actingPosition = postition;
   }
 
-  moveCharacter(): void {
-    this.messageService.add('Move character in turn order.');
+  selectedCharacter(postition: number): string {
+    if ( postition === this.actingPosition) {
+      return '>';
+    }
+  }
+
+  resetList() {
+    this.currentAttributes = [] ;
+  }
+
+
+  getAttributes(key: string) {
+
+    this.resetList();
+
+    this.attributes.forEach( (element) => {
+      if (element.characterID === key) {
+        this.currentAttributes.push( element );
+      }
+    });
   }
 
 }
