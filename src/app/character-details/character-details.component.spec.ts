@@ -31,7 +31,6 @@ describe('CharacterDetailsComponent', () => {
     component = new CharacterDetailsComponent(
       testCharacterService,
       testMessageService,
-      testAttributeSerice,
       testRouter
     );
   });
@@ -51,9 +50,9 @@ describe('CharacterDetailsComponent', () => {
     afterEach(() => {
       testCharacter = null;
     });
-    it('createAttribute() should send character.key to attributeService.setCharacterID', () => {
+    it('createAttribute() should send character.key to characterService.setCharacterID', () => {
       component.createAttribute();
-      expect(testAttributeSerice.setCharacterID).toHaveBeenCalledWith(testCharacter.key);
+      expect(testCharacterService.setCharacterID).toHaveBeenCalledWith(testCharacter.key);
     });
     it('createAttribute() should call router to navigate to addattribute', () => {
       component.createAttribute();

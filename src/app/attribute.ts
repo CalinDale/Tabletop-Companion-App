@@ -5,4 +5,5 @@ export class Attribute {
   type: string;
   value: string;
   userID: string;
+  tracked: boolean;
 }

@@ -29,6 +29,7 @@ export class AddAttributeComponent implements OnInit {
   save() {
     this.attribute.characterID = this.characterService.getCharacterID();
     this.attribute.userID = firebase.auth().currentUser.uid;
+    this.attribute.tracked = true;
     this.attributeService.createAttribute(this.attribute);
     this.attribute = new Attribute();
   }

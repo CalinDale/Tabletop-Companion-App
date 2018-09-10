@@ -26,7 +26,7 @@ import { ViewSingleCharacterComponent } from './view-single-character/view-singl
 import { SingleCharacterDetailsComponent } from './single-character-details/single-character-details.component';
 import { EditAttributeComponent } from './edit-attribute/edit-attribute.component';
 import { EditCharacterComponent } from './edit-character/edit-character.component';
-import { ViewTrackerComponent } from './view-tracker/view-tracker.component';
+import { GiveTrackerComponent } from './give-tracker/give-tracker.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ import { ViewTrackerComponent } from './view-tracker/view-tracker.component';
     SingleCharacterDetailsComponent,
     EditAttributeComponent,
     EditCharacterComponent,
-    ViewTrackerComponent
+    GiveTrackerComponent
 
 
   ],
