@@ -42,35 +42,5 @@ export class CharacterPageComponent implements OnInit {
     this.characterService.deleteAll();
   }
 
-  // go to previous page
-  goBack(): void {
-    this.messageService.add('Back to last Page');
-  }
-
-  // save changes to character
-  save(): void {
-    this.messageService.add('Save changes');
-  }
-
-  addAttribute(): void {
-    this.messageService.add('Add new attribute');
-  }
-
-  editAttribute(): void {
-    this.messageService.add('Edit attribute');
-  }
-
-  removeAttribute(): void {
-    this.messageService.add('Remove Attribute');
-  }
-
-  reorderAttribute(): void {
-    this.messageService.add('Reorder Attribute');
-  }
-
-  rename(): void {
-    this.messageService.add('rename');
-  }
-
 
 }

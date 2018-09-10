@@ -36,8 +36,9 @@ export class CharacterDetailsComponent implements OnInit {
     this.characterService.deleteCharacter(this.character.key);
   }
 
-  updateActive(isActive: boolean) {
-    this.characterService.updateCharacter(this.character.key, { active: isActive });
+  editCharacter() {
+    this.attributeService.setCharacterID(this.character.key);
+    this.router.navigateByUrl('editcharacter');
   }
 
   addCharacter(): void {
@@ -46,6 +47,11 @@ export class CharacterDetailsComponent implements OnInit {
 
   reorderCharacters(): void {
     this.messageService.add('Reorder Character');
+  }
+
+  setCharacterID( ) {
+    this.attributeService.setCharacterID(this.character.key);
+    this.router.navigateByUrl('getCharacter');
   }
 
 

@@ -1,7 +1,8 @@
 export class Attribute {
+  key: string;
+  characterID: string;
   name: string;
   type: string;
   value: string;
-  characterID: string;
   userID: string;
 }

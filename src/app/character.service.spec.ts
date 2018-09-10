@@ -1,3 +1,4 @@
+import { AttributeService } from './attribute.service';
 import { CharacterService } from './character.service';
 
 import { AngularFireList, AngularFireDatabase} from 'angularfire2/database';
@@ -10,6 +11,8 @@ import * as firebase from 'firebase/app';
 
 describe('CharacterService', () => {
   let testAngularFireList: AngularFireList<Character>;
+  let testCharacterID: string;
+  let testAttributeService: AttributeService;
   let testDb: AngularFireDatabase;
   let testUserId: string;
   let testCharacter: Character;
@@ -26,12 +29,19 @@ describe('CharacterService', () => {
     (<jasmine.Spy>(testAngularFireList.update)).and.returnValue({catch(): void {}});
     (<jasmine.Spy>(testAngularFireList.remove)).and.returnValue({catch(): void {}});
 
+    testCharacterID = '23';
+
+    testAttributeService = jasmine.createSpyObj('testAttributeService', [
+      'getCharacterID'
+    ]);
+    (<jasmine.Spy>(testAttributeService.getCharacterID)).and.returnValue(testCharacterID);
+
     testDb = jasmine.createSpyObj('testDb', ['list']);
     (<jasmine.Spy>(testDb.list)).and.returnValue(testAngularFireList);
 
     testUserId = 'Dave55';
     testCharacter = {
-      key: '23',
+      key: testCharacterID,
       name: 'Grog',
       userID: testUserId,
     };
@@ -43,7 +53,7 @@ describe('CharacterService', () => {
     });
 
     // TODO: cannot read snapshot of null should pass when a user id is propperly supplied in constructor observable
-    service = new CharacterService(testDb, <AngularFireAuth>{ authState: testAuthState});
+    service = new CharacterService(testDb, testAttributeService, <AngularFireAuth>{ authState: testAuthState});
   });
   afterEach(() => {
     testAngularFireList = null;
@@ -93,7 +103,7 @@ describe('CharacterService', () => {
       });
 
       it('updateCharacter() should update db list', () => {
-        service.updateCharacter(testCharacter.key, testCharacter);
+        service.updateCharacter(testCharacter);
         expect(testAngularFireList.update).toHaveBeenCalledWith(testCharacter.key, testCharacter);
       });
 

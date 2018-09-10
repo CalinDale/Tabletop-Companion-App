@@ -29,7 +29,7 @@ describe('AttributeService', () => {
 
     testCharacterID = 'Dragon223';
     testUserId = 'Dave55';
-    testAttribute = {
+    testAttribute = <Attribute>{
       name: 'Armor',
       type: 'number',
       value: '20',
@@ -92,18 +92,28 @@ describe('AttributeService', () => {
       service.attributesRef = null;
     });
 
+    describe('with userID set', () => {
+      beforeEach(() => {
+        service.userID = testUserId;
+      });
+      afterEach(() => {
+        service.userID = null;
+      });
+
+      // TODO: this.db.object is not a function?
+      it('getAttributes() should return the list from db list using the characterID', () => {
+        expect(service.getAttributes(testCharacterID)).toBe(testAngularFireList);
+      });
+    });
+
     it('updateAttribute() should update db list', () => {
-      service.updateAttribute(testAttribute.name, testAttribute);
+      service.updateAttribute(testAttribute);
       expect(testAngularFireList.update).toHaveBeenCalledWith(testAttribute.name, testAttribute);
     });
 
     it('deleteAttribute() should remove it from db list', () => {
       service.deleteAttribute(testAttribute.name);
       expect(testAngularFireList.remove).toHaveBeenCalledWith(testAttribute.name);
-    });
-
-    it('getAttributesList() should return the list from db list', () => {
-      expect(service.getAttributesList()).toBe(testAngularFireList);
     });
 
     it('deleteAll() should call remove on db list', () => {
