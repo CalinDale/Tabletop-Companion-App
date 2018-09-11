@@ -1,5 +1,5 @@
+import { CharacterDetailsComponent } from './../character-details/character-details.component';
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { Character } from '../character';
 import { MessageService } from '../message.service';
 import { AttributeService } from '../attribute.service';
 import { Attribute } from '../attribute';
@@ -11,15 +11,8 @@ import { Attribute } from '../attribute';
 })
 export class CharDAttributeListEntryComponent implements OnInit {
 
-  @Input() character: Character;
   @Input() attribute: Attribute;
-
-  @HostListener('focusout', ['$event.target'])
-    onFocusout(target) {
-      console.log('Focus out called');
-      // TODO: Investigate the line below to fix the double-click on next field error.
-      target.type = 'text';
-    }
+  @Input() characterDetailsComponent: CharacterDetailsComponent;
 
   constructor(
     private messageService: MessageService,
@@ -30,12 +23,8 @@ export class CharDAttributeListEntryComponent implements OnInit {
   }
 
   delete() {
+    this.characterDetailsComponent.updateCharacter();
     this.attributeService.deleteAttribute(this.attribute.key);
-  }
-
-  updateAttribute() {
-    this.attributeService.updateAttribute(this.attribute);
-    this.messageService.add('Changes to ' + this.attribute.name + ' saved');
   }
 }
 

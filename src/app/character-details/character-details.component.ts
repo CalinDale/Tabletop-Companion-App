@@ -24,13 +24,6 @@ export class CharacterDetailsComponent implements OnInit {
 
   attributes: Attribute[];
 
-  @HostListener('focusout', ['$event.target'])
-    onFocusout(target) {
-      console.log('Focus out called');
-      // TODO: Investigate the line below to fix the double-click on next field error.
-      target.type = 'text';
-    }
-
   constructor(
     private characterService: CharacterService,
     private attributeService: AttributeService,
@@ -58,10 +51,16 @@ export class CharacterDetailsComponent implements OnInit {
   }
 
   addAttribute() {
+    this.updateCharacter();
     const attribute = new Attribute();
     attribute.characterID = this.character.key;
     attribute.userID = firebase.auth().currentUser.uid;
     this.attributeService.createAttribute(attribute);
+  }
+
+  close() {
+    this.updateCharacter();
+    this.toggle();
   }
 
   toggle() {
@@ -72,10 +71,13 @@ export class CharacterDetailsComponent implements OnInit {
 
   updateCharacter() {
     this.characterService.updateCharacter(this.character);
+    for (const attribute of this.attributes) {
+      this.attributeService.updateAttribute(attribute);
+    }
   }
 
   deleteCharacter() {
-    this.toggle();
+    this.close();
     this.characterService.deleteCharacter(this.character.key);
     for (const attribute of this.attributes) {
       this.attributeService.deleteAttribute(attribute.key);

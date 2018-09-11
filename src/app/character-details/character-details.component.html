@@ -2,10 +2,10 @@
   <table id='headerDiv'>
     <tr>
       <td id='headerButtonDiv'>
-        <button id='backButton' type="button" class="button btn-close" (click)='toggle()'>Close</button>
+        <button id='backButton' type="button" class="button btn-close" (click)='close()'>Close</button>
       </td>
       <td id='nameDiv'>
-        <input id='name' [(ngModel)]="character.name" (focusout)="updateCharacter()" placeholder="Character Name">
+        <input id='name' [(ngModel)]="character.name" placeholder="Character Name">
       </td>
       <td id='headerButtonDiv'>
         <button id='deleteButton' type="button" class="button btn-delete" (click)='deleteCharacter()'>DELETE</button>
@@ -13,7 +13,7 @@
     </tr>
   </table>
   <div id='attributeList' *ngFor="let attribute of attributes">
-    <app-char-d-attribute-list-entry [attribute]='attribute'></app-char-d-attribute-list-entry>
+    <app-char-d-attribute-list-entry [attribute]='attribute' [characterDetailsComponent]='this'></app-char-d-attribute-list-entry>
   </div>
   <div id='addAttributeButtonDiv'>
     <button id='addAttributeButton' type="button" class="button btn-add" (click)='addAttribute()'>Add Attribute</button>
