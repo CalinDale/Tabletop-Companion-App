@@ -22,16 +22,13 @@ import { AddAttributeComponent } from './add-attribute/add-attribute.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CoreModule } from './core/core.module';
 import { RegisterComponent } from './register/register.component';
-<<<<<<< HEAD
 import { AccountRecoveryComponent } from './account-recovery/account-recovery.component';
 import { EditUserAccountComponent } from './edit-user-account/edit-user-account.component';
-=======
 import { ViewSingleCharacterComponent } from './view-single-character/view-single-character.component';
 import { SingleCharacterDetailsComponent } from './single-character-details/single-character-details.component';
 import { EditAttributeComponent } from './edit-attribute/edit-attribute.component';
 import { EditCharacterComponent } from './edit-character/edit-character.component';
 import { GiveTrackerComponent } from './give-tracker/give-tracker.component';
->>>>>>> 6d8fed2aaef7cdea1037e45e82bca92699802f92
 
 @NgModule({
   declarations: [
@@ -44,10 +41,8 @@ import { GiveTrackerComponent } from './give-tracker/give-tracker.component';
     AddAttributeComponent,
     UserProfileComponent,
     RegisterComponent,
-<<<<<<< HEAD
     AccountRecoveryComponent,
-    EditUserAccountComponent
-=======
+    EditUserAccountComponent,
     ViewSingleCharacterComponent,
     SingleCharacterDetailsComponent,
     EditAttributeComponent,
@@ -55,7 +50,6 @@ import { GiveTrackerComponent } from './give-tracker/give-tracker.component';
     GiveTrackerComponent
 
 
->>>>>>> 6d8fed2aaef7cdea1037e45e82bca92699802f92
   ],
   imports: [
     BrowserModule,

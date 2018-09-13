@@ -1,55 +1,3 @@
-<<<<<<< HEAD
-<h1>Tracker</h1>
-
-Current acting position: {{actingPosition}}
-
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Attribute</th>
-      <th>Attribute</th>
-      <th>Attribute</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let character of characters index as i ">
-      {{getAttributes(character.key)}}
-      <td>
-        <button (click)="moveSelector(i+ 1)">X</button>{{selectedCharacter(i + 1)}}</td>
-      <td>{{character.key}}</td>
-      <td>{{character.name}}</td>
-      
-      <td>
-        <select>
-            <option value="defualt">Add Attribute</option>
-            <option *ngFor="let attribute of currentAttributes ">{{attribute.name}} {{attribute.value}}</option>
-        </select> 
-      </td>
-      <td>
-          <select >
-            <option value="defualt">Add Attribute</option>
-            <option *ngFor="let attribute of currentAttributes ">{{attribute.name}} {{attribute.value}}</option>
-          </select> 
-      </td>
-      <td>
-          <select>
-            <option value="defualt">Add Attribute</option>
-            <option *ngFor="let attribute of currentAttributes">{{attribute.name}} {{attribute.value}}</option>
-          </select> 
-      </td>
-  </tr>
-  </tbody>
-</table>
-
-
-{{n}}
-
-<br>
-  <button (click)="nextTurn()">Next Turn</button>
-=======
 <h2>Character</h2>
 <div *ngIf="character">
   <div>
@@ -82,7 +30,6 @@ Current acting position: {{actingPosition}}
   </div>
   <button (click)="removeAttribute(attributes)">Remove attribute from tracker</button>
 </div>
->>>>>>> 6d8fed2aaef7cdea1037e45e82bca92699802f92
 <br>
   <button (click)="previousTurn()">Previous Turn</button>
 <br>

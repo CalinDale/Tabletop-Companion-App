@@ -1,6 +1,6 @@
 import {Character} from './character';
 import { Attribute } from './attribute';
-
+/*
 export const CHARACTERS: Character[] = [
     {key: '1', name: 'Monopoly: Bill', userID: '1'},
     {key: '2', name: 'Monopoly: Frank', userID: '1'},
@@ -42,4 +42,4 @@ export const ATTRIBUTES: Attribute[] = [
     {name: 'testb 5', type: 'String', value: 'Rouge', characterID: '5', userID: '1' },
     {name: 'testb 6', type: 'Number', value: '18', characterID: '6', userID: '1' }
 ];
-
+*/

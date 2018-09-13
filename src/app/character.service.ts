@@ -26,11 +26,7 @@ export class CharacterService {
     private db: AngularFireDatabase,
     private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
-<<<<<<< HEAD
-       if (user) { this.userID = user.uid; }
-=======
       if (user) { this.userID = user.uid; }
->>>>>>> 6d8fed2aaef7cdea1037e45e82bca92699802f92
     });
     this.charactersRef = this.db.list(`characters/${this.userID}`);
   }
@@ -65,6 +61,7 @@ export class CharacterService {
     }
   }
 
+
   deleteCharacter(key: string): void {
     this.charactersRef.remove(key).catch(error => this.handleError(error));
   }
@@ -78,14 +75,11 @@ export class CharacterService {
     }
   }
 
-<<<<<<< HEAD
-=======
   getCharacter(key: string) {
     this.characterRef = this.db.object(`characters/${this.userID}/${key}/`);
     return this.characterRef;
   }
 
->>>>>>> 6d8fed2aaef7cdea1037e45e82bca92699802f92
   deleteAll(): void {
     this.charactersRef.remove().catch(error => this.handleError(error));
   }
