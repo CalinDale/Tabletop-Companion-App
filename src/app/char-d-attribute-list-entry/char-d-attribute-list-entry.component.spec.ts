@@ -1,3 +1,4 @@
+import { CharacterDetailsComponent } from './../character-details/character-details.component';
 import { MessageService } from '../message.service';
 import { Attribute } from '../attribute';
 import { Character } from '../character';
@@ -5,9 +6,11 @@ import { Character } from '../character';
 import { CharDAttributeListEntryComponent } from './char-d-attribute-list-entry.component';
 import { AttributeService } from '../attribute.service';
 
-describe('SingleCharacterDetailsComponent', () => {
+describe('CharDAttributeListEntryComponent', () => {
   let testCharacter: Character;
   let testAttribute: Attribute;
+
+  let testCharacterDetailsComponent: CharacterDetailsComponent;
 
   let testMessageService: MessageService;
   let testAttributeService: AttributeService;
@@ -30,6 +33,9 @@ describe('SingleCharacterDetailsComponent', () => {
       characterID: testCharacter.key
     };
 
+    testCharacterDetailsComponent = jasmine.createSpyObj('testCharacterDetailsComponent', [
+      'updateCharacter'
+    ]);
     testMessageService = jasmine.createSpyObj('testMessageService', [
       'add'
     ]);
@@ -43,6 +49,11 @@ describe('SingleCharacterDetailsComponent', () => {
       testAttributeService);
   });
   afterEach(() => {
+    testCharacter = null;
+    testAttribute = null;
+    testCharacterDetailsComponent = null;
+    testMessageService = null;
+    testAttributeService = null;
     component = null;
   });
 
@@ -50,27 +61,23 @@ describe('SingleCharacterDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('With valid Character', () => {
+  describe('With valid Attribute', () => {
     beforeEach(() => {
-      component.character = testCharacter;
+      component.attribute = testAttribute;
     });
     afterEach(() => {
-      component.character = null;
+      component.attribute = null;
     });
-    describe('With valid Attribute', () => {
+    describe('With valid characterDetailsComponent', () => {
       beforeEach(() => {
-        component.attribute = testAttribute;
+        component.characterDetailsComponent = testCharacterDetailsComponent;
       });
       afterEach(() => {
-        component.attribute = null;
+        component.characterDetailsComponent = null;
       });
       it('delete() should call attributeService.deleteAttribute() with attribute key', () => {
         component.delete();
         expect(testAttributeService.deleteAttribute).toHaveBeenCalledWith(testAttribute.key);
-      });
-      it('update() should call attributeService.updateAttribute() with attribute', () => {
-        component.updateAttribute();
-        expect(testAttributeService.updateAttribute).toHaveBeenCalledWith(testAttribute);
       });
     });
   });
