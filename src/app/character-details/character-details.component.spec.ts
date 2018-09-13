@@ -1,3 +1,5 @@
+import { Observable, of } from 'rxjs';
+import { AngularFireList } from 'angularfire2/database';
 import { CharacterListComponent } from './../character-list/character-list.component';
 import { MessageService } from '../message.service';
 import { AttributeService } from '../attribute.service';
@@ -12,6 +14,7 @@ describe('CharacterDetailsComponent', () => {
   let testUserID: string;
   let testCharacter: Character;
   let testAttributes: Attribute[];
+  let testAngularFireList: AngularFireList<Attribute>;
   let testCharacterListComponent: CharacterListComponent;
   let testCharacterService: CharacterService;
   let testAttributeService: AttributeService;
@@ -33,6 +36,11 @@ describe('CharacterDetailsComponent', () => {
         value: '20',
         characterID: testCharacter.key }
     ];
+
+    testAngularFireList = <any>{
+      snapshotChanges(): Observable<Attribute[]> { return (of(testAttributes)); }
+    };
+
     testCharacterListComponent = jasmine.createSpyObj('testCharacterListComponent', [
       'toggle'
     ]);
@@ -45,9 +53,10 @@ describe('CharacterDetailsComponent', () => {
       'setCharacterID',
       'getAttributes',
       'createAttribute',
+      'updateAttribute',
       'deleteAttribute'
     ]);
-    (<jasmine.Spy>testAttributeService.getAttributes).and.returnValue(testAttributes);
+    (<jasmine.Spy>testAttributeService.getAttributes).and.returnValue(testAngularFireList);
     testMessageService = jasmine.createSpyObj('testMessageService', [
       'add'
     ]);
@@ -59,6 +68,7 @@ describe('CharacterDetailsComponent', () => {
     testUserID = null;
     testCharacter = null;
     testAttributes = null;
+    testAngularFireList = null;
     testCharacterListComponent = null;
     testCharacterService = null;
     testAttributeService = null;
@@ -70,111 +80,139 @@ describe('CharacterDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('setCharacter() should set the character to a given character', () => {
-    component.setCharacter(testCharacter);
-    expect(component.character).toBe(testCharacter);
-  });
-  it('setCharacter() should call attributeService.setCharacterID with character.key', () => {
-    component.setCharacter(testCharacter);
-    expect(testAttributeService.setCharacterID).toHaveBeenCalledWith(testCharacter.key);
-  });
-  it('setCharacter() should call retrieveAttributes()', () => {
-    spyOn(component, 'retrieveAttributes');
-    component.setCharacter(testCharacter);
-    expect(component.retrieveAttributes).toHaveBeenCalled();
-  });
-  it('setCharacter() should call toggle()', () => {
-    spyOn(component, 'toggle');
-    component.setCharacter(testCharacter);
-    expect(component.toggle).toHaveBeenCalled();
+  describe('setCharacter()', () => {
+    beforeEach(() => {
+      spyOn(component, 'retrieveAttributes');
+      spyOn(component, 'toggle');
+    });
+    it('should set character to passed character', () => {
+      component.setCharacter(testCharacter);
+      expect(component.character).toBe(testCharacter);
+    });
+    it('should call attributeService.setCharacterID with character.key', () => {
+      component.setCharacter(testCharacter);
+      expect(testAttributeService.setCharacterID).toHaveBeenCalledWith(component.character.key);
+    });
+    it('should call component.retrieveAttributes()', () => {
+      component.setCharacter(testCharacter);
+      expect(component.retrieveAttributes).toHaveBeenCalled();
+    });
+    it('should call component.toggle()', () => {
+      component.setCharacter(testCharacter);
+      expect(component.toggle).toHaveBeenCalled();
+    });
   });
 
-  describe('with characterListComponent', () => {
+  // TODO: Test RetrieveAttributes()
+  // describe('retrieveAttributes()', () => {
+  //   describe('with valid character', () => {
+  //     beforeEach(() => {
+  //       component.character = testCharacter;
+  //     });
+  //     afterEach(() => {
+  //       component.character = null;
+  //     });
+  //     it('should call attributeService.getAttributes with character.key', () => {
+  //       component.retrieveAttributes();
+  //       expect(testAttributeService.getAttributes).toHaveBeenCalledWith(component.character.key);
+  //     });
+  //   });
+  // });
+
+  describe('addAttribute()', () => {
+    beforeEach(() => {
+      spyOn(component, 'updateCharacter');
+      component.character = testCharacter;
+    });
+    afterEach(() => {
+      component.character = null;
+    });
+    it('should call updateCharacter()', () => {
+      component.addAttribute();
+      expect(component.updateCharacter).toHaveBeenCalled();
+    });
+    it('should call attributeService.createAttribute() with a new attribute', () => {
+      component.addAttribute();
+      expect(testAttributeService.createAttribute).toHaveBeenCalled();
+    });
+    // TODO: check that the new attribute got the ids properly.
+  });
+
+  describe('close()', () => {
+    beforeEach(() => {
+      spyOn(component, 'updateCharacter');
+      spyOn(component, 'toggle');
+    });
+    it('should call updateCharacter()', () => {
+      component.close();
+      expect(component.updateCharacter).toHaveBeenCalled();
+    });
+    it('should call toggle()', () => {
+      component.close();
+      expect(component.toggle).toHaveBeenCalled();
+    });
+  });
+
+  describe('toggle()', () => {
     beforeEach(() => {
       component.characterListComponent = testCharacterListComponent;
     });
     afterEach(() => {
       component.characterListComponent = null;
     });
-    it('toggle() should call characterListComponent.toggle()', () => {
+    it('should set isOpen to the opposite of what it was', () => {
+      const open = component.isOpen;
+      component.toggle();
+      expect(component.isOpen).toBe(!open);
+    });
+    it('should call characterListComponent.toggle()', () => {
       component.toggle();
       expect(testCharacterListComponent.toggle).toHaveBeenCalled();
     });
-    describe('with isOpen true', () => {
-      beforeEach(() => {
-        component.isOpen = true;
-      });
-      afterEach(() => {
-        component.isOpen = null;
-      });
-      it('toggle() should set isOpen to false', () => {
-        component.toggle();
-        expect(component.isOpen).toBeFalsy();
-      });
-    });
-    describe('with isOpen false', () => {
-      beforeEach(() => {
-        component.isOpen = false;
-      });
-      afterEach(() => {
-        component.isOpen = null;
-      });
-      it('toggle() should set isOpen to true', () => {
-        component.toggle();
-        expect(component.isOpen).toBeTruthy();
-      });
-    });
   });
 
-  describe('with valid Character', () => {
+  describe('updateCharacter()', () => {
     beforeEach(() => {
       component.character = testCharacter;
+      component.attributes = testAttributes;
     });
     afterEach(() => {
       component.character = null;
+      component.attributes = null;
     });
-
-    it('retrieveAttributes() should call attributeService.getAttributes with character.key', () => {
-      component.retrieveAttributes();
-      expect(testAttributeService.getAttributes).toHaveBeenCalledWith(testCharacter.key);
-    });
-    // TODO: Try this test, it may fail.
-    it('retrieveAttributes() should set attributes to attributeService.getAttributes() returned list', () => {
-      component.retrieveAttributes();
-      expect(component.attributes).toBe(testAttributes);
-    });
-
-    // TODO: better tests for AddAttribute. Try and test that the passed attribute contains the CharacterID and UserID
-    it('addAttribute() should call attributeService.createAttribute()', () => {
-      component.addAttribute();
-      expect(testAttributeService.createAttribute).toHaveBeenCalled();
-    });
-    it('addAttribute() should call firebase.auth()', () => {
-      component.addAttribute();
-      expect(firebase.auth).toHaveBeenCalled();
-    });
-
-    it('updateCharacter() should call characterservice.updateCharacter() with character', () => {
+    it('should call characterService.updateCharacter() with character', () => {
       component.updateCharacter();
       expect(testCharacterService.updateCharacter).toHaveBeenCalledWith(testCharacter);
     });
-
-    it('deleteCharacter() should call toggle()', () => {
-      spyOn(component, 'toggle');
-      component.deleteCharacter();
-      expect(component.toggle).toHaveBeenCalled();
+    it('should call attributeService.updateAttribute() with all attributes from list', () => {
+      component.updateCharacter();
+      expect(testAttributeService.updateAttribute).toHaveBeenCalledTimes(testAttributes.length);
+      expect(testAttributeService.updateAttribute).toHaveBeenCalledWith(testAttributes[0]);
     });
-    it('deleteCharacter() should call characterService.deleteCharacter() with character.key', () => {
+  });
+
+  describe('deleteCharacter()', () => {
+    beforeEach(() => {
+      spyOn(component, 'close');
+      component.character = testCharacter;
+      component.attributes = testAttributes;
+    });
+    afterEach(() => {
+      component.character = null;
+      component.attributes = null;
+    });
+    it('should call close()', () => {
+      component.deleteCharacter();
+      expect(component.close).toHaveBeenCalled();
+    });
+    it('should call characterService.deleteCharacter() with character.key', () => {
       component.deleteCharacter();
       expect(testCharacterService.deleteCharacter).toHaveBeenCalledWith(testCharacter.key);
     });
-    it('deleteAttribute() should call attributeService.deleteAttribute() with attribute.key', () => {
-      component.deleteCharacter();
-      expect(testAttributeService.deleteAttribute).toHaveBeenCalledWith(testAttributes[0].key);
-    });
-    it('deleteAttribute() should call attributeService.deleteAttribute() for every attribute in attributes', () => {
+    it('should call attributeService.updateAttribute() with all attribute.keys from list', () => {
       component.deleteCharacter();
       expect(testAttributeService.deleteAttribute).toHaveBeenCalledTimes(testAttributes.length);
+      expect(testAttributeService.deleteAttribute).toHaveBeenCalledWith(testAttributes[0].key);
     });
   });
 });

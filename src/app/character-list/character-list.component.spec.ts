@@ -1,3 +1,4 @@
+import { of, Observable } from 'rxjs';
 import { MessageService } from '../message.service';
 import { Character} from '../character';
 import { CharacterService } from '../character.service';
@@ -23,16 +24,17 @@ describe('CharacterListComponent', () => {
     };
     testCharacters = [ testCharacter ];
 
-    testCharactersList = jasmine.createSpyObj('testCharactersList', [
-      'snapshotChanges'
-    ]);
-    (<jasmine.Spy>(testCharactersList.snapshotChanges)).and.returnValue( { pipe() {} } );
+    // testCharactersList = <any>{
+    //   snapshotChanges(): Observable<any> {
+    //     return of(testCharacters);
+    //   }
+    // };
 
     testCharacterService = jasmine.createSpyObj('testCharacterService', [
       'getCharactersList',
       'createCharacter'
     ]);
-    (<jasmine.Spy>(testCharacterService.getCharactersList)).and.returnValue(testCharactersList);
+    // (<jasmine.Spy>(testCharacterService.getCharactersList)).and.returnValue(testCharactersList);
 
     testMesageService = jasmine.createSpyObj('testMessageService', [
       'add'
@@ -58,30 +60,54 @@ describe('CharacterListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // TODO: Test getting characters from observable
-
-  it('toggle() should set isOpen to the opposite of what it was', () => {
-    const open = component.isOpen;
-    component.toggle();
-    expect(component.isOpen).toBe(!open);
+  describe('ngOnInit()', () => {
+    beforeEach(() => {
+      spyOn(component, 'getCharactersList');
+    });
+    afterEach(() => {
+    });
+    it('should call component.getCharactersList()', () => {
+      component.ngOnInit();
+      expect(component.getCharactersList).toHaveBeenCalled();
+    });
   });
 
-  describe('with Characters List', () => {
+  // TODO: test getCharactersList();
+  // describe('getCharactersList()', () => {
+  //   beforeEach(() => {
+  //   });
+  //   afterEach(() => {
+  //   });
+  //   it('should set component.characters to database Characters', () => {
+  //     component.getCharactersList();
+  //     expect(component.characters).toBe(testCharacters);
+  //   });
+  // });
+
+  describe('with characters list', () => {
     beforeEach(() => {
       component.characters = testCharacters;
     });
     afterEach(() => {
       component.characters = null;
     });
-
-    it('newCharacter() should call firebase.Auth()', () => {
-      component.newCharacter();
-      expect(firebase.auth).toHaveBeenCalled();
+    describe('newCharacter()', () => {
+      it('should call firebase.Auth()', () => {
+        component.newCharacter();
+        expect(firebase.auth).toHaveBeenCalled();
+      });
+      it('should call characterService.createCharacter()', () => {
+        component.newCharacter();
+        expect(testCharacterService.createCharacter).toHaveBeenCalled();
+      });
     });
+  });
 
-    it('newCharacter() should call characterService.createCharacter()', () => {
-      component.newCharacter();
-      expect(testCharacterService.createCharacter).toHaveBeenCalled();
+  describe('toggle()', () => {
+    it('should set isOpen to the opposite of what it was', () => {
+      const open = component.isOpen;
+      component.toggle();
+      expect(component.isOpen).toBe(!open);
     });
   });
 });
