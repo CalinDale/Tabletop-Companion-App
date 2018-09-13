@@ -75,9 +75,11 @@ describe('CharDAttributeListEntryComponent', () => {
       afterEach(() => {
         component.characterDetailsComponent = null;
       });
-      it('delete() should call attributeService.deleteAttribute() with attribute key', () => {
-        component.delete();
-        expect(testAttributeService.deleteAttribute).toHaveBeenCalledWith(testAttribute.key);
+      describe('delete()', () => {
+        it('should call attributeService.deleteAttribute() with attribute key', () => {
+          component.delete();
+          expect(testAttributeService.deleteAttribute).toHaveBeenCalledWith(testAttribute.key);
+        });
       });
     });
   });
