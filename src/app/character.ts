@@ -1,7 +1,6 @@
-import { Attribute } from './attribute';
-
 export class Character {
-  charId: number;
+  key: string;
   name: string;
-  attributes: Attribute[];
+  userID: string;
+  tracked: boolean;
 }

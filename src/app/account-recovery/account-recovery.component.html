@@ -1,0 +1,17 @@
+<form [formGroup] = "accountRecoveryForm">
+
+  <h3> Account Recovery </h3>
+  
+  <label>Email:</label>
+  <input type="email" formControlName="email">
+
+  <div *ngIf="email.invalid && email.dirty">
+    Your email doesn't look quite right...
+  </div>
+  
+  <div *ngIf="accountRecoveryForm.valid"> Form is valid </div>
+
+  <button type="submit" [disabled]="!accountRecoveryForm.valid" (click)="accountRecover()">Send</button>
+  
+
+</form>
