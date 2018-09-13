@@ -84,22 +84,20 @@ describe('CharacterListComponent', () => {
   //   });
   // });
 
-  describe('with characters list', () => {
+  describe('newCharacter()', () => {
     beforeEach(() => {
       component.characters = testCharacters;
     });
     afterEach(() => {
       component.characters = null;
     });
-    describe('newCharacter()', () => {
-      it('should call firebase.Auth()', () => {
-        component.newCharacter();
-        expect(firebase.auth).toHaveBeenCalled();
-      });
-      it('should call characterService.createCharacter()', () => {
-        component.newCharacter();
-        expect(testCharacterService.createCharacter).toHaveBeenCalled();
-      });
+    it('should call firebase.Auth()', () => {
+      component.newCharacter();
+      expect(firebase.auth).toHaveBeenCalled();
+    });
+    it('should call characterService.createCharacter()', () => {
+      component.newCharacter();
+      expect(testCharacterService.createCharacter).toHaveBeenCalled();
     });
   });
 

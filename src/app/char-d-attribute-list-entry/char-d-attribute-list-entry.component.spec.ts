@@ -61,26 +61,18 @@ describe('CharDAttributeListEntryComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('With valid Attribute', () => {
+  describe('delete()', () => {
     beforeEach(() => {
       component.attribute = testAttribute;
+      component.characterDetailsComponent = testCharacterDetailsComponent;
     });
     afterEach(() => {
       component.attribute = null;
+      component.characterDetailsComponent = null;
     });
-    describe('With valid characterDetailsComponent', () => {
-      beforeEach(() => {
-        component.characterDetailsComponent = testCharacterDetailsComponent;
-      });
-      afterEach(() => {
-        component.characterDetailsComponent = null;
-      });
-      describe('delete()', () => {
-        it('should call attributeService.deleteAttribute() with attribute key', () => {
-          component.delete();
-          expect(testAttributeService.deleteAttribute).toHaveBeenCalledWith(testAttribute.key);
-        });
-      });
+    it('should call attributeService.deleteAttribute() with attribute key', () => {
+      component.delete();
+      expect(testAttributeService.deleteAttribute).toHaveBeenCalledWith(testAttribute.key);
     });
   });
 });

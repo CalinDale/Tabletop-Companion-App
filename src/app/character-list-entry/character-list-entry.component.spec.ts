@@ -4,6 +4,7 @@ import { CharacterListEntryComponent } from './character-list-entry.component';
 import { Character } from '../character';
 
 describe('CharacterListEntryComponent', () => {
+  let testCharacter: Character;
   let testCharacterDetails: CharacterDetailsComponent;
   let testMessageService: MessageService;
   let component: CharacterListEntryComponent;
@@ -14,6 +15,7 @@ describe('CharacterListEntryComponent', () => {
     testMessageService = jasmine.createSpyObj('testMessageService', [
       'add'
     ]);
+    testCharacter = <Character>{ key: 'Grog23'};
 
     component = new CharacterListEntryComponent(
       testMessageService
@@ -25,26 +27,18 @@ describe('CharacterListEntryComponent', () => {
     component = null;
   });
 
-  describe('with valid character', () => {
-    let testCharacter: Character;
+  describe('editCharacter()', () => {
     beforeEach(() => {
-      testCharacter = <Character>{ key: 'Grog23'};
+      component.characterDetails = testCharacterDetails;
       component.character = testCharacter;
     });
     afterEach(() => {
-      testCharacter = null;
+      component.characterDetails = null;
+      component.character = null;
     });
-
-    describe('editCharacter()', () => {
-      beforeEach(() => {
-        component.characterDetails = testCharacterDetails;
-      });
-      afterEach(() => {
-      });
-      it('should setCharacter in characterDetails with Character', () => {
-        component.editCharacter();
-        expect(testCharacterDetails.setCharacter).toHaveBeenCalledWith(testCharacter);
-      });
+    it('should setCharacter in characterDetails with Character', () => {
+      component.editCharacter();
+      expect(testCharacterDetails.setCharacter).toHaveBeenCalledWith(testCharacter);
     });
   });
 });
