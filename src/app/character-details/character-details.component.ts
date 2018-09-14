@@ -83,4 +83,12 @@ export class CharacterDetailsComponent implements OnInit {
       this.attributeService.deleteAttribute(attribute.key);
     }
   }
+
+  addToTracker() {
+    this.character.tracked = true;
+    for (const attribute of this.attributes) {
+      attribute.tracked = true;
+    }
+    this.updateCharacter();
+  }
 }

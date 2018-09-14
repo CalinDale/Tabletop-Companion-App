@@ -73,6 +73,7 @@ export class AttributeService {
   // TODO: this.db.object is not a function?
   // Changed a piece of code to have the attributeService pull the ID of the attribute being updated
   updateAttribute(attribute: Attribute): void {
+    this.characterID = this.characterService.getCharacterID();
     this.setAttributeID(attribute.key);
     this.attributeRef = this.db.object(`attributes/${this.userID}/${this.characterID}/${this.attributeID}`);
     this.attributeRef.update(attribute).catch(error => this.handleError(error));

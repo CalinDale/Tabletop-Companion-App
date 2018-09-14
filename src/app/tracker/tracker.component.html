@@ -4,8 +4,9 @@
     <br><label>Name: </label> {{character.name}}
     <button (click)="getAttributes()">Add attribute</button>
     <div *ngIf="show" class="alert alert-success box-msg" role="alert">
-    <h3>Attributes not yet tracked</h3>
-    <button (click)="hideButton()">Hide</button>
+      <h3>Attributes not yet tracked</h3>
+      <button (click)="hideButton()">Hide</button>
+    </div>
 <div *ngFor="let attributes of attributess" style="width: 300px;">
   <div>
    <br><label>Name: </label> {{attributes.name}}<br><br>
@@ -16,7 +17,6 @@
 <br>
   <br><br><br>
   </div>
-</div>
 <h3>Attributes</h3>
 <div *ngFor="let attributes of attribute" style="width: 300px;">
   <div>
