@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Character } from './../character';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tracker-row',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tracker-row.component.css']
 })
 export class TrackerRowComponent implements OnInit {
+
+  @Input()character: Character;
 
   constructor() { }
 

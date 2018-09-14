@@ -1,3 +1,11 @@
-<p>
-  tracker-row works!
-</p>
+<table *ngIf='character'>
+  <tr>
+    <td id='markerDiv'></td>
+    <td id='nameDiv'>{{character.name}}</td>
+    <td id='attributeDiv'>
+      <select id='attributeSelect'>
+          <option value='default'>Add Attribute</option>
+      </select>
+    </td>
+  </tr>
+</table>

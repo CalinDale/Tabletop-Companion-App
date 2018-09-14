@@ -14,7 +14,7 @@
   </thead>
   <tbody>
     <tr *ngFor='let character of characters index as i'>
-      dave
+      <app-tracker-row [character]='character'></app-tracker-row>
     </tr>
   </tbody>
 </table>
