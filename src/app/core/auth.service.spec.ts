@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { AuthService } from './auth.service';
-import { AngularFirestore } from '../../../node_modules/angularfire2/firestore';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 import * as firebase from 'firebase';
 import { auth } from 'firebase';

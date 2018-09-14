@@ -1,16 +1,21 @@
-<div *ngIf="character">
-  <div>
-    <label>Name: </label> {{character.name}}<br><br>
+<div id='container' *ngIf='character'>
+  <table id='headerDiv'>
+    <tr>
+      <td id='headerButtonDiv'>
+        <button id='backButton' type="button" class="button btn-close" (click)='close()'>Close</button>
+      </td>
+      <td id='nameDiv'>
+        <input id='name' [(ngModel)]="character.name" placeholder="Character Name">
+      </td>
+      <td id='headerButtonDiv'>
+        <button id='deleteButton' type="button" class="button btn-delete" (click)='deleteCharacter()'>DELETE</button>
+      </td>
+    </tr>
+  </table>
+  <div id='attributeList' *ngFor="let attribute of attributes">
+    <app-char-d-attribute-list-entry [attribute]='attribute' [characterDetailsComponent]='this'></app-char-d-attribute-list-entry>
+  </div>
+  <div id='addAttributeButtonDiv'>
+    <button id='addAttributeButton' type="button" class="button btn-add" (click)='addAttribute()'>Add Attribute</button>
   </div>
 </div>
-
-<button  (click)="setCharacterID()" >View character</button>
-<br>
-<button  (click)="createAttribute()" >Add Attribute</button>
-<br>
-<button  (click)="deleteCharacter()" >Remove character</button>
-<br>
-<button  (click)="editCharacter()" >Edit character</button>
-<br>
-<button  (click)="reorderCharacters()" >Reorder characters</button>
-<br><br><br>

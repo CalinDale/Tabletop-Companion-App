@@ -1,12 +1,12 @@
-import { AddAttributeComponent } from './../add-attribute/add-attribute.component';
-import { AttributeService } from './../attribute.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { Character } from '../character';
-import { CharacterService } from '../character.service';
+import { Attribute } from './../attribute';
+import { CharacterListComponent } from '../character-list/character-list.component';
 import { MessageService } from '../message.service';
-import { Router } from '@angular/router';
-import { Attribute } from '../attribute';
-
+import { CharacterService } from '../character.service';
+import { AttributeService } from '../attribute.service';
+import { Character } from '../character';
+import { Component, OnInit, Input, HostBinding, HostListener } from '@angular/core';
+import { map } from 'rxjs/operators';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-character-details',
@@ -15,47 +15,72 @@ import { Attribute } from '../attribute';
 })
 export class CharacterDetailsComponent implements OnInit {
 
-  @Input() character: Character;
+  @HostBinding('class.is-open')
+  isOpen = false;
+
+  @Input() characterListComponent: CharacterListComponent;
+
+  character: Character;
+
+  attributes: Attribute[];
 
   constructor(
     private characterService: CharacterService,
-    private messageService: MessageService,
     private attributeService: AttributeService,
-    private router: Router
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
   }
 
-  createAttribute( ) {
+  setCharacter(character: Character) {
+    this.character = character;
     this.attributeService.setCharacterID(this.character.key);
-    this.router.navigateByUrl('addattribute');
+    this.retrieveAttributes();
+    this.toggle();
+  }
+
+  retrieveAttributes() {
+    this.attributeService.getAttributes(this.character.key).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(attributes => {
+      this.attributes = attributes;
+    });
+  }
+
+  addAttribute() {
+    this.updateCharacter();
+    const attribute = new Attribute();
+    attribute.characterID = this.character.key;
+    attribute.userID = firebase.auth().currentUser.uid;
+    this.attributeService.createAttribute(attribute);
+  }
+
+  close() {
+    this.updateCharacter();
+    this.toggle();
+  }
+
+  toggle() {
+    this.isOpen = !this.isOpen;
+    this.messageService.add('close/open details');
+    this.characterListComponent.toggle();
+  }
+
+  updateCharacter() {
+    this.characterService.updateCharacter(this.character);
+    for (const attribute of this.attributes) {
+      this.attributeService.updateAttribute(attribute);
+    }
   }
 
   deleteCharacter() {
+    this.close();
     this.characterService.deleteCharacter(this.character.key);
+    for (const attribute of this.attributes) {
+      this.attributeService.deleteAttribute(attribute.key);
+    }
   }
-
-  editCharacter() {
-    this.attributeService.setCharacterID(this.character.key);
-    this.router.navigateByUrl('editcharacter');
-  }
-
-  addCharacter(): void {
-    this.messageService.add('Add New Character');
-  }
-
-  reorderCharacters(): void {
-    this.messageService.add('Reorder Character');
-  }
-
-  setCharacterID( ) {
-    this.attributeService.setCharacterID(this.character.key);
-    this.router.navigateByUrl('getCharacter');
-  }
-
-
 }
-
-
-

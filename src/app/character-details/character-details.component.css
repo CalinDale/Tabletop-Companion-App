@@ -1,0 +1,52 @@
+:host {
+  display: none;
+}
+
+:host.is-open {
+  display: block;
+}
+
+#container {
+  text-align: center;
+}
+
+#headerDiv {
+  width: 100%;
+}
+
+#headerButtonDiv {
+  width: 100px;
+}
+
+#backButton {
+}
+
+#deleteButton {
+
+}
+
+#nameDiv {
+  text-align: center;
+}
+
+#name {
+  text-align: center;
+  font-size: 1.5em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#attributeList {
+  position:relative;
+  left: 23px;
+}
+
+#addAttributeButtonDiv {
+
+}
+
+#addAttributeButton {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 60%;
+}

@@ -5,21 +5,22 @@ import { MessageService } from './message.service';
 import { Character } from './character';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from '../../node_modules/rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 import { AngularFireList, AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CharacterService {
 
 
   charactersRef: AngularFireList<Character> = null;
-  userID: string = firebase.auth().currentUser.uid;
+  // had to change userID initialisation as it was causing issues when trying to use characterService before the user had logged in.
+  // seems extranious anyway as the userID is gotten properly in the constructor)
+  userID: string; /*  = firebase.auth().currentUser.uid; */
   characterRef: AngularFireObject<any> = null;
-  // userID: string;
   character: Character;
   characterID: string;
 

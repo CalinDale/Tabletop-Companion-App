@@ -1,6 +1,6 @@
-import { AuthService } from './../core/auth.service';
+import { AuthService } from '../core/auth.service';
 import { UserProfileComponent } from './user-profile.component';
-import { FormBuilder } from '../../../node_modules/@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 describe('UserProfileComponent', () => {
   let testAuth: AuthService;
