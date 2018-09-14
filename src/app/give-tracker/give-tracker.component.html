@@ -20,17 +20,17 @@
       <td>
         <select>
             <option value="defualt">Add Attribute</option>
-        </select> 
+        </select>
       </td>
       <td>
         <select>
             <option value="defualt">Add Attribute</option>
-        </select> 
+        </select>
       </td>
       <td>
         <select>
             <option value="defualt">Add Attribute</option>
-        </select> 
+        </select>
       </td>
       <td>
         <button class="btn btn-success" (click)="moveUp(character, i);">Move Up</button>
@@ -48,7 +48,7 @@
 <br>
 
 <div *ngFor="let character of characters" style="width: 300px;">
-  <app-tracker [character]='character'></app-tracker>
+  <app-tracker-character [character]='character'></app-tracker-character>
 </div>
 <div style="margin-top:20px;">
   <button type="button" class="button btn-danger" (click)='deleteCharacters()'>Delete All</button>

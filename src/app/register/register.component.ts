@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../core/auth.service';
 import { matchOtherValidator} from './matchOtherValidtator';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 
 

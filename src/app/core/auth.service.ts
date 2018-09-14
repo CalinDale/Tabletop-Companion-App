@@ -12,7 +12,7 @@ import { switchMap } from 'rxjs/operators';
 import { User } from './user';
 import { CharacterService } from '../character.service';
 
-import { EmailPasswordCredentials } from '../core/emailPasswordCredentials';
+import { EmailPasswordCredentials } from './emailPasswordCredentials';
 
 import * as firebase from 'firebase';
 

@@ -1,5 +1,5 @@
-import { CharacterService } from './../character.service';
-import { AttributeService } from './../attribute.service';
+import { CharacterService } from '../character.service';
+import { AttributeService } from '../attribute.service';
 import { Character } from '../character';
 import { TurnOrderService } from '../turn-order.service';
 import { Component, OnInit, Input } from '@angular/core';
@@ -9,11 +9,11 @@ import * as firebase from 'firebase';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-tracker',
-  templateUrl: './tracker.component.html',
-  styleUrls: ['./tracker.component.css']
+  selector: 'app-tracker-character',
+  templateUrl: './tracker-character.component.html',
+  styleUrls: ['./tracker-character.component.css']
 })
-export class TrackerComponent implements OnInit {
+export class TrackerCharacterComponent implements OnInit {
 
   @Input() character: Character;
   @Input() attributes: Attribute;

@@ -1,7 +1,7 @@
-import { TrackerComponent } from './tracker.component';
+import { TrackerCharacterComponent } from './tracker-character.component';
 
 describe('TrackerComponent', () => {
-  let component: TrackerComponent;
+  let component: TrackerCharacterComponent;
   beforeEach(() => {
     // component = new TrackerComponent();
   });

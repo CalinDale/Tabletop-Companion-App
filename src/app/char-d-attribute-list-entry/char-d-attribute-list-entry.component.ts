@@ -1,4 +1,4 @@
-import { CharacterDetailsComponent } from './../character-details/character-details.component';
+import { CharacterDetailsComponent } from '../character-details/character-details.component';
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { MessageService } from '../message.service';
 import { AttributeService } from '../attribute.service';

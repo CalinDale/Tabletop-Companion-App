@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../core/auth.service';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { matchOtherValidator } from '../register/matchOtherValidtator';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 
 
@@ -83,7 +83,7 @@ this.editPasswordForm = this.fb.group({
     const user = firebase.auth().currentUser;
     user.updatePassword(this.password.value).then(function() {
       // Update Successful
-    }).catch(function(error){
+    }).catch(function(error) {
       // An error happened
     }).then(( ) =>  {
       this.auth.updateUserData(user);

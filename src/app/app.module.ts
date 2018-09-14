@@ -16,7 +16,7 @@ import { environment } from 'environments/environment';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { CharacterListComponent } from './character-list/character-list.component';
-import { TrackerComponent } from './tracker/tracker.component';
+import { TrackerCharacterComponent } from './tracker-character/tracker-character.component';
 import { MessagesComponent } from './messages/messages.component';
 import { CharacterListEntryComponent } from './character-list-entry/character-list-entry.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -31,7 +31,7 @@ import { GiveTrackerComponent } from './give-tracker/give-tracker.component';
   declarations: [
     AppComponent,
     CharacterListComponent,
-    TrackerComponent,
+    TrackerCharacterComponent,
     MessagesComponent,
     CharacterListEntryComponent,
     UserProfileComponent,

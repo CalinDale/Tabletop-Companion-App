@@ -1,4 +1,4 @@
-import { CharacterDetailsComponent } from './../character-details/character-details.component';
+import { CharacterDetailsComponent } from '../character-details/character-details.component';
 import { MessageService } from '../message.service';
 import { Attribute } from '../attribute';
 import { Character } from '../character';

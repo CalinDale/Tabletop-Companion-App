@@ -7,8 +7,8 @@ import { Character } from '../character';
 
 @Component({
   selector: 'app-give-tracker',
-  templateUrl: './give-tracker.component.html',
-  styleUrls: ['./give-tracker.component.css']
+  templateUrl: './give-tracker-character.component.html',
+  styleUrls: ['./give-tracker-character.component.css']
 })
 export class GiveTrackerComponent implements OnInit {
 

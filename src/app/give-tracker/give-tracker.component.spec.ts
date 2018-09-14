@@ -1,4 +1,4 @@
-import { CharacterService } from './../character.service';
+import { CharacterService } from '../character.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GiveTrackerComponent } from './give-tracker.component';

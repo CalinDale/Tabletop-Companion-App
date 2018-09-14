@@ -1,4 +1,4 @@
-import { Attribute } from './../attribute';
+import { Attribute } from '../attribute';
 import { CharacterListComponent } from '../character-list/character-list.component';
 import { MessageService } from '../message.service';
 import { CharacterService } from '../character.service';

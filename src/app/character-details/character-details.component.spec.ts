@@ -1,12 +1,12 @@
 import { Observable, of } from 'rxjs';
 import { AngularFireList } from 'angularfire2/database';
-import { CharacterListComponent } from './../character-list/character-list.component';
+import { CharacterListComponent } from '../character-list/character-list.component';
 import { MessageService } from '../message.service';
 import { AttributeService } from '../attribute.service';
 import { CharacterService } from '../character.service';
 import { Character } from '../character';
 import * as firebase from 'firebase';
-import { Attribute } from './../attribute';
+import { Attribute } from '../attribute';
 
 import { CharacterDetailsComponent } from './character-details.component';
 
