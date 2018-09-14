@@ -1,7 +1,7 @@
 import { FormGroup } from '@angular/forms';
 
 import { RegisterComponent } from './register.component';
-import { FormBuilder } from '../../../node_modules/@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../core/auth.service';
 
 describe('RegisterComponent', () => {

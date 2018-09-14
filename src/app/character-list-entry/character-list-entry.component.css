@@ -1,0 +1,40 @@
+table{
+  width: 100%;
+}
+
+tr{
+
+}
+
+td{
+
+}
+
+#drag{
+  width:10px;
+}
+
+#name{
+  padding-left: 87px;
+}
+
+#cloneButtonDiv{
+  width: 10px;
+}
+
+#cloneButton{
+  border-style: solid;
+  width: auto;
+}
+
+#cloneButton:hover {
+
+}
+
+#editButtonDiv{
+  width: 10px;
+}
+
+#editButton{
+
+}

@@ -1,0 +1,14 @@
+<div id='container'>
+  <h1>Characters</h1>
+  <div id='list' *ngFor="let character of characters">
+    <app-character-list-entry [character]='character' [characterDetails]='characterDetails'></app-character-list-entry>
+  </div>
+  <div id='newCharacterButtonDiv'>
+    <button id='newCharacterButton'  type="button" class="button btn-add" (click)='newCharacter()'>New Character</button>
+  </div>
+  <!--
+  <div style="margin-top:20px;">
+    <button type="button" class="button btn-danger" (click)='deleteCharacters()'>Delete All</button>
+  </div>
+  -->
+</div>

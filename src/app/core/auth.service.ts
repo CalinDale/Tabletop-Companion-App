@@ -9,7 +9,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { User } from './user';
-import { EmailPasswordCredentials } from '../core/emailPasswordCredentials';
+import { EmailPasswordCredentials } from './emailPasswordCredentials';
 
 import * as firebase from 'firebase';
 

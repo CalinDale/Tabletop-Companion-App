@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  font-family: Sans-serif;
+}
+
+button.btn-add{
+  border: dashed;
+  border-width: 2px;
+  border-color: #46d246;
+  border-radius: 20px;
+  background-color: #adebad;
+}
+
+button.btn-add:hover{
+  -webkit-transition-duration: 0.15s;
+  border-color: #6fdc6f;
+  background-color: #d6f5d6;
+}
+
+button.btn-delete{
+  border: solid;
+  border-width: 2px;
+  border-color: red;
+  border-radius: 5px;
+  background-color: #ff6666;
+}
+
+button.btn-delete:hover{
+  -webkit-transition-duration: 0.15s;
+  border-color: #ff4d4d;
+  background-color: #ffb3b3;
+}
