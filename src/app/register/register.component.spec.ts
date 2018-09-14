@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
 import { RegisterComponent } from './register.component';
@@ -7,6 +8,7 @@ import { AuthService } from '../core/auth.service';
 describe('RegisterComponent', () => {
   let testAuth: AuthService;
   let testFB: FormBuilder;
+  let testRouter: Router;
   let component: RegisterComponent;
   beforeEach(() => {
     testAuth = jasmine.createSpyObj('testAuth', [
@@ -17,7 +19,10 @@ describe('RegisterComponent', () => {
       'group'
     ]);
     (<jasmine.Spy>testFB.group).and.returnValue( <FormGroup>{} );
-    component = new RegisterComponent(testAuth, testFB);
+    testRouter = jasmine.createSpyObj('testRouter', [
+      'navigate'
+    ]);
+    component = new RegisterComponent(testAuth, testFB, testRouter);
   });
   afterEach(() => {
     testAuth = null;

@@ -1,3 +1,4 @@
+import { CharacterService } from './character.service';
 import { Observable } from 'rxjs';
 
 import { AttributeService } from './attribute.service';
@@ -13,6 +14,7 @@ describe('AttributeService', () => {
   let testUserId: string;
   let testAttribute: Attribute;
   let testAuthState: Observable<firebase.User>;
+  let testCharacterService: CharacterService;
   let service: AttributeService;
 
   beforeEach(() => {
@@ -44,7 +46,13 @@ describe('AttributeService', () => {
     testAuthState = new Observable((observer) => {
       return {unsubscribe() { const user = {uid: testUserId }; }};
     });
-    service = new AttributeService(testDb, <AngularFireAuth>{ authState: testAuthState });
+
+    testCharacterService = jasmine.createSpyObj('testCharacterService', [
+      'getCharacterID',
+    ]);
+    (<jasmine.Spy>(testCharacterService.getCharacterID)).and.returnValue(testCharacterID);
+
+    service = new AttributeService(testDb, <AngularFireAuth>{ authState: testAuthState }, testCharacterService);
   });
 
   afterEach(() => {
@@ -65,16 +73,6 @@ describe('AttributeService', () => {
   // it('should get userID from AngularFireAuth', () => {
   //   expect(service.userID).toBe( testUserId );
   // });
-
-  it('setCharacterID() should set CharacterID', () => {
-    service.setCharacterID(testCharacterID);
-    expect(service.characterID).toBe(testCharacterID);
-  });
-
-  it('getCharacterID() should get CharacterID', () => {
-    service.characterID = testCharacterID;
-    expect(service.getCharacterID()).toBe(testCharacterID);
-  });
 
   it('createAttribute() should set attributeRef to the list from db', () => {
     service.createAttribute(testAttribute);

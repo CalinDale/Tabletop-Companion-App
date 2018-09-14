@@ -1,0 +1,52 @@
+<form [formGroup] = "editDisplayNameForm">
+
+  <h3> Edit Account </h3>
+  
+  <label>New Name:</label>
+  <input type="text" formControlName="displayName">
+
+  <div *ngIf="email.invalid && email.dirty">
+    Your email doesn't look quite right...
+  </div>
+  
+  <div *ngIf="editDisplayNameForm.valid"> Form is valid </div>
+
+  <button type="submit" [disabled]="!editDisplayNameForm.valid" (click)="changeName()">Confirm</button>
+  
+
+</form>
+
+<form [formGroup] = "editEmailForm">
+  
+  <label>Email:</label>
+  <input type="email" formControlName="email">
+
+  <div *ngIf="email.invalid && email.dirty">
+    Your email doesn't look quite right...
+  </div>
+  
+  <div *ngIf="editEmailForm.valid"> Form is valid </div>
+
+  <button type="submit" [disabled]="!editEmailForm.valid" (click)="changeEmail()">Confirm</button>
+  
+</form>
+
+<form [formGroup] = "editPasswordForm">
+  
+  <label for="password">New Password: </label>
+  <input type="password" formControlName="password" required>
+
+  <div *ngIf="password.invalid && password.touched" >
+    Password must be between 6 and 24 characters and have at least one number
+  </div>
+  
+  <label for="repeatPassword">Repeat Password: </label>
+  <input type="password" formControlName="repeatPassword" required>
+
+  <div *ngIf="editPasswordForm.valid"> Form is valid </div>
+
+  <button type="submit" [disabled]="!editPasswordForm.valid" (click)="changePassword()">Confirm</button>
+  
+</form>
+Delete Account
+<button type="submit"  (click)="deleteAccount()">Confirm</button>

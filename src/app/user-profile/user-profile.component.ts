@@ -10,12 +10,30 @@ import { EmailPasswordCredentials } from '../core/emailPasswordCredentials';
 })
 export class UserProfileComponent implements OnInit {
 
-  signupForm: FormGroup;
-  newUser = true;
-  passReset = false;
+  signInForm: FormGroup;
 
   constructor( public auth: AuthService, private fb: FormBuilder) {}
   ngOnInit() {
+    this.signInForm = this.fb.group({
+      'email': [ '' , [
+        Validators.required,
+        Validators.email
+        ]
+    ],
+    'password' : ['', [
+      Validators.minLength(6),
+      Validators.maxLength(25)
+      ]
+    ]
+
+  });
+  }
+
+  get email() { return this.signInForm.get('email'); }
+  get password() { return this.signInForm.get('password'); }
+
+  signIn() {
+    this.auth.emailLogin(this.email.value, this.password.value);
   }
 
 }

@@ -20,7 +20,8 @@ describe('CharacterListComponent', () => {
     testCharacter = {
       key: '34',
       name: 'Grog',
-      userID: 'Dave34'
+      userID: 'Dave34',
+      tracked: false
     };
     testCharacters = [ testCharacter ];
 

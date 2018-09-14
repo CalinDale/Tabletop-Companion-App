@@ -26,7 +26,8 @@ describe('CharacterDetailsComponent', () => {
     testCharacter = {
       userID: testUserID,
       key: 'Grog24',
-      name: 'Grog'
+      name: 'Grog',
+      tracked: false
     };
     testAttributes = [
       { userID: testUserID,
@@ -34,7 +35,8 @@ describe('CharacterDetailsComponent', () => {
         name: 'Armor',
         type: 'number',
         value: '20',
-        characterID: testCharacter.key }
+        characterID: testCharacter.key,
+        tracked: false }
     ];
 
     testAngularFireList = <any>{
@@ -46,11 +48,11 @@ describe('CharacterDetailsComponent', () => {
     ]);
 
     testCharacterService = jasmine.createSpyObj('testCharacterService', [
+      'setCharacterID',
       'updateCharacter',
       'deleteCharacter'
     ]);
     testAttributeService = jasmine.createSpyObj('testAttributeService', [
-      'setCharacterID',
       'getAttributes',
       'createAttribute',
       'updateAttribute',
@@ -89,9 +91,9 @@ describe('CharacterDetailsComponent', () => {
       component.setCharacter(testCharacter);
       expect(component.character).toBe(testCharacter);
     });
-    it('should call attributeService.setCharacterID with character.key', () => {
+    it('should call characterService.setCharacterID with character.key', () => {
       component.setCharacter(testCharacter);
-      expect(testAttributeService.setCharacterID).toHaveBeenCalledWith(component.character.key);
+      expect(testCharacterService.setCharacterID).toHaveBeenCalledWith(component.character.key);
     });
     it('should call component.retrieveAttributes()', () => {
       component.setCharacter(testCharacter);

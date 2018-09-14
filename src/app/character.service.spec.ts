@@ -12,7 +12,6 @@ import * as firebase from 'firebase';
 describe('CharacterService', () => {
   let testAngularFireList: AngularFireList<Character>;
   let testCharacterID: string;
-  let testAttributeService: AttributeService;
   let testDb: AngularFireDatabase;
   let testUserId: string;
   let testCharacter: Character;
@@ -31,11 +30,6 @@ describe('CharacterService', () => {
 
     testCharacterID = '23';
 
-    testAttributeService = jasmine.createSpyObj('testAttributeService', [
-      'getCharacterID'
-    ]);
-    (<jasmine.Spy>(testAttributeService.getCharacterID)).and.returnValue(testCharacterID);
-
     testDb = jasmine.createSpyObj('testDb', [
       'list',
       'object'
@@ -48,6 +42,7 @@ describe('CharacterService', () => {
       key: testCharacterID,
       name: 'Grog',
       userID: testUserId,
+      tracked: false
     };
 
     // spyOn(firebase, 'auth').and.returnValue( { currentUser: { uid: testUserId } } );
@@ -59,7 +54,7 @@ describe('CharacterService', () => {
     });
 
     // TODO: cannot read snapshot of null should pass when a user id is propperly supplied in constructor observable
-    service = new CharacterService(testDb, testAttributeService, <AngularFireAuth>{ authState: testAuthState});
+    service = new CharacterService(testDb, <AngularFireAuth>{ authState: testAuthState});
   });
   afterEach(() => {
     testAngularFireList = null;

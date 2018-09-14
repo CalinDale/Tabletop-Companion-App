@@ -23,6 +23,9 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CoreModule } from './core/core.module';
 import { RegisterComponent } from './register/register.component';
 import { CharDAttributeListEntryComponent } from './char-d-attribute-list-entry/char-d-attribute-list-entry.component';
+import { AccountRecoveryComponent } from './account-recovery/account-recovery.component';
+import { EditUserAccountComponent } from './edit-user-account/edit-user-account.component';
+import { GiveTrackerComponent } from './give-tracker/give-tracker.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { CharDAttributeListEntryComponent } from './char-d-attribute-list-entry/
     RegisterComponent,
     CharDAttributeListEntryComponent,
     AppMasterPageComponent,
-    CharacterDetailsComponent
+    CharacterDetailsComponent,
+    AccountRecoveryComponent,
+    EditUserAccountComponent,
+    GiveTrackerComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,7 @@ import { CharDAttributeListEntryComponent } from './char-d-attribute-list-entry/
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
-    CoreModule
+    CoreModule,
 
   ],
   bootstrap: [AppComponent]

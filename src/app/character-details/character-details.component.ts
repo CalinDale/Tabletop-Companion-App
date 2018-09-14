@@ -35,7 +35,7 @@ export class CharacterDetailsComponent implements OnInit {
 
   setCharacter(character: Character) {
     this.character = character;
-    this.attributeService.setCharacterID(this.character.key);
+    this.characterService.setCharacterID(this.character.key);
     this.retrieveAttributes();
     this.toggle();
   }
