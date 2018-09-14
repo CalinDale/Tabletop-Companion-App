@@ -13,9 +13,19 @@ td{
 #drag{
   width:10px;
 }
+#trackButtonDiv{
+  width:10px;
+}
+#trackButton{
 
+}
+#untrackButtonDiv{
+  width:10px;
+}
+#untrackButton{
+
+}
 #name{
-  padding-left: 87px;
 }
 
 #cloneButtonDiv{

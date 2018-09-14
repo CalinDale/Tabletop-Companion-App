@@ -1,6 +1,8 @@
 <table *ngIf="character">
   <tr>
     <td id='drag'>=</td>
+    <td id='trackButtonDiv'><button id='trackButton' class="button btn-track" (click)='addToTracker()'>Track</button></td>
+    <td id='untrackButtonDiv'><button id='untrackButton' class="button btn-untrack" (click)='removeFromTracker()'>Untrack</button></td>
     <td id='name'>{{character.name}}</td>
     <td id='cloneButtonDiv'><button id='cloneButton' class="button btn-add" (click)='cloneCharacter()'>clone</button></td>
     <td id='editButtonDiv'><button id='editButton' class="button btn-edit" (click)="editCharacter()" >edit</button></td>

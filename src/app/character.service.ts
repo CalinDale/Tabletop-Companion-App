@@ -62,6 +62,7 @@ export class CharacterService {
   }
 
 
+
   deleteCharacter(key: string): void {
     this.charactersRef.remove(key).catch(error => this.handleError(error));
   }

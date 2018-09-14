@@ -26,33 +26,36 @@ import { CharDAttributeListEntryComponent } from './char-d-attribute-list-entry/
 import { AccountRecoveryComponent } from './account-recovery/account-recovery.component';
 import { EditUserAccountComponent } from './edit-user-account/edit-user-account.component';
 import { GiveTrackerComponent } from './give-tracker/give-tracker.component';
+import { TrackerComponent } from './tracker/tracker.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CharacterListComponent,
-    TrackerCharacterComponent,
-    MessagesComponent,
-    CharacterListEntryComponent,
-    UserProfileComponent,
-    RegisterComponent,
-    CharDAttributeListEntryComponent,
-    AppMasterPageComponent,
-    CharacterDetailsComponent,
-    AccountRecoveryComponent,
-    EditUserAccountComponent,
-    GiveTrackerComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule, // for database
-    CoreModule,
-
-  ],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      CharacterListComponent,
+      TrackerCharacterComponent,
+      MessagesComponent,
+      CharacterListEntryComponent,
+      UserProfileComponent,
+      RegisterComponent,
+      CharDAttributeListEntryComponent,
+      AppMasterPageComponent,
+      CharacterDetailsComponent,
+      AccountRecoveryComponent,
+      EditUserAccountComponent,
+      GiveTrackerComponent,
+      TrackerComponent
+   ],
+   imports: [
+      BrowserModule,
+      FormsModule,
+      ReactiveFormsModule,
+      AppRoutingModule,
+      AngularFireModule.initializeApp(environment.firebase),
+      AngularFireDatabaseModule,
+      CoreModule
+   ],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }
