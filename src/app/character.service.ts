@@ -18,9 +18,9 @@ export class CharacterService {
   charactersRef: AngularFireList<Character> = null;
   userID: string = firebase.auth().currentUser.uid;
   characterRef: AngularFireObject<any> = null;
-  // userID: string;
   character: Character;
   characterID: string;
+  newKey: string;
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
@@ -73,7 +73,7 @@ export class CharacterService {
   }
 
   getCharacter(key: string) {
-    this.characterRef = this.db.object(`characters/${this.userID}/${key}/`);
+    this.characterRef = this.db.object(`characters/${this.userID}/${key}`);
     return this.characterRef;
   }
 

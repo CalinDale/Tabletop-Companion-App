@@ -17,6 +17,8 @@ export class CharacterDetailsComponent implements OnInit {
 
   @Input() character: Character;
 
+  newKey: any;
+
   constructor(
     private characterService: CharacterService,
     private messageService: MessageService,
@@ -37,6 +39,12 @@ export class CharacterDetailsComponent implements OnInit {
     this.character.tracked = true;
     this.characterService.updateCharacter(this.character);
     this.router.navigateByUrl('viewtracker');
+  }
+
+  cloneCharacter() {
+    this.character.userID = firebase.auth().currentUser.uid;
+    this.character.key = null;
+    this.characterService.createCharacter(this.character);
   }
 
   deleteCharacter() {
