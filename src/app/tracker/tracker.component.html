@@ -3,7 +3,11 @@
 <table id='trackerTable'>
     <tr id='headerRow'>
       <th id='nameColumn'><div id='nameDiv'>Name</div></th>
-      <th *ngFor='let attributeColumn of attributeColumns' id='attributeColumn'><div id='attributeDiv'>Attribute</div></th>
+      <th *ngFor='let attributeColumn of attributeColumns' id='attributeColumn'>
+        <select id='attributeHeader'>
+          <option disabled=true value='default'>Add Attribute</option>
+        </select>
+      </th>
     </tr>
 </table>
 <div *ngFor='let character of characters index as i'>
