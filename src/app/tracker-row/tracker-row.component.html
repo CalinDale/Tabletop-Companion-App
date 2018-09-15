@@ -1,10 +1,11 @@
-<table *ngIf='character'>
-  <tr>
+<table id='trackerTable' *ngIf='character'>
+  <tr id='characterow'>
     <td id='markerDiv'></td>
-    <td id='nameDiv'>{{character.name}}</td>
-    <td id='attributeDiv'>
+    <td id='nameColumn'><div id='name'>{{character.name}}</div></td>
+    <td id='attributeColumn' *ngFor='let attributeColumn of attributeColumns'>
       <select id='attributeSelect'>
-          <option value='default'>Add Attribute</option>
+          <option disabled=true value='default'>Add Attribute</option>
+          <option *ngFor='let attribute of attributes' value='attribute'>{{attribute.name}} = {{attribute.value}}</option>
       </select>
     </td>
   </tr>

@@ -1,20 +1,11 @@
 <h1>Tracker</h1>
 
 <table id='trackerTable'>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th>Name</th>
-      <th>Attribute</th>
-      <th>Attribute</th>
-      <th>Attribute</th>
-      <th></th>
+    <tr id='headerRow'>
+      <th id='nameColumn'><div id='nameDiv'>Name</div></th>
+      <th *ngFor='let attributeColumn of attributeColumns' id='attributeColumn'><div id='attributeDiv'>Attribute</div></th>
     </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor='let character of characters index as i'>
-      <app-tracker-row [character]='character'></app-tracker-row>
-    </tr>
-  </tbody>
 </table>
+<div *ngFor='let character of characters index as i'>
+  <app-tracker-row [character]='character' [attributeColumns]='attributeColumns'></app-tracker-row>
+</div>

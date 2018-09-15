@@ -1,5 +1,8 @@
+import { AttributeService } from './../attribute.service';
 import { Character } from './../character';
-import { Component, OnInit, Input } from '@angular/core';
+import { Attribute } from './../attribute';
+import { Component, OnInit, Input} from '@angular/core';
+import { map } from '../../../node_modules/rxjs/operators';
 
 @Component({
   selector: 'app-tracker-row',
@@ -9,10 +12,25 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TrackerRowComponent implements OnInit {
 
   @Input()character: Character;
+  @Input()attributeColumns: Attribute[];
 
-  constructor() { }
+  attributes: Attribute[];
+
+  constructor(
+    private attributeService: AttributeService
+  ) { }
 
   ngOnInit() {
+    this.retrieveAttributes();
   }
 
+  retrieveAttributes() {
+    this.attributeService.getAttributes(this.character.key).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(attributes => {
+      this.attributes = attributes;
+    });
+  }
 }
