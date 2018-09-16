@@ -20,7 +20,6 @@ export class CharacterService {
   characterRef: AngularFireObject<any> = null;
   character: Character;
   characterID: string;
-  newKey: string;
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
