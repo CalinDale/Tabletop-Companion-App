@@ -38,18 +38,6 @@ export class TrackerComponent implements OnInit {
     });
   }
 
-  retrieveCharacterAttributes( character ): Attribute[] {
-    let characterAttributes: Attribute[];
-    this.attributeService.getAttributes(character.key).snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-      )
-    ).subscribe(attributes => {
-      characterAttributes = attributes;
-    });
-    return characterAttributes;
-  }
-
   /* ngFor only works with items in a collection, so you need to make an array
     to have it incriment a number of times */
   prepareAttributeColumns() {

@@ -1,5 +1,3 @@
-import { AttributeService } from './attribute.service';
-import { Attribute } from './attribute';
 import { AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { MessageService } from './message.service';
