@@ -8,5 +8,11 @@
           <option *ngFor='let attribute of attributes' value='attribute'>{{attribute.name}} = {{attribute.value}}</option>
       </select>
     </td>
+    <td>
+      <button class="btn btn-success" (click)="moveUp();">Move Up</button>
+    </td>
+    <td>
+      <button class="btn btn-success" (click)="moveDown();">Move Down</button>
+    </td>
   </tr>
 </table>

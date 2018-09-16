@@ -15,6 +15,7 @@ export class TrackerRowComponent implements OnInit {
   @Input()attributeColumns: Attribute[];
   @Input()currentActor: number;
   @Input()index: number;
+  @Input()characters: Character[];
 
   attributes: Attribute[];
 
@@ -38,5 +39,29 @@ export class TrackerRowComponent implements OnInit {
     ).subscribe(attributes => {
       this.attributes = attributes;
     });
+  }
+
+  moveUp() {
+    if (this.index > 0) {
+      const tmp = this.characters[this.index - 1];
+      this.characters[this.index - 1] = this.characters[this.index];
+      this.characters[this.index] = tmp;
+    } else {
+      const tmp = this.characters[this.characters.length - 1];
+      this.characters[0] = tmp;
+      this.characters[this.characters.length - 1] = this.character;
+    }
+  }
+
+  moveDown() {
+    if (this.index < this.characters.length - 1) {
+      const tmp = this.characters[this.index + 1];
+      this.characters[this.index + 1] = this.characters[this.index];
+      this.characters[this.index] = tmp;
+    } else {
+      const tmp = this.characters[0];
+      this.characters[this.characters.length - 1] = tmp;
+      this.characters[0] = this.character;
+    }
   }
 }
