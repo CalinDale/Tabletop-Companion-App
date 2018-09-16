@@ -17,6 +17,7 @@ export class TrackerComponent implements OnInit {
   numAttributeColumns = 5;
   attributeColumns: Attribute[] = [];
   attributeColumnOptions: Attribute[];
+  currentActor = 3;
 
   constructor(
     private characterService: CharacterService,
@@ -43,6 +44,19 @@ export class TrackerComponent implements OnInit {
   prepareAttributeColumns() {
     for ( let i = 0; i < this.numAttributeColumns; i++ ) {
       this.attributeColumns.push(new Attribute());
+    }
+  }
+
+  nextTurn() {
+    this.currentActor++;
+    if (this.currentActor >= this.characters.length) {
+      this.currentActor = 0;
+    }
+  }
+  prevTurn() {
+    this.currentActor--;
+    if (this.currentActor < 0) {
+      this.currentActor =  this.characters.length - 1;
     }
   }
 }

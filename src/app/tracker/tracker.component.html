@@ -12,5 +12,11 @@
     </tr>
 </table>
 <div *ngFor='let character of characters index as i'>
-  <app-tracker-row [character]='character' [attributeColumns]='attributeColumns'></app-tracker-row>
+  <app-tracker-row [character]='character' [attributeColumns]='attributeColumns' [currentActor]='currentActor' [index]=i></app-tracker-row>
+</div>
+<div id='nextTurnButtonDiv'>
+  <button id='nextTurnButton' type="button" class="button btn-add" (click)='nextTurn()'>Next Turn</button>
+</div>
+<div id='prevTurnButtonDiv'>
+  <button id='prevTurnButton' type="button" class="button btn-delete" (click)='prevTurn()'>Prev Turn</button>
 </div>

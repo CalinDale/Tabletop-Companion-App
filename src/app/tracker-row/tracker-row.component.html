@@ -1,6 +1,6 @@
 <table id='trackerTable' *ngIf='character'>
   <tr id='characterow'>
-    <td id='markerDiv'></td>
+    <td id='markerDiv'><div id='marker' *ngIf='isActing()'> X </div><div *ngIf='!isActing()'> 0 </div></td>
     <td id='nameColumn'><div id='name'>{{character.name}}</div></td>
     <td id='attributeColumn' *ngFor='let attributeColumn of attributeColumns'>
       <select id='attributeSelect'>

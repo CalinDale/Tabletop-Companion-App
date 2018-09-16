@@ -13,6 +13,8 @@ export class TrackerRowComponent implements OnInit {
 
   @Input()character: Character;
   @Input()attributeColumns: Attribute[];
+  @Input()currentActor: number;
+  @Input()index: number;
 
   attributes: Attribute[];
 
@@ -22,6 +24,10 @@ export class TrackerRowComponent implements OnInit {
 
   ngOnInit() {
     this.retrieveAttributes();
+  }
+
+  isActing(): boolean {
+    return this.index === this.currentActor;
   }
 
   retrieveAttributes() {
