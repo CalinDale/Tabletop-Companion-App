@@ -17,8 +17,6 @@ export class CharacterDetailsComponent implements OnInit {
 
   @Input() character: Character;
 
-  newKey: any;
-
   constructor(
     private characterService: CharacterService,
     private messageService: MessageService,
