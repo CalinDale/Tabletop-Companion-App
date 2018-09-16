@@ -1,8 +1,11 @@
+import { AttributeService } from './../attribute.service';
 import { CharacterService } from './../character.service';
 import { CharacterDetailsComponent } from '../character-details/character-details.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { Character } from '../character';
 import { MessageService } from '../message.service';
+import { map } from '../../../node_modules/rxjs/operators';
+import { Attribute } from '../attribute';
 
 @Component({
   selector: 'app-character-list-entry',
@@ -16,7 +19,8 @@ export class CharacterListEntryComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private characterService: CharacterService
+    private characterService: CharacterService,
+    private attributeService: AttributeService
   ) { }
 
   ngOnInit() {
@@ -32,15 +36,33 @@ export class CharacterListEntryComponent implements OnInit {
   }
 
   addToTracker() {
-    this.character.tracked = true;
-    this.characterService.setCharacterID(this.character.key);
-    this.characterService.updateCharacter(this.character);
+    this.characterService.trackCharacter(this.character);
+    let charAttributes: Attribute[] = [];
+    this.attributeService.getAttributes(this.character.key).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(attributes => {
+      charAttributes = attributes;
+    });
+    for ( const attribute of charAttributes ) {
+      this.attributeService.trackAttribute(attribute);
+    }
   }
 
   removeFromTracker() {
-    this.character.tracked = false;
-    this.characterService.setCharacterID(this.character.key);
-    this.characterService.updateCharacter(this.character);
+    this.characterService.untrackCharacter(this.character);
+    let charAttributes: Attribute[] = [];
+    this.attributeService.getAttributes(this.character.key).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(attributes => {
+      charAttributes = attributes;
+    });
+    for ( const attribute of charAttributes ) {
+      this.attributeService.untrackAttribute(attribute);
+    }
   }
 }
 

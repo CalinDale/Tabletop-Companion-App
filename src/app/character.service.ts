@@ -1,4 +1,5 @@
 import { AttributeService } from './attribute.service';
+import { Attribute } from './attribute';
 import { AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { MessageService } from './message.service';
@@ -52,6 +53,18 @@ export class CharacterService {
     this.characterRef.update(character).catch(error => this.handleError(error));
   }
 
+  trackCharacter(character: Character) {
+    this.setCharacterID(character.key);
+    character.tracked = true;
+    this.updateCharacter(character);
+  }
+
+  untrackCharacter(character: Character) {
+    this.setCharacterID(character.key);
+    character.tracked = false;
+    this.updateCharacter(character);
+  }
+
   getCharactersTracker() {
     if (!this.userID) {
       return;
@@ -60,8 +73,6 @@ export class CharacterService {
       return this.charactersRef;
     }
   }
-
-
 
   deleteCharacter(key: string): void {
     this.charactersRef.remove(key).catch(error => this.handleError(error));

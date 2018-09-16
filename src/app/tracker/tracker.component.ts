@@ -4,6 +4,7 @@ import { Character } from './../character';
 import { Component, OnInit } from '@angular/core';
 import { map } from '../../../node_modules/rxjs/operators';
 import { Attribute } from './../attribute';
+import { Observable } from '../../../node_modules/rxjs';
 
 @Component({
   selector: 'app-tracker',
@@ -12,9 +13,10 @@ import { Attribute } from './../attribute';
 })
 export class TrackerComponent implements OnInit {
 
-  characters: Character[];
+  characters: Character[] = [];
   numAttributeColumns = 5;
   attributeColumns: Attribute[] = [];
+  attributeColumnOptions: Attribute[];
 
   constructor(
     private characterService: CharacterService,
@@ -34,6 +36,18 @@ export class TrackerComponent implements OnInit {
     ).subscribe(characters => {
       this.characters = characters;
     });
+  }
+
+  retrieveCharacterAttributes( character ): Attribute[] {
+    let characterAttributes: Attribute[];
+    this.attributeService.getAttributes(character.key).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(attributes => {
+      characterAttributes = attributes;
+    });
+    return characterAttributes;
   }
 
   /* ngFor only works with items in a collection, so you need to make an array

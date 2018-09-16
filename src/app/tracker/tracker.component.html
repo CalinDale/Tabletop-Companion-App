@@ -6,6 +6,7 @@
       <th *ngFor='let attributeColumn of attributeColumns' id='attributeColumn'>
         <select id='attributeHeader'>
           <option disabled=true value='default'>Add Attribute</option>
+          <option *ngFor='let attribute of attributeColumnOptions' value='attribute'>{{attribute.name}}</option>
         </select>
       </th>
     </tr>

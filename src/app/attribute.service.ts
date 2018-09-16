@@ -34,7 +34,6 @@ export class AttributeService {
     return this.attributeID;
   }
 
-
   getAttributes(key: string): AngularFireList<Attribute> {
     // tslint:disable-next-line:curly
     if (!this.userID) return;
@@ -72,11 +71,22 @@ export class AttributeService {
 
   // TODO: this.db.object is not a function?
   // Changed a piece of code to have the attributeService pull the ID of the attribute being updated
+  // Why does it even pull the characterID when updating?
   updateAttribute(attribute: Attribute): void {
     this.characterID = this.characterService.getCharacterID();
     this.setAttributeID(attribute.key);
     this.attributeRef = this.db.object(`attributes/${this.userID}/${this.characterID}/${this.attributeID}`);
     this.attributeRef.update(attribute).catch(error => this.handleError(error));
+  }
+
+  trackAttribute(attribute: Attribute) {
+    attribute.tracked = true;
+    this.updateAttribute(attribute);
+  }
+
+  untrackAttribute(attribute: Attribute) {
+    attribute.tracked = false;
+    this.updateAttribute(attribute);
   }
 
   // switched name for key since that's what it actually uses.
