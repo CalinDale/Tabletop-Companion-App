@@ -18,7 +18,6 @@ export class CharacterDetailsComponent implements OnInit {
 
   @Input() character: Character;
 
-  ogCharacterID: string;
   characterID: string;
   attributes: any;
   attribute: any;
@@ -67,7 +66,6 @@ export class CharacterDetailsComponent implements OnInit {
       )
     ).subscribe(attributes => {
       this.attributes = attributes;
-      console.log(this.attributes);
       this.store(this.attributes);
     });
   }
