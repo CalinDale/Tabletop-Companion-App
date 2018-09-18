@@ -1,12 +1,7 @@
-import { AttributeService } from './attribute.service';
-import { AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { MessageService } from './message.service';
 import { Character } from './character';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from '../../node_modules/rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
 import * as firebase from 'firebase/app';
 import { AngularFireList, AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 
@@ -40,7 +35,10 @@ export class CharacterService {
 
   createCharacter(character: Character): void {
     this.charactersRef = this.db.list(`characters/${this.userID}`);
-    this.charactersRef.push(character);
+    this.charactersRef.push(character).then(ref => {
+      this.characterID = ref.key;
+      this.setCharacterID(this.characterID);
+    });
   }
 
   updateCharacter(character: Character): void {
