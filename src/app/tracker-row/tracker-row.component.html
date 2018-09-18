@@ -4,13 +4,13 @@
     <td id='nameColumn'><div id='name'>{{character.name}}</div></td>
     <span id='attributeColumn' *ngFor='let attributeColumn of attributeColumns index as i'>
       <td id='attributeSelectDiv'>
-        <select id='attributeSelect' [(ngModel)]='selectedAttributes[i]'>
-            <option disabled=true value=default>Add Attribute</option>
-            <option *ngFor='let attribute of attributes' value={{attribute.value}}>{{attribute.name}}</option>
+        <select id='attributeSelect' [(ngModel)]='selectedAttributeIndexes[i]'>
+            <option disabled=true value='default'>Add Attribute</option>
+            <option *ngFor='let attribute of attributes index as a' value={{a}}>{{attribute.name}}</option>
         </select>
       </td>
       <td id='attributeEditDiv'>
-        <input id='value' *ngIf='selectedAttributes[i] !== undefined' [(ngModel)]='selectedAttributes[i]'>
+        <input id='value' *ngIf='selectedAttributeIndexes[i] !== undefined' [(ngModel)]='attributes[selectedAttributeIndexes[i]].value' (input)="onChange(i)">
       </td>
     </span>
     <td>

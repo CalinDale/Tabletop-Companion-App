@@ -18,7 +18,8 @@ export class TrackerRowComponent implements OnInit {
   @Input()characters: Character[];
 
   attributes: Attribute[];
-  selectedAttributes: string[] = [];
+  editingAttributes: Attribute[] = [ ];
+  selectedAttributeIndexes: number[] = [];
 
   constructor(
     private attributeService: AttributeService
@@ -26,15 +27,10 @@ export class TrackerRowComponent implements OnInit {
 
   ngOnInit() {
     this.retrieveAttributes();
-    // this.prepareSelectedAttributes();
   }
 
-  prepareSelectedAttributes() {
-    for ( const column of this.attributeColumns) {
-      const attr = new Attribute();
-      attr.value = 'none';
-      // this.selectedAttributes.push( attr );
-    }
+  onChange(i: number) {
+    this.attributeService.updateAttribute(this.attributes[this.selectedAttributeIndexes[i]]);
   }
 
   isActing(): boolean {

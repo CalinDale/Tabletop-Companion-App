@@ -73,7 +73,14 @@ export class AttributeService {
   // Changed a piece of code to have the attributeService pull the ID of the attribute being updated
   // Why does it even pull the characterID when updating?
   updateAttribute(attribute: Attribute): void {
+    // God dammit
     this.characterID = this.characterService.getCharacterID();
+
+    // Adding this part so I don't need to set the characterService ID every time I update an attribute.
+    // With the if statement it shouldn't break code that still relys on the old way.
+    if ( attribute.characterID !== undefined) {
+      this.characterID = attribute.characterID;
+    }
     this.setAttributeID(attribute.key);
     this.attributeRef = this.db.object(`attributes/${this.userID}/${this.characterID}/${this.attributeID}`);
     this.attributeRef.update(attribute).catch(error => this.handleError(error));
