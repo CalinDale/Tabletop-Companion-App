@@ -6,6 +6,7 @@ import { Character } from '../character';
 import { MessageService } from '../message.service';
 import { map } from '../../../node_modules/rxjs/operators';
 import { Attribute } from '../attribute';
+import { TrackerService } from '../tracker.service';
 
 @Component({
   selector: 'app-character-list-entry',
@@ -20,7 +21,8 @@ export class CharacterListEntryComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private characterService: CharacterService,
-    private attributeService: AttributeService
+    private attributeService: AttributeService,
+    private trackerService: TrackerService
   ) { }
 
   ngOnInit() {
@@ -36,33 +38,11 @@ export class CharacterListEntryComponent implements OnInit {
   }
 
   addToTracker() {
-    this.characterService.trackCharacter(this.character);
-    let charAttributes: Attribute[] = [];
-    this.attributeService.getAttributes(this.character.key).snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-      )
-    ).subscribe(attributes => {
-      charAttributes = attributes;
-    });
-    for ( const attribute of charAttributes ) {
-      this.attributeService.trackAttribute(attribute);
-    }
+    this.trackerService.addToTracker(this.character);
   }
 
   removeFromTracker() {
-    this.characterService.untrackCharacter(this.character);
-    let charAttributes: Attribute[] = [];
-    this.attributeService.getAttributes(this.character.key).snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-      )
-    ).subscribe(attributes => {
-      charAttributes = attributes;
-    });
-    for ( const attribute of charAttributes ) {
-      this.attributeService.untrackAttribute(attribute);
-    }
+    this.trackerService.removeFromTracker(this.character);
   }
 }
 

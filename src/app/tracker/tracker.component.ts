@@ -40,20 +40,6 @@ export class TrackerComponent implements OnInit {
     });
   }
 
-  // Old code
-  // retrieveCharacters() {
-  //   this.characterService.getCharactersTracker().snapshotChanges().pipe(
-  //     map(changes =>
-  //       changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-  //     )
-  //   ).subscribe(characters => {
-  //     this.characters = characters;
-  //   });
-  // }
-
-  /* ngFor only works with items in a collection, so you need to make an array
-    to have it incriment a number of times */
-
   nextTurn() {
     this.trackerService.nextTurn();
     this.trackerService.getCurrentActor().subscribe(currentActor => {

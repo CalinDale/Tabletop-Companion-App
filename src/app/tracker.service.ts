@@ -58,16 +58,21 @@ export class TrackerService {
   }
 
   nextTurn() {
-    this.currentActor++;
-    if (this.currentActor >= this.characters.length) {
-      this.currentActor = 0;
-    }
+    this.moveMarkerDown();
   }
+
+  moveMarkerDown() {
+    this.currentActor++;
+    this.checkMarkerPosition();
+  }
+
   prevTurn() {
+    this.moveMarkerUp();
+  }
+
+  moveMarkerUp() {
     this.currentActor--;
-    if (this.currentActor < 0) {
-      this.currentActor =  this.characters.length - 1;
-    }
+    this.checkMarkerPosition();
   }
 
   moveCharacterUp(index: number) {
@@ -90,6 +95,56 @@ export class TrackerService {
       const tmp = this.characters[0];
       this.characters[this.characters.length - 1] = tmp;
       this.characters[0] = this.characters[index];
+    }
+  }
+
+  // TODO: cause marker to move when characters are added or removed from tracker
+  // Need to update the currentActor in commponents whenever it changes basically, observable stuff.
+  addToTracker(character: Character) {
+    this.characterService.trackCharacter(character);
+    if ( this.characters.indexOf(character) <= this.currentActor) {
+      this.moveMarkerDown();
+    }
+
+    let charAttributes: Attribute[] = [];
+    this.attributeService.getAttributes(character.key).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(attributes => {
+      charAttributes = attributes;
+    });
+    for ( const attribute of charAttributes ) {
+      this.attributeService.untrackAttribute(attribute);
+    }
+  }
+
+  // TODO: cause marker to move when characters are added or removed from tracker
+  // Need to update the currentActor in commponents whenever it changes basically, observable stuff.
+  removeFromTracker(character: Character) {
+    if ( this.characters.indexOf(character) <= this.currentActor) {
+      this.moveMarkerUp();
+    }
+    this.characterService.untrackCharacter(character);
+
+    let charAttributes: Attribute[] = [];
+    this.attributeService.getAttributes(character.key).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(attributes => {
+      charAttributes = attributes;
+    });
+    for ( const attribute of charAttributes ) {
+      this.attributeService.untrackAttribute(attribute);
+    }
+  }
+
+  checkMarkerPosition() {
+    if (this.currentActor >= this.characters.length) {
+      this.currentActor = 0;
+    } else if (this.currentActor < 0) {
+      this.currentActor =  this.characters.length - 1;
     }
   }
 }
