@@ -18,7 +18,7 @@ export class TrackerRowComponent implements OnInit {
   @Input()characters: Character[];
 
   attributes: Attribute[];
-  selectedAttributes: any[] = [];
+  selectedAttributes: string[] = [];
 
   constructor(
     private attributeService: AttributeService
@@ -31,7 +31,9 @@ export class TrackerRowComponent implements OnInit {
 
   prepareSelectedAttributes() {
     for ( const column of this.attributeColumns) {
-      this.selectedAttributes.push( new Attribute() );
+      const attr = new Attribute();
+      attr.value = 'none';
+      // this.selectedAttributes.push( attr );
     }
   }
 

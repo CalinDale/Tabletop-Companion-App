@@ -2,13 +2,17 @@
   <tr id='characterow'>
     <td id='markerDiv'><div id='marker' *ngIf='isActing()'> X </div><div *ngIf='!isActing()'> 0 </div></td>
     <td id='nameColumn'><div id='name'>{{character.name}}</div></td>
-    <td id='attributeColumn' *ngFor='let attributeColumn of attributeColumns index as i'>
-      <select id='attributeSelect' [(ngModel)]='selectedAttributes[i]'>
-          <option disabled=true value='default'>Add Attribute</option>
-          <option *ngFor='let attribute of attributes' value={{attribute.value}}>{{attribute.name}}</option>
-      </select>
-      <input id='value' *ngIf='selectedAttributes[i]' [(ngModel)]='selectedAttributes[i]'>
-    </td>
+    <span id='attributeColumn' *ngFor='let attributeColumn of attributeColumns index as i'>
+      <td id='attributeSelectDiv'>
+        <select id='attributeSelect' [(ngModel)]='selectedAttributes[i]'>
+            <option disabled=true value=default>Add Attribute</option>
+            <option *ngFor='let attribute of attributes' value={{attribute.value}}>{{attribute.name}}</option>
+        </select>
+      </td>
+      <td id='attributeEditDiv'>
+        <input id='value' *ngIf='selectedAttributes[i] !== undefined' [(ngModel)]='selectedAttributes[i]'>
+      </td>
+    </span>
     <td>
       <button class="btn btn-success" (click)="moveUp();">Move Up</button>
     </td>
