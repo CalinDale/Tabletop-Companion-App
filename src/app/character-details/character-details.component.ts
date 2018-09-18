@@ -6,6 +6,7 @@ import { CharacterService } from '../character.service';
 import { MessageService } from '../message.service';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
+import { map, takeWhile } from 'rxjs/operators';
 
 
 @Component({
@@ -17,11 +18,18 @@ export class CharacterDetailsComponent implements OnInit {
 
   @Input() character: Character;
 
+  ogCharacterID: string;
+  characterID: string;
+  attributes: any;
+  attribute: any;
+  alive: boolean;
+
   constructor(
     private characterService: CharacterService,
+    private attributeService: AttributeService,
     private messageService: MessageService,
     private router: Router,
-  ) { }
+  ) {this.alive = true; }
 
   ngOnInit() {
   }
@@ -39,10 +47,36 @@ export class CharacterDetailsComponent implements OnInit {
     this.router.navigateByUrl('viewtracker');
   }
 
-  cloneCharacter() {
+  async cloneCharacter() {
+    this.characterID = this.character.key;
     this.character.userID = firebase.auth().currentUser.uid;
     this.character.key = null;
     this.characterService.createCharacter(this.character);
+    await this.delay(500);
+    this.cloneAttributes();
+  }
+
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms));
+  }
+
+  cloneAttributes() {
+    this.attributeService.getAttributes(this.characterID).snapshotChanges().pipe(
+      takeWhile(() => this.alive), map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(attributes => {
+      this.attributes = attributes;
+      console.log(this.attributes);
+      this.store(this.attributes);
+    });
+  }
+
+  async store(attributes: any) {
+    this.characterID = this.characterService.getCharacterID();
+    this.attributeService.cloneAttributes(attributes, this.characterID);
+    await this.delay(500);
+    this.alive = false;
   }
 
   deleteCharacter() {

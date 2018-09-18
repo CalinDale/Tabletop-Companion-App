@@ -14,6 +14,7 @@ export class AttributeService {
   userID: string;
   characterID: string;
   attributeID: string;
+  attribute: Attribute;
 
   attributesRef: AngularFireList<Attribute> = null;
   attributeRef: AngularFireObject<Attribute> = null;
@@ -70,9 +71,30 @@ export class AttributeService {
     this.attributesRef.push(attribute);
   }
 
+ // cloneAttributes() {
+ //   this.attributeService.getAttributes(this.ogCharacterID).snapshotChanges().pipe(
+ //     map(changes =>
+ //       changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+ //     )
+ //   ).subscribe(attributes => {
+  //    this.attributes = attributes;
+ //     this.store(this.attributes);
+ //   });
+//  }
+
+  cloneAttributes(attribute: any, characterID: string): void {
+    this.attributesRef = this.db.list(`attributes/${this.userID}/${characterID}`);
+    attribute.forEach(element => {
+      this.attribute = element;
+      this.attribute.characterID = characterID;
+      this.attribute.key = null;
+      this.attributesRef.push(this.attribute);
+    });
+  }
+
   // TODO: this.db.object is not a function?
   updateAttribute(attribute: Attribute): void {
-    this.attributeID = this.getAttributeID();
+    attribute.key = this.getAttributeID();
     this.attributeRef = this.db.object(`attributes/${this.userID}/${attribute.characterID}/${this.attributeID}`);
     this.attributeRef.update(attribute).catch(error => this.handleError(error));
   }
