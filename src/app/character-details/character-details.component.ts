@@ -20,7 +20,6 @@ export class CharacterDetailsComponent implements OnInit {
 
   characterID: string;
   attributes: any;
-  attribute: any;
   alive: boolean;
 
   constructor(
@@ -98,8 +97,6 @@ export class CharacterDetailsComponent implements OnInit {
     this.characterService.setCharacterID(this.character.key);
     this.router.navigateByUrl('getCharacter');
   }
-
-
 }
 
 

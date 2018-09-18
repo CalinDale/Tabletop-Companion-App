@@ -71,17 +71,6 @@ export class AttributeService {
     this.attributesRef.push(attribute);
   }
 
- // cloneAttributes() {
- //   this.attributeService.getAttributes(this.ogCharacterID).snapshotChanges().pipe(
- //     map(changes =>
- //       changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
- //     )
- //   ).subscribe(attributes => {
-  //    this.attributes = attributes;
- //     this.store(this.attributes);
- //   });
-//  }
-
   cloneAttributes(attribute: any, characterID: string): void {
     this.attributesRef = this.db.list(`attributes/${this.userID}/${characterID}`);
     attribute.forEach(element => {
