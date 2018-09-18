@@ -1,3 +1,4 @@
+import { TrackerService } from './../tracker.service';
 import { AttributeService } from './../attribute.service';
 import { CharacterService } from './../character.service';
 import { Character } from './../character';
@@ -17,46 +18,52 @@ export class TrackerComponent implements OnInit {
   numAttributeColumns = 5;
   attributeColumns: Attribute[] = [];
   attributeColumnOptions: Attribute[];
-  currentActor = 3;
+  currentActor = 0;
 
   constructor(
     private characterService: CharacterService,
-    private attributeService: AttributeService
+    private attributeService: AttributeService,
+    private trackerService: TrackerService
   ) { }
 
   ngOnInit() {
-    this.retrieveCharacters();
-    this.prepareAttributeColumns();
-  }
-
-  retrieveCharacters() {
-    this.characterService.getCharactersTracker().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-      )
-    ).subscribe(characters => {
+    this.trackerService.getCharacters().subscribe(characters => {
       this.characters = characters;
+    });
+
+    this.trackerService.getAttributeColumns().subscribe(attributeColumns => {
+      this.attributeColumns = attributeColumns;
+    });
+
+    this.trackerService.getCurrentActor().subscribe(currentActor => {
+      this.currentActor = currentActor;
     });
   }
 
+  // Old code
+  // retrieveCharacters() {
+  //   this.characterService.getCharactersTracker().snapshotChanges().pipe(
+  //     map(changes =>
+  //       changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+  //     )
+  //   ).subscribe(characters => {
+  //     this.characters = characters;
+  //   });
+  // }
+
   /* ngFor only works with items in a collection, so you need to make an array
     to have it incriment a number of times */
-  prepareAttributeColumns() {
-    for ( let i = 0; i < this.numAttributeColumns; i++ ) {
-      this.attributeColumns.push(new Attribute());
-    }
-  }
 
   nextTurn() {
-    this.currentActor++;
-    if (this.currentActor >= this.characters.length) {
-      this.currentActor = 0;
-    }
+    this.trackerService.nextTurn();
+    this.trackerService.getCurrentActor().subscribe(currentActor => {
+      this.currentActor = currentActor;
+    });
   }
   prevTurn() {
-    this.currentActor--;
-    if (this.currentActor < 0) {
-      this.currentActor =  this.characters.length - 1;
-    }
+    this.trackerService.prevTurn();
+    this.trackerService.getCurrentActor().subscribe(currentActor => {
+      this.currentActor = currentActor;
+    });
   }
 }
