@@ -115,7 +115,7 @@ export class TrackerService {
       charAttributes = attributes;
     });
     for ( const attribute of charAttributes ) {
-      this.attributeService.untrackAttribute(attribute);
+      this.attributeService.trackAttribute(attribute);
     }
   }
 

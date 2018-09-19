@@ -20,6 +20,7 @@ export class TrackerRowComponent implements OnInit {
   // TODO: get characters from service instead of tracker component.
   // Need to master having observables continually stream new updates for this.
   // then can have order changing functions update tracker service which will cause tracker to update.
+  // I think we'll need to master that for anything here.
   @Input()characters: Character[];
 
   attributes: Attribute[];

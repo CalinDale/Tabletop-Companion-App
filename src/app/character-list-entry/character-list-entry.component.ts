@@ -20,8 +20,6 @@ export class CharacterListEntryComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private characterService: CharacterService,
-    private attributeService: AttributeService,
     private trackerService: TrackerService
   ) { }
 

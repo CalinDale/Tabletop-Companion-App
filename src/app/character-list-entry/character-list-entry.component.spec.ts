@@ -1,3 +1,5 @@
+import { TrackerService } from './../tracker.service';
+import { AttributeService } from './../attribute.service';
 import { CharacterService } from './../character.service';
 import { CharacterDetailsComponent } from '../character-details/character-details.component';
 import { MessageService } from '../message.service';
@@ -8,7 +10,7 @@ describe('CharacterListEntryComponent', () => {
   let testCharacter: Character;
   let testCharacterDetails: CharacterDetailsComponent;
   let testMessageService: MessageService;
-  let testCharacterService: CharacterService;
+  let testTrackerService: TrackerService;
   let component: CharacterListEntryComponent;
   beforeEach(() => {
     testCharacter = <Character>{ key: 'Grog23'};
@@ -19,18 +21,20 @@ describe('CharacterListEntryComponent', () => {
       'add',
       'setCharacterID'
     ]);
-    testCharacterService = jasmine.createSpyObj('testCharacterService', [
-      'updateCharacter'
+    testTrackerService = jasmine.createSpyObj('testTrackerService', [
+      'addToTracker',
+      'removeFromTracker'
     ]);
 
     component = new CharacterListEntryComponent(
       testMessageService,
-      testCharacterService
+      testTrackerService
     );
   });
   afterEach(() => {
     testCharacterDetails = null;
     testMessageService = null;
+    testTrackerService = null;
     component = null;
   });
 
@@ -50,44 +54,41 @@ describe('CharacterListEntryComponent', () => {
   });
 
   describe('addToTracker()', () => {
-    beforeEach(() => {
-      component.character.tracked = false;
-    });
-    afterEach(() => {
-      component.character.tracked = null;
-    });
-    it('should set character.tracked to true', () => {
+    it('should call trackerService.addToTracker()', () => {
       component.addToTracker();
-      expect(component.character.tracked).toBeTruthy();
+      expect(testTrackerService.addToTracker).toHaveBeenCalled();
     });
-    it('should call characterService.setCharacterID with character.key', () => {
-      component.addToTracker();
-      expect(testCharacterService.setCharacterID).toHaveBeenCalledWith(component.character.key);
-    });
-    it('should call characterService.updateCharacter with character', () => {
-      component.addToTracker();
-      expect(testCharacterService.updateCharacter).toHaveBeenCalledWith(component.character);
-    });
+    // it('should set character.tracked to true', () => {
+    //   component.addToTracker();
+    //   expect(component.character.tracked).toBeTruthy();
+    // });
+    // it('should call characterService.setCharacterID with character.key', () => {
+    //   component.addToTracker();
+    //   expect(testCharacterService.setCharacterID).toHaveBeenCalledWith(component.character.key);
+    // });
+    // it('should call characterService.updateCharacter with character', () => {
+    //   component.addToTracker();
+    //   expect(testCharacterService.updateCharacter).toHaveBeenCalledWith(component.character);
+    // });
   });
 
   describe('removeFromTracker()', () => {
-    beforeEach(() => {
-      component.character.tracked = true;
+    it('should call trackerService.removeFromTracker()', () => {
+      component.removeFromTracker();
+      expect(testTrackerService.removeFromTracker).toHaveBeenCalled();
     });
-    afterEach(() => {
-      component.character.tracked = null;
-    });
-    it('should set character.tracked to false', () => {
-      component.addToTracker();
-      expect(component.character.tracked).toBeFalsy();
-    });
-    it('should call characterService.setCharacterID with character.key', () => {
-      component.addToTracker();
-      expect(testCharacterService.setCharacterID).toHaveBeenCalledWith(component.character.key);
-    });
-    it('should call characterService.updateCharacter with character', () => {
-      component.addToTracker();
-      expect(testCharacterService.updateCharacter).toHaveBeenCalledWith(component.character);
-    });
+
+    // it('should set character.tracked to false', () => {
+    //   component.addToTracker();
+    //   expect(component.character.tracked).toBeFalsy();
+    // });
+    // it('should call characterService.setCharacterID with character.key', () => {
+    //   component.addToTracker();
+    //   expect(testCharacterService.setCharacterID).toHaveBeenCalledWith(component.character.key);
+    // });
+    // it('should call characterService.updateCharacter with character', () => {
+    //   component.addToTracker();
+    //   expect(testCharacterService.updateCharacter).toHaveBeenCalledWith(component.character);
+    // });
   });
 });
