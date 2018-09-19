@@ -16,7 +16,6 @@ import { environment } from 'environments/environment';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { CharacterListComponent } from './character-list/character-list.component';
-import { TrackerCharacterComponent } from './tracker-character/tracker-character.component';
 import { MessagesComponent } from './messages/messages.component';
 import { CharacterListEntryComponent } from './character-list-entry/character-list-entry.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -25,7 +24,6 @@ import { RegisterComponent } from './register/register.component';
 import { CharDAttributeListEntryComponent } from './char-d-attribute-list-entry/char-d-attribute-list-entry.component';
 import { AccountRecoveryComponent } from './account-recovery/account-recovery.component';
 import { EditUserAccountComponent } from './edit-user-account/edit-user-account.component';
-import { GiveTrackerComponent } from './give-tracker/give-tracker.component';
 import { TrackerComponent } from './tracker/tracker.component';
 import { TrackerRowComponent } from './tracker-row/tracker-row.component';
 
@@ -33,7 +31,6 @@ import { TrackerRowComponent } from './tracker-row/tracker-row.component';
    declarations: [
       AppComponent,
       CharacterListComponent,
-      TrackerCharacterComponent,
       MessagesComponent,
       CharacterListEntryComponent,
       UserProfileComponent,
@@ -43,7 +40,6 @@ import { TrackerRowComponent } from './tracker-row/tracker-row.component';
       CharacterDetailsComponent,
       AccountRecoveryComponent,
       EditUserAccountComponent,
-      GiveTrackerComponent,
       TrackerComponent,
       TrackerRowComponent
    ],
