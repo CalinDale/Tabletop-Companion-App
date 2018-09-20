@@ -1,11 +1,7 @@
 import { TrackerService } from './../tracker.service';
-import { AttributeService } from './../attribute.service';
-import { CharacterService } from './../character.service';
 import { Character } from './../character';
 import { Component, OnInit } from '@angular/core';
-import { map } from '../../../node_modules/rxjs/operators';
 import { Attribute } from './../attribute';
-import { Observable } from '../../../node_modules/rxjs';
 
 @Component({
   selector: 'app-tracker',
@@ -15,9 +11,9 @@ import { Observable } from '../../../node_modules/rxjs';
 export class TrackerComponent implements OnInit {
 
   characters: Character[] = [];
-  numAttributeColumns = 5;
+  // numAttributeColumns = 5;
   attributeColumns: Attribute[] = [];
-  attributeColumnOptions: Attribute[];
+  // attributeColumnOptions: Attribute[];
   currentActor = 0;
 
   constructor(
