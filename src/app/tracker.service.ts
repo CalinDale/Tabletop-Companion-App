@@ -75,6 +75,15 @@ export class TrackerService {
     this.checkMarkerPosition();
   }
 
+  checkMarkerPosition() {
+    if (this.currentActor >= this.characters.length) {
+      this.currentActor = 0;
+    } else if (this.currentActor < 0) {
+      this.currentActor =  this.characters.length - 1;
+    }
+  }
+
+  // TODO: Made change, do manual test
   moveCharacterUp(index: number) {
     if (index > 0) {
       const tmp = this.characters[index - 1];
@@ -82,10 +91,12 @@ export class TrackerService {
       this.characters[index] = tmp;
     } else {
       const tmp = this.characters[this.characters.length - 1];
-      this.characters[0] = tmp;
       this.characters[this.characters.length - 1] = this.characters[index];
+      this.characters[0] = tmp;
     }
   }
+
+  // TODO: Made change, do manual test
   moveCharacterDown(index: number) {
     if (index < this.characters.length - 1) {
       const tmp = this.characters[index + 1];
@@ -93,8 +104,8 @@ export class TrackerService {
       this.characters[index] = tmp;
     } else {
       const tmp = this.characters[0];
-      this.characters[this.characters.length - 1] = tmp;
       this.characters[0] = this.characters[index];
+      this.characters[this.characters.length - 1] = tmp;
     }
   }
 
@@ -137,14 +148,6 @@ export class TrackerService {
     });
     for ( const attribute of charAttributes ) {
       this.attributeService.untrackAttribute(attribute);
-    }
-  }
-
-  checkMarkerPosition() {
-    if (this.currentActor >= this.characters.length) {
-      this.currentActor = 0;
-    } else if (this.currentActor < 0) {
-      this.currentActor =  this.characters.length - 1;
     }
   }
 }

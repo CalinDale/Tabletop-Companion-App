@@ -21,8 +21,6 @@ export class TrackerComponent implements OnInit {
   currentActor = 0;
 
   constructor(
-    private characterService: CharacterService,
-    private attributeService: AttributeService,
     private trackerService: TrackerService
   ) { }
 

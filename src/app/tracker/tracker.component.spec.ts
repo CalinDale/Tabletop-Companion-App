@@ -1,25 +1,17 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
 import { TrackerComponent } from './tracker.component';
+import { TrackerService } from '../tracker.service';
 
 describe('TrackerComponent', () => {
-  let component: TrackerComponent;
-  let fixture: ComponentFixture<TrackerComponent>;
+  let testTrackerService: TrackerService;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TrackerComponent ]
-    })
-    .compileComponents();
-  }));
+  let component: TrackerComponent;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TrackerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+
+    component = new TrackerComponent(testTrackerService);
+  });
+  afterEach(() => {
+    component = null;
   });
 
   it('should create', () => {
