@@ -3,7 +3,6 @@ import { AttributeService } from './../attribute.service';
 import { Character } from './../character';
 import { Attribute } from './../attribute';
 import { Component, OnInit, Input} from '@angular/core';
-import { map } from '../../../node_modules/rxjs/operators';
 
 @Component({
   selector: 'app-tracker-row',
@@ -58,6 +57,7 @@ export class TrackerRowComponent implements OnInit {
     });
   }
 
+  // TODO: Made change, do manual test
   moveUp() {
     if (this.index > 0) {
       const tmp = this.characters[this.index - 1];
@@ -65,11 +65,12 @@ export class TrackerRowComponent implements OnInit {
       this.characters[this.index] = tmp;
     } else {
       const tmp = this.characters[this.characters.length - 1];
-      this.characters[0] = tmp;
       this.characters[this.characters.length - 1] = this.character;
+      this.characters[0] = tmp;
     }
   }
 
+  // TODO: Made change, do manual test
   moveDown() {
     if (this.index < this.characters.length - 1) {
       const tmp = this.characters[this.index + 1];
@@ -77,8 +78,8 @@ export class TrackerRowComponent implements OnInit {
       this.characters[this.index] = tmp;
     } else {
       const tmp = this.characters[0];
-      this.characters[this.characters.length - 1] = tmp;
       this.characters[0] = this.character;
+      this.characters[this.characters.length - 1] = tmp;
     }
   }
 }

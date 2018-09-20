@@ -83,7 +83,6 @@ export class TrackerService {
     }
   }
 
-  // TODO: Made change, do manual test
   moveCharacterUp(index: number) {
     if (index > 0) {
       const tmp = this.characters[index - 1];
@@ -96,7 +95,6 @@ export class TrackerService {
     }
   }
 
-  // TODO: Made change, do manual test
   moveCharacterDown(index: number) {
     if (index < this.characters.length - 1) {
       const tmp = this.characters[index + 1];
