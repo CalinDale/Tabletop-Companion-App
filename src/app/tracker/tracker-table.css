@@ -1,17 +1,48 @@
-/* Css for the tracker table headers and rows*/
 #trackerTable {
   width: 80%;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
+#headerRow {
+
+}
+#markerDiv {
+  width: 1%
+}
 #nameColumn {
   width: 10%;
 }
-/* #attributeColumn {
-  //width: 10%;
-}*/
+#attributeColumn {
+  width: 10%;
+}
+#attributeHeader {
 
+}
+#attributeSelectDiv {
+
+}
+#attributeEditDiv {
+
+}
 #attributeSelect {
   width: 100%;
+}
+#moveUpButtonDiv {
+  width: 1%
+}
+#moveUpButton  {
+
+}
+#moveDownButtonDiv {
+  width: 1%
+}
+#moveDownButton {
+
+}
+#attributeSelectDiv {
+
+}
+#attributeEditDiv {
+
 }

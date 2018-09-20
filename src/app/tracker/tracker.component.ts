@@ -13,7 +13,7 @@ export class TrackerComponent implements OnInit {
   characters: Character[] = [];
   // numAttributeColumns = 5;
   attributeColumns: Attribute[] = [];
-  // attributeColumnOptions: Attribute[];
+  attributeColumnOptions: Attribute[];
   currentActor = 0;
 
   constructor(

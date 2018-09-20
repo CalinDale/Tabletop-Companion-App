@@ -13,11 +13,11 @@
         <input id='value' *ngIf='selectedAttributeIndexes[i] !== undefined' [(ngModel)]='attributes[selectedAttributeIndexes[i]].value' (input)="onChange(i)">
       </td>
     </span>
-    <td>
-      <button class="btn btn-success" (click)="moveUp();">Move Up</button>
+    <td id='moveUpButtonDiv'>
+      <button id='moveUpButton' class="btn btn-success" (click)="moveUp();">^</button>
     </td>
-    <td>
-      <button class="btn btn-success" (click)="moveDown();">Move Down</button>
+    <td  id='moveDownButtonDiv'>
+      <button  id='moveDownButton' class="btn btn-success" (click)="moveDown();">v</button>
     </td>
   </tr>
 </table>

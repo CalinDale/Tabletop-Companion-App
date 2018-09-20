@@ -2,13 +2,16 @@
 
 <table id='trackerTable'>
     <tr id='headerRow'>
+      <th id='markerDiv'></th>
       <th id='nameColumn'><div id='nameDiv'>Name</div></th>
-      <th *ngFor='let attributeColumn of attributeColumns' id='attributeColumn'>
+      <th colspan="2" *ngFor='let attributeColumn of attributeColumns' id='attributeColumn'>
         <select id='attributeHeader'>
           <option disabled=true value='default'>Add Attribute</option>
           <option *ngFor='let attribute of attributeColumnOptions' value='attribute'>{{attribute.name}}</option>
         </select>
       </th>
+      <th id='moveUpButtonDiv'></th>
+      <th id='moveDownButtonDiv'></th>
     </tr>
 </table>
 <div *ngFor='let character of characters index as i'>
