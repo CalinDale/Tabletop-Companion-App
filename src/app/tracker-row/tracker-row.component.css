@@ -1,7 +1,48 @@
-@import url('../tracker/tracker-table.css');
+#trackerTable {
+  width: 80%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+#characterRow{
+
+}
+#markerDiv {
+  width: 1%
+}
+#marker {
+
+}
+#nameColumn {
+  width: 10%;
+}
+#name {
+
+}
+#attributeColumn {
+  width: 10%;
+}
 #attributeSelectDiv {
 
 }
+#attributeSelect {
+  width: 100%;
+}
 #attributeEditDiv {
+
+}
+#attributeEdit {
+
+}
+#moveUpButtonDiv {
+  width: 1%
+}
+#moveUpButton  {
+
+}
+#moveDownButtonDiv {
+  width: 1%
+}
+#moveDownButton {
 
 }

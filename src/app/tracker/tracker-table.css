@@ -1,3 +1,5 @@
+/*  Css for tracker table, both tracker component and tracker row component. */
+
 #trackerTable {
   width: 80%;
   text-align: center;
@@ -7,11 +9,20 @@
 #headerRow {
 
 }
+#characterRow{
+
+}
 #markerDiv {
   width: 1%
 }
+#marker {
+
+}
 #nameColumn {
   width: 10%;
+}
+#name {
+
 }
 #attributeColumn {
   width: 10%;
@@ -22,11 +33,17 @@
 #attributeSelectDiv {
 
 }
-#attributeEditDiv {
+#attributeSelect {
 
 }
 #attributeSelect {
   width: 100%;
+}
+#attributeEditDiv {
+
+}
+#attributeEdit {
+
 }
 #moveUpButtonDiv {
   width: 1%
@@ -38,11 +55,5 @@
   width: 1%
 }
 #moveDownButton {
-
-}
-#attributeSelectDiv {
-
-}
-#attributeEditDiv {
 
 }
