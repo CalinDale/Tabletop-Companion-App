@@ -4,9 +4,9 @@
       <td id='markerDiv'><div id='marker' *ngIf='isActing()'>  </div><div id='noMarker' *ngIf='!isActing()'>  </div></td>
       <td id='nameColumn'><div id='name'>{{character.name}}</div></td>
       <div id='allAttributes'>
-        <div id='attributeColumn' *ngFor='let attributeColumn of attributeColumns index as i'>
+        <div id='attributeColumn' [className]="selectedAttributeIndexes[i] === undefined ? 'empty' : 'full'" *ngFor='let attributeColumn of attributeColumns index as i'>
           <td id='attributeSelectDiv' [className]="selectedAttributeIndexes[i] === undefined ? 'empty' : 'full'">
-            <select id='attributeSelect' [(ngModel)]='selectedAttributeIndexes[i]'>
+            <select id='attributeSelect' [className]="selectedAttributeIndexes[i] === undefined ? 'empty' : 'full'" [(ngModel)]='selectedAttributeIndexes[i]'>
                 <option disabled=true value='default'>Add Attribute</option>
                 <option *ngFor='let attribute of attributes index as a' value={{a}}>{{attribute.name}}</option>
             </select>
