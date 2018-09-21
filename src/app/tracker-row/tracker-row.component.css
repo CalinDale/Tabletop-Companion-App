@@ -37,18 +37,24 @@
   width: 20%;
   display: inline-block;
 }
-#attributeSelectDiv {
+#attributeSelectDiv.empty {
+  width: 100%;
+  border: 1px solid black;
+}
+#attributeSelectDiv.full {
   width: 40%;
-
   border: 1px solid black;
 }
 #attributeSelect {
   width:100%;
 }
-#attributeEditDiv {
+#attributeEditDiv.active {
   width: 60%;
   border: 1px solid black;
   padding-right:7px;
+}
+#attributeEditDiv.inactive {
+  padding-right:0px;
 }
 #attributeEdit {
   width: 100%;

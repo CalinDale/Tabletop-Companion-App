@@ -5,13 +5,13 @@
       <td id='nameColumn'><div id='name'>{{character.name}}</div></td>
       <div id='allAttributes'>
         <div id='attributeColumn' *ngFor='let attributeColumn of attributeColumns index as i'>
-          <td id='attributeSelectDiv'>
+          <td id='attributeSelectDiv' [className]="selectedAttributeIndexes[i] === undefined ? 'empty' : 'full'">
             <select id='attributeSelect' [(ngModel)]='selectedAttributeIndexes[i]'>
                 <option disabled=true value='default'>Add Attribute</option>
                 <option *ngFor='let attribute of attributes index as a' value={{a}}>{{attribute.name}}</option>
             </select>
           </td>
-          <td id='attributeEditDiv'>
+          <td id='attributeEditDiv' [className]="selectedAttributeIndexes[i] !== undefined ? 'active' : 'inactive'">
             <input id='attributeEdit' *ngIf='selectedAttributeIndexes[i] !== undefined' [(ngModel)]='attributes[selectedAttributeIndexes[i]].value' (input)="onChange(i)">
           </td>
         </div>
