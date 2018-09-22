@@ -1,3 +1,5 @@
+TrackerComponent{}
+
 #trackerTable {
   width: 90%;
   text-align: center;
@@ -38,14 +40,16 @@
 #prevTurnButton {
 
 }
-
 #list {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  background-color: #DAE8FC;
+  background-color: #d0e1fb;
+  border: 2px solid transparent;
 }
-
+#list.acting {
+  border: 2px blue solid;
+}
 #list:nth-child(even) {
   background-color: #B3CFFF;
 }

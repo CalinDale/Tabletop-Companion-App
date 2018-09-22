@@ -1,3 +1,5 @@
+AppMasterPage{}
+
 table {
   width: 100%;
 }
@@ -9,5 +11,5 @@ table {
 }
 
 #trackerSpace {
-  background-color: lightgreen;
+  background-color: #e8f0fd;
 }
