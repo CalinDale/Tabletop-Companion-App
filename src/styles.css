@@ -2,7 +2,9 @@
 * {
   font-family: Sans-serif;
 }
-
+body {
+  margin: 0px;
+}
 button.btn-add{
   border: dashed;
   border-width: 2px;
@@ -10,13 +12,11 @@ button.btn-add{
   border-radius: 20px;
   background-color: #adebad;
 }
-
 button.btn-add:hover{
   -webkit-transition-duration: 0.15s;
   border-color: #6fdc6f;
   background-color: #d6f5d6;
 }
-
 button.btn-delete{
   border: solid;
   border-width: 2px;
@@ -24,7 +24,6 @@ button.btn-delete{
   border-radius: 5px;
   background-color: #ff6666;
 }
-
 button.btn-delete:hover{
   -webkit-transition-duration: 0.15s;
   border-color: #ff4d4d;

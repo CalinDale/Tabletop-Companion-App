@@ -1,33 +1,33 @@
 TrackerRowComponent{}
 
-#trackerTable[_ngcontent-c6]{
+#trackerTable{
   width: 99%;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
-#characterRow[_ngcontent-c6]{
+#characterRow{
 
 }
-#characterRow.acting[_ngcontent-c6]{
+#characterRow.acting{
 
 }
-#markerDiv[_ngcontent-c6]{
+#markerDiv{
   width: 2%;
 }
-#marker[_ngcontent-c6]{
+#marker{
   background-color: blue;
   width:23px;
   height:23px;
   border-radius: 50px;
 }
-#noMarker[_ngcontent-c6]{
+#noMarker{
 }
-#nameColumn[_ngcontent-c6]{
+#nameColumn{
   position:relative;
   width: 10%;
 }
-#name[_ngcontent-c6]{
+#name{
   position: absolute;
   left:0;
   top:5px;
@@ -35,50 +35,50 @@ TrackerRowComponent{}
   overflow: hidden;
   text-overflow: ellipsis
 }
-#allAttributes[_ngcontent-c6]{
+#allAttributes{
   width:100%;
   display: inline-block;
 }
-#attributeColumn[_ngcontent-c6]{
+#attributeColumn{
   width: 19%;
   padding: 0px;
   margin: 0px 3px;;
   display: inline-block;
   border-radius: 15px;
 }
-#attributeColumn.empty[_ngcontent-c6]{
+#attributeColumn.empty{
   border: dashed 1px;
 }
-#attributeColumn.full[_ngcontent-c6]{
+#attributeColumn.full{
   border: solid 1px;
 }
-#attributeSelectDiv.empty[_ngcontent-c6]{
+#attributeSelectDiv.empty{
   width: 100%;
 }
-#attributeSelectDiv.full[_ngcontent-c6]{
+#attributeSelectDiv.full{
 
 }
-#attributeSelect[_ngcontent-c6]{
+#attributeSelect{
   width:100%;
   border: none;
   background-color: transparent;
 }
-#attributeSelect.empty[_ngcontent-c6]{
+#attributeSelect.empty{
 
 }
-#attributeSelect.full[_ngcontent-c6]{
+#attributeSelect.full{
   width: 200%;
   z-index: 99;
 }
-#attributeEditDiv.active[_ngcontent-c6]{
+#attributeEditDiv.active{
   width: 50%;
   padding-right:5px;
   z-index: 98;
 }
-#attributeEditDiv.inactive[_ngcontent-c6]{
+#attributeEditDiv.inactive{
 
 }
-#attributeEdit[_ngcontent-c6]{
+#attributeEdit{
   width: 100%;
   text-align: center;
   border: 1px;
@@ -87,27 +87,27 @@ TrackerRowComponent{}
   right:22px;
   z-index: 99;
 }
-#moveUpButtonDiv[_ngcontent-c6]{
+#moveUpButtonDiv{
   width: 1%
 }
-#moveUpButton[_ngcontent-c6] {
+#moveUpButton {
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 
   border-bottom: 15px solid blue;
 }
-#moveUpButton[_ngcontent-c6]:active{
+#moveUpButton:active{
   border-bottom: 15px solid purple;
 }
-#moveDownButtonDiv[_ngcontent-c6]{
+#moveDownButtonDiv{
   width: 1%
 }
-#moveDownButton[_ngcontent-c6]{
+#moveDownButton{
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 
   border-top: 15px solid #f00;
 }
-#moveDownButton[_ngcontent-c6]:active{
+#moveDownButton:active{
   border-top: 15px solid purple;
 }

@@ -1,21 +1,29 @@
-
 <div class="container-fluid">
-  <div style="color: blue;">
-    <h1>{{title}}</h1>
-    <!-- <h3>{{description}}</h3> This error is annoying-->
-  </div>
-
   <nav>
-    <a routerLink="viewtracker" class="btn btn-primary active" role="button" routerLinkActive="active">Tracker</a><br>
-    <a routerLink="login" class="btn btn-primary active" role="button" routerLinkActive="active">Account page</a><br>
-    <a routerLink="app" class="btn btn-primary active" role="button" routerLinkActive="active">App Master Page</a><br>
+    <table id="navigationTable">
+      <tr>
+        <td id="homeLink">
+          Home
+        </td>
+        <td id="accountLink" id='accountLink' routerLink="login" class="btn btn-primary active" role="button" routerLinkActive="active">
+          Login
+        </td>
+        <td id="appLink" routerLink="app" class="btn btn-primary active" role="button" routerLinkActive="active">
+          App
+        </td>
+        <td id='spaceDiv'></td>
+        <td id='aboutLink'>
+          About
+        </td>
+      </tr>
+    </table>
   </nav>
+
   <div id='routerSpace'>
     <router-outlet></router-outlet>
   </div>
 
-  <app-messages></app-messages>
+  <!-- <app-messages></app-messages> -->
 </div>
-<!-- the piece below is where routing result is placed. -->
 
 
