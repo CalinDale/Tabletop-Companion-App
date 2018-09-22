@@ -1,5 +1,5 @@
 #trackerTable {
-  width: 80%;
+  width: 90%;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -17,7 +17,8 @@
   width: 10%;
 }
 #attributeHeader {
-
+  margin-left: auto;
+  margin-right: auto;
 }
 #moveUpButtonDiv {
   width: 1%
@@ -36,4 +37,15 @@
 }
 #prevTurnButton {
 
+}
+
+#list {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #DAE8FC;
+}
+
+#list:nth-child(even) {
+  background-color: #B3CFFF;
 }

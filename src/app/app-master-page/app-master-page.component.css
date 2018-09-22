@@ -7,3 +7,7 @@ table {
   height: auto;
   width: 25%;
 }
+
+#trackerSpace {
+  background-color: lightgreen;
+}

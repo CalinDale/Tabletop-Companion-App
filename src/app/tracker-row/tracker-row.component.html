@@ -1,6 +1,6 @@
 <table id='trackerTable' *ngIf='character'>
   <tbody></tbody>
-    <tr id='characterRow'>
+    <tr id='characterRow' [className]="isActing() ? 'acting' : 'waiting'">
       <td id='markerDiv'><div id='marker' *ngIf='isActing()'>  </div><div id='noMarker' *ngIf='!isActing()'>  </div></td>
       <td id='nameColumn'><div id='name'>{{character.name}}</div></td>
       <div id='allAttributes'>
@@ -17,10 +17,10 @@
         </div>
       </div>
       <td id='moveUpButtonDiv'>
-        <button id='moveUpButton' class="btn btn-success" (click)="moveUp();">^</button>
+        <div id='moveUpButton' class="btn-up" (click)="moveUp()"></div>
       </td>
       <td  id='moveDownButtonDiv'>
-        <button  id='moveDownButton' class="btn btn-success" (click)="moveDown();">v</button>
+        <div  id='moveDownButton' class="btn-down" (click)="moveDown()"></div>
       </td>
     </tr>
   </tbody>
