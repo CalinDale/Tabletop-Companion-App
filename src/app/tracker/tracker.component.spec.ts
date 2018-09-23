@@ -1,4 +1,4 @@
-import { Character } from './../character';
+import { Character } from '../character';
 import { of } from 'rxjs';
 import { TrackerComponent } from './tracker.component';
 import { TrackerService } from '../tracker.service';

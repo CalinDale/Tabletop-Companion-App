@@ -1,7 +1,7 @@
-import { TrackerService } from './../tracker.service';
-import { AttributeService } from './../attribute.service';
-import { Character } from './../character';
-import { Attribute } from './../attribute';
+import { TrackerService } from '../tracker.service';
+import { AttributeService } from '../attribute.service';
+import { Character } from '../character';
+import { Attribute } from '../attribute';
 import { Component, OnInit, Input} from '@angular/core';
 
 @Component({

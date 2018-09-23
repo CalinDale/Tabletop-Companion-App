@@ -1,7 +1,7 @@
-import { TrackerService } from './../tracker.service';
-import { Character } from './../character';
+import { TrackerService } from '../tracker.service';
+import { Character } from '../character';
 import { Component, OnInit } from '@angular/core';
-import { Attribute } from './../attribute';
+import { Attribute } from '../attribute';
 
 @Component({
   selector: 'app-tracker',

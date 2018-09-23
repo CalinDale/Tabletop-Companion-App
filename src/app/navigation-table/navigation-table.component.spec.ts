@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { NavigationTableComponent } from './navigationTable.component';
+import { NavigationTableComponent } from './navigation-table.component';
 
 describe('NavigationTableComponent', () => {
   let component: NavigationTableComponent;

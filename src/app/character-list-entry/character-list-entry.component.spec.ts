@@ -1,6 +1,6 @@
-import { TrackerService } from './../tracker.service';
-import { AttributeService } from './../attribute.service';
-import { CharacterService } from './../character.service';
+import { TrackerService } from '../tracker.service';
+import { AttributeService } from '../attribute.service';
+import { CharacterService } from '../character.service';
 import { CharacterDetailsComponent } from '../character-details/character-details.component';
 import { MessageService } from '../message.service';
 import { CharacterListEntryComponent } from './character-list-entry.component';

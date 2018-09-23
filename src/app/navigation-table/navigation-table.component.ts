@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-navigationTable',
-  templateUrl: './navigationTable.component.html',
-  styleUrls: ['./navigationTable.component.css']
+  selector: 'app-navigation-table',
+  templateUrl: './navigation-table.component.html',
+  styleUrls: ['./navigation-table.component.css']
 })
 export class NavigationTableComponent implements OnInit {
 

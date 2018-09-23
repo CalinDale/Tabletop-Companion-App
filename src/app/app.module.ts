@@ -26,7 +26,7 @@ import { AccountRecoveryComponent } from './account-recovery/account-recovery.co
 import { EditUserAccountComponent } from './edit-user-account/edit-user-account.component';
 import { TrackerComponent } from './tracker/tracker.component';
 import { TrackerRowComponent } from './tracker-row/tracker-row.component';
-import { NavigationTableComponent } from './navigationTable/navigationTable.component';
+import { NavigationTableComponent } from './navigation-table/navigation-table.component';
 
 @NgModule({
    declarations: [

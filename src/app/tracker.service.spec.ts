@@ -3,7 +3,7 @@ import { CharacterService } from './character.service';
 import { TrackerService } from './tracker.service';
 import { Attribute } from './attribute';
 import { Character } from './character';
-import { AngularFireList } from '../../node_modules/angularfire2/database';
+import { AngularFireList } from 'angularfire2/database';
 
 describe('TrackerService', () => {
   let testCharacters: Character[];

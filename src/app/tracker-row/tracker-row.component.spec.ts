@@ -1,7 +1,7 @@
 import { of } from 'rxjs';
-import { Character } from './../character';
-import { Attribute } from './../attribute';
-import { TrackerService } from './../tracker.service';
+import { Character } from '../character';
+import { Attribute } from '../attribute';
+import { TrackerService } from '../tracker.service';
 import { TrackerRowComponent } from './tracker-row.component';
 import { AttributeService } from '../attribute.service';
 
