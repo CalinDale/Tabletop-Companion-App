@@ -26,6 +26,7 @@ import { AccountRecoveryComponent } from './account-recovery/account-recovery.co
 import { EditUserAccountComponent } from './edit-user-account/edit-user-account.component';
 import { TrackerComponent } from './tracker/tracker.component';
 import { TrackerRowComponent } from './tracker-row/tracker-row.component';
+import { NavigationTableComponent } from './navigationTable/navigationTable.component';
 
 @NgModule({
    declarations: [
@@ -41,7 +42,8 @@ import { TrackerRowComponent } from './tracker-row/tracker-row.component';
       AccountRecoveryComponent,
       EditUserAccountComponent,
       TrackerComponent,
-      TrackerRowComponent
+      TrackerRowComponent,
+      NavigationTableComponent
    ],
    imports: [
       BrowserModule,

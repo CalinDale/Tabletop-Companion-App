@@ -4,55 +4,6 @@ AppComponent{}
 
 }
 
-#navigationTable {
-  width:100%;
-  background-color: lightblue;
-  height:35px;
-  border-collapse: collapse;
-}
-
-td {
-  border: solid 2px #7EA6E0;
-  width: 8%;
-}
-
-.selected {
-  background-color: blue;
-  color: white;
-}
-
-#homeLink {
-
-}
-
-#accountLinkDiv {
-
-}
-
-#accountLink {
-
-}
-
-#appLinkDiv {
-
-}
-
-#appLink {
-
-}
-
-#spaceDiv {
-  width: auto;
-}
-
-#aboutLinkDiv {
-
-}
-
-#aboutLink {
-
-}
-
 #routerSpace {
-  background-color: pink;
+
 }
