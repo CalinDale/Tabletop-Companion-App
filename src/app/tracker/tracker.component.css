@@ -50,6 +50,6 @@ TrackerComponent{}
 #list.acting {
   border: 2px blue solid;
 }
-#list:nth-child(even) {
+#list:nth-child(odd) {
   background-color: #B3CFFF;
 }

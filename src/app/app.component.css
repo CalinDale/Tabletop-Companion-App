@@ -16,6 +16,11 @@ td {
   width: 8%;
 }
 
+.selected {
+  background-color: blue;
+  color: white;
+}
+
 #homeLink {
 
 }
