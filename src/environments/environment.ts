@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyCthIRTvNpv0nKnFbP6OGpVEB0t-mGRWYQ',
-    authDomain: 'tabletopcompaionapp.firebaseapp.com',
-    databaseURL: 'https://tabletopcompaionapp.firebaseio.com',
-    projectId: 'tabletopcompaionapp',
-    storageBucket: 'tabletopcompaionapp.appspot.com',
-    messagingSenderId: '184726034576'
+    apiKey: 'AIzaSyDPpQSLyqPs-7xGxnRJSX0Gj-0Mq7NYBxo',
+    authDomain: 'tabletop-companion-app.firebaseapp.com',
+    databaseURL: 'https://tabletop-companion-app.firebaseio.com',
+    projectId: 'tabletop-companion-app',
+    storageBucket: 'tabletop-companion-app.appspot.com',
+    messagingSenderId: '569601625763'
 }
 
 };
