@@ -1,30 +1,22 @@
 <h1>Tracker</h1>
 
-Current acting position: {{actingPosition}}
-
-<ul class="turnOrder">
-  <li *ngFor="let character of characters">
-    <!-- TODO: Delete this part when implementing proper routing for character page.-->
-    <a routerLink="/character/2">
-    <!-- END OF DELETE-->
-      {{character.name}}
-      <ul class="attributes">
-      </ul>
-    <!-- TODO: Delete this part when implementing proper routing for character page.-->
-    </a>
-    <!-- END OF DELETE-->
-  </li>
-</ul>
-
-
-These buttons are just to give us an idea of the functionality that should be built.
-<br>
-The functionality does not need to be in buttons, nor does it even need specific functions.
-<br>
-  <button (click)="nextTurn()">Next Turn</button>
-<br>
-  <button (click)="previousTurn()">Previous Turn</button>
-<br>
-  <button (click)="removeCharacter()">Remove Character</button>
-<br>
-  <button (click)="moveCharacter()">Move Character</button>
+<table id='trackerTable'>
+    <tr id='headerRow'>
+      <th id='nameColumn'><div id='nameDiv'>Name</div></th>
+      <th *ngFor='let attributeColumn of attributeColumns' id='attributeColumn'>
+        <select id='attributeHeader'>
+          <option disabled=true value='default'>Add Attribute</option>
+          <option *ngFor='let attribute of attributeColumnOptions' value='attribute'>{{attribute.name}}</option>
+        </select>
+      </th>
+    </tr>
+</table>
+<div *ngFor='let character of characters index as i'>
+  <app-tracker-row [character]='character' [attributeColumns]='attributeColumns' [currentActor]='currentActor' [characters]='characters' [index]=i></app-tracker-row>
+</div>
+<div id='nextTurnButtonDiv'>
+  <button id='nextTurnButton' type="button" class="button btn-add" (click)='nextTurn()'>Next Turn</button>
+</div>
+<div id='prevTurnButtonDiv'>
+  <button id='prevTurnButton' type="button" class="button btn-delete" (click)='prevTurn()'>Prev Turn</button>
+</div>

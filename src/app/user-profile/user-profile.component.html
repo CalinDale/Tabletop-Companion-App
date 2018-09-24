@@ -1,0 +1,72 @@
+<div *ngIf="auth.user | async; then authenticated else guest">
+  <!-- template will replace this div -->
+</div>
+
+
+<!-- User NOT logged in -->
+<ng-template #guest>
+<h3>Welcome, GUEST</h3>
+<p>Login to get started...</p>
+
+<form [formGroup] = "signInForm">
+
+  <h3> Returning User Login </h3>
+  
+  <label>Email</label>
+  <input type="email" formControlName="email">
+
+  <div *ngIf="email.invalid && email.dirty">
+    Your email doesn't look quite right...
+  </div>
+
+  <br>
+  <label for="password">Password</label>
+  <input type="password" formControlName="password" required>
+  
+  <div *ngIf="signInForm.valid"> Form is valid </div>
+
+  <button type="submit" [disabled]="!signInForm.valid" (click)="signIn()">Login</button>
+  
+
+</form>
+
+
+
+<button>
+    <a routerLink="/register" tag="button" routerLinkActive="active">Register</a>
+</button>
+<br>
+<button (click)="auth.googleLogin()">
+   <i class="fa fa-google"></i> Connect Google
+</button>
+<br>
+<button (click)="auth.facebookLogin()">
+  <i class="fa fa-facebook"></i> Connect Facebook
+</button>
+<br>
+<button (click)="auth.anonymousLogin()">
+  <i class="fa fa-Anon"></i> Connect Anonymous
+</button>
+<br>
+<button>
+  <a routerLink="/accountRecover" tag="button" routerLinkActive="active">Forgot Password</a>
+</button>
+<br>
+
+
+
+</ng-template>
+
+
+<!-- User logged in -->
+<ng-template #authenticated>
+<div *ngIf="auth.user | async as user">
+  <h3>Welcome, {{ auth.currentUserDisplayName }}</h3>
+  <p>UID: {{ user.uid }}</p>
+  <button (click)="auth.signOut()">Logout</button>
+  <br>
+  <button>
+    <a routerLink="/editAccount" tag="button" routerLinkActive="active">Edit Account Details</a>
+  </button>
+</div>
+</ng-template>

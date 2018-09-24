@@ -1,0 +1,29 @@
+<table id='trackerTable' *ngIf='character'>
+  <tr id='characterow'>
+    <td id='markerDiv'><div id='marker' *ngIf='isActing()'> X </div><div *ngIf='!isActing()'> 0 </div></td>
+    <td id='nameColumn'><div id='name'>{{character.name}}</div></td>
+    <span id='attributeColumn' *ngFor='let attributeColumn of attributeColumns index as i'>
+      <td id='attributeSelectDiv'>
+        <select id='attributeSelect' [(ngModel)]='selectedAttributeIndexes[i]'>
+            <option disabled=true value='default'>Add Attribute</option>
+            <option *ngFor='let attribute of attributes index as a' value={{a}}>{{attribute.name}}</option>
+        </select>
+      </td>
+      <td id='attributeEditDiv'>
+        <input id='value' *ngIf='selectedAttributeIndexes[i] !== undefined' [(ngModel)]='attributes[selectedAttributeIndexes[i]].value' (input)="onChange(i)">
+      </td>
+    </span>
+    <td>
+      <button class="btn btn-success" (click)="moveUp();">Move Up</button>
+    </td>
+    <td>
+      <button class="btn btn-success" (click)="moveDown();">Move Down</button>
+    </td>
+    <td>
+      <button class="btn btn-success" (click)="unlink();">Unlink</button>
+    </td>
+    <td>
+      <button class="btn btn-success" (click)="link();">Link</button>
+    </td>
+  </tr>
+</table>

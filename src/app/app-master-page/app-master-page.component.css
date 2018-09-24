@@ -1,0 +1,9 @@
+table {
+  width: 100%;
+}
+
+#characterTab {
+  background-color: lightyellow;
+  height: auto;
+  width: 25%;
+}

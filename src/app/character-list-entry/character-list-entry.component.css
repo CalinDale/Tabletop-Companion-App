@@ -1,0 +1,50 @@
+table{
+  width: 100%;
+}
+
+tr{
+
+}
+
+td{
+
+}
+
+#drag{
+  width:10px;
+}
+#trackButtonDiv{
+  width:10px;
+}
+#trackButton{
+
+}
+#untrackButtonDiv{
+  width:10px;
+}
+#untrackButton{
+
+}
+#name{
+}
+
+#cloneButtonDiv{
+  width: 10px;
+}
+
+#cloneButton{
+  border-style: solid;
+  width: auto;
+}
+
+#cloneButton:hover {
+
+}
+
+#editButtonDiv{
+  width: 10px;
+}
+
+#editButton{
+
+}
