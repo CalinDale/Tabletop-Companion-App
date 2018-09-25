@@ -1,17 +1,2 @@
-/* Css for the tracker table headers and rows*/
-#trackerTable {
-  width: 80%;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-#nameColumn {
-  width: 10%;
-}
-/* #attributeColumn {
-  //width: 10%;
-}*/
-
-#attributeSelect {
-  width: 100%;
-}
+/*  Css for tracker table, both tracker component and tracker row component. */
+TrackerTableSharedCSS{}

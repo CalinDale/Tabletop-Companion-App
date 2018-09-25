@@ -1,1 +1,55 @@
-@import url('tracker-table.css');
+TrackerComponent{}
+
+#trackerTable {
+  width: 90%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+#headerRow {
+
+}
+#markerDiv {
+  width: 1%
+}
+#nameColumn {
+  width: 10%;
+}
+#attributeColumn {
+  width: 10%;
+}
+#attributeHeader {
+  margin-left: auto;
+  margin-right: auto;
+}
+#moveUpButtonDiv {
+  width: 1%
+}
+#moveDownButtonDiv {
+  width: 1%
+}
+#nextTurnButtonDiv {
+
+}
+#nextTurnButton {
+
+}
+#prevTurnButtonDiv {
+
+}
+#prevTurnButton {
+
+}
+#list {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #d0e1fb;
+  border: 2px solid transparent;
+}
+#list.acting {
+  border: 2px blue solid;
+}
+#list:nth-child(even) {
+  background-color: #B3CFFF;
+}
