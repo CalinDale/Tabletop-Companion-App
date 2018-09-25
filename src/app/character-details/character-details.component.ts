@@ -4,9 +4,9 @@ import { MessageService } from '../message.service';
 import { CharacterService } from '../character.service';
 import { AttributeService } from '../attribute.service';
 import { Character } from '../character';
-import { Component, OnInit, Input, HostBinding, HostListener } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import * as firebase from 'firebase';
+import { map, takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-character-details',
@@ -24,11 +24,14 @@ export class CharacterDetailsComponent implements OnInit {
 
   attributes: Attribute[];
 
+  characterID: string;
+  alive: boolean;
+
   constructor(
     private characterService: CharacterService,
     private attributeService: AttributeService,
-    private messageService: MessageService
-  ) { }
+    private messageService: MessageService,
+  ) {this.alive = true; }
 
   ngOnInit() {
   }
@@ -56,6 +59,37 @@ export class CharacterDetailsComponent implements OnInit {
     attribute.characterID = this.character.key;
     attribute.userID = firebase.auth().currentUser.uid;
     this.attributeService.createAttribute(attribute);
+  }
+
+  async cloneCharacter() {
+    this.characterID = this.character.key;
+    this.character.userID = firebase.auth().currentUser.uid;
+    this.character.key = null;
+    this.characterService.createCharacter(this.character);
+    await this.delay(500);
+    this.cloneAttributes();
+  }
+
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms));
+  }
+
+  cloneAttributes() {
+    this.attributeService.getAttributes(this.characterID).snapshotChanges().pipe(
+      takeWhile(() => this.alive), map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(attributes => {
+      this.attributes = attributes;
+      this.store(this.attributes);
+    });
+  }
+
+  async store(attributes: any) {
+    this.characterID = this.characterService.getCharacterID();
+    this.attributeService.cloneAttributes(attributes, this.characterID);
+    await this.delay(500);
+    this.alive = false;
   }
 
   close() {

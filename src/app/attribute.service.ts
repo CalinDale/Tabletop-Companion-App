@@ -14,6 +14,7 @@ export class AttributeService {
   userID: string;
   characterID: string;
   attributeID: string;
+  attribute: Attribute;
 
   attributesRef: AngularFireList<Attribute> = null;
   attributeRef: AngularFireObject<Attribute> = null;
@@ -67,6 +68,16 @@ export class AttributeService {
     this.characterID = this.characterService.getCharacterID();
     this.attributesRef = this.db.list(`attributes/${this.userID}/${this.characterID}`);
     this.attributesRef.push(attribute);
+  }
+
+  cloneAttributes(attribute: any, characterID: string): void {
+    this.attributesRef = this.db.list(`attributes/${this.userID}/${characterID}`);
+    attribute.forEach(element => {
+      this.attribute = element;
+      this.attribute.characterID = characterID;
+      this.attribute.key = null;
+      this.attributesRef.push(this.attribute);
+    });
   }
 
   // TODO: this.db.object is not a function?
