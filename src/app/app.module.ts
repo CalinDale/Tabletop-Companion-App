@@ -27,6 +27,7 @@ import { EditUserAccountComponent } from './edit-user-account/edit-user-account.
 import { TrackerComponent } from './tracker/tracker.component';
 import { TrackerRowComponent } from './tracker-row/tracker-row.component';
 import { NavigationTableComponent } from './navigation-table/navigation-table.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
    declarations: [
@@ -43,7 +44,8 @@ import { NavigationTableComponent } from './navigation-table/navigation-table.co
       EditUserAccountComponent,
       TrackerComponent,
       TrackerRowComponent,
-      NavigationTableComponent
+      NavigationTableComponent,
+      HomePageComponent
    ],
    imports: [
       BrowserModule,
