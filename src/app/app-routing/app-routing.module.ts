@@ -1,3 +1,4 @@
+import { HomePageComponent } from './../home-page/home-page.component';
 import { AppMasterPageComponent } from '../app-master-page/app-master-page.component';
 import { CharacterListComponent } from '../character-list/character-list.component';
 import { NgModule } from '@angular/core';
@@ -11,11 +12,12 @@ import { EditUserAccountComponent } from '../edit-user-account/edit-user-account
 // fill in with { path: 'pathname', component: ComponentName } when adding routes.
 const routes: Routes = [
   { path: 'app', component: AppMasterPageComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomePageComponent},
   { path: 'login', component: UserProfileComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'accountRecover', component: AccountRecoveryComponent },
   { path: 'editAccount', component: EditUserAccountComponent, canActivate: [AuthGuard]},
-  { path: '', redirectTo: 'login', pathMatch: 'full'}
+  { path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
 @NgModule({

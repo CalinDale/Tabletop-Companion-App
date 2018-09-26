@@ -1,10 +1,10 @@
 <nav>
   <table id="navigationTable">
     <tr>
-      <td id="homeLink" (click)='select($event)'>
+      <td id="homeLink" routerLink="home" class="btn btn-primary active" role="button" routerLinkActive="active" (click)='select($event)'>
         Home
       </td>
-      <td id="accountLink" id='accountLink' routerLink="login" class="btn btn-primary active" role="button" routerLinkActive="active" (click)='select($event)'>
+      <td id="accountLink" routerLink="login" class="btn btn-primary active" role="button" routerLinkActive="active" (click)='select($event)'>
         Login
       </td>
       <td id="appLink" routerLink="app" class="btn btn-primary active" role="button" routerLinkActive="active" (click)='select($event)'>
