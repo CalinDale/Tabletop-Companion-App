@@ -1,17 +1,17 @@
 <nav>
   <table id="navigationTable">
     <tr>
-      <td id="homeLink" routerLink="home" class="btn btn-primary active" role="button" routerLinkActive="active" (click)='select($event)'>
+      <td id="homeLink" routerLink="home" class="btn btn-nav" role="button" routerLinkActive="active" (click)='select($event)'>
         Home
       </td>
-      <td id="accountLink" routerLink="login" class="btn btn-primary active" role="button" routerLinkActive="active" (click)='select($event)'>
+      <td id="accountLink" routerLink="login" class="btn btn-nav" role="button" routerLinkActive="active" (click)='select($event)'>
         Login
       </td>
-      <td id="appLink" routerLink="app" class="btn btn-primary active" role="button" routerLinkActive="active" (click)='select($event)'>
+      <td id="appLink" routerLink="app" class="btn btn-nav" role="button" routerLinkActive="active" (click)='select($event)'>
         App
       </td>
       <td id='spaceDiv'></td>
-      <td id='aboutLink' (click)='select($event)'>
+      <td id='aboutLink' class="btn btn-nav" role="button" (click)='select($event)'>
         About
       </td>
     </tr>
