@@ -1,1 +1,60 @@
 UserProfile{}
+
+#container{
+  border: 1px solid black;
+}
+
+#guestTemplate {
+  border: 1px solid black;
+}
+
+#loginHeader {
+  border: 1px solid black;
+}
+
+#signInForm {
+  border: 1px solid black;
+}
+
+#emailInput {
+  border: 1px solid red;
+}
+
+#emailInput {
+  border: 1px solid red;
+}
+
+#passwordInput {
+  border: 1px solid red;
+}
+
+#formValidInput {
+  border: 1px solid black;
+}
+
+#loginButton {
+  border: 1px solid red;
+}
+
+#registerButton {
+  border: 1px solid red;
+}
+
+#or {
+  border: 1px solid black;
+}
+
+#googleLoginButton {
+  border: 1px solid black;
+}
+
+#facebookLoginButton {
+  border: 1px solid black;
+}
+
+#anonymousLoginButton {
+  border: 1px solid black;
+}
+#recoverAccountButton {
+  border: 1px solid black;
+}

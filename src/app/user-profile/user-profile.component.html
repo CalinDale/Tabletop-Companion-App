@@ -1,60 +1,36 @@
-<div *ngIf="auth.user | async; then authenticated else guest">
+<div *ngIf="auth.user | async; then authenticated else guest" id='container'>
   <!-- template will replace this div -->
 </div>
 
-
 <!-- User NOT logged in -->
 <ng-template #guest>
-<h3>Welcome, GUEST</h3>
-<p>Login to get started...</p>
+  <div id='guestTemplate'>
+    <h3 id=loginHeader>Login</h3>
+    <form [formGroup] = "signInForm">
+      <input id='emailInput' type="email" formControlName="email" placeholder="Email">
+      <br>
+      <input id='passwordInput' type="password" formControlName="password" required placeholder="Password">
+      <div id='formValidMessage' *ngIf="signInForm.valid"> Form is valid </div>
+      <br>
+      <button id='loginButton' type="submit" [disabled]="!signInForm.valid" (click)="signIn()">Login</button>
+      <div *ngIf="email.invalid && email.dirty">
+        Your email doesn't look quite right...
+      </div>
+    </form>
 
-<form [formGroup] = "signInForm">
-
-  <h3> Returning User Login </h3>
-  
-  <label>Email</label>
-  <input type="email" formControlName="email">
-
-  <div *ngIf="email.invalid && email.dirty">
-    Your email doesn't look quite right...
+    <button id='registerButton' routerLink="/register" tag="button" routerLinkActive="active">Register with email</button>
+    <br>
+    <div id='or'>or</div>
+    <br>
+    <button id='googleLoginButton' (click)="auth.googleLogin()" class="fa fa-google">Register with Google</button>
+    <br>
+    <button id='facebookLoginButton' (click)="auth.facebookLogin()" class="fa fa-facebook">Register with Facebook</button>
+    <br>
+    <button id='anonymousLoginButton' (click)="auth.anonymousLogin()" class="fa fa-Anon">Connect Anonymous</button>
+    <br>
+    <button id='recoverAccountButton' routerLink="/accountRecover" tag="button" routerLinkActive="active">Forgot Password</button>
+    <br>
   </div>
-
-  <br>
-  <label for="password">Password</label>
-  <input type="password" formControlName="password" required>
-  
-  <div *ngIf="signInForm.valid"> Form is valid </div>
-
-  <button type="submit" [disabled]="!signInForm.valid" (click)="signIn()">Login</button>
-  
-
-</form>
-
-
-
-<button>
-    <a routerLink="/register" tag="button" routerLinkActive="active">Register</a>
-</button>
-<br>
-<button (click)="auth.googleLogin()">
-   <i class="fa fa-google"></i> Connect Google
-</button>
-<br>
-<button (click)="auth.facebookLogin()">
-  <i class="fa fa-facebook"></i> Connect Facebook
-</button>
-<br>
-<button (click)="auth.anonymousLogin()">
-  <i class="fa fa-Anon"></i> Connect Anonymous
-</button>
-<br>
-<button>
-  <a routerLink="/accountRecover" tag="button" routerLinkActive="active">Forgot Password</a>
-</button>
-<br>
-
-
-
 </ng-template>
 
 
@@ -63,7 +39,7 @@
 <div *ngIf="auth.user | async as user">
   <h3>Welcome, {{ auth.currentUserDisplayName }}</h3>
   <p>UID: {{ user.uid }}</p>
-  <button (click)="auth.signOut()">Logout</button>
+  <button (click)="logout()">Logout</button>
   <br>
   <button>
     <a routerLink="/editAccount" tag="button" routerLinkActive="active">Edit Account Details</a>
