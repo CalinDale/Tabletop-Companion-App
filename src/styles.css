@@ -32,3 +32,11 @@ button.btn-delete:hover{
 button.btn-nav{
 
 }
+.accountContainer {
+  background-color: pink;
+  padding: 10px;
+  width: 12%;
+  border: 1px solid black;
+  margin: 1% auto;
+  overflow-wrap: break-word;
+}

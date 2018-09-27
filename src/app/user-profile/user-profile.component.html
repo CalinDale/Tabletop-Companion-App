@@ -4,7 +4,7 @@
 
 <!-- User NOT logged in -->
 <ng-template #guest>
-  <div id='guestTemplate'>
+  <div id='container' class='accountContainer'>
     <h3 id=loginHeader>Login</h3>
     <form [formGroup] = "signInForm">
       <input id='emailInput' type="email" formControlName="email" placeholder="Email">
@@ -29,13 +29,10 @@
 
 <!-- User logged in -->
 <ng-template #authenticated>
-<div *ngIf="auth.user | async as user">
-  <h3>Welcome, {{ auth.currentUserDisplayName }}</h3>
-  <p>UID: {{ user.uid }}</p>
-  <button (click)="logout()">Logout</button>
-  <br>
-  <button>
-    <a routerLink="/editAccount" tag="button" routerLinkActive="active">Edit Account Details</a>
-  </button>
-</div>
+  <div id=container  class='accountContainer' *ngIf="auth.user | async as user">
+    <h3 id=header>{{auth.currentUserDisplayName }}</h3>
+    <button id='editAccountButton' routerLink="/editAccount" tag="button" routerLinkActive="active">Edit Account</button>
+    <br>
+    <button id='logoutButton'(click)="logout()">Logout</button>
+  </div>
 </ng-template>

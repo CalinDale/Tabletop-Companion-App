@@ -1,6 +1,6 @@
 UserProfile{}
 
-#guestTemplate {
+.accountContainer {
   background-color: pink;
   padding: 10px;
   width: 12%;
@@ -9,7 +9,7 @@ UserProfile{}
   overflow-wrap: break-word;
 }
 
-#loginHeader {
+#header {
   margin-top: 0;
   margin-bottom: 10px;
 }
@@ -69,4 +69,12 @@ UserProfile{}
 
 #anonymousLoginButton {
     width: 100%;
+}
+
+#editAccountButton {
+
+}
+
+#logoutButton {
+
 }
