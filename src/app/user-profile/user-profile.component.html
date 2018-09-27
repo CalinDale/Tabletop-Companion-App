@@ -11,10 +11,10 @@
       <input id='passwordInput' type="password" formControlName="password" required placeholder="Password">
       <div id='formMessage'>
         <div id='formInvalidMessage' *ngIf='!signInForm.valid'>
-          Password must be more than 6 characters and have atleast 1 number
+          Password must be more than 6 characters and have atleast 1 number.
         </div>
         <div id='emailInvalidMessage' *ngIf="(email.invalid && email.dirty) || !email.touched">
-          Email is invalid
+          Email is invalid.
         </div>
       </div>
       <button id='loginButton' type="submit" [disabled]="!signInForm.valid" (click)="signIn()">
