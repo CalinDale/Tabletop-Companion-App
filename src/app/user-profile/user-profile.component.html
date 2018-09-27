@@ -10,26 +10,19 @@
       <input id='emailInput' type="email" formControlName="email" placeholder="Email">
       <br>
       <input id='passwordInput' type="password" formControlName="password" required placeholder="Password">
-      <div id='formValidMessage' *ngIf="signInForm.valid"> Form is valid </div>
-      <br>
-      <button id='loginButton' type="submit" [disabled]="!signInForm.valid" (click)="signIn()">Login</button>
-      <div *ngIf="email.invalid && email.dirty">
-        Your email doesn't look quite right...
+      <div id='formMessage'>
+        <div id='formInvalidMessage' *ngIf='!signInForm.valid'>Password must be more than 6 characters</div>
+        <div id='emailInvalidMessage' *ngIf="email.invalid && email.dirty">Email is invalid</div>
       </div>
+      <button id='loginButton' type="submit" [disabled]="!signInForm.valid" (click)="signIn()">Login</button>
+      <button id='recoverAccountButton' routerLink="/accountRecover" tag="button" routerLinkActive="active">Forgot Password</button>
     </form>
 
     <button id='registerButton' routerLink="/register" tag="button" routerLinkActive="active">Register with email</button>
-    <br>
     <div id='or'>or</div>
-    <br>
-    <button id='googleLoginButton' (click)="auth.googleLogin()" class="fa fa-google">Register with Google</button>
-    <br>
-    <button id='facebookLoginButton' (click)="auth.facebookLogin()" class="fa fa-facebook">Register with Facebook</button>
-    <br>
-    <button id='anonymousLoginButton' (click)="auth.anonymousLogin()" class="fa fa-Anon">Connect Anonymous</button>
-    <br>
-    <button id='recoverAccountButton' routerLink="/accountRecover" tag="button" routerLinkActive="active">Forgot Password</button>
-    <br>
+    <button id='googleLoginButton' (click)="auth.googleLogin()" class="fa fa-google">Login with Google</button>
+    <button id='facebookLoginButton' (click)="auth.facebookLogin()" class="fa fa-facebook">Login with Facebook</button>
+    <button id='anonymousLoginButton' (click)="auth.anonymousLogin()" class="fa fa-Anon">Login as Guest</button>
   </div>
 </ng-template>
 

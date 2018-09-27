@@ -1,60 +1,72 @@
 UserProfile{}
 
-#container{
-  border: 1px solid black;
-}
-
 #guestTemplate {
+  background-color: pink;
+  padding: 10px;
+  width: 12%;
   border: 1px solid black;
+  margin: 1% auto;
+  overflow-wrap: break-word;
 }
 
 #loginHeader {
-  border: 1px solid black;
-}
-
-#signInForm {
-  border: 1px solid black;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 #emailInput {
-  border: 1px solid red;
-}
-
-#emailInput {
-  border: 1px solid red;
+  margin: 0 0 10px 0;
+  width: 99%;
 }
 
 #passwordInput {
-  border: 1px solid red;
+    width: 99%;
 }
 
-#formValidInput {
-  border: 1px solid black;
+#formMessage {
+  font-size: .7em;
+  margin: 0 0 10px 0;
+  position: absolute;
+}
+
+#formValidMessage {
+
+}
+
+#formInvalidMessage {
+
+}
+
+#emailInvalidMessage {
+
 }
 
 #loginButton {
-  border: 1px solid red;
+  margin: 30px 0 0 0;
+}
+
+#recoverAccountButton {
+  border: none;
+  background-color: transparent;
+  font-weight: bold;
 }
 
 #registerButton {
-  border: 1px solid red;
+  width: 100%;
 }
 
 #or {
-  border: 1px solid black;
+  text-align: center;
 }
 
 #googleLoginButton {
-  border: 1px solid black;
+    width: 100%;
 }
 
 #facebookLoginButton {
-  border: 1px solid black;
+    width: 100%;
 }
 
 #anonymousLoginButton {
-  border: 1px solid black;
-}
-#recoverAccountButton {
-  border: 1px solid black;
+    width: 100%;
 }
