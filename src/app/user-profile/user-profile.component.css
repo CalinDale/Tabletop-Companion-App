@@ -9,7 +9,7 @@ UserProfile{}
   overflow-wrap: break-word;
 }
 
-#header {
+.accountHeader {
   margin-top: 0;
   margin-bottom: 10px;
 }
@@ -26,7 +26,8 @@ UserProfile{}
 #formMessage {
   font-size: .7em;
   margin: 0 0 10px 0;
-  position: absolute;
+  width: 100%;
+  word-wrap: break-word;
 }
 
 #formValidMessage {
@@ -42,7 +43,6 @@ UserProfile{}
 }
 
 #loginButton {
-  margin: 30px 0 0 0;
 }
 
 #recoverAccountButton {

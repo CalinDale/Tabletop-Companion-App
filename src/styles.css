@@ -40,3 +40,7 @@ button.btn-nav{
   margin: 1% auto;
   overflow-wrap: break-word;
 }
+.accountHeader {
+  margin-top: 0;
+  margin-bottom: 10px;
+}

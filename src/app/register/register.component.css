@@ -1,1 +1,25 @@
 Register{}
+
+#container {
+  width: 20%;
+}
+.errorTip {
+  font-size: .7em;
+  margin: 0;
+}
+input {
+  margin-top: 10px;
+}
+
+#usernameInput {
+
+}
+#emailInput {
+
+}
+#passwordInput {
+
+}
+#repeatPasswordInput {
+  margin-bottom: 10px;
+}

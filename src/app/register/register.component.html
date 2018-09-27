@@ -1,32 +1,29 @@
-<form [formGroup] = "signupForm">
-
-  <h3> New User Signup </h3>
-
-  <label>Username</label>
-  <input type="text" formControlName="displayName">
-  <br>
-  
-  <label>Email</label>
-  <input type="email" formControlName="email">
-
-  <div *ngIf="email.invalid && email.dirty">
-    Your email doesn't look quite right...
-  </div>
-
-  <br>
-  <label for="password">Password</label>
-  <input type="password" formControlName="password" required>
-
-  <div *ngIf="password.invalid && password.touched" >
-    Password must be between 6 and 24 c0haracters and have at least one number
-  </div>
-  
-  <label for="repeatPassword">Repeat Password</label>
-  <input type="password" formControlName="repeatPassword" required>
-
-  <div *ngIf="signupForm.valid"> Form is valid </div>
-
-  <button type="submit" [disabled]="!signupForm.valid" (click)="signup()">Submit</button>
-  
-
-</form>
+<div id='container' class='accountContainer'>
+    <form [formGroup] = "signupForm">
+      <h3 class='accountHeader'> Register </h3>
+      <input id='usernameInput' type="text" formControlName="displayName" placeholder="Username">
+      <br>
+      <input id='emailInput' type="email" formControlName="email" placeholder="Email">
+      <br>
+      <span class='errorTip' *ngIf="email.invalid && email.dirty">
+        Email is invalid
+      </span>
+      <br *ngIf="email.invalid && email.dirty">
+      <input id='passwordInput' type="password" formControlName="password" required placeholder="Password">
+      <br>
+      <span class='errorTip' *ngIf="password.invalid && password.touched" >
+        Password must be between 6 and 24 characters and have at least one number
+      </span>
+      <input id='repeatPasswordInput' type="password" formControlName="repeatPassword" required placeholder="Repeat Password">
+      <br>
+      <span class='errorTip' *ngIf="repeatPassword.invalid">
+          Passwords Don't Match
+      </span>
+      <span *ngIf="signupForm.valid">
+        Form is valid
+      </span>
+      <button id='signupButton' type="submit" [disabled]="!signupForm.valid" (click)="signup()">
+        Submit
+      </button>
+    </form>
+</div>
