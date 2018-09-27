@@ -48,6 +48,7 @@ export class RegisterComponent implements OnInit {
 
   get email() { return this.signupForm.get('email'); }
   get password() { return this.signupForm.get('password'); }
+  get repeatPassword() { return this.signupForm.get('repeatPassword'); }
   get displayName() { return this.signupForm.get('displayName'); }
 
 
