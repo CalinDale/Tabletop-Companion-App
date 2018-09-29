@@ -4,9 +4,9 @@ import { MessageService } from '../message.service';
 import { CharacterService } from '../character.service';
 import { AttributeService } from '../attribute.service';
 import { Character } from '../character';
-import { Component, OnInit, Input, HostBinding, HostListener } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import * as firebase from 'firebase';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-character-details',
@@ -24,10 +24,12 @@ export class CharacterDetailsComponent implements OnInit {
 
   attributes: Attribute[];
 
+  characterID: string;
+
   constructor(
     private characterService: CharacterService,
     private attributeService: AttributeService,
-    private messageService: MessageService
+    private messageService: MessageService,
   ) { }
 
   ngOnInit() {
@@ -82,13 +84,5 @@ export class CharacterDetailsComponent implements OnInit {
     for (const attribute of this.attributes) {
       this.attributeService.deleteAttribute(attribute.key);
     }
-  }
-
-  addToTracker() {
-    this.character.tracked = true;
-    for (const attribute of this.attributes) {
-      attribute.tracked = true;
-    }
-    this.updateCharacter();
   }
 }

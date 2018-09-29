@@ -4,9 +4,10 @@ import { CharacterDetailsComponent } from '../character-details/character-detail
 import { Component, OnInit, Input } from '@angular/core';
 import { Character } from '../character';
 import { MessageService } from '../message.service';
-import { map } from '../../../node_modules/rxjs/operators';
+import { map, takeWhile } from '../../../node_modules/rxjs/operators';
 import { Attribute } from '../attribute';
 import { TrackerService } from '../tracker.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-character-list-entry',
@@ -18,16 +19,55 @@ export class CharacterListEntryComponent implements OnInit {
   @Input() character: Character;
   @Input() characterDetails: CharacterDetailsComponent;
 
+  alive: boolean;
+
   constructor(
     private messageService: MessageService,
-    private trackerService: TrackerService
-  ) { }
+    private trackerService: TrackerService,
+    private characterService: CharacterService,
+    private attributeService: AttributeService
+  ) {
+    this.alive = true;
+  }
 
   ngOnInit() {
   }
 
-  cloneCharacter() {
+  // Try without async with below changes
+  // Try moving most of this to CharacterService
+  async cloneCharacter() {
     this.messageService.add('clone Character ' + this.character.name);
+    const characterClone = new Character;
+    characterClone.name = this.character.name + '-Clone';
+    characterClone.userID = firebase.auth().currentUser.uid;
+    this.characterService.createCharacter(characterClone);
+    // Try without await with cloneAttributes in AttributeService
+    await this.delay(500);
+    // Try moving cloneAttributes to AttributeService
+    this.cloneAttributes();
+  }
+
+  delay(ms: number) {
+    return new Promise ( resolve => setTimeout(resolve, ms));
+  }
+
+  cloneAttributes() {
+    let sourceAttributes: Attribute[];
+    this.attributeService.getAttributes(this.character.key).snapshotChanges().pipe(
+      takeWhile(() => this.alive), map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(attributes => {
+      sourceAttributes = attributes;
+      this.store(sourceAttributes);
+    });
+  }
+
+  async store(attributes: Attribute[]) {
+    const clonedCharacterID = this.characterService.getCharacterID();
+    this.attributeService.cloneAttributes(attributes, clonedCharacterID);
+    await this.delay(500);
+    this.alive = false;
   }
 
   editCharacter() {
