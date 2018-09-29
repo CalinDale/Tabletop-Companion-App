@@ -1,7 +1,7 @@
-import { Character } from './../character';
-import { TurnOrderService } from './../turn-order.service';
+import { TrackerService } from '../tracker.service';
+import { Character } from '../character';
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from '../message.service';
+import { Attribute } from '../attribute';
 
 @Component({
   selector: 'app-tracker',
@@ -9,37 +9,41 @@ import { MessageService } from '../message.service';
   styleUrls: ['./tracker.component.css']
 })
 export class TrackerComponent implements OnInit {
-  characters: Character[];
-  actingPosition: number;
+
+  characters: Character[] = [];
+  // numAttributeColumns = 5;
+  attributeColumns: Attribute[] = [];
+  attributeColumnOptions: Attribute[];
+  currentActor = 0;
 
   constructor(
-    private turnOrderService: TurnOrderService,
-    private messageService: MessageService
-  ) {}
+    private trackerService: TrackerService
+  ) { }
 
   ngOnInit() {
-    this.getTurnOrder();
+    this.trackerService.getCharacters().subscribe(characters => {
+      this.characters = characters;
+    });
+
+    this.trackerService.getAttributeColumns().subscribe(attributeColumns => {
+      this.attributeColumns = attributeColumns;
+    });
+
+    this.trackerService.getCurrentActor().subscribe(currentActor => {
+      this.currentActor = currentActor;
+    });
   }
 
-  getTurnOrder(): void {
-    this.turnOrderService.getCharacters().subscribe(characters => this.characters = characters);
-    this.turnOrderService.getActingPosition().subscribe(actingPosition => this.actingPosition = actingPosition);
+  nextTurn() {
+    this.trackerService.nextTurn();
+    this.trackerService.getCurrentActor().subscribe(currentActor => {
+      this.currentActor = currentActor;
+    });
   }
-
-  nextTurn(): void {
-    this.messageService.add('Go to Next turn');
+  prevTurn() {
+    this.trackerService.prevTurn();
+    this.trackerService.getCurrentActor().subscribe(currentActor => {
+      this.currentActor = currentActor;
+    });
   }
-
-  previousTurn(): void {
-    this.messageService.add('Go to Previous turn');
-  }
-
-  removeCharacter(): void {
-    this.messageService.add('Remove Character from turn order');
-  }
-
-  moveCharacter(): void {
-    this.messageService.add('Move character in turn order.');
-  }
-
 }

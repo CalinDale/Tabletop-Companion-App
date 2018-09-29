@@ -1,0 +1,43 @@
+<div id='container' class='accountContainer'>
+  <form [formGroup] = "editAccountForm">
+    <h3 id='header'>Edit Account</h3>
+    <div id='usernameDiv'>
+      <label id='usernameLabel'>Change Username:</label>
+      <input id='usernameInput' type="text" formControlName="username" placeholder="New Username">
+    </div>
+    <div id='emailDiv'>
+      <label id='emailLabel'>Email:</label>
+      <input id='emailInput' type="email" formControlName="email" placeholder="New Email">
+    </div>
+    <div id='emailErrorTip' *ngIf="email.invalid && email.dirty">
+      Email is invalid
+    </div>
+
+    <div id='passwordContainer'>
+      <h4 id='passwordHeader'>Change Password</h4>
+      <input id='passwordInput' type="password" formControlName="password" placeholder="New Password">
+      <input id='passwordRepeatInput' type="password" formControlName="repeatPassword" placeholder="Repeat New Password">
+      <div id='passwordErrorTip' *ngIf="password.invalid && password.touched" >
+        Password must be between 6 and 24 characters and have at least one number
+      </div>
+    </div>
+
+    <!--
+    <label id='passwordCheckLabel'> Enter your current password before saving any changes.</label>
+    <input id='passwordCheckInput' type="password" formControlName="passwordCheck" required>
+    -->
+    <button id='saveChangesButton' type="submit" [disabled]="!editAccountForm.valid"  (click)="saveChanges()">Save Changes</button>
+  </form>
+
+  <div id='deleteContainer'>
+    <form [formGroup] = "deleteForm">
+      <h4 id='deleteHeader'>Delete Account</h4>
+      <p id='deleteWarning'>This will delete your registration with the Tabletop Companion App and any associated data.</p>
+      <div id='deleteDiv'>
+        <label id='deleteConfirmLabel'>Type DELETE to confirm: </label>
+        <input id='deleteConfirmInput' type="text" formControlName="deleteConfirm">
+      </div>
+      <button id='deleteButton' type="submit" [disabled]="!deleteForm.valid" (click)="deleteAccount()">Confirm</button>
+    </form>
+  </div>
+</div>

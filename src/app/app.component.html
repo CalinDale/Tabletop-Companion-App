@@ -1,13 +1,11 @@
-<h1>{{ title }}</h1>
+<div class="container-fluid">
+  <app-navigation-table></app-navigation-table>
 
-Components:
-<ul>
-  <li><a routerLink="/characters">Characters</a></li>
-  <li><a routerLink="/character/2">Example Character Page</a></li>
-  <li><a routerLink="/tracker">Tracker</a></li>
-</ul>
+  <div id='routerSpace'>
+    <router-outlet></router-outlet>
+  </div>
 
-<!-- the piece below is where routing result is placed. -->
-<router-outlet></router-outlet>
-<br>
-<app-messages></app-messages>
+  <!-- <app-messages></app-messages> -->
+</div>
+
+
