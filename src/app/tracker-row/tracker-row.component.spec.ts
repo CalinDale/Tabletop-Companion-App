@@ -71,9 +71,23 @@ describe('TrackerRowComponent', () => {
       testPassedIndex = null;
       component.attributes = null;
     });
-    it('should call attributeService.updateAttribute() with attributes[selectedAttributeIndexes[passedIndex]])', () => {
-      component.onChange(testPassedIndex);
-      expect(testAttributeService.updateAttribute).toHaveBeenCalledWith(testAttributes[testPassedIndex]);
+    describe('with unlinked === false', () => {
+      beforeEach(() => {
+        component.unlinked = false;
+      });
+      it('should call attributeService.updateAttribute() with attributes[selectedAttributeIndexes[passedIndex]])', () => {
+        component.onChange(testPassedIndex);
+        expect(testAttributeService.updateAttribute).toHaveBeenCalledWith(testAttributes[testPassedIndex]);
+      });
+    });
+    describe('with unlinked === true', () => {
+      beforeEach(() => {
+        component.unlinked = true;
+      });
+      it('should not call attributeService.updateAttribute()', () => {
+        component.onChange(testPassedIndex);
+        expect(testAttributeService.updateAttribute).toHaveBeenCalledTimes(0);
+      });
     });
   });
 
