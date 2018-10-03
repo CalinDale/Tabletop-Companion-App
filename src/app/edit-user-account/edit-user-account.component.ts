@@ -5,7 +5,6 @@ import { matchOtherValidator } from '../register/matchOtherValidtator';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-edit-user-account',
   templateUrl: './edit-user-account.component.html',
@@ -64,10 +63,10 @@ export class EditUserAccountComponent implements OnInit {
       this.changeName();
     }
     if (this.email.value !== '') {
-      this.changeName();
+      this.changeEmail();
     }
     if (this.password.value !== '') {
-      this.changeName();
+      this.changePassword();
     }
   }
 
