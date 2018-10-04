@@ -1,6 +1,10 @@
 <div id='container' class='accountContainer'>
   <form [formGroup] = "editAccountForm">
     <h3 id='header'>Edit Account</h3>
+    <span id='saveMessage'>
+      <span id='saveSuccess' *ngIf='changesSaved && !errorOccured'>Changes Saved</span>
+      <span id='saveFail' *ngIf='!changesSaved && errorOccured'>An Error occured</span>
+    </span>
     <div id='usernameDiv'>
       <label id='usernameLabel'>Change Username:</label>
       <input id='usernameInput' type="text" formControlName="username" placeholder="New Username">
@@ -20,13 +24,16 @@
       <div id='passwordErrorTip' *ngIf="password.invalid && password.touched" >
         Password must be between 6 and 24 characters and have at least one number
       </div>
+      <div id='passwordErrorTip' *ngIf="repeatPassword.invalid && password.touched" >
+        Passwords must match
+      </div>
     </div>
 
     <!--
     <label id='passwordCheckLabel'> Enter your current password before saving any changes.</label>
     <input id='passwordCheckInput' type="password" formControlName="passwordCheck" required>
     -->
-    <button id='saveChangesButton' type="submit" [disabled]="!editAccountForm.valid"  (click)="saveChanges()">Save Changes</button>
+    <button id='saveChangesButton' type="submit" [disabled]="!editAccountForm.valid"  (click)="saveChanges()" (blur)="resetMessage()">Save Changes</button>
   </form>
 
   <div id='deleteContainer'>
