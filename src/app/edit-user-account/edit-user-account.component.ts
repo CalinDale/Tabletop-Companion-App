@@ -14,6 +14,8 @@ export class EditUserAccountComponent implements OnInit {
 
   editAccountForm: FormGroup;
   deleteForm: FormGroup;
+  changesSaved: Boolean;
+  errorOccured: Boolean;
 
   constructor(
     public auth: AuthService,
@@ -57,8 +59,11 @@ export class EditUserAccountComponent implements OnInit {
   get displayName() { return this.editAccountForm.get('username'); }
   get email() { return this.editAccountForm.get('email'); }
   get password() { return this.editAccountForm.get('password'); }
+  get repeatPassword() { return this.editAccountForm.get('repeatPassword'); }
 
   saveChanges() {
+    this.changesSaved = true;
+    this.errorOccured = false;
     if (this.displayName.value !== '') {
       this.changeName();
     }
@@ -68,6 +73,11 @@ export class EditUserAccountComponent implements OnInit {
     if (this.password.value !== '') {
       this.changePassword();
     }
+  }
+
+  resetMessage() {
+    this.changesSaved = false;
+    this.errorOccured = false;
   }
 
   changeName() {
@@ -83,9 +93,9 @@ export class EditUserAccountComponent implements OnInit {
   changeEmail() {
     const user = firebase.auth().currentUser;
     user.updateEmail(this.email.value).then(function() {
-      // Update Successful
     }).catch(function(error) {
-      // An error happened
+      this.changesSaved = false;
+      this.errorOccured = true;
     }).then(( ) =>  {
       this.auth.updateUserData(user);
     });
@@ -97,7 +107,8 @@ export class EditUserAccountComponent implements OnInit {
     user.updatePassword(this.password.value).then(function() {
       // Update Successful
     }).catch(function(error) {
-      // An error happened
+      this.changesSaved = false;
+      this.errorOccured = true;
     }).then(( ) =>  {
       this.auth.updateUserData(user);
     });
