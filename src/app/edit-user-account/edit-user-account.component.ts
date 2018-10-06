@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../core/auth.service';
-import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormBuilder, Validators, MinLengthValidator } from '@angular/forms';
 import { matchOtherValidator } from '../register/matchOtherValidtator';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-edit-user-account',
@@ -13,66 +12,90 @@ import { Router } from '@angular/router';
 })
 export class EditUserAccountComponent implements OnInit {
 
-  editDisplayNameForm: FormGroup;
-  editEmailForm: FormGroup;
-  editPasswordForm: FormGroup;
+  editAccountForm: FormGroup;
+  deleteForm: FormGroup;
+  changesSaved: Boolean;
+  errorOccured: Boolean;
 
   constructor(
     public auth: AuthService,
     private router: Router,
     private fb: FormBuilder) {}
-  ngOnInit() {
 
-    this.editDisplayNameForm = this.fb.group({
-      'displayName': [ '' , [
+  ngOnInit() {
+    this.editAccountForm = this.fb.group({
+      'username': [ '' , [
+        ]
+      ],
+      'email': [ '' , [
+        Validators.email
+        ]
+      ],
+      'password' : ['', [
+        Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
+        Validators.minLength(6),
+        Validators.maxLength(25)
+        ]
+      ],
+      'repeatPassword' : ['', [
+        matchOtherValidator('password')
+        ]
+      ]/*,
+      'passwordCheck' : ['', [
+        Validators.required,
+        Validators.
+        ]
+      ]*/
+    });
+    this.deleteForm = this.fb.group({
+      'deleteConfirm': [ '' , [
+        Validators.pattern('^DELETE$'),
         Validators.required
         ]
-    ]
-  });
-
-  this.editEmailForm = this.fb.group({
-    'email': [ '' , [
-      Validators.required,
-      Validators.email
       ]
-  ]
-});
-
-this.editPasswordForm = this.fb.group({
-  'password' : ['', [
-    Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
-    Validators.minLength(6),
-    Validators.maxLength(25)
-    ]
-  ],
-  'repeatPassword' : ['', [
-    Validators.required,
-    matchOtherValidator('password')
-    ]
-  ]
-});
+    });
   }
 
-  get displayName() { return this.editDisplayNameForm.get('displayName'); }
-  get email() { return this.editEmailForm.get('email'); }
-  get password() { return this.editPasswordForm.get('password'); }
+  get displayName() { return this.editAccountForm.get('username'); }
+  get email() { return this.editAccountForm.get('email'); }
+  get password() { return this.editAccountForm.get('password'); }
+  get repeatPassword() { return this.editAccountForm.get('repeatPassword'); }
+
+  saveChanges() {
+    this.changesSaved = true;
+    this.errorOccured = false;
+    if (this.displayName.value !== '') {
+      this.changeName();
+    }
+    if (this.email.value !== '') {
+      this.changeEmail();
+    }
+    if (this.password.value !== '') {
+      this.changePassword();
+    }
+  }
+
+  resetMessage() {
+    this.changesSaved = false;
+    this.errorOccured = false;
+  }
 
   changeName() {
     const user = firebase.auth().currentUser;
-      user.updateProfile({
-        displayName: this.displayName.value,
-        photoURL: 'photo'
-      }).then( () => {
-        this.auth.updateUserData(user);
-      });
+    user.updateProfile({
+      displayName: this.displayName.value,
+      photoURL: 'photo'
+    }).then( () => {
+      this.auth.updateUserData(user);
+    });
   }
 
   changeEmail() {
     const user = firebase.auth().currentUser;
     user.updateEmail(this.email.value).then(function() {
-      // Update Successful
     }).catch(function(error) {
-      // An error happened
+      this.changesSaved = false;
+      this.errorOccured = true;
     }).then(( ) =>  {
       this.auth.updateUserData(user);
     });
@@ -84,16 +107,15 @@ this.editPasswordForm = this.fb.group({
     user.updatePassword(this.password.value).then(function() {
       // Update Successful
     }).catch(function(error) {
-      // An error happened
+      this.changesSaved = false;
+      this.errorOccured = true;
     }).then(( ) =>  {
       this.auth.updateUserData(user);
     });
-
   }
 
   deleteAccount() {
     firebase.auth().currentUser.delete()
     .then(() => this.router.navigate(['/login']));
   }
-
 }

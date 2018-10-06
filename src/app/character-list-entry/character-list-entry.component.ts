@@ -34,6 +34,7 @@ export class CharacterListEntryComponent implements OnInit {
   }
 
   // Try without async with below changes
+  // Try moving most of this to CharacterService
   async cloneCharacter() {
     this.messageService.add('clone Character ' + this.character.name);
     const characterClone = new Character;

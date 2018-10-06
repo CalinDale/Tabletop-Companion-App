@@ -6,24 +6,22 @@
       <input id='emailInput' type="email" formControlName="email" placeholder="Email">
       <br>
       <span class='errorTip' *ngIf="email.invalid && email.dirty">
-        Email is invalid
+        Email is invalid.
       </span>
       <br *ngIf="email.invalid && email.dirty">
       <input id='passwordInput' type="password" formControlName="password" required placeholder="Password">
       <br>
       <span class='errorTip' *ngIf="password.invalid && password.touched" >
-        Password must be between 6 and 24 characters and have at least one number
+        Password must be between 6 and 24 characters and have at least one number.
       </span>
       <input id='repeatPasswordInput' type="password" formControlName="repeatPassword" required placeholder="Repeat Password">
       <br>
       <span class='errorTip' *ngIf="repeatPassword.invalid">
-          Passwords Don't Match
+          Passwords Don't Match.
       </span>
-      <span *ngIf="signupForm.valid">
-        Form is valid
-      </span>
+      <br>
       <button id='signupButton' type="submit" [disabled]="!signupForm.valid" (click)="signup()">
-        Submit
+        Register
       </button>
     </form>
 </div>

@@ -10,6 +10,7 @@ import { Character } from './character';
 import * as firebase from 'firebase';
 
 describe('CharacterService', () => {
+  let testThenableReference: firebase.database.ThenableReference;
   let testAngularFireList: AngularFireList<Character>;
   let testCharacterID: string;
   let testDb: AngularFireDatabase;
@@ -20,11 +21,15 @@ describe('CharacterService', () => {
   let service: CharacterService;
 
   beforeEach(() => {
+    testThenableReference = jasmine.createSpyObj('testThenableReference', [
+      'then'
+    ]);
     testAngularFireList = jasmine.createSpyObj('testAngularFireList', [
       'push',
       'update',
       'remove'
     ]);
+    (<jasmine.Spy>(testAngularFireList.push)).and.returnValue(testThenableReference);
     (<jasmine.Spy>(testAngularFireList.update)).and.returnValue({catch(): void {}});
     (<jasmine.Spy>(testAngularFireList.remove)).and.returnValue({catch(): void {}});
 
@@ -57,6 +62,7 @@ describe('CharacterService', () => {
     service = new CharacterService(testDb, <AngularFireAuth>{ authState: testAuthState});
   });
   afterEach(() => {
+    testThenableReference = null;
     testAngularFireList = null;
     testDb = null;
     testUserId = null;
@@ -103,6 +109,10 @@ describe('CharacterService', () => {
         service.createCharacter(testCharacter);
         expect(testAngularFireList.push).toHaveBeenCalledWith(testCharacter);
       });
+
+      // TODO: Test this somehow
+      // it('createCharacter() should set characterID to ref.key', () => {
+      // });
 
       it('updateCharacter() should update db list', () => {
         service.updateCharacter(testCharacter);

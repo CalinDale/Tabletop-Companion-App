@@ -3,6 +3,7 @@ import { AttributeService } from '../attribute.service';
 import { Character } from '../character';
 import { Attribute } from '../attribute';
 import { Component, OnInit, Input} from '@angular/core';
+import { map, takeWhile } from '../../../node_modules/rxjs/operators';
 
 @Component({
   selector: 'app-tracker-row',
@@ -25,6 +26,7 @@ export class TrackerRowComponent implements OnInit {
   attributes: Attribute[];
   editingAttributes: Attribute[] = [ ];
   selectedAttributeIndexes: number[] = [];
+  unlinked: boolean;
 
   constructor(
     private attributeService: AttributeService,
@@ -33,12 +35,17 @@ export class TrackerRowComponent implements OnInit {
 
   ngOnInit() {
     this.retrieveAttributes();
+    this.unlinked = false;
     // See Above
     // this.retrieveCharacters();
   }
 
   onChange(i: number) {
+    if (this.unlinked === true) {
+     this.attributes = this.attributes;
+    } else if ( this.unlinked === false ) {
     this.attributeService.updateAttribute(this.attributes[this.selectedAttributeIndexes[i]]);
+    }
   }
 
   isActing(): boolean {
@@ -80,6 +87,17 @@ export class TrackerRowComponent implements OnInit {
       const tmp = this.characters[0];
       this.characters[0] = this.character;
       this.characters[this.characters.length - 1] = tmp;
+    }
+  }
+
+  unlink() {
+    this.unlinked = true;
+  }
+
+  link() {
+    this.unlinked = false;
+    for ( let j = 0; j <= this.selectedAttributeIndexes.length; j++ ) {
+      this.onChange(this.selectedAttributeIndexes[j]);
     }
   }
 }
