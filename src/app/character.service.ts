@@ -38,8 +38,7 @@ export class CharacterService {
   createCharacter(character: Character): void {
     this.charactersRef = this.db.list(`characters/${this.userID}`);
     this.charactersRef.push(character).then(ref => {
-      this.characterID = ref.key;
-      this.setCharacterID(this.characterID);
+      this.setCharacterID(ref.key);
     });
   }
 

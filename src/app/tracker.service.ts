@@ -14,7 +14,7 @@ export class TrackerService {
   characters: Character[] = [];
   numAttributeColumns = 5;
   attributeColumns: Attribute[] = [];
-  currentActor = 3;
+  currentActor = 0;
 
   constructor(
     private characterService: CharacterService,
@@ -83,29 +83,29 @@ export class TrackerService {
     }
   }
 
-  moveCharacterUp(index: number) {
-    if (index > 0) {
-      const tmp = this.characters[index - 1];
-      this.characters[index - 1] = this.characters[index];
-      this.characters[index] = tmp;
-    } else {
-      const tmp = this.characters[this.characters.length - 1];
-      this.characters[this.characters.length - 1] = this.characters[index];
-      this.characters[0] = tmp;
-    }
-  }
+  // moveCharacterUp(index: number) {
+  //   if (index > 0) {
+  //     const tmp = this.characters[index - 1];
+  //     this.characters[index - 1] = this.characters[index];
+  //     this.characters[index] = tmp;
+  //   } else {
+  //     const tmp = this.characters[this.characters.length - 1];
+  //     this.characters[this.characters.length - 1] = this.characters[index];
+  //     this.characters[0] = tmp;
+  //   }
+  // }
 
-  moveCharacterDown(index: number) {
-    if (index < this.characters.length - 1) {
-      const tmp = this.characters[index + 1];
-      this.characters[index + 1] = this.characters[index];
-      this.characters[index] = tmp;
-    } else {
-      const tmp = this.characters[0];
-      this.characters[0] = this.characters[index];
-      this.characters[this.characters.length - 1] = tmp;
-    }
-  }
+  // moveCharacterDown(index: number) {
+  //   if (index < this.characters.length - 1) {
+  //     const tmp = this.characters[index + 1];
+  //     this.characters[index + 1] = this.characters[index];
+  //     this.characters[index] = tmp;
+  //   } else {
+  //     const tmp = this.characters[0];
+  //     this.characters[0] = this.characters[index];
+  //     this.characters[this.characters.length - 1] = tmp;
+  //   }
+  // }
 
   // TODO: cause marker to move when characters are added or removed from tracker
   // Need to update the currentActor in commponents whenever it changes basically, observable stuff.
@@ -114,7 +114,6 @@ export class TrackerService {
     if ( this.characters.indexOf(character) <= this.currentActor) {
       this.moveMarkerDown();
     }
-
     let charAttributes: Attribute[] = [];
     this.attributeService.getAttributes(character.key).snapshotChanges().pipe(
       map(changes =>
@@ -135,7 +134,6 @@ export class TrackerService {
       this.moveMarkerUp();
     }
     this.characterService.untrackCharacter(character);
-
     let charAttributes: Attribute[] = [];
     this.attributeService.getAttributes(character.key).snapshotChanges().pipe(
       map(changes =>
