@@ -24,7 +24,6 @@ export class TrackerRowComponent implements OnInit {
   @Input()characters: Character[];
 
   attributes: Attribute[];
-  editingAttributes: Attribute[] = [ ];
   selectedAttributeIndexes: number[] = [];
   unlinked: boolean;
 
@@ -71,6 +70,8 @@ export class TrackerRowComponent implements OnInit {
       this.characters[this.index - 1] = this.characters[this.index];
       this.characters[this.index] = tmp;
     } else {
+      // Do we need to have the character rotate back down if you try moving them up while they're at the top?
+      // we could just turn off the button.
       const tmp = this.characters[this.characters.length - 1];
       this.characters[this.characters.length - 1] = this.character;
       this.characters[0] = tmp;
@@ -84,6 +85,7 @@ export class TrackerRowComponent implements OnInit {
       this.characters[this.index + 1] = this.characters[this.index];
       this.characters[this.index] = tmp;
     } else {
+      // Same as above.
       const tmp = this.characters[0];
       this.characters[0] = this.character;
       this.characters[this.characters.length - 1] = tmp;

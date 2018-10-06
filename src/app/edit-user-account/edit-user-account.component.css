@@ -6,6 +6,12 @@ EditUserAccount{}
 
 #header {
   margin-top: 0;
+  display: inline-block;
+}
+
+#saveMessage {
+  color: red;
+  margin-left: 20%;
 }
 
 #usernameDiv {

@@ -27,4 +27,3 @@ export class CharDAttributeListEntryComponent implements OnInit {
     this.attributeService.deleteAttribute(this.attribute.key);
   }
 }
-
