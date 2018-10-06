@@ -217,70 +217,70 @@ describe('TrackerService', () => {
       });
     });
 
-    describe('moveCharacterUp()', () => {
-      let testIndex: number;
-      afterEach(() => {
-        service.characters = null;
-      });
-      describe('with index > 0', () => {
-        beforeEach(() => {
-          testIndex = 2;
-        });
-        it('should move character at [index] to [index - 1]', () => {
-          service.moveCharacterUp(testIndex);
-          expect(service.characters[testIndex - 1].key).toBe(testIndex.toString());
-        });
-        it('should move character at [index - 1] to [index]', () => {
-          service.moveCharacterUp(testIndex);
-          expect(service.characters[testIndex].key).toBe((testIndex - 1).toString());
-        });
-      });
-      describe('with index === 0', () => {
-        beforeEach(() => {
-          testIndex = 0;
-        });
-        it('should move character at [index] to [length - 1]', () => {
-          service.moveCharacterUp(testIndex);
-          expect(service.characters[service.characters.length - 1].key).toBe(testIndex.toString());
-        });
-        it('should move character at [length - 1] to [index]', () => {
-          service.moveCharacterUp(testIndex);
-          expect(service.characters[testIndex].key).toBe((service.characters.length - 1).toString());
-        });
-      });
-    });
-    describe('moveCharacterDown()', () => {
-      let testIndex: number;
-      afterEach(() => {
-        service.characters = null;
-      });
-      describe('with index < characters.length', () => {
-        beforeEach(() => {
-          testIndex = 0;
-        });
-        it('should move character at [index] to [index + 1]', () => {
-          service.moveCharacterDown(testIndex);
-          expect(service.characters[testIndex + 1].key).toBe(testIndex.toString());
-        });
-        it('should move character at [index + 1] to [index]', () => {
-          service.moveCharacterDown(testIndex);
-          expect(service.characters[testIndex].key).toBe((testIndex + 1).toString());
-        });
-      });
-      describe('with index === characters.length', () => {
-        beforeEach(() => {
-          testIndex = 2;
-        });
-        it('should move character at [index] to [0]', () => {
-          service.moveCharacterDown(testIndex);
-          expect(service.characters[0].key).toBe(testIndex.toString());
-        });
-        it('should move character at [0] to [index]', () => {
-          service.moveCharacterDown(testIndex);
-          expect(service.characters[testIndex].key).toBe((0).toString());
-        });
-      });
-    });
+    // describe('moveCharacterUp()', () => {
+    //   let testIndex: number;
+    //   afterEach(() => {
+    //     service.characters = null;
+    //   });
+    //   describe('with index > 0', () => {
+    //     beforeEach(() => {
+    //       testIndex = 2;
+    //     });
+    //     it('should move character at [index] to [index - 1]', () => {
+    //       service.moveCharacterUp(testIndex);
+    //       expect(service.characters[testIndex - 1].key).toBe(testIndex.toString());
+    //     });
+    //     it('should move character at [index - 1] to [index]', () => {
+    //       service.moveCharacterUp(testIndex);
+    //       expect(service.characters[testIndex].key).toBe((testIndex - 1).toString());
+    //     });
+    //   });
+    //   describe('with index === 0', () => {
+    //     beforeEach(() => {
+    //       testIndex = 0;
+    //     });
+    //     it('should move character at [index] to [length - 1]', () => {
+    //       service.moveCharacterUp(testIndex);
+    //       expect(service.characters[service.characters.length - 1].key).toBe(testIndex.toString());
+    //     });
+    //     it('should move character at [length - 1] to [index]', () => {
+    //       service.moveCharacterUp(testIndex);
+    //       expect(service.characters[testIndex].key).toBe((service.characters.length - 1).toString());
+    //     });
+    //   });
+    // });
+    // describe('moveCharacterDown()', () => {
+    //   let testIndex: number;
+    //   afterEach(() => {
+    //     service.characters = null;
+    //   });
+    //   describe('with index < characters.length', () => {
+    //     beforeEach(() => {
+    //       testIndex = 0;
+    //     });
+    //     it('should move character at [index] to [index + 1]', () => {
+    //       service.moveCharacterDown(testIndex);
+    //       expect(service.characters[testIndex + 1].key).toBe(testIndex.toString());
+    //     });
+    //     it('should move character at [index + 1] to [index]', () => {
+    //       service.moveCharacterDown(testIndex);
+    //       expect(service.characters[testIndex].key).toBe((testIndex + 1).toString());
+    //     });
+    //   });
+    //   describe('with index === characters.length', () => {
+    //     beforeEach(() => {
+    //       testIndex = 2;
+    //     });
+    //     it('should move character at [index] to [0]', () => {
+    //       service.moveCharacterDown(testIndex);
+    //       expect(service.characters[0].key).toBe(testIndex.toString());
+    //     });
+    //     it('should move character at [0] to [index]', () => {
+    //       service.moveCharacterDown(testIndex);
+    //       expect(service.characters[testIndex].key).toBe((0).toString());
+    //     });
+    //   });
+    // });
   });
 
   // TODO: Test this function with mock observables
