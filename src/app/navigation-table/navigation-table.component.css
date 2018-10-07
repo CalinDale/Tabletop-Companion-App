@@ -1,0 +1,56 @@
+NavigationTable {
+
+}
+
+#navigationTable {
+  width:100%;
+  background-color: lightblue;
+  height:35px;
+  border: solid 1px #7EA6E0;
+  border-spacing: 0px;
+  text-align: center;
+  font-weight: bold;
+}
+
+td {
+  border: solid 2px #7EA6E0;
+  width: 8%;
+}
+
+td.selected {
+  background-color: blue;
+  color: white;
+  border: blue solid 2px;
+}
+
+#homeLink {
+
+}
+
+#accountLinkDiv {
+
+}
+
+#accountLink {
+
+}
+
+#appLinkDiv {
+
+}
+
+#appLink {
+
+}
+
+#spaceDiv {
+  width: auto;
+}
+
+#aboutLinkDiv {
+
+}
+
+#aboutLink {
+
+}

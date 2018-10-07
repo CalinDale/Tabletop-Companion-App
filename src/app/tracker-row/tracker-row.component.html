@@ -1,0 +1,33 @@
+<table id='trackerTable' *ngIf='character'>
+  <tbody></tbody>
+    <tr id='characterRow' [className]="isActing() ? 'acting' : 'waiting'">
+      <td id='markerDiv'><div id='marker' *ngIf='isActing()'>  </div><div id='noMarker' *ngIf='!isActing()'>  </div></td>
+      <td id='nameColumn'><div id='name'>{{character.name}}</div></td>
+      <div id='allAttributes'>
+        <div id='attributeColumn' [className]="selectedAttributeIndexes[i] === undefined ? 'empty' : 'full'" *ngFor='let attributeColumn of attributeColumns index as i'>
+          <td id='attributeSelectDiv' [className]="selectedAttributeIndexes[i] === undefined ? 'empty' : 'full'">
+            <select id='attributeSelect' [className]="selectedAttributeIndexes[i] === undefined ? 'empty' : 'full'" [(ngModel)]='selectedAttributeIndexes[i]'>
+                <option disabled=true value='default'>Add Attribute</option>
+                <option *ngFor='let attribute of attributes index as a' value={{a}}>{{attribute.name}}</option>
+            </select>
+          </td>
+          <td id='attributeEditDiv' [className]="selectedAttributeIndexes[i] !== undefined ? 'active' : 'inactive'">
+            <input id='attributeEdit' *ngIf='selectedAttributeIndexes[i] !== undefined' [(ngModel)]='attributes[selectedAttributeIndexes[i]].value' (input)="onChange(i)">
+          </td>
+        </div>
+      </div>
+      <td id='moveUpButtonDiv'>
+        <div id='moveUpButton' class="btn-up" (click)="moveUp()"></div>
+      </td>
+      <td  id='moveDownButtonDiv'>
+        <div  id='moveDownButton' class="btn-down" (click)="moveDown()"></div>
+      </td>
+      <td>
+        <button class="btn btn-success" (click)="unlink();">Unlink</button>
+      </td>
+      <td>
+        <button class="btn btn-success" (click)="link();">Link</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

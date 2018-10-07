@@ -1,0 +1,29 @@
+<table *ngIf="attribute">
+  <tr>
+      <td id='dragDiv'>=</td>
+      <td id='nameDiv'><input id='name' [(ngModel)]="attribute.name" placeholder="Name"></td>
+      <td id='typeDiv'><input id='type' [(ngModel)]="attribute.type" placeholder="Type"></td>
+      <td id='valueDiv'><input id='value' [(ngModel)]="attribute.value" placeholder="Value"></td>
+      <td id='deleteButtonDiv'><button id='deleteButton' class="button btn-delete" (click)="delete()">delete</button></td>
+  </tr>
+</table>
+
+  <!--
+  <div>
+    <label>Attribute Name: </label> {{attribute.name}}<br><br>
+  </div>
+  <div>
+      <label>Attribute Type: </label> {{attribute.type}}<br><br>
+    </div>
+    <div>
+        <label>Attribute Value: </label> {{attribute.value}}<br><br>
+      </div>
+</div>
+
+<button  (click)="createAttribute()" >Add Attribute</button>
+<br>
+<button  (click)="removeAttribute()" >Remove Attribute</button>
+<br>
+<button  (click)="editAttribute()" >Edit Attribute</button>
+<br>
+-->

@@ -1,0 +1,104 @@
+EditUserAccount{}
+
+#container {
+  width: 20%;
+}
+
+#header {
+  margin-top: 0;
+  display: inline-block;
+}
+
+#saveMessage {
+  color: red;
+  margin-left: 20%;
+}
+
+#usernameDiv {
+  display: flex;
+}
+
+#usernameLabel{
+  white-space: nowrap;
+  padding: 0 5px 0 0 ;
+}
+
+#usernameInput{
+  width:100%;
+}
+
+#emailDiv {
+  display: flex;
+  padding: 10px 0;
+}
+
+#emailLabel {
+  padding: 0 5px 0 0 ;
+}
+
+#emailInput {
+  width: 100%;
+}
+
+#emailErrorTip {
+
+}
+
+#passwordContainer {
+  border: 1px solid black;
+  padding: 5px 10px;
+  margin: 5px 0;
+}
+
+#passwordHeader {
+  margin: 5px 0;
+}
+
+#passwordInput {
+  width: 100%;
+  display: block;
+  margin: 10px auto;
+  padding: 0;
+}
+
+#passwordRepeatInput {
+  width: 100%;
+  display: block;
+  margin: 10px auto;
+  padding: 0;
+}
+
+#passwordErrorTip {
+
+}
+
+#saveChangesButton {
+  display: block;
+  margin: 10px auto;
+}
+
+#deleteContainer {
+  border: 1px solid black;
+  text-align: center;
+  background-color: pink;
+}
+
+#deleteHeader {
+
+}
+
+#deleteWarning {
+
+}
+
+#deleteConfirmLable {
+
+}
+
+#deleteConfirmInput {
+
+}
+
+#deleteButton {
+  margin: 10px;
+}
