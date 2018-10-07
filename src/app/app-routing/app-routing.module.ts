@@ -1,14 +1,23 @@
-import { CharacterPageComponent } from './../character-page/character-page.component';
-import { CharactersComponent } from './../characters/characters.component';
+import { HomePageComponent } from './../home-page/home-page.component';
+import { AppMasterPageComponent } from '../app-master-page/app-master-page.component';
+import { CharacterListComponent } from '../character-list/character-list.component';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { TrackerComponent } from '../tracker/tracker.component';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
+import { AuthGuard } from '../core/auth.guard';
+import { RegisterComponent } from '../register/register.component';
+import { AccountRecoveryComponent} from '../account-recovery/account-recovery.component';
+import { EditUserAccountComponent } from '../edit-user-account/edit-user-account.component';
 
 // fill in with { path: 'pathname', component: ComponentName } when adding routes.
 const routes: Routes = [
-  { path: 'tracker', component: TrackerComponent },
-  { path: 'characters', component: CharactersComponent },
-  { path: 'character/:charId', component: CharacterPageComponent }
+  { path: 'app', component: AppMasterPageComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomePageComponent},
+  { path: 'login', component: UserProfileComponent},
+  { path: 'register', component: RegisterComponent},
+  { path: 'accountRecover', component: AccountRecoveryComponent },
+  { path: 'editAccount', component: EditUserAccountComponent, canActivate: [AuthGuard]},
+  { path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
 @NgModule({

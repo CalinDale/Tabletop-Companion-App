@@ -1,0 +1,33 @@
+HomePage{}
+
+#container {
+  text-align: center;
+  width: 60%;
+  margin: 0 auto;
+  border: 2px solid;
+  border-top-color: white;
+}
+
+#heading {
+
+}
+
+#subHeading {
+
+}
+
+#paragraph {
+
+}
+
+#videoDiv {
+
+}
+
+#buttonDiv {
+
+}
+
+#button {
+   margin: 20px;
+}

@@ -1,0 +1,11 @@
+<table id='container'>
+  <tr>
+    <td id='trackerSpace'>
+      <app-tracker></app-tracker>
+    </td>
+    <td id='characterTab'>
+      <app-character-list #characterList [characterDetails]='characterDetails'></app-character-list>
+      <app-character-details #characterDetails [characterListComponent]='characterList'></app-character-details>
+    </td>
+  </tr>
+</table>
