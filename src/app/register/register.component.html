@@ -1,26 +1,30 @@
 <div id='container' class='accountContainer'>
     <form [formGroup] = "signupForm">
       <h3 class='accountHeader'> Register </h3>
+      <div id='label'>Username</div>
       <input id='usernameInput' type="text" formControlName="displayName" placeholder="Username">
       <br>
+      <div id='label'>Email</div>
       <input id='emailInput' type="email" formControlName="email" placeholder="Email">
       <br>
       <span class='errorTip' *ngIf="email.invalid && email.dirty">
         Email is invalid.
       </span>
       <br *ngIf="email.invalid && email.dirty">
+      <div id='label'>Password</div>
       <input id='passwordInput' type="password" formControlName="password" required placeholder="Password">
       <br>
       <span class='errorTip' *ngIf="password.invalid && password.touched" >
         Password must be between 6 and 24 characters and have at least one number.
       </span>
+      <div id='label'>Repeat Password</div>
       <input id='repeatPasswordInput' type="password" formControlName="repeatPassword" required placeholder="Repeat Password">
       <br>
       <span class='errorTip' *ngIf="repeatPassword.invalid">
           Passwords Don't Match.
       </span>
       <br>
-      <button id='signupButton' type="submit" [disabled]="!signupForm.valid" (click)="signup()">
+      <button id='signupButton' class="accountButton" type="submit" [disabled]="!signupForm.valid" (click)="signup()">
         Register
       </button>
     </form>
