@@ -1,9 +1,13 @@
 AppComponent{}
 
+body {
+  height: 100%;
+  background-color: #87ceeb;
+}
+
 #container-fluid {
 
 }
 
 #routerSpace {
-
 }

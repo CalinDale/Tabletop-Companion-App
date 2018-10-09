@@ -2,10 +2,10 @@ HomePage{}
 
 #container {
   text-align: center;
-  width: 60%;
+  width: 900px;
   margin: 0 auto;
-  border: 2px solid;
-  border-top-color: white;
+  border: 1px solid transparent;
+  background-color: #e9f6fb;
 }
 
 #heading {
@@ -17,7 +17,7 @@ HomePage{}
 }
 
 #paragraph {
-
+  padding: 0 10px;
 }
 
 #videoDiv {
@@ -29,5 +29,24 @@ HomePage{}
 }
 
 #button {
-   margin: 20px;
+  margin: 20px;
+  color: white;
+  background-color: #0099ff;
+  border-radius: 3px;
+  border: none;
+  border-bottom: 3px darkblue solid;
+  padding: 15px 30px;
+  font-size: 1.3em;
+}
+
+#button:hover {
+  background-color: #00ccff;
+  cursor: pointer;
+  transition-duration: 0.2s;
+}
+
+#button:active {
+  -webkit-transform: translateY(3px);
+          transform: translateY(3px);
+  border-bottom: none;
 }

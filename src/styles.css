@@ -4,6 +4,7 @@
 }
 body {
   margin: 0px;
+  background-color: #87ceeb;
 }
 button.btn-add{
   border: dashed;
@@ -29,8 +30,20 @@ button.btn-delete:hover{
   border-color: #ff4d4d;
   background-color: #ffb3b3;
 }
-button.btn-nav{
+.btn-nav {
+  transition-duration: 0.5s;
+  padding: 0 5px;
+}
+.btn-nav:hover {
+  background-color: #66ccff;
+  cursor: pointer;
+  transition-duration: 0.25s;
+}
 
+.btn-nav.selected {
+  background-color: #0099ff;
+  color: white;
+  border-bottom: solid 4px darkblue;
 }
 .accountContainer {
   padding: 10px;
