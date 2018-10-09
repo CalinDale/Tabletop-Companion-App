@@ -1,9 +1,9 @@
 UserProfile{}
 
 .accountContainer {
-  background-color: pink;
+  background-color: lightblue;
   padding: 10px;
-  width: 12%;
+  width: 250px;
   border: 1px solid black;
   margin: 1% auto;
   overflow-wrap: break-word;
@@ -12,6 +12,19 @@ UserProfile{}
 .accountHeader {
   margin-top: 0;
   margin-bottom: 10px;
+}
+
+button{
+  background-color: #80bbff;
+  border: solid 1px #4da0ff;
+  padding: 3px 5px;
+  margin: 1px 0px;
+}
+
+button:hover:enabled{
+  background-color: #66ccff;
+  cursor: pointer;
+  transition-duration: 0.25s;
 }
 
 #emailInput {
@@ -43,12 +56,14 @@ UserProfile{}
 }
 
 #loginButton {
+  margin-bottom: 10px;
 }
 
 #recoverAccountButton {
   border: none;
   background-color: transparent;
-  font-weight: bold;
+  color: black;
+  font-weight:bold;
 }
 
 #registerButton {

@@ -1,7 +1,12 @@
 Register{}
 
 #container {
-  width: 20%;
+  background-color: lightblue;
+  padding: 10px;
+  width: 250px;
+  border: 1px solid black;
+  margin: 1% auto;
+  overflow-wrap: break-word;
 }
 .errorTip {
   font-size: .7em;
@@ -9,6 +14,18 @@ Register{}
 }
 input {
   margin-top: 10px;
+}
+button{
+  background-color: #80bbff;
+  border: solid 1px #4da0ff;
+  padding: 3px 5px;
+  margin: 1px 0px;
+}
+
+button:hover:enabled{
+  background-color: #66ccff;
+  cursor: pointer;
+  transition-duration: 0.25s;
 }
 
 #usernameInput {
