@@ -1,11 +1,34 @@
 HomePage{}
 
 #container {
-  text-align: center;
-  width: 900px;
+  display: flex;
+  width: 1225px;
   margin: 0 auto;
   border: 1px solid transparent;
   background-color: #e9f6fb;
+  padding: 0 50px 50px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#homeContent {
+  text-align: right;
+  flex-basis: 900px;
+  flex-grow: 0;
+}
+
+#userProfileConent {
+  flex-grow: 0;
+}
+
+app-user-profile {
+  position: relative;
+  top: 15px;
+}
+
+#headingContent {
+  text-align: center;
+  width: 100%;
 }
 
 #heading {
@@ -17,7 +40,7 @@ HomePage{}
 }
 
 #paragraph {
-  padding: 0 10px;
+  text-align: right;
 }
 
 #videoDiv {
@@ -25,7 +48,7 @@ HomePage{}
 }
 
 #buttonDiv {
-
+  display: none;
 }
 
 #button {
