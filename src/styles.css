@@ -39,7 +39,6 @@ button.btn-delete:hover{
   cursor: pointer;
   transition-duration: 0.25s;
 }
-
 .btn-nav.selected {
   background-color: #0099ff;
   color: white;
@@ -72,4 +71,15 @@ button.btn-delete:hover{
   font-size: .7em;
   margin: 0;
   color: red;
+}
+.appButton {
+  background-color: #66ff99;
+  border: solid 1px #00e600;
+  padding: 3px 5px;
+  margin: 1px 0px;
+}
+.appButton:hover:enabled {
+  background-color: #99ff99;
+  cursor: pointer;
+  transition-duration: 0.25s;
 }

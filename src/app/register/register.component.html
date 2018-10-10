@@ -20,7 +20,7 @@
       <div id='label'>Repeat Password</div>
       <input id='repeatPasswordInput' type="password" formControlName="repeatPassword" required placeholder="Repeat Password">
       <br>
-      <span class='errorTip' *ngIf="repeatPassword.invalid">
+      <span class='errorTip' *ngIf="repeatPassword.invalid && repeatPassword.touched">
           Passwords Don't Match.
       </span>
       <br>

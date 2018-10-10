@@ -5,7 +5,7 @@
 <!-- User NOT logged in -->
 <ng-template #guest>
   <div id='container' class='accountContainer'>
-    <h3 class='accountHeader'>Login</h3>
+    <h3 class='accountHeader'>Login to use app</h3>
     <form [formGroup] = "signInForm">
       <input id='emailInput' type="email" formControlName="email" placeholder="Email">
       <div class='errorTip' *ngIf="(email.invalid && email.dirty) && email.touched">
@@ -15,7 +15,7 @@
       <div class='errorTip' *ngIf='password.invalid && password.touched'>
         Password must be more than 6 characters and have atleast 1 number.
       </div>
-      <button id='loginButton' class="accountButton" type="submit" [disabled]="!signInForm.valid" (click)="signIn()">
+      <button id='loginButton' class="accountButton appButton" type="submit" [disabled]="!signInForm.valid" (click)="signIn()">
         Login
       </button>
       <button id='recoverAccountButton' routerLink="/accountRecover" tag="button" routerLinkActive="active">
@@ -33,8 +33,9 @@
     <button id='facebookLoginButton' (click)="auth.facebookLogin()" class="fa fa-facebook accountButton">
       Login with Facebook
     </button>
-    <button id='anonymousLoginButton' (click)="auth.anonymousLogin()" class="fa fa-Anon accountButton">
-      Login as Guest
+    <hr>
+    <button id='anonymousLoginButton' (click)="auth.anonymousLogin()" class="fa fa-Anon accountButton appButton">
+      Or use app as Guest
     </button>
   </div>
 </ng-template>
@@ -52,6 +53,10 @@
     <br>
     <button id='logoutButton' class="accountButton"(click)="logout()" >
       Logout
+    </button>
+    <hr>
+    <button id='goToAppButton' class="appButton" routerLink="/app" tag="button" routerLinkActive="active">
+      Go to App
     </button>
   </div>
 </ng-template>
