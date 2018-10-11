@@ -39,6 +39,13 @@ button{
   color: #006600;
   border: 1px solid #00cc00;
 }
+#nextTurnButton:hover {
+  background-color: #99ff99;
+  transition-duration: .2s;
+}
+#nextTurnButton:active {
+  background-color: #00cc00;
+}
 
 #prevTurnButtonDiv {
 
@@ -50,7 +57,13 @@ button{
   color: #800000;
   border: 1px solid #b30000;
 }
-
+#prevTurnButton:hover {
+  background-color: #ff8080;
+  transition-duration: .2s;
+}
+#prevTurnButton:active {
+  background-color: #b30000;
+}
 #listSpace{
   width: 90%;
   overflow: auto;
