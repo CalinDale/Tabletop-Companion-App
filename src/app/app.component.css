@@ -1,13 +1,27 @@
 AppComponent{}
 
-body {
+app-root {
   height: 100%;
-  background-color: #87ceeb;
+  display: block;
 }
 
-#container-fluid {
+body {
+  height: 100%;
+}
+
+.container-fluid {
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+}
+
+#navBarSpace {
 
 }
 
 #routerSpace {
+
+  height: 100%;
+  overflow: hidden;
+  position: relative;
 }

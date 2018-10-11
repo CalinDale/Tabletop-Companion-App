@@ -12,10 +12,12 @@
       </td>
     </tr>
   </table>
-  <div id='attributeList' *ngFor="let attribute of attributes">
-    <app-char-d-attribute-list-entry [attribute]='attribute' [characterDetailsComponent]='this'></app-char-d-attribute-list-entry>
-  </div>
   <div id='addAttributeButtonDiv'>
     <button id='addAttributeButton' type="button" class="button btn-add" (click)='addAttribute()'>Add Attribute</button>
+  </div>
+  <div id='attributeListDiv'>
+      <div id='attributeList' *ngFor="let attribute of attributes">
+        <app-char-d-attribute-list-entry [attribute]='attribute' [characterDetailsComponent]='this'></app-char-d-attribute-list-entry>
+      </div>
   </div>
 </div>

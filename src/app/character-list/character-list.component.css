@@ -4,7 +4,7 @@ CharacterList{}
   display: none;
 }
 
-:host.is-open {
+:host.is-open{
   display: block
 }
 
@@ -13,11 +13,24 @@ h1 {
   padding-top: 10px;
 }
 
-#list {
-  text-align: center;
+#container{
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  width: 400px;
+  position: absolute;
 }
 
-#list:nth-child(even) {
+#list {
+  text-align: center;
+  height: 70%;
+  display: block;
+  overflow: auto;
+  position: relative;
+  width:100%;
+}
+
+#listEntry:nth-child(odd) {
   background-color: #ffe6cc;
 }
 

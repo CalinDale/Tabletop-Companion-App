@@ -1,13 +1,26 @@
 AppMasterPage{}
 
-table {
+#container {
   width: 100%;
+  height: 100%;
+  max-height: inherit;
+  display: flex;
+  position: absolute;
+  overflow: hidden;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+body {
+  height: 100%;
 }
 
 #characterTab {
   background-color: lightyellow;
-  height: auto;
-  width: 25%;
+  height: 100%;
+  flex-basis: 400px;
+  max-height: inherit;
 }
 
 #trackerSpace {

@@ -2,8 +2,12 @@
 * {
   font-family: Sans-serif;
 }
+html {
+  height: 100%;
+}
 body {
   margin: 0px;
+  height: 100%;
   background-color: #87ceeb;
 }
 button.btn-add{

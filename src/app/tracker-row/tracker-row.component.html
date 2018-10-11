@@ -22,11 +22,8 @@
       <td  id='moveDownButtonDiv'>
         <div  id='moveDownButton' class="btn-down" (click)="moveDown()"></div>
       </td>
-      <td>
-        <button class="btn btn-success" (click)="unlink();">Unlink</button>
-      </td>
-      <td>
-        <button class="btn btn-success" (click)="link();">Link</button>
+      <td id='linkButtonDiv'>
+        <button id='linkButton' class="btn btn-success" (click)="linkButton();">{{unlinked ? 'Autosave Off' : 'Autosave On' }}</button>
       </td>
     </tr>
   </tbody>

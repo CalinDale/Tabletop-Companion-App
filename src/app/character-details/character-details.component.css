@@ -6,10 +6,12 @@ CharacterDetails{}
 
 :host.is-open {
   display: block;
+  height: 100%;
 }
 
 #container {
   text-align: center;
+  height: 100%;
 }
 
 #headerDiv {
@@ -18,6 +20,19 @@ CharacterDetails{}
 
 #headerButtonDiv {
   width: 100px;
+}
+
+#backButton{
+  border-radius: 3px;
+  border: 1px solid grey;
+  position: relative;
+  padding: 5px;
+}
+#backButton:hover{
+  background-color: white;
+}
+#backButton:active{
+  background-color: grey;
 }
 
 #backButton {
@@ -38,11 +53,6 @@ CharacterDetails{}
   margin-bottom: 10px;
 }
 
-#attributeList {
-  position:relative;
-  left: 23px;
-}
-
 #addAttributeButtonDiv {
 
 }
@@ -51,4 +61,16 @@ CharacterDetails{}
   margin-top: 20px;
   margin-bottom: 20px;
   width: 60%;
+}
+
+#attributeListDiv {
+  height: 70%;
+  width: inherit;
+  overflow:auto;
+  display: block;
+  position: relative;
+}
+
+#attributeList {
+  position:relative;
 }

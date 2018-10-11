@@ -1,32 +1,39 @@
 TrackerRowComponent{}
 
 #trackerTable{
-  width: 99%;
+  max-width: 99%;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
+
 #characterRow{
 
 }
+
 #characterRow.acting{
 
 }
+
 #markerDiv{
   width: 2%;
 }
+
 #marker{
   background-color: blue;
   width:23px;
   height:23px;
   border-radius: 50px;
 }
+
 #noMarker{
 }
+
 #nameColumn{
   position:relative;
   width: 10%;
 }
+
 #name{
   position: absolute;
   left:0;
@@ -35,49 +42,61 @@ TrackerRowComponent{}
   overflow: hidden;
   text-overflow: ellipsis
 }
+
 #allAttributes{
   width:100%;
   display: inline-block;
 }
+
 #attributeColumn{
-  width: 19%;
+  width: 18%;
   padding: 0px;
   margin: 0px 3px;;
   display: inline-block;
   border-radius: 15px;
 }
+
 #attributeColumn.empty{
   border: dashed 1px;
 }
+
 #attributeColumn.full{
   border: solid 1px;
 }
+
 #attributeSelectDiv.empty{
   width: 100%;
 }
-#attributeSelectDiv.full{
 
+#attributeSelectDiv.full{
+  width: 0;
 }
+
 #attributeSelect{
   width:100%;
   border: none;
   background-color: transparent;
 }
+
 #attributeSelect.empty{
 
 }
+
 #attributeSelect.full{
   width: 200%;
   z-index: 99;
 }
+
 #attributeEditDiv.active{
   width: 50%;
   padding-right:5px;
   z-index: 98;
 }
+
 #attributeEditDiv.inactive{
 
 }
+
 #attributeEdit{
   width: 100%;
   text-align: center;
@@ -87,27 +106,54 @@ TrackerRowComponent{}
   right:22px;
   z-index: 99;
 }
+
 #moveUpButtonDiv{
   width: 1%
 }
+
 #moveUpButton {
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 
   border-bottom: 15px solid blue;
 }
+
 #moveUpButton:active{
   border-bottom: 15px solid purple;
 }
+
 #moveDownButtonDiv{
   width: 1%
 }
+
 #moveDownButton{
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 
-  border-top: 15px solid #f00;
+  border-top: 15px solid blue;
 }
+
 #moveDownButton:active{
   border-top: 15px solid purple;
+}
+
+#linkButtonDiv {
+  width:100px;
+}
+
+#linkButton {
+  border: solid 1px;
+  border-color: #46d246;
+  padding: 1px 10px;
+  border-radius: 10px;
+  background-color: #adebad;
+  color:darkgreen;
+}
+
+#linkButton:hover{
+  background-color: #d6f5d6;
+}
+
+#linkButton:active{
+  background-color: #adebad;
 }

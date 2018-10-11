@@ -92,6 +92,14 @@ export class TrackerRowComponent implements OnInit {
     }
   }
 
+  linkButton() {
+    if (this.unlinked) {
+      this.link();
+    } else {
+      this.unlink();
+    }
+  }
+
   unlink() {
     this.unlinked = true;
   }
