@@ -48,9 +48,10 @@ export class EditUserAccountComponent implements OnInit {
       ]*/
     });
     this.deleteForm = this.fb.group({
-      'deleteConfirm': [ '' , [
-        Validators.pattern('^DELETE$'),
-        Validators.required
+      'password' : ['', [
+        Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
+        Validators.minLength(6),
+        Validators.maxLength(25)
         ]
       ]
     });
@@ -60,6 +61,7 @@ export class EditUserAccountComponent implements OnInit {
   get email() { return this.editAccountForm.get('email'); }
   get password() { return this.editAccountForm.get('password'); }
   get repeatPassword() { return this.editAccountForm.get('repeatPassword'); }
+  get passwordDelete() { return this.deleteForm.get('password'); }
 
   saveChanges() {
     this.changesSaved = true;
@@ -115,7 +117,10 @@ export class EditUserAccountComponent implements OnInit {
   }
 
   deleteAccount() {
-    firebase.auth().currentUser.delete()
-    .then(() => this.router.navigate(['/login']));
+    const currentUser = firebase.auth().currentUser;
+    this.auth.emailLogin( currentUser.email, this.passwordDelete.value ).then(() => {
+      firebase.auth().currentUser.delete()
+    .then(() => this.router.navigate(['/home']));
+    });
   }
 }

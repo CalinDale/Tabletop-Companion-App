@@ -41,8 +41,8 @@
       <h4 id='deleteHeader'>Delete Account</h4>
       <p id='deleteWarning'>This will delete your registration with the Tabletop Companion App and any associated data.</p>
       <div id='deleteDiv'>
-        <label id='deleteConfirmLabel'>Type DELETE to confirm: </label>
-        <input id='deleteConfirmInput' type="text" formControlName="deleteConfirm">
+        <label id='deleteConfirmLabel'>Enter your password to confirm: </label>
+        <input id='passwordInputDelete' type="password" formControlName="password" placeholder="Password">
       </div>
       <button id='deleteButton' type="submit" [disabled]="!deleteForm.valid" (click)="deleteAccount()">Confirm</button>
     </form>
