@@ -74,6 +74,14 @@ export class CharacterListEntryComponent implements OnInit {
     this.characterDetails.setCharacter(this.character);
   }
 
+  trackerButton() {
+    if (this.character.tracked) {
+      this.removeFromTracker();
+    } else {
+      this.addToTracker();
+    }
+  }
+
   addToTracker() {
     this.trackerService.addToTracker(this.character);
     // setTracker( this.trackerId, this.characterId )

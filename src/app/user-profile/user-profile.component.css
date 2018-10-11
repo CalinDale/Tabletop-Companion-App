@@ -1,80 +1,104 @@
-UserProfile{}
+UserProfile[_ngcontent-c3]{}
 
-.accountContainer {
-  background-color: pink;
-  padding: 10px;
-  width: 12%;
-  border: 1px solid black;
-  margin: 1% auto;
-  overflow-wrap: break-word;
+.accountContainer{
+
 }
 
-.accountHeader {
-  margin-top: 0;
-  margin-bottom: 10px;
+.accountHeader{
+  margin:0;
 }
 
-#emailInput {
-  margin: 0 0 10px 0;
+button[_ngcontent-c3]{
+
+}
+
+button[_ngcontent-c3]:hover:enabled{
+
+}
+
+input{
+  margin: 10px 0 0 0;
   width: 99%;
 }
 
-#passwordInput {
-    width: 99%;
+#emailInput{
+
 }
 
-#formMessage {
-  font-size: .7em;
-  margin: 0 0 10px 0;
+#passwordInput{
+
+}
+
+.errorTip{
   width: 100%;
   word-wrap: break-word;
 }
 
-#formValidMessage {
+#formValidMessage{
 
 }
 
-#formInvalidMessage {
+#formInvalidMessage{
 
 }
 
-#emailInvalidMessage {
+#emailInvalidMessage{
 
 }
 
-#loginButton {
+#loginButton{
+  margin: 10px 0;
 }
 
-#recoverAccountButton {
+#recoverAccountButton{
   border: none;
   background-color: transparent;
-  font-weight: bold;
+  color: black;
+  font-weight:bold;
 }
 
-#registerButton {
+#registerButton{
   width: 100%;
+  background-color: #1a85ff;
+  color: white;
+  border-color: #3392ff;
 }
 
-#or {
+#registerButton[_ngcontent-c3]:hover {
+  background-color: #00aaff;
+}
+
+#or{
   text-align: center;
 }
 
-#googleLoginButton {
-    width: 100%;
+#googleLoginButton{
+  width: 100%;
 }
 
-#facebookLoginButton {
-    width: 100%;
+#facebookLoginButton{
+  width: 100%;
 }
 
-#anonymousLoginButton {
-    width: 100%;
+#anonymousLoginButton{
+  width: 100%;
+  padding: 10px 0;
+  font-size: 0.9em;
 }
 
-#editAccountButton {
+#editAccountButton{
 
 }
 
-#logoutButton {
+#logoutButton{
 
+}
+
+#goToAppButton{
+  width: 90%;
+  display: block;
+  margin: 0 auto;
+  padding: 8px;
+  text-align: center;
+  font-size: 0.8em;
 }

@@ -1,11 +1,34 @@
 HomePage{}
 
 #container {
-  text-align: center;
-  width: 60%;
+  display: flex;
+  width: 1225px;
   margin: 0 auto;
-  border: 2px solid;
-  border-top-color: white;
+  border: 1px solid transparent;
+  background-color: #e9f6fb;
+  padding: 0 50px 50px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#homeContent {
+  text-align: right;
+  flex-basis: 900px;
+  flex-grow: 0;
+}
+
+#userProfileConent {
+  flex-grow: 0;
+}
+
+app-user-profile {
+  position: relative;
+  top: 15px;
+}
+
+#headingContent {
+  text-align: center;
+  width: 100%;
 }
 
 #heading {
@@ -17,7 +40,7 @@ HomePage{}
 }
 
 #paragraph {
-
+  text-align: right;
 }
 
 #videoDiv {
@@ -25,9 +48,28 @@ HomePage{}
 }
 
 #buttonDiv {
-
+  display: none;
 }
 
 #button {
-   margin: 20px;
+  margin: 20px;
+  color: white;
+  background-color: #0099ff;
+  border-radius: 3px;
+  border: none;
+  border-bottom: 3px darkblue solid;
+  padding: 15px 30px;
+  font-size: 1.3em;
+}
+
+#button:hover {
+  background-color: #00ccff;
+  cursor: pointer;
+  transition-duration: 0.2s;
+}
+
+#button:active {
+  -webkit-transform: translateY(3px);
+          transform: translateY(3px);
+  border-bottom: none;
 }
