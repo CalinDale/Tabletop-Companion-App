@@ -21,6 +21,7 @@ body {
   height: 100%;
   flex-basis: 400px;
   max-height: inherit;
+  min-width: 400px;
 }
 
 #trackerSpace {
