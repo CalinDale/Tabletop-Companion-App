@@ -36,6 +36,9 @@ td{
 }
 
 #name{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 1px;
 }
 
 #cloneButtonDiv{

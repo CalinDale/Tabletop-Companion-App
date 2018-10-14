@@ -40,7 +40,8 @@ TrackerRowComponent{}
   top:5px;
   width:100%;
   overflow: hidden;
-  text-overflow: ellipsis
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 #allAttributes{
@@ -76,10 +77,13 @@ TrackerRowComponent{}
   width:100%;
   border: none;
   background-color: transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #attributeSelect.empty{
-
+  width:100%;
 }
 
 #attributeSelect.full{
