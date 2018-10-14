@@ -53,6 +53,21 @@ CharacterDetails{}
   margin-bottom: 10px;
 }
 
+#saveButton{
+  background-color: #99bbff;
+  border: 1px solid #3377ff;
+  border-radius: 3px;
+}
+
+#saveButton:hover{
+  background-color: #80dfff;
+  transition-duration: .3s;
+}
+
+#saveButton:active{
+  background-color: #000080;
+}
+
 #addAttributeButtonDiv {
 
 }
