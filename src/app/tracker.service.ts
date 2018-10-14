@@ -111,9 +111,11 @@ export class TrackerService {
   // Need to update the currentActor in commponents whenever it changes basically, observable stuff.
   addToTracker(character: Character) {
     this.characterService.trackCharacter(character);
-    if ( this.characters.indexOf(character) <= this.currentActor) {
-      this.moveMarkerDown();
-    }
+    // This was an attempt to make the tracker stay on the same character when tracking or untracking other characters.
+    // It didn't update the rows however, which made the tracker appear to jump weirdly sometimes.
+    // if ( this.characters.indexOf(character) <= this.currentActor) {
+    //   this.moveMarkerDown();
+    // }
     let charAttributes: Attribute[] = [];
     this.attributeService.getAttributes(character.key).snapshotChanges().pipe(
       map(changes =>
@@ -130,9 +132,10 @@ export class TrackerService {
   // TODO: cause marker to move when characters are added or removed from tracker
   // Need to update the currentActor in commponents whenever it changes basically, observable stuff.
   removeFromTracker(character: Character) {
-    if ( this.characters.indexOf(character) <= this.currentActor) {
-      this.moveMarkerUp();
-    }
+    // See above
+    // if ( this.characters.indexOf(character) <= this.currentActor) {
+    //   this.moveMarkerUp();
+    // }
     this.characterService.untrackCharacter(character);
     let charAttributes: Attribute[] = [];
     this.attributeService.getAttributes(character.key).snapshotChanges().pipe(
