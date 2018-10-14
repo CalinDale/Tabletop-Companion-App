@@ -6,4 +6,5 @@ export class Attribute {
   value: string;
   userID: string;
   tracked: boolean;
+  displayColumn: number;
 }

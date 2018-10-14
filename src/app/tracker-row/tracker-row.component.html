@@ -6,7 +6,7 @@
       <div id='allAttributes'>
         <div id='attributeColumn' [className]="(selectedAttributeIndexes[i] === undefined) || (selectedAttributeIndexes[i] === 'none') ? 'empty' : 'full'" *ngFor='let attributeColumn of attributeColumns index as i'>
           <td id='attributeSelectDiv' [className]="(selectedAttributeIndexes[i] === undefined) || (selectedAttributeIndexes[i] === 'none') ? 'empty' : 'full'">
-            <select id='attributeSelect' [className]="(selectedAttributeIndexes[i] === undefined) || (selectedAttributeIndexes[i] === 'none') ? 'empty' : 'full'" [(ngModel)]='selectedAttributeIndexes[i]'>
+            <select id='attributeSelect' [className]="(selectedAttributeIndexes[i] === undefined) || (selectedAttributeIndexes[i] === 'none') ? 'empty' : 'full'" [(ngModel)]='selectedAttributeIndexes[i]' (change)='onSelect(i)'>
                 <option  value='none'> </option>
                 <option *ngFor='let attribute of attributes index as a' value={{a}}>{{attribute.name}}</option>
             </select>
