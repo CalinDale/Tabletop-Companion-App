@@ -44,14 +44,11 @@ export class TrackerRowComponent implements OnInit {
     // this.retrieveCharacters();
     // TODO: This function is for setting the displayed attributes up, but doesn't work currently
     // TODO: because it will try to run before it gets the attributes from the observable.
-    // this.prepareAttributeColumns();
+    this.prepareAttributeColumns();
   }
 
-  hasAttributes() {
-
-  }
-
-  prepareAttributeColumns() {
+  async prepareAttributeColumns() {
+    await this.delay(300);
     for (let columnIndex = 0 ; columnIndex <= this.attributeColumns.length; columnIndex++ ) {
       for (const attribute of this.attributes ) {
         if (attribute.displayColumn === columnIndex) {
@@ -59,6 +56,10 @@ export class TrackerRowComponent implements OnInit {
         }
       }
     }
+  }
+
+  delay(ms: number) {
+    return new Promise ( resolve => setTimeout(resolve, ms));
   }
 
   onChange(i: number) {
