@@ -1,6 +1,5 @@
 <table *ngIf="character">
   <tr>
-    <td id='drag'>=</td>
     <td id='trackButtonDiv'><button id='trackButton' class="button btn-track" (click)='trackerButton()'>{{character.tracked ? 'Untrack' : 'Track'}}</button></td>
     <td id='name'>{{character.name}}</td>
     <td id='cloneButtonDiv'><button id='cloneButton' class="button btn-add" (click)='cloneCharacter()'>clone</button></td>

@@ -23,7 +23,7 @@ export class TrackerRowComponent implements OnInit {
   // I think we'll need to master that for anything here.
   @Input()characters: Character[];
 
-  attributes: Attribute[];
+  attributes: Attribute[] = [];
   selectedAttributeIndexes: number[] = [];
   unlinked: boolean;
 
@@ -35,8 +35,31 @@ export class TrackerRowComponent implements OnInit {
   ngOnInit() {
     this.retrieveAttributes();
     this.unlinked = false;
+
+    this.trackerService.getAttributeColumns().subscribe(attributeColumns => {
+      this.attributeColumns = attributeColumns;
+    });
+
     // See Above
     // this.retrieveCharacters();
+    // TODO: This function is for setting the displayed attributes up, but doesn't work currently
+    // TODO: because it will try to run before it gets the attributes from the observable.
+    this.prepareAttributeColumns();
+  }
+
+  async prepareAttributeColumns() {
+    await this.delay(300);
+    for (let columnIndex = 0 ; columnIndex <= this.attributeColumns.length; columnIndex++ ) {
+      for (const attribute of this.attributes ) {
+        if (attribute.displayColumn === columnIndex) {
+          this.selectedAttributeIndexes[columnIndex] = this.attributes.indexOf(attribute);
+        }
+      }
+    }
+  }
+
+  delay(ms: number) {
+    return new Promise ( resolve => setTimeout(resolve, ms));
   }
 
   onChange(i: number) {
@@ -45,6 +68,24 @@ export class TrackerRowComponent implements OnInit {
     } else if ( this.unlinked === false ) {
     this.attributeService.updateAttribute(this.attributes[this.selectedAttributeIndexes[i]]);
     }
+  }
+
+  saveAllAttributes() {
+    if (this.unlinked !== true) {
+      for ( const attriubte of this.attributes ) {
+        this.attributeService.updateAttribute(attriubte);
+      }
+    }
+  }
+
+  onSelect(columnIndex: number) {
+    for (const attribute of this.attributes ) {
+      if (attribute.displayColumn === columnIndex) {
+        attribute.displayColumn = null;
+      }
+    }
+    this.attributes[this.selectedAttributeIndexes[columnIndex]].displayColumn = columnIndex;
+    this.saveAllAttributes();
   }
 
   isActing(): boolean {
