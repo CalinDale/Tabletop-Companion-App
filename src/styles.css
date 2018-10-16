@@ -2,8 +2,13 @@
 * {
   font-family: Sans-serif;
 }
+html {
+  height: 100%;
+}
 body {
   margin: 0px;
+  height: 100%;
+  background-color: #87ceeb;
 }
 button.btn-add{
   border: dashed;
@@ -29,12 +34,24 @@ button.btn-delete:hover{
   border-color: #ff4d4d;
   background-color: #ffb3b3;
 }
-button.btn-nav{
-
+.btn-nav {
+  transition-duration: 0.5s;
+  padding: 0 5px;
+}
+.btn-nav:hover {
+  background-color: #66ccff;
+  cursor: pointer;
+  transition-duration: 0.25s;
+}
+.btn-nav.selected {
+  background-color: #0099ff;
+  color: white;
+  border-bottom: solid 4px darkblue;
 }
 .accountContainer {
+  background-color: lightblue;
   padding: 10px;
-  width: 12%;
+  width: 250px;
   border: 1px solid black;
   margin: 1% auto;
   overflow-wrap: break-word;
@@ -42,4 +59,31 @@ button.btn-nav{
 .accountHeader {
   margin-top: 0;
   margin-bottom: 10px;
+}
+.accountButton {
+  background-color: #80bbff;
+  border: solid 1px #4da0ff;
+  padding: 3px 5px;
+  margin: 1px 0px;
+}
+.accountButton:hover:enabled {
+  background-color: #66ccff;
+  cursor: pointer;
+  transition-duration: 0.25s;
+}
+.errorTip {
+  font-size: .7em;
+  margin: 0;
+  color: red;
+}
+.appButton {
+  background-color: #66ff99;
+  border: solid 1px #00e600;
+  padding: 3px 5px;
+  margin: 1px 0px;
+}
+.appButton:hover:enabled {
+  background-color: #99ff99;
+  cursor: pointer;
+  transition-duration: 0.25s;
 }

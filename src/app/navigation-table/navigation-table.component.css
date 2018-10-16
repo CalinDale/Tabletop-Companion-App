@@ -1,56 +1,52 @@
-NavigationTable {
+NavigationTable{
 
 }
 
-#navigationTable {
+#navigationTable{
   width:100%;
   background-color: lightblue;
   height:35px;
-  border: solid 1px #7EA6E0;
+  border: solid 0px #7EA6E0;
   border-spacing: 0px;
   text-align: center;
   font-weight: bold;
 }
 
-td {
-  border: solid 2px #7EA6E0;
+td{
   width: 8%;
+  border-bottom: solid 4px transparent;
+  transition-duration: 0.5s;
+  padding: 0 5px;
 }
 
-td.selected {
-  background-color: blue;
-  color: white;
-  border: blue solid 2px;
-}
-
-#homeLink {
+#homeLink{
 
 }
 
-#accountLinkDiv {
+#accountLinkDiv{
 
 }
 
-#accountLink {
+#accountLink{
 
 }
 
-#appLinkDiv {
+#appLinkDiv{
 
 }
 
-#appLink {
+#appLink{
 
 }
 
-#spaceDiv {
+#spaceDiv{
   width: auto;
 }
 
-#aboutLinkDiv {
+#aboutLinkDiv{
 
 }
 
-#aboutLink {
+#aboutLink{
 
 }

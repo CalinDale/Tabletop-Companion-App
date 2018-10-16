@@ -5,12 +5,15 @@ table {
   margin-left: auto;
   margin-right: auto;
 }
+
 tr {
 
 }
+
 td {
 
 }
+
 input {
   text-align: center;
   width: 90%;
@@ -18,33 +21,34 @@ input {
   border-width: 1px;
   border-radius: 5px;
 }
+
 #dragDiv {
   width: auto;
   text-align: left;
 }
+
 #nameDiv {
-  width: 30%;
+  width: 50%;
   text-align: center;
 }
+
 #name {
 
 }
-#typeDiv {
-  width: 30%;
-}
-#type {
 
-}
 #valueDiv {
-  width: 30%;
+  width: 50%;
 }
+
 #value {
 
 }
+
 #deleteButtonDiv {
   text-align: right;
   width: auto;
 }
+
 #deleteButton {
   width: auto;
 }

@@ -15,18 +15,26 @@ td{
 #drag{
   width:10px;
 }
+
 #trackButtonDiv{
-  width:10px;
+  width:80px;
 }
+
 #trackButton{
+  background-color: #99bbff;
+  border: 1px solid #3377ff;
+  border-radius: 3px;
+}
 
+#trackButton:hover{
+  background-color: #80dfff;
+  transition-duration: .3s;
 }
-#untrackButtonDiv{
-  width:10px;
-}
-#untrackButton{
 
+#trackButton:active{
+  background-color: #000080;
 }
+
 #name{
 }
 
@@ -48,5 +56,14 @@ td{
 }
 
 #editButton{
-
+  font-weight: bolder;
+  border-radius: 3px;
+  border: 1px solid grey;
+  position: relative;
+}
+#editButton:hover{
+  background-color: white;
+}
+#editButton:active{
+  background-color: grey;
 }
