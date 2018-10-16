@@ -25,14 +25,15 @@ describe('CharDAttributeListEntryComponent', () => {
       tracked: false
     };
 
-    testAttribute = {
+    testAttribute = <Attribute>{
       key: '14',
       name: 'Armor',
       type: 'Number',
       value: '20',
       userID: testCharacter.userID,
       characterID: testCharacter.key,
-      tracked: false
+      tracked: false,
+      displayColumn: 0
     };
 
     testCharacterDetailsComponent = jasmine.createSpyObj('testCharacterDetailsComponent', [

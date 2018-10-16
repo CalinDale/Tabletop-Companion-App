@@ -10,6 +10,7 @@ describe('TrackerRowComponent', () => {
 
   let testCharacters: Character[];
   let testAttributes: Attribute[];
+  let testAttributeColumns: Attribute[];
 
   let testAttributeService: AttributeService;
   let testTrackerService: TrackerService;
@@ -30,19 +31,32 @@ describe('TrackerRowComponent', () => {
       <any>{key: '1'},
       <any>{key: '2'}
     ];
+    testAttributeColumns = [];
+
     testAttributeService = jasmine.createSpyObj('testAttributeService', [
       'updateAttribute'
     ]);
     testTrackerService = jasmine.createSpyObj('testTrackerService', [
       'getAttributes',
-      'getCharacters'
+      'getCharacters',
+      'getAttributeColumns'
     ]);
     (<jasmine.Spy>(testTrackerService.getAttributes)).and.returnValue(of(testAttributes));
     (<jasmine.Spy>(testTrackerService.getCharacters)).and.returnValue(of(testCharacters));
+    (<jasmine.Spy>(testTrackerService.getAttributeColumns)).and.returnValue(of(testAttributeColumns));
 
     component = new TrackerRowComponent(testAttributeService, testTrackerService);
   });
   afterEach(() => {
+    testCharacter = null;
+    testAttributes = null;
+    testCharacters = null;
+    testAttributeColumns = null;
+
+    testAttributeService = null;
+    testTrackerService = null;
+    testAttributeColumns = null;
+
     component = null;
   });
 
