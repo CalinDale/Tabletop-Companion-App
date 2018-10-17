@@ -71,7 +71,7 @@ export class TrackerRowComponent implements OnInit {
   }
 
   saveAllAttributes() {
-    if (this.unlinked !== true) {
+    if (this.unlinked === false) {
       for ( const attriubte of this.attributes ) {
         this.attributeService.updateAttribute(attriubte);
       }
@@ -147,7 +147,7 @@ export class TrackerRowComponent implements OnInit {
 
   link() {
     this.unlinked = false;
-    for ( let j = 0; j <= this.selectedAttributeIndexes.length; j++ ) {
+    for ( let j = 0; j < this.selectedAttributeIndexes.length; j++ ) {
       this.onChange(this.selectedAttributeIndexes[j]);
     }
   }

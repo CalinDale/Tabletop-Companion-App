@@ -11,6 +11,7 @@ describe('TrackerRowComponent', () => {
   let testCharacters: Character[];
   let testAttributes: Attribute[];
   let testAttributeColumns: Attribute[];
+  let testSelectedAttributeIndexes: number[];
 
   let testAttributeService: AttributeService;
   let testTrackerService: TrackerService;
@@ -32,6 +33,7 @@ describe('TrackerRowComponent', () => {
       <any>{key: '2'}
     ];
     testAttributeColumns = [];
+    testSelectedAttributeIndexes = [0, 1, 2];
 
     testAttributeService = jasmine.createSpyObj('testAttributeService', [
       'updateAttribute'
@@ -52,6 +54,7 @@ describe('TrackerRowComponent', () => {
     testAttributes = null;
     testCharacters = null;
     testAttributeColumns = null;
+    testSelectedAttributeIndexes = null;
 
     testAttributeService = null;
     testTrackerService = null;
@@ -64,15 +67,24 @@ describe('TrackerRowComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  // TODO: Test getting attributeColumns from trackerService.
   describe('ngOnInit()', () => {
     beforeEach(() => {
       spyOn(component, 'retrieveAttributes');
+      spyOn(component, 'prepareAttributeColumns');
     });
     it('should call retrieveAttributes()', () => {
       component.ngOnInit();
       expect(component.retrieveAttributes).toHaveBeenCalled();
     });
+    it('should call prepareAttributeColumns()', () => {
+      component.ngOnInit();
+      expect(component.prepareAttributeColumns).toHaveBeenCalled();
+    });
   });
+
+    // TODO: Test prepareAttributeColumns, involves async so it's tough.
+    // TODO: Test delay, same as above.
 
   describe('onChange()', () => {
     let testPassedIndex: number;
@@ -102,6 +114,44 @@ describe('TrackerRowComponent', () => {
         component.onChange(testPassedIndex);
         expect(testAttributeService.updateAttribute).toHaveBeenCalledTimes(0);
       });
+    });
+  });
+
+  describe('saveAllAttributes()', () => {
+    beforeEach(() => {
+      component.attributes = testAttributes;
+    });
+    describe('with unlinked === false', () => {
+      beforeEach(() => {
+        component.unlinked = false;
+      });
+      it('should call attributeService.updateAttribute(attribute) for each attribute in attributes.', () => {
+        component.saveAllAttributes();
+        expect(testAttributeService.updateAttribute).toHaveBeenCalledTimes(testAttributes.length);
+      });
+      // TODO: Test that it sends the proper attributes as parameters.
+    });
+  });
+
+  describe('onSelect()', () => {
+    let testDisplayColumn: number;
+    beforeEach(() => {
+      testDisplayColumn = 0;
+      spyOn(component, 'saveAllAttributes');
+      testAttributes[0].displayColumn = testDisplayColumn;
+      testAttributes[1].displayColumn = null;
+      component.attributes = testAttributes;
+      component.selectedAttributeIndexes = [1];
+    });
+    it('should set displayColumn of any attribute with a displayColumn matching the given displayColumn to null', () => {
+      expect(testAttributes[0].displayColumn).toBe(testDisplayColumn);
+      component.onSelect(testDisplayColumn);
+      expect(testAttributes[0].displayColumn).toBeNull();
+    });
+    it('should set displayColumn of the attribute in selected in the column of the given columnIndex to the given columnIndex', () => {
+      expect(testAttributes[1].displayColumn).toBe(null);
+      component.onSelect(testDisplayColumn);
+      expect(testAttributes[1].displayColumn).toBe(testDisplayColumn);
     });
   });
 
@@ -161,6 +211,60 @@ describe('TrackerRowComponent', () => {
     it('should set characters to characters from trackerService', () => {
       component.retrieveCharacters();
       expect(component.characters).toBe(testCharacters);
+    });
+  });
+
+  describe('linkButton()', () => {
+    beforeEach(() => {
+      spyOn(component, 'unlink');
+      spyOn(component, 'link');
+    });
+    describe('with unlinked === false', () => {
+      beforeEach(() => {
+        component.unlinked = false;
+      });
+      it('should call unlink ', () => {
+        component.linkButton();
+        expect(component.unlink).toHaveBeenCalled();
+      });
+    });
+    describe('with unlinked === true', () => {
+      beforeEach(() => {
+        component.unlinked = true;
+      });
+      it('should call link() ', () => {
+        component.linkButton();
+        expect(component.link).toHaveBeenCalled();
+      });
+    });
+  });
+  describe('unlink()', () => {
+    beforeEach(() => {
+      component.unlinked = false;
+    });
+    it('should set unlinked to true', () => {
+      expect(component.unlinked).toBeFalsy();
+      component.unlink();
+      expect(component.unlinked).toBeTruthy();
+    });
+  });
+  describe('link()', () => {
+    beforeEach(() => {
+      component.unlinked = true;
+      spyOn(component, 'onChange');
+      component.selectedAttributeIndexes = testSelectedAttributeIndexes;
+    });
+    afterEach(() => {
+      component = null;
+    });
+    it('should set unlinked to false', () => {
+      expect(component.unlinked).toBeTruthy();
+      component.link();
+      expect(component.unlinked).toBeFalsy();
+    });
+    it('should call onChange() for each selectedAttributeIndex', () => {
+      component.link();
+      expect(component.onChange).toHaveBeenCalledTimes(testSelectedAttributeIndexes.length);
     });
   });
 

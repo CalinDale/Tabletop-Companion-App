@@ -142,6 +142,36 @@ describe('CharacterListEntryComponent', () => {
     });
   });
 
+  describe('trackerButton()', () => {
+    beforeEach(() => {
+      spyOn(component, 'addToTracker');
+      spyOn(component, 'removeFromTracker');
+      component.character = testCharacter;
+    });
+    afterEach(() => {
+      component.character = null;
+    });
+    describe('with character.tracked === false', () => {
+      beforeEach(() => {
+        testCharacter.tracked = false;
+      });
+      it('should call addToTracker() ', () => {
+        component.trackerButton();
+        expect(component.addToTracker).toHaveBeenCalled();
+      });
+    });
+    describe('with character.tracked === true', () => {
+      beforeEach(() => {
+        testCharacter.tracked = true;
+        component.character = testCharacter;
+      });
+      it('should call addToTracker() ', () => {
+        component.trackerButton();
+        expect(component.removeFromTracker).toHaveBeenCalled();
+      });
+    });
+  });
+
   describe('addToTracker()', () => {
     it('should call trackerService.addToTracker()', () => {
       component.addToTracker();
