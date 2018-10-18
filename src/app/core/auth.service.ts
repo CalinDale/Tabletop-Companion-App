@@ -122,18 +122,48 @@ export class AuthService {
         this.updateUserData(credential.user);
         // this.router.navigate(['/login']);
       })
-      .catch(error => console.log(error));
+      .catch((error: firebase.FirebaseError) => {
+        if (error.code === 'auth/email-already-in-use') {
+          alert('Email alredy in use');
+        } else {
+
+        }
+        console.log(error);
+      });
   }
 
 
   emailLogin(email: string, password: string) {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    return this.afAuth.auth.signInAndRetrieveDataWithEmailAndPassword(email, password)
       .then((user) => {
         this.authState = user;
         this.updateUserData(user);
       })
-      .catch(error => console.log(error));
+      .catch((error: firebase.FirebaseError) => {
+        if (error.code === 'auth/wrong-password') {
+          alert('Invalid Credentials');
+        } else if ('auth/user-not-found') {
+          alert('Invalid Credentials');
+        }
+        console.log(error);
+      });
   }
+
+  deleteAccount(email: string, password: string) {
+    return this.afAuth.auth.signInAndRetrieveDataWithEmailAndPassword(email, password).then(() => {
+      firebase.auth().currentUser.delete().then(() => {
+        this.router.navigate(['/']);
+      });
+    })
+      .catch((error: firebase.FirebaseError) => {
+        if (error.code === 'auth/wrong-password') {
+          alert('Invalid Credentials');
+        } else {
+        }
+        console.log(error);
+      });
+  }
+
 
   // Sends email allowing user to reset password
   resetPassword(email: string) {
