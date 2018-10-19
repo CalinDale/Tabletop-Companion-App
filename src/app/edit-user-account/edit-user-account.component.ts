@@ -119,9 +119,6 @@ export class EditUserAccountComponent implements OnInit {
 
   deleteAccount() {
     const currentUser = firebase.auth().currentUser;
-    this.auth.emailLogin( currentUser.email, this.passwordDelete.value ).then(() => {
-      firebase.auth().currentUser.delete()
-    .then(() => this.router.navigate(['/home']));
-    });
+    this.auth.deleteAccount( currentUser.email, this.passwordDelete.value );
   }
 }
