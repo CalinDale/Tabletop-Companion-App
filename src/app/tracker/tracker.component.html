@@ -1,25 +1,19 @@
-<h1>Tracker</h1>
-
-<table id='trackerTable'>
-    <tr id='headerRow'>
-      <th id='markerDiv'></th>
-      <th id='nameColumn'><div id='nameDiv'>Name</div></th>
-      <th colspan="2" *ngFor='let attributeColumn of attributeColumns' id='attributeColumn'>
-        <select id='attributeHeader'>
-          <option disabled=true value='default'>Add Attribute</option>
-          <option *ngFor='let attribute of attributeColumnOptions' value='attribute'>{{attribute.name}}</option>
-        </select>
-      </th>
-      <th id='moveUpButtonDiv'></th>
-      <th id='moveDownButtonDiv'></th>
-    </tr>
-</table>
-<div id='list' *ngFor='let character of characters index as i' [className]="i === currentActor ? 'acting' : 'waiting'">
-  <app-tracker-row [character]='character' [attributeColumns]='attributeColumns' [currentActor]='currentActor' [characters]='characters' [index]=i></app-tracker-row>
+<div id='headerSection'>
+  <div id='prevTurnButtonDiv'>
+    <button id='prevTurnButton' type="button" class="button" (click)='prevTurn()'>Prev Turn</button>
+  </div>
+  <h1 id='header'>Tracker</h1>
+  <div id='nextTurnButtonDiv'>
+      <button id='nextTurnButton' type="button" class="button" (click)='nextTurn()'>Next Turn</button>
+  </div>
+  <div id='tip'>
+    <div>Create characters on the tab to the side and open them there to give them custom attributes.</div>
+    <div>Click 'Track' next to characters on the list to add them to the tracker. You can then display and edit their attributes in the table.</div>
+    <br>
+  </div>
 </div>
-<div id='nextTurnButtonDiv'>
-  <button id='nextTurnButton' type="button" class="button btn-add" (click)='nextTurn()'>Next Turn</button>
-</div>
-<div id='prevTurnButtonDiv'>
-  <button id='prevTurnButton' type="button" class="button btn-delete" (click)='prevTurn()'>Prev Turn</button>
+<div id='listSpace'>
+  <div id='list' *ngFor='let character of characters index as i' [className]="i === currentActor ? 'acting' : 'waiting'">
+    <app-tracker-row [character]='character' [attributeColumns]='attributeColumns' [currentActor]='currentActor' [characters]='characters' [index]=i></app-tracker-row>
+  </div>
 </div>

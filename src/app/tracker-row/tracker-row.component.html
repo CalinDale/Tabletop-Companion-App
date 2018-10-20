@@ -4,15 +4,15 @@
       <td id='markerDiv'><div id='marker' *ngIf='isActing()'>  </div><div id='noMarker' *ngIf='!isActing()'>  </div></td>
       <td id='nameColumn'><div id='name'>{{character.name}}</div></td>
       <div id='allAttributes'>
-        <div id='attributeColumn' [className]="selectedAttributeIndexes[i] === undefined ? 'empty' : 'full'" *ngFor='let attributeColumn of attributeColumns index as i'>
-          <td id='attributeSelectDiv' [className]="selectedAttributeIndexes[i] === undefined ? 'empty' : 'full'">
-            <select id='attributeSelect' [className]="selectedAttributeIndexes[i] === undefined ? 'empty' : 'full'" [(ngModel)]='selectedAttributeIndexes[i]'>
-                <option disabled=true value='default'>Add Attribute</option>
+        <div id='attributeColumn' [className]="(selectedAttributeIndexes[i] === undefined) || (selectedAttributeIndexes[i] === 'none') ? 'empty' : 'full'" *ngFor='let attributeColumn of attributeColumns index as i'>
+          <td id='attributeSelectDiv' [className]="(selectedAttributeIndexes[i] === undefined) || (selectedAttributeIndexes[i] === 'none') ? 'empty' : 'full'">
+            <select id='attributeSelect' [className]="(selectedAttributeIndexes[i] === undefined) || (selectedAttributeIndexes[i] === 'none') ? 'empty' : 'full'" [(ngModel)]='selectedAttributeIndexes[i]' (change)='onSelect(i)'>
+                <option  value='none'> </option>
                 <option *ngFor='let attribute of attributes index as a' value={{a}}>{{attribute.name}}</option>
             </select>
           </td>
           <td id='attributeEditDiv' [className]="selectedAttributeIndexes[i] !== undefined ? 'active' : 'inactive'">
-            <input id='attributeEdit' *ngIf='selectedAttributeIndexes[i] !== undefined' [(ngModel)]='attributes[selectedAttributeIndexes[i]].value' (input)="onChange(i)">
+            <input id='attributeEdit' *ngIf='(selectedAttributeIndexes[i] !== undefined ) &&  ( selectedAttributeIndexes[i] !== "none" )' [(ngModel)]='attributes[selectedAttributeIndexes[i]].value' (input)="onChange(i)">
           </td>
         </div>
       </div>
@@ -22,11 +22,8 @@
       <td  id='moveDownButtonDiv'>
         <div  id='moveDownButton' class="btn-down" (click)="moveDown()"></div>
       </td>
-      <td>
-        <button class="btn btn-success" (click)="unlink();">Unlink</button>
-      </td>
-      <td>
-        <button class="btn btn-success" (click)="link();">Link</button>
+      <td id='linkButtonDiv'>
+        <button id='linkButton' class="btn btn-success" (click)="linkButton();">{{unlinked ? 'Autosave Off' : 'Autosave On' }}</button>
       </td>
     </tr>
   </tbody>

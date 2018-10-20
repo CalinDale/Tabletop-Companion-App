@@ -22,6 +22,10 @@ export class CharDAttributeListEntryComponent implements OnInit {
   ngOnInit() {
   }
 
+  // updateAttribute() {
+  //   this.attributeService.updateAttribute(this.attribute);
+  // }
+
   delete() {
     this.characterDetailsComponent.updateCharacter();
     this.attributeService.deleteAttribute(this.attribute.key);

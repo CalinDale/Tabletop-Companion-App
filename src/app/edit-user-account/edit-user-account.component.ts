@@ -51,7 +51,8 @@ export class EditUserAccountComponent implements OnInit {
       'password' : ['', [
         Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
         Validators.minLength(6),
-        Validators.maxLength(25)
+        Validators.maxLength(25),
+        Validators.required
         ]
       ]
     });
@@ -118,9 +119,6 @@ export class EditUserAccountComponent implements OnInit {
 
   deleteAccount() {
     const currentUser = firebase.auth().currentUser;
-    this.auth.emailLogin( currentUser.email, this.passwordDelete.value ).then(() => {
-      firebase.auth().currentUser.delete()
-    .then(() => this.router.navigate(['/home']));
-    });
+    this.auth.deleteAccount( currentUser.email, this.passwordDelete.value );
   }
 }

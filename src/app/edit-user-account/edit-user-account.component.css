@@ -1,7 +1,7 @@
 EditUserAccount{}
 
 #container {
-  width: 20%;
+  width: 400px;
 }
 
 #header {
@@ -10,7 +10,7 @@ EditUserAccount{}
 }
 
 #saveMessage {
-  color: red;
+  color: green;
   margin-left: 20%;
 }
 

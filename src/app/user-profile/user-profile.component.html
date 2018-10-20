@@ -5,19 +5,17 @@
 <!-- User NOT logged in -->
 <ng-template #guest>
   <div id='container' class='accountContainer'>
-    <h3 class='accountHeader'>Login</h3>
+    <h3 class='accountHeader'>Login to use app</h3>
     <form [formGroup] = "signInForm">
       <input id='emailInput' type="email" formControlName="email" placeholder="Email">
-      <input id='passwordInput' type="password" formControlName="password" required placeholder="Password">
-      <div id='formMessage'>
-        <div id='formInvalidMessage' *ngIf='!signInForm.valid'>
-          Password must be more than 6 characters and have atleast 1 number.
-        </div>
-        <div id='emailInvalidMessage' *ngIf="(email.invalid && email.dirty) || !email.touched">
-          Email is invalid.
-        </div>
+      <div class='errorTip' *ngIf="(email.invalid && email.dirty) && email.touched">
+        Email is invalid.
       </div>
-      <button id='loginButton' type="submit" [disabled]="!signInForm.valid" (click)="signIn()">
+      <input id='passwordInput' type="password" formControlName="password" required placeholder="Password">
+      <div class='errorTip' *ngIf='password.invalid && password.touched'>
+        Password must be more than 6 characters and have atleast 1 number.
+      </div>
+      <button id='loginButton' class="accountButton appButton" type="submit" [disabled]="!signInForm.valid" (click)="signIn()">
         Login
       </button>
       <button id='recoverAccountButton' routerLink="/accountRecover" tag="button" routerLinkActive="active">
@@ -25,18 +23,19 @@
       </button>
     </form>
 
-    <button id='registerButton' routerLink="/register" tag="button" routerLinkActive="active">
+    <button id='registerButton' class="accountButton" routerLink="/register" tag="button" routerLinkActive="active">
       Register with email
     </button>
     <div id='or'>or</div>
-    <button id='googleLoginButton' (click)="auth.googleLogin()" class="fa fa-google">
+    <button id='googleLoginButton' (click)="auth.googleLogin()" class="fa fa-google accountButton">
       Login with Google
     </button>
-    <button id='facebookLoginButton' (click)="auth.facebookLogin()" class="fa fa-facebook">
+    <button id='facebookLoginButton' (click)="auth.facebookLogin()" class="fa fa-facebook accountButton">
       Login with Facebook
     </button>
-    <button id='anonymousLoginButton' (click)="auth.anonymousLogin()" class="fa fa-Anon">
-      Login as Guest
+    <hr>
+    <button id='anonymousLoginButton' (click)="auth.anonymousLogin()" class="fa fa-Anon accountButton appButton">
+      Or use app as Guest
     </button>
   </div>
 </ng-template>
@@ -48,12 +47,16 @@
     <h3 class='accountHeader'>
       {{auth.currentUserDisplayName }}
     </h3>
-    <button id='editAccountButton' routerLink="/editAccount" tag="button" routerLinkActive="active">
+    <button id='editAccountButton' class="accountButton" routerLink="/editAccount" tag="button" routerLinkActive="active">
       Edit Account
     </button>
     <br>
-    <button id='logoutButton'(click)="logout()">
+    <button id='logoutButton' class="accountButton"(click)="logout()" >
       Logout
+    </button>
+    <hr>
+    <button id='goToAppButton' class="appButton" routerLink="/app" tag="button" routerLinkActive="active">
+      Go to App
     </button>
   </div>
 </ng-template>
