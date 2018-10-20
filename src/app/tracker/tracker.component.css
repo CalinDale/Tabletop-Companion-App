@@ -6,50 +6,84 @@ TrackerComponent{}
   margin-left: auto;
   margin-right: auto;
 }
-#headerRow {
 
+#headerSection{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: stretch;
+  flex-wrap: wrap;
 }
-#markerDiv {
-  width: 1%
+
+#header{
+  padding: 0 100px;
 }
-#nameColumn {
-  width: 10%;
+
+#tip{
+  width: 100%;
 }
-#attributeColumn {
-  width: 10%;
+
+button{
+  font-size: 1.1em;
+  padding: 5px 15px;
 }
-#attributeHeader {
-  margin-left: auto;
-  margin-right: auto;
-}
-#moveUpButtonDiv {
-  width: 1%
-}
-#moveDownButtonDiv {
-  width: 1%
-}
+
 #nextTurnButtonDiv {
 
 }
-#nextTurnButton {
 
+#nextTurnButton {
+  border-top-right-radius: 30px;
+  background-color: #00ff00;
+  color: #006600;
+  border: 1px solid #00cc00;
 }
+#nextTurnButton:hover {
+  background-color: #99ff99;
+  transition-duration: .2s;
+}
+#nextTurnButton:active {
+  background-color: #00cc00;
+}
+
 #prevTurnButtonDiv {
 
 }
-#prevTurnButton {
 
+#prevTurnButton {
+  border-top-left-radius: 30px;
+  background-color: #ff4d4d;
+  color: #800000;
+  border: 1px solid #b30000;
 }
-#list {
+#prevTurnButton:hover {
+  background-color: #ff8080;
+  transition-duration: .2s;
+}
+#prevTurnButton:active {
+  background-color: #b30000;
+}
+#listSpace{
   width: 90%;
+  overflow: auto;
+  height: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#list {
+
   margin-left: auto;
   margin-right: auto;
   background-color: #d0e1fb;
   border: 2px solid transparent;
 }
+
 #list.acting {
   border: 2px blue solid;
 }
+
 #list:nth-child(odd) {
   background-color: #B3CFFF;
 }

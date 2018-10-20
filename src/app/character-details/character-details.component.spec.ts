@@ -30,13 +30,14 @@ describe('CharacterDetailsComponent', () => {
       tracked: false
     };
     testAttributes = [
-      { userID: testUserID,
+      <Attribute>{ userID: testUserID,
         key: 'armor24',
         name: 'Armor',
         type: 'number',
         value: '20',
         characterID: testCharacter.key,
-        tracked: false }
+        tracked: false,
+        displayColumn: 0}
     ];
 
     testAngularFireList = <any>{

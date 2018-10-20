@@ -1,8 +1,6 @@
 <table *ngIf="attribute">
   <tr>
-      <td id='dragDiv'>=</td>
       <td id='nameDiv'><input id='name' [(ngModel)]="attribute.name" placeholder="Name"></td>
-      <td id='typeDiv'><input id='type' [(ngModel)]="attribute.type" placeholder="Type"></td>
       <td id='valueDiv'><input id='value' [(ngModel)]="attribute.value" placeholder="Value"></td>
       <td id='deleteButtonDiv'><button id='deleteButton' class="button btn-delete" (click)="delete()">delete</button></td>
   </tr>
